@@ -10,9 +10,12 @@ Run:
 
 ```bash
 python scripts/verify_freeze.py
+python scripts/verify_stage10.py
 ```
 
-The script verifies the frozen firm-investment closed forms, the Stage-4R baseline switching polynomial, endpoint signs, derivative Bernstein conditions, the unique threshold near `0.7738043861`, and the positive Bernstein coefficients of the no-conventional-investment benchmark.
+`verify_freeze.py` checks the frozen firm-investment closed forms, the Stage-4R canonical switching polynomial, endpoint signs, derivative Bernstein conditions, the unique threshold near `0.7738043861`, and the no-conventional-investment benchmark.
+
+`verify_stage10.py` independently reconstructs the Stage-10 cross-instrument Hessian and general quartic factorization from model primitives, checks the canonical threshold polynomial, and verifies sign reversals under differentiated Bertrand competition and partial local capture of firm surplus.
 
 ## Tests
 
@@ -24,11 +27,13 @@ python -m pytest -q
 
 ## Manuscript build
 
-With `latexmk` installed:
+With `latexmk` and a standard TeX Live installation:
 
 ```bash
 make paper
 ```
+
+The pull-request CI also compiles `main.tex` with BibTeX and requires a non-empty `main.pdf`.
 
 ## Change control
 
