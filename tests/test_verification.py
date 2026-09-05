@@ -17,6 +17,7 @@ from scripts.verify_stage10r_manuscript import (
     verify_no_unresolved_markers,
     verify_welfare_and_robustness_scope,
 )
+from scripts.verify_stage11r_target_scope import verify_target_intensity_scope
 
 
 def test_firm_stage_closed_forms():
@@ -57,3 +58,8 @@ def test_stage10r_scope_and_appendix_consistency():
     verify_welfare_and_robustness_scope()
     verify_appendix_matches_compact_reduced_system()
     verify_no_unresolved_markers()
+
+
+def test_stage11r_target_intensity_scope():
+    results = verify_target_intensity_scope()
+    assert len(results) == 3
