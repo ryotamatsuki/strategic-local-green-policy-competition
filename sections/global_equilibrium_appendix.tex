@@ -1,0 +1,31 @@
+\subsection{Global-equilibrium certificate for the canonical witness}
+\label{app:global-equilibrium}
+
+The branch-specific Hessian and implicit-function calculations above do not by themselves establish a policy Nash equilibrium over the full nonnegative action space. This subsection summarizes the additional active-set argument used for the canonical witness.
+
+Let
+\[
+b\equiv\frac{\mu}{k_g},\qquad
+w_i\equiv m+b s_i+\nu h_i,\qquad
+L\equiv2-\frac{4R}{D}.
+\]
+After minimizing investment cost conditional on effective private cost reduction, Stage 2 reduces to a scalar choice. For $\theta>0$ the unique continuation is partitioned into five regions. Firm $A$ is a monopolist if $\theta w_A\geq(2-R)w_B$; it limit-prices with $q_B=0$ if $Lw_B\leq\theta w_A\leq(2-R)w_B$; both firms are active if $\theta w_A<Lw_B$ and $\theta w_B<Lw_A$; and the remaining two regions are the symmetric $B$-kink and $B$-monopoly cases. The formulas in Section~\ref{sec:equilibrium} coincide at each boundary.
+
+For the rational canonical vector
+\[
+(k_x,k_g,\mu,\nu,\kappa,d,e,\beta,\xi,m)
+=(4,18,9/10,6/5,4/5,2,11/10,17/10,1/10,2),
+\]
+we have $R=59/200$. Exact symbolic root counts establish for every $\theta\in[0,1]$ that the symmetric policy solution is positive, its continuation lies strictly in the duopoly region, and the duopoly own-policy Hessian is negative definite. Given the symmetric rival policy, nonnegative own policies cannot reach the rival-monopoly side.
+
+The own-kink and own-monopoly government problems are compared directly. Their best outside-branch value is attained at the common boundary
+\[
+\theta w_A=(2-R)w_B.
+\]
+Exact KKT signs select that common boundary, and the welfare gap between the symmetric duopoly optimum and the best exclusionary challenger is strictly positive over $\theta\in(0,1]$. Representative values are approximately $7.64866$ at $\theta=.5$, $.42775$ at $.9$, and $.07341$ at $1$. At $\theta=0$ strategic exclusion is unavailable.
+
+The gap numerator and all regime inequalities are strict on the compact interval, so continuity implies a nonempty open primitive neighborhood in which the same global-SPNE configuration survives. The repository script \texttt{verify\_stage4rg\_global.py} reconstructs these comparisons independently and retains the hostile-audit parameter vector for which the old interior candidate fails as a regression test.
+
+\subsection{Limits of the no-conventional-investment comparison}
+
+The canonical no-$x$ benchmark satisfies the positive-Bernstein condition reported above and therefore has no sign reversal. This is not a global necessity theorem. Keeping the other canonical primitives but setting $\beta=1.3$ produces a no-$x$ example with global policy equilibria in which the cross-infrastructure response is negative at $\theta=.9$ and positive at $\theta=1$, with an interior crossing near $.93949$. The repository verifies that example separately. Thus the economically valid comparison is matched-primitives separation at the canonical vector, not universal necessity of conventional investment.
