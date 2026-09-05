@@ -60,7 +60,7 @@ def verify_welfare_and_robustness_scope() -> None:
     assert "not a separate global-equilibrium theorem" in welfare
     assert "does not establish a global Bertrand-SPNE theorem" in robustness
     assert "not claimed for arbitrary $\\omega$" in robustness
-    assert "not universally necessary" in robustness
+    assert "does not imply that conventional investment is necessary for every possible reversal" in robustness
 
 
 def verify_appendix_matches_compact_reduced_system() -> None:
