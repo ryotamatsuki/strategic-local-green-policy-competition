@@ -1,31 +1,15 @@
 # Stage 10 Status
 
-Status: `GO`.
+Status: `SUPERSEDED BY ROLLBACK`.
 
-## Section-by-section construction
+The original Stage-10 construction completed successfully at production commit `98612b15ac34c3cb050ea8485a0ee1171c86bbc4`: all manuscript sections were integrated, symbolic verification passed, and the LaTeX/BibTeX build produced a non-empty PDF.
 
-- [x] Model
-- [x] Equilibrium characterization
-- [x] Main propositions
-- [x] Welfare
-- [x] Robustness/extensions
-- [x] Institutional and empirical bridge
-- [x] Related literature
-- [x] Introduction written after dependent theory sections
-- [x] Discussion
-- [x] Conclusion
-- [x] Proof appendix
-- [x] Verified bibliography integrated
+A subsequent hostile Stage-11 audit found a fatal equilibrium-characterization omission: the manuscript analyzed only the interior duopoly continuation and did not establish global policy best responses against deviations that induce rival-firm inactivity.
 
-## Integration gates
+Accordingly, the Stage-10 `GO` is no longer the current workflow state.  The project has rolled back to `Stage 4R-G — Global Equilibrium / Boundary Repair`.
 
-- [x] manuscript checked against `SLGPC-THEORY-FREEZE-2026-09-05-v1`
-- [x] independent Stage-10 symbolic verification script added
-- [x] differentiated-Bertrand and partial-ownership robustness encoded in verification
-- [x] LaTeX/BibTeX build added to CI
-- [x] symbolic-verification CI passes on the Stage 10 PR
-- [x] manuscript-build CI passes on the Stage 10 PR and produces a non-empty PDF
+The production manuscript remains useful as a superseded draft, but it must not be treated as submission-valid and must not be repaired directly before the affected research gates are rerun.
 
-Stage 10 verdict: `GO`.
+Current downstream routing after Stage 4R-G:
 
-Routing: Stage 11 — Repeated Robustness / Referee Attack Gate.
+`Stage 6 Novelty Re-Kill` -> `Stage 7` -> repeat `Stage 7.5` -> new `Stage 8` freeze -> rebuild/update manuscript.
