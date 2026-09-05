@@ -20,7 +20,7 @@ The integration changes are presentation-only and target-specific. The abstract 
 
 ### Abstract
 
-PASS. The revised abstract asks the cross-instrument policy question directly, states the three-stage mechanism, reports the unique threshold result, qualifies the global-SPNE result to a canonical rational witness/open neighborhood, and states the matched benchmark without claiming universal necessity. Word count: **156**, within ITPF's current 150--250-word requirement.
+PASS. The revised abstract asks the cross-instrument policy question directly, states the three-stage mechanism, reports the unique threshold result, qualifies the global-SPNE result to a canonical rational witness/open neighborhood, and states the matched benchmark without claiming universal necessity. Word count: **157**, within ITPF's current 150--250-word requirement.
 
 ### Introduction
 
