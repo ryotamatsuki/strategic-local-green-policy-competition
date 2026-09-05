@@ -1,6 +1,6 @@
 # Stage 10 Status
 
-Status: `IN PROGRESS` until the full manuscript and verification gates pass on the Stage 10 pull request.
+Status: `GO`.
 
 ## Section-by-section construction
 
@@ -23,7 +23,9 @@ Status: `IN PROGRESS` until the full manuscript and verification gates pass on t
 - [x] independent Stage-10 symbolic verification script added
 - [x] differentiated-Bertrand and partial-ownership robustness encoded in verification
 - [x] LaTeX/BibTeX build added to CI
-- [ ] symbolic-verification CI passes on the Stage 10 PR
-- [ ] manuscript-build CI passes on the Stage 10 PR
+- [x] symbolic-verification CI passes on the Stage 10 PR
+- [x] manuscript-build CI passes on the Stage 10 PR and produces a non-empty PDF
 
-When both CI gates pass, Stage 10 may be marked `GO` and routed to Stage 11 — Repeated Robustness / Referee Attack Gate.
+Stage 10 verdict: `GO`.
+
+Routing: Stage 11 — Repeated Robustness / Referee Attack Gate.
