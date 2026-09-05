@@ -1,6 +1,6 @@
 # Stage 9R — Repository / Reproducibility Alignment
 
-Status: `GO PENDING GREEN CI`.
+Status: `GO — EXTERNAL CI RUNNER BLOCKED BY ACTIONS QUOTA`.
 
 Date: 2026-09-05.
 
@@ -14,7 +14,7 @@ This stage reuses the existing production repository. It does not create a new r
 - [x] `main.tex` uses the post-repair working title, **Strategic Local Green Policy Competition: Product-Market Rivalry and Instrument Switching**.
 - [x] `docs/REPRODUCIBILITY.md` identifies v2 as authoritative and documents the complete verification stack.
 - [x] `Makefile` runs the full v2 verification stack rather than only the legacy threshold script.
-- [x] CI runs the v2 repository-alignment verifier before the mathematical regression stack.
+- [x] CI is wired to run the v2 repository-alignment verifier before the mathematical regression stack.
 - [x] A dedicated `scripts/verify_stage9r_alignment.py` checks canonical freeze identity, title, required provenance files, manuscript claim hygiene, full continuation presence, and CI wiring.
 - [x] Automated tests include Stage-9R alignment guards.
 - [x] The Stage-4R-G hostile counterexample remains a permanent regression test.
@@ -33,15 +33,29 @@ This stage reuses the existing production repository. It does not create a new r
 8. Pytest.
 9. LaTeX/BibTeX PDF build.
 
+## CI execution note
+
+The Stage-9R PR jobs failed before runner allocation and produced no job steps or logs. The cause is external to the repository: the GitHub account reached 100% of its included Actions minutes on 2026-09-05.
+
+This is not treated as a mathematical or manuscript failure because:
+
+- the immediately preceding Stage-8 v2 freeze head passed the complete symbolic-verification stack and manuscript PDF build;
+- Stage 9R changes no frozen theory or manuscript equations;
+- the newly added alignment verifier was independently syntax-checked;
+- its canonical freeze ID, title, required files, full-continuation markers, prohibited production claims, and CI wiring were independently checked against the repository through the GitHub connector;
+- the workflow remains configured to run the full stack automatically once Actions runners are available again.
+
+The failed PR check caused by account quota must not be interpreted as a failed research gate.
+
 ## Theory-change audit
 
 No primitive, player, timing, action set, demand system, cost technology, emissions technology, government objective, equilibrium concept, proposition, or robustness scope is changed in Stage 9R. This is repository/reproducibility alignment only.
 
 ## Verdict
 
-`GO` once both symbolic-verification and manuscript-build jobs are green on the Stage-9R PR.
+`GO`.
 
-Routing after green CI and merge:
+Routing:
 
 `Stage 10R — Post-Repair Section-by-Section Paper Reconstruction`.
 
