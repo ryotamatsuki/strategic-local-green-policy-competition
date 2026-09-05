@@ -181,6 +181,8 @@ which has the unique root
 
 in `(0,1)`.
 
+The repaired no-x verifier also solves the full nonnegative continuation at `theta=.9` and `theta=1`.  Both symmetric policy candidates are true global policy equilibria after comparison with kink and monopoly deviations.  The cross-response switching index is negative at `.9` and positive at `1`, while the global-equilibrium welfare gaps against the best exclusionary challenger are approximately `1.8638141` and `1.2625468`, respectively.  In the no-x kink branch the government objective is flat in the subsidy direction and strictly concave in infrastructure; the verifier treats this semidefinite structure directly rather than imposing false strict concavity.
+
 Therefore the surviving claim is only:
 
 > On a nonempty primitive region containing the canonical witness, adding conventional competitive investment generates a sign reversal that is absent under the same primitives in the nested no-conventional-investment benchmark.
