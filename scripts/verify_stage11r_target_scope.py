@@ -79,15 +79,23 @@ def _case(d_value: sp.Rational):
     return roots, sp.sign(Pu.eval(0)), sp.sign(Pu.eval(1))
 
 
-def main() -> None:
+def verify_target_intensity_scope():
     cases = {
         sp.Rational(3, 2): (0, +1, +1),
         sp.Rational(2): (1, +1, -1),
         sp.Rational(3): (0, -1, -1),
     }
+    results = {}
     for d_value, expected in cases.items():
         actual = _case(d_value)
         assert actual == expected, f"d={d_value}: {actual} != {expected}"
+        results[d_value] = actual
+    return results
+
+
+def main() -> None:
+    results = verify_target_intensity_scope()
+    for d_value, actual in results.items():
         print(f"d={d_value}: roots={actual[0]}, endpoint_signs={actual[1:]}")
     print("STAGE 11R TARGET-SCOPE PASS")
 
