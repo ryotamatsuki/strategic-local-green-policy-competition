@@ -128,4 +128,16 @@ At the regime boundaries the continuation formulas coincide. At $\theta=0$ strat
 
 On the interior duopoly branch, substituting \eqref{eq:investment-solutions} and \eqref{eq:q-linear-policies} into \eqref{eq:government-welfare} makes each government's reduced objective quadratic in $(s_A,h_A,s_B,h_B)$. Let $z_i=(s_i,h_i)'$. Whenever the own-policy Hessian $H_i\equiv W_{z_i z_i}$ is negative definite, the branch-specific interior best response is unique and affine in the rival policy vector. Section~\ref{sec:results} characterizes its cross-instrument derivative exactly.
 
-Branch-specific concavity alone is not sufficient for SPNE. For the canonical rational witness, we additionally compare the duopoly optimum with all nonnegative-policy kink and monopoly challengers. The outside-branch objectives attain their best values at the common kink/monopoly boundary, and the welfare gap from the symmetric duopoly optimum is strictly positive for every $\theta\in(0,1]$; representative gaps are $7.649$ at $\theta=.5$, $.428$ at $.9$, and $.073$ at $1$. Because these inequalities and the duopoly-region conditions are strict, the same global-SPNE property holds on a nonempty open neighborhood of primitives. Appendix~\ref{app:proofs} summarizes the certificate and the repository reproduces it exactly.
+Branch-specific concavity alone is not sufficient for SPNE. For the canonical rational witness, we additionally compare the duopoly optimum with all nonnegative-policy kink and monopoly challengers. The outside-branch objectives attain their best values at the common kink/monopoly boundary, and the welfare gap from the symmetric duopoly optimum is strictly positive for every $\theta\in(0,1]$; representative gaps are $7.649$ at $\theta=.5$, $.428$ at $.9$, and $.073$ at $1$. Because these inequalities and the duopoly-region conditions are strict, the same global-SPNE property holds on a nonempty open neighborhood of primitives. Appendix~\ref{app:global-equilibrium} summarizes the exact certificate and the repository reproduces it independently.
+
+\begin{proposition}[Canonical global-SPNE bridge]
+\label{prop:global-spne}
+At the canonical rational primitives
+\[
+(k_x,k_g,\mu,\nu,\kappa,d,e,\beta,\xi,m,\bar E)
+=(4,18,0.9,1.2,0.8,2,1.1,1.7,0.1,2,0),
+\]
+the symmetric interior-duopoly policy candidate is a global policy Nash equilibrium for every $\theta\in[0,1]$ once the complete nonnegative Stage-2 and Stage-3 continuations are taken into account. Together with the unique continuation in every downstream subgame, this policy profile induces an SPNE of the full game. Moreover, the strict branch and welfare-gap inequalities imply that the same local global-SPNE configuration survives on a nonempty open neighborhood of the canonical primitives.
+\end{proposition}
+
+Proposition~\ref{prop:global-spne} is a qualification bridge, not a general primitive characterization of global equilibrium. The hostile-audit counterexample retained in the repository demonstrates that the interior Hessian and quartic conditions alone do not guarantee the proposition away from the certified region.
