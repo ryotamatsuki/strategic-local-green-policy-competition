@@ -5,7 +5,7 @@ We solve the game by backward induction. Let
 \begin{equation}
 D\equiv4-\theta^2,
 \qquad
-m\equiv a-c,
+m\equiv a-c>0,
 \qquad
 r_i\equiv x_i+\mu g_i+\nu h_i.
 \end{equation}
@@ -28,7 +28,7 @@ It is useful to write
 \[
 v_i\equiv m+x_i+\mu g_i+\nu h_i.
 \]
-The complete nonnegative Cournot continuation is then piecewise. Both firms are active when $2v_i>\theta v_j$ for each $i$. Firm $A$ is the active monopolist when $v_B\leq\theta v_A/2$, in which case $q_A=v_A/2$ and $q_B=0$; the symmetric condition applies for firm $B$. These boundary regimes matter because a government can otherwise profitably deviate far enough to change market structure.
+The complete nonnegative Cournot continuation is then piecewise. Both firms are active when $2v_i>\theta v_j$ for each $i$. Firm $A$ is the active monopolist when $v_B\leq\theta v_A/2$, in which case $q_A=v_A/2$ and $q_B=0$; the symmetric condition applies for firm $B$. These boundary regimes matter because a government can otherwise profitably deviate far enough to change market structure. The maintained restriction $m>0$ rules out a separate both-inactive baseline region for the continuation map used below.
 
 \subsection{Stage 2: investment and the active-duopoly branch}
 
@@ -105,7 +105,7 @@ x_i=\frac{u_i}{Rk_x},
 g_i=\frac{s_i}{k_g}+\frac{\mu u_i}{Rk_g}.
 \label{eq:scalar-investment-composition}
 \end{equation}
-This reduces Stage 2 to a one-dimensional investment choice for each firm. For $\theta>0$, the unique continuation is classified by $w_A/w_B$:
+This reduces Stage 2 to a one-dimensional investment choice for each firm. Under the maintained $m>0$ restriction and for $\theta>0$, the unique continuation is classified by $w_A/w_B$:
 
 \begin{itemize}
 \item If $\theta w_A\geq(2-R)w_B$, firm $A$ is the active monopolist and
@@ -128,7 +128,7 @@ At the regime boundaries the continuation formulas coincide. At $\theta=0$ strat
 
 On the interior duopoly branch, substituting \eqref{eq:investment-solutions} and \eqref{eq:q-linear-policies} into \eqref{eq:government-welfare} makes each government's reduced objective quadratic in $(s_A,h_A,s_B,h_B)$. Let $z_i=(s_i,h_i)'$. Whenever the own-policy Hessian $H_i\equiv W_{z_i z_i}$ is negative definite, the branch-specific interior best response is unique and affine in the rival policy vector. Section~\ref{sec:results} characterizes its cross-instrument derivative exactly.
 
-Branch-specific concavity alone is not sufficient for SPNE. For the canonical rational witness, we additionally compare the duopoly optimum with all nonnegative-policy kink and monopoly challengers. The outside-branch objectives attain their best values at the common kink/monopoly boundary, and the welfare gap from the symmetric duopoly optimum is strictly positive for every $\theta\in(0,1]$; representative gaps are $7.649$ at $\theta=.5$, $.428$ at $.9$, and $.073$ at $1$. Because these inequalities and the duopoly-region conditions are strict, the same global-SPNE property holds on a nonempty open neighborhood of primitives. Appendix~\ref{app:global-equilibrium} summarizes the exact certificate and the repository reproduces it independently.
+Branch-specific concavity alone is not sufficient for SPNE. For the canonical rational witness, we additionally compare the duopoly optimum with all nonnegative-policy kink and monopoly challengers. The outside-branch objectives attain their best values at the common kink/monopoly boundary, and the welfare gap from the symmetric duopoly optimum is strictly positive for every $\theta\in(0,1]$; representative gaps are $7.649$ at $\theta=.5$, $.428$ at $.9$, and $.073$ at $1$. Appendix~\ref{app:global-equilibrium} handles the $\theta=0$ endpoint explicitly by continuously extending the scaled gap $\theta^2\Delta W(\theta)$ and also verifies nonsingularity of the full policy-FOC Jacobian on $[0,1]$. Together with the strict regime, curvature, and feasibility margins, this yields a common nonempty open primitive neighborhood in which the same global-SPNE configuration survives.
 
 \begin{proposition}[Canonical global-SPNE bridge]
 \label{prop:global-spne}
@@ -137,7 +137,7 @@ At the canonical rational primitives
 (k_x,k_g,\mu,\nu,\kappa,d,e,\beta,\xi,m,\bar E)
 =(4,18,0.9,1.2,0.8,2,1.1,1.7,0.1,2,0),
 \]
-the symmetric interior-duopoly policy candidate is a global policy Nash equilibrium for every $\theta\in[0,1]$ once the complete nonnegative Stage-2 and Stage-3 continuations are taken into account. Together with the unique continuation in every downstream subgame, this policy profile induces an SPNE of the full game. Moreover, the strict branch and welfare-gap inequalities imply that the same local global-SPNE configuration survives on a nonempty open neighborhood of the canonical primitives.
+the symmetric interior-duopoly policy candidate is a global policy Nash equilibrium for every $\theta\in[0,1]$ once the complete nonnegative Stage-2 and Stage-3 continuations are taken into account. Together with the unique continuation in every downstream subgame, this policy profile induces an SPNE of the full game. Moreover, the strict branch and welfare-gap inequalities, the continuous endpoint scaling of the exclusionary gap, and policy-FOC Jacobian regularity imply that the same local global-SPNE configuration survives on a nonempty open neighborhood of the canonical primitives.
 \end{proposition}
 
 Proposition~\ref{prop:global-spne} is a qualification bridge, not a general primitive characterization of global equilibrium. The hostile-audit counterexample retained in the repository demonstrates that the interior Hessian and quartic conditions alone do not guarantee the proposition away from the certified region.
