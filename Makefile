@@ -10,6 +10,7 @@ verify:
 	$(PYTHON) scripts/verify_nox_global_counterexample.py
 	$(PYTHON) scripts/verify_stage7_postrepair.py
 	$(PYTHON) scripts/verify_stage10.py
+	$(PYTHON) scripts/verify_stage11r_target_scope.py
 
 test:
 	$(PYTHON) -m pytest -q
