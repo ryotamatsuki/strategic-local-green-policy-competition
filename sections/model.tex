@@ -1,42 +1,92 @@
 \section{Model}
-There are two jurisdictions, $i\in\{A,B\}$, each hosting one incumbent firm. Plant locations are fixed. The game has complete information and three stages. In Stage 1, local governments simultaneously choose a firm-specific green-investment subsidy $s_i$ and shared green public infrastructure $h_i$. In Stage 2, firms simultaneously choose conventional competitive investment $x_i$ and green investment $g_i$. In Stage 3, firms compete in a differentiated Cournot product market.
+\label{sec:model}
+
+There are two jurisdictions, indexed by $i\in\{A,B\}$, and one incumbent manufacturing firm in each jurisdiction. Plant locations are fixed. The model is intended to capture industries in which production is geographically anchored but product-market competition is broader than the jurisdiction itself. Information is complete and all primitives are common knowledge.
+
+\subsection{Timing}
+
+The game has three stages. In Stage 1, local governments simultaneously choose a firm-specific green-investment subsidy $s_i$ and shared green public infrastructure $h_i$. In Stage 2, firms simultaneously choose conventional cost-reducing investment $x_i$ and green investment $g_i$. In Stage 3, firms compete in quantities. We solve for a subgame-perfect Nash equilibrium by backward induction.
+
+\subsection{Product market}
 
 A representative consumer has gross utility
-\[
-V(q_A,q_B)=a(q_A+q_B)-\frac12(q_A^2+q_B^2)-\theta q_Aq_B,
-\]
-so inverse demand is
-\[
-p_i=a-q_i-\theta q_j,\qquad 0\leq\theta\leq1.
-\]
+\begin{equation}
+V(q_A,q_B)
+=a(q_A+q_B)-\frac12(q_A^2+q_B^2)-\theta q_Aq_B,
+\label{eq:grossutility}
+\end{equation}
+which implies inverse demand
+\begin{equation}
+p_i=a-q_i-\theta q_j,
+\qquad i\neq j,
+\label{eq:inverse-demand}
+\end{equation}
+with $0\leq\theta\leq1$. The parameter $\theta$ measures product substitutability and hence the intensity of product-market rivalry. Consumer surplus is
+\begin{equation}
+CS=\frac12(q_A^2+q_B^2)+\theta q_Aq_B.
+\label{eq:cs}
+\end{equation}
+
+\subsection{Technology, investment, and emissions}
 
 Firm $i$ has marginal cost
-\[
-c_i=c-x_i-\mu g_i-\nu h_i,
-\]
-and investment cost
-\[
-C_i(x_i,g_i)=\frac{k_x}{2}x_i^2+\frac{k_g}{2}g_i^2.
-\]
-Its profit is
-\[
-\pi_i=(p_i-c_i)q_i-\frac{k_x}{2}x_i^2-\frac{k_g}{2}g_i^2+s_i g_i.
-\]
-Territorial emissions are
-\[
-E_i=e q_i-\beta g_i-\xi h_i.
-\]
+\begin{equation}
+c_i=c-x_i-\mu g_i-\nu h_i.
+\label{eq:mc}
+\end{equation}
+Conventional investment $x_i$ raises productivity. Green investment $g_i$ reduces emissions and, when $\mu>0$, also improves competitiveness. Shared green infrastructure $h_i$ is a local public input that can lower firms' marginal cost at rate $\nu>0$. Investment costs are separable and quadratic,
+\begin{equation}
+C_i(x_i,g_i)
+=\frac{k_x}{2}x_i^2+\frac{k_g}{2}g_i^2,
+\qquad k_x,k_g>0.
+\label{eq:investment-cost}
+\end{equation}
+There is no exogenous investment budget linking $x_i$ and $g_i$; any interaction between the two investments is generated endogenously through the product market.
 
-Consumer surplus is
-\[
-CS=\frac12(q_A^2+q_B^2)+\theta q_Aq_B.
-\]
-Local government $i$ maximizes
-\[
-W_i=\frac12CS+PS_i-\frac{\kappa}{2}h_i^2-\frac d2(E_i-\bar E_i)^2,
-\]
+Firm $i$'s profit is
+\begin{equation}
+\pi_i
+=(p_i-c_i)q_i
+-\frac{k_x}{2}x_i^2
+-\frac{k_g}{2}g_i^2
++s_i g_i.
+\label{eq:profit}
+\end{equation}
+Territorial emissions are
+\begin{equation}
+E_i=e q_i-\beta g_i-\xi h_i,
+\qquad e,\beta>0,\quad \xi\geq0.
+\label{eq:emissions}
+\end{equation}
+The term $e q_i$ captures the scale effect of production, while $\beta g_i$ and $\xi h_i$ capture private and public abatement channels.
+
+\subsection{Local-government objective}
+
+The local government values one half of integrated-market consumer surplus, local producer surplus, and progress toward a territorial emissions target. Its objective is
+\begin{equation}
+W_i
+=\frac12CS+PS_i-\frac{\kappa}{2}h_i^2
+-\frac d2(E_i-\bar E_i)^2,
+\qquad \kappa,d>0,
+\label{eq:government-welfare}
+\end{equation}
 where
-\[
+\begin{equation}
 PS_i=q_i^2-\frac{k_x}{2}x_i^2-\frac{k_g}{2}g_i^2.
-\]
-The subsidy payment $s_ig_i$ is treated as an intraregional transfer and cancels from regional welfare.
+\label{eq:producer-surplus}
+\end{equation}
+At the Cournot stage, operating profit equals $q_i^2$. The subsidy payment $s_i g_i$ is an intrajurisdictional transfer and therefore cancels from regional welfare in the baseline. The quadratic emissions term should be interpreted as a reduced-form loss from deviating from a delegated or territorial decarbonization objective, not as local physical climate damages from carbon emissions.
+
+\subsection{Regularity}
+
+Define
+\begin{equation}
+R\equiv\frac1{k_x}+\frac{\mu^2}{k_g}.
+\label{eq:R}
+\end{equation}
+We focus on interior equilibria and impose the convenient sufficient condition
+\begin{equation}
+R<\frac34.
+\label{eq:regularity}
+\end{equation}
+This condition is stronger than necessary, but it guarantees strict concavity of the firms' investment problem and nonsingularity of the reduced output system for all $\theta\in[0,1]$. Government-side strict concavity is imposed where the relevant best-response comparative statics are evaluated. The numerical witness used below satisfies these conditions with slack.
