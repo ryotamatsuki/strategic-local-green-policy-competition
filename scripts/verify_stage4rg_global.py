@@ -45,8 +45,8 @@ def canonical_system(include_x=True):
     sA, hA, sB, hB = sp.symbols("sA hA sB hB", real=True)
     yA = b * sA + nu * hA
     yB = b * sB + nu * hB
-    qA = sp.cancel((aa * (m + yA) - theta * (m + yB)) / det)
-    qB = sp.cancel((aa * (m + yB) - theta * (m + yA)) / det)
+    qA = (aa * (m + yA) - theta * (m + yB)) / det
+    qB = (aa * (m + yB) - theta * (m + yA)) / det
 
     if include_x:
         xA = 4 * qA / (D * kx)
@@ -59,7 +59,7 @@ def canonical_system(include_x=True):
     CS = sp.Rational(1, 2) * (qA**2 + qB**2) + theta * qA * qB
     PSA = qA**2 - kx * xA**2 / 2 - kg * gA**2 / 2
     EA = e * qA - beta * gA - xi * hA
-    WA = sp.cancel(sp.Rational(1, 2) * CS + PSA - kappa * hA**2 / 2 - d * EA**2 / 2)
+    WA = sp.Rational(1, 2) * CS + PSA - kappa * hA**2 / 2 - d * EA**2 / 2
 
     s, h = sp.symbols("s h", real=True)
     f1 = sp.diff(WA, sA).subs({sA: s, sB: s, hA: h, hB: h})
@@ -104,14 +104,14 @@ def verify_global_duopoly_interval(include_x=True):
     MBlow = sp.cancel(m + nu * hstar + b * sstar)
 
     # If A were inactive, B could exclude it only through either a smooth
-    # monopoly optimum or the rival-exit kink.  The kink permits at most
+    # monopoly optimum or the rival-exit kink. The kink permits at most
     # M_A <= theta M_B^low/(2-lambda); the smooth-monopoly bound is smaller.
-    # Since any nonnegative A policy implies M_A >= m, strict positivity of
-    # m - upper_exclusion rules out A-inactive continuations entirely.
+    # Since any nonnegative A policy gives M_A >= m, this rules out A-inactive
+    # continuations on the certified interval.
     upper_exclusion = sp.cancel(theta * MBlow / (2 - lam))
     assert_constant_sign(m - upper_exclusion)
 
-    # A-monopoly smooth branch.  This is an unconstrained upper bound over
+    # A-monopoly smooth branch. This is an unconstrained upper bound over
     # every feasible smooth rival-exit deviation.
     sM, hM = sp.symbols("sM hM", real=True)
     qM = sp.cancel((m + nu * hM + b * sM) / (2 - R))
@@ -120,7 +120,7 @@ def verify_global_duopoly_interval(include_x=True):
     else:
         xM = sp.Integer(0)
     gM = (sM + mu * qM) / kg
-    WM = sp.cancel(
+    WM = (
         sp.Rational(1, 4) * qM**2
         + qM**2 - z["kx"] * xM**2 / 2 - kg * gM**2 / 2
         - kappa * hM**2 / 2
@@ -132,30 +132,46 @@ def verify_global_duopoly_interval(include_x=True):
     UM = sp.cancel(WM.subs(msol))
     assert_constant_sign(Wstar - UM)
 
-    # Rival-exit kink.  At q_B=0, q_A=M_B^low/theta and the cost-reduction
-    # index must satisfy z_A=2 M_B^low/theta-m-nu h_A.  Maximizing government
-    # welfare over all real (s_A,h_A) on this relation is a relaxation of the
-    # feasible kink set, hence an upper bound on every kink deviation.
-    sK, hK = sp.symbols("sK hK", real=True)
+    # Rival-exit kink. At q_B=0, q_A=M_B^low/theta and
+    # z_A=2 M_B^low/theta-m-nu h_A.
     qK = sp.cancel(MBlow / theta)
+    hK = sp.symbols("hK", real=True)
     zK = sp.cancel(2 * MBlow / theta - m - nu * hK)
-    lowK = b * sK
-    shadow = sp.cancel((zK - lowK) / R)
+
     if include_x:
+        # With both x and g, maximize over all real (s_A,h_A) on the kink
+        # relation. This relaxation contains every feasible kink policy.
+        sK = sp.symbols("sK", real=True)
+        lowK = b * sK
+        shadow = (zK - lowK) / R
         xK = shadow / z["kx"]
+        gK = (sK + mu * shadow) / kg
+        WK = (
+            sp.Rational(1, 4) * qK**2
+            + qK**2 - z["kx"] * xK**2 / 2 - kg * gK**2 / 2
+            - kappa * hK**2 / 2
+            - d * (e * qK - beta * gK - xi * hK) ** 2 / 2
+        )
+        HK = sp.simplify(sp.hessian(WK, (sK, hK)))
+        assert HK[0, 0] < 0 and sp.factor(HK.det()) > 0
+        ksol = sp.solve([sp.diff(WK, sK), sp.diff(WK, hK)], [sK, hK], dict=True, simplify=False)[0]
+        UK = sp.cancel(WK.subs(ksol))
     else:
-        xK = sp.Integer(0)
-    gK = (sK + mu * shadow) / kg
-    WK = sp.cancel(
-        sp.Rational(1, 4) * qK**2
-        + qK**2 - z["kx"] * xK**2 / 2 - kg * gK**2 / 2
-        - kappa * hK**2 / 2
-        - d * (e * qK - beta * gK - xi * hK) ** 2 / 2
-    )
-    HK = sp.simplify(sp.hessian(WK, (sK, hK)))
-    assert HK[0, 0] < 0 and sp.factor(HK.det()) > 0
-    ksol = sp.solve([sp.diff(WK, sK), sp.diff(WK, hK)], [sK, hK], dict=True, simplify=False)[0]
-    UK = sp.cancel(WK.subs(ksol))
+        # Without x, z=mu*g exactly. Subsidy only selects the shadow value
+        # needed for kink optimality; welfare on the kink depends on h alone.
+        # Maximizing the resulting concave quadratic over all real h is again
+        # an upper bound on the feasible kink set.
+        gK = zK / mu
+        WK = (
+            sp.Rational(1, 4) * qK**2
+            + qK**2 - kg * gK**2 / 2
+            - kappa * hK**2 / 2
+            - d * (e * qK - beta * gK - xi * hK) ** 2 / 2
+        )
+        assert sp.diff(WK, hK, 2) < 0
+        hsol = sp.solve(sp.diff(WK, hK), hK)[0]
+        UK = sp.cancel(WK.subs(hK, hsol))
+
     assert_constant_sign(Wstar - UK)
 
     return {
@@ -188,7 +204,7 @@ def verify_astra_counterexample():
     CS = sp.Rational(1, 2) * (qa**2 + qb**2) + theta * qa * qb
     PSA = qa**2 - kx * xa**2 / 2 - kg * ga**2 / 2
     EA = e * qa - beta * ga - xi * ha
-    WA = sp.cancel(sp.Rational(1, 2) * CS + PSA - kappa * ha**2 / 2 - d * EA**2 / 2)
+    WA = sp.Rational(1, 2) * CS + PSA - kappa * ha**2 / 2 - d * EA**2 / 2
     s, h = sp.symbols("s h")
     sol = sp.solve([
         sp.diff(WA, sa).subs({sa: s, sb: s, ha: h, hb: h}),
@@ -209,6 +225,28 @@ def verify_astra_counterexample():
     assert qdev == sp.Rational(13008, 655)
     assert xdev == sp.Rational(1626, 655)
     assert gdev == sp.Rational(2906, 655)
+
+    # Verify that B optimally remains inactive. Its minimum-cost inactive
+    # investment index is z_B^0=b*s_B. Entry begins only at z_entry. On the
+    # active duopoly branch the incremental profit relative to inactivity is
+    # strictly concave; its stationary point lies left of entry and the value
+    # at entry is already negative, so no active deviation is profitable.
+    MAdev = 2 * qdev
+    M0B = m + nu * sol[h]
+    lowB = b * sol[s]
+    zentry = theta * MAdev / 2 - M0B
+    assert lowB < zentry
+    zB = sp.symbols("zB", real=True)
+    qBactive = (2 * (M0B + zB) - theta * MAdev) / D
+    incprofit = qBactive**2 - (zB - lowB) ** 2 / (2 * R)
+    assert sp.diff(incprofit, zB, 2) < 0
+    zstat = sp.solve(sp.diff(incprofit, zB), zB)[0]
+    assert zstat < zentry
+    assert sp.factor(incprofit.subs(zB, zentry)) < 0
+
+    # Stage-3 inactivity condition for B at its inactive investment.
+    MBlow = M0B + lowB
+    assert MBlow < theta * qdev
     assert sp.factor(Wdev - Wcand) > 0
     return sp.N(Wcand, 12), sp.N(Wdev, 12)
 
