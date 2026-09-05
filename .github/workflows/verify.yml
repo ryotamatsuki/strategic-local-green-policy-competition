@@ -17,6 +17,7 @@ jobs:
       - run: pip install -r requirements.txt
       - run: python scripts/verify_freeze.py
       - run: python scripts/verify_stage10.py
+      - run: python scripts/verify_stage4rg_global.py
       - run: python -m pytest -q
 
   manuscript-build:
