@@ -4,6 +4,7 @@ PYTHON ?= python3
 
 verify:
 	$(PYTHON) scripts/verify_stage9r_alignment.py
+	$(PYTHON) scripts/verify_stage10r_manuscript.py
 	$(PYTHON) scripts/verify_freeze.py
 	$(PYTHON) scripts/verify_stage4rg_global.py
 	$(PYTHON) scripts/verify_nox_global_counterexample.py
