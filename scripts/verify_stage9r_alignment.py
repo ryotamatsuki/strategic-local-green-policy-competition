@@ -77,7 +77,7 @@ def verify_full_game_is_in_manuscript() -> None:
     for token in ("nonnegative", "monopoly"):
         assert token in equilibrium or token in appendix
     assert "kink" in equilibrium or "kink" in appendix
-    assert "s_i\ge 0" in model or "s_i\\ge 0" in model or "nonnegative" in model
+    assert "nonnegative" in model
 
 
 def verify_regression_guards_are_wired() -> None:
