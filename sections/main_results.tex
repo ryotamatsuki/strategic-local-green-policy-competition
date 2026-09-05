@@ -1,38 +1,188 @@
 \section{Main Results}
-The headline object is the cross-instrument best-response derivative
+\label{sec:results}
+
+The central object is the response of jurisdiction $A$'s infrastructure policy to jurisdiction $B$'s firm-specific green subsidy,
 \[
 \frac{\partial h_A^{BR}}{\partial s_B}.
 \]
-Let $H_A$ be government $A$'s own-policy Hessian. Under strict concavity,
+The question is not whether governments use multiple instruments---that possibility is well established---but whether stronger product-market rivalry can change the sign of this cross-instrument response once firms' conventional and green investments are jointly endogenous.
+
+\subsection{A general cross-instrument decomposition}
+
+Let
 \[
+H_A=
+\begin{pmatrix}
+W_{s_As_A}&W_{s_Ah_A}\\
+W_{s_Ah_A}&W_{h_Ah_A}
+\end{pmatrix}
+\]
+be government $A$'s own-policy Hessian. Differentiating its two first-order conditions with respect to $s_B$ gives
+\begin{equation}
+\begin{pmatrix}
+\partial s_A^{BR}/\partial s_B\\[2pt]
+\partial h_A^{BR}/\partial s_B
+\end{pmatrix}
+=-H_A^{-1}
+\begin{pmatrix}
+W_{s_As_B}\\W_{h_As_B}
+\end{pmatrix}.
+\label{eq:br-ift}
+\end{equation}
+Under strict concavity, $\det H_A>0$, so
+\begin{equation}
 \frac{\partial h_A^{BR}}{\partial s_B}
 =\frac{W_{s_Ah_A}W_{s_As_B}-W_{s_As_A}W_{h_As_B}}{\det H_A}.
-\]
-The numerator can be reduced to a quartic polynomial $P(u)$ in $u=\theta^2$ such that
-\[
-\operatorname{sgn}\!\left(\frac{\partial h_A^{BR}}{\partial s_B}\right)
-=-\operatorname{sgn}P(\theta^2).
-\]
+\label{eq:cross-instrument-general}
+\end{equation}
+The numerator combines two forces. The term $W_{h_As_B}$ is the direct effect of the rival subsidy on the marginal value of local infrastructure. The product $W_{s_Ah_A}W_{s_As_B}$ captures the indirect effect transmitted through the interaction between the local government's two instruments. A sign reversal is possible when product-market rivalry changes the relative strength of these two forces.
+
+For the model in Sections~\ref{sec:model}--\ref{sec:equilibrium}, symbolic reduction yields a positive function $\Omega(\theta)$ and a quartic
+\begin{equation}
+P(u)=A_4u^4+A_3u^3+A_2u^2+A_1u+A_0,
+\qquad u\equiv\theta^2,
+\label{eq:P-def}
+\end{equation}
+such that
+\begin{equation}
+\frac{\partial h_A^{BR}}{\partial s_B}
+=-\Omega(\theta)P(\theta^2),
+\qquad \Omega(\theta)>0
+\quad\text{for }\theta\in(0,1].
+\label{eq:P-sign}
+\end{equation}
+The coefficients $A_j$ are explicit functions of the primitives $(k_x,k_g,\mu,\nu,d,e,\beta,\xi)$; intercept terms such as $a-c$ and the emissions-target level $\bar E_i$ drop out of the best-response slope. Appendix~\ref{app:proofs} records the reduction and the repository contains an independent symbolic verification.
+
+Define the Bernstein coefficients of $P'$ on $[0,1]$ as
+\begin{align}
+B_0&=A_1,\\
+B_1&=A_1+\frac23A_2,\\
+B_2&=A_1+\frac43A_2+A_3,\\
+B_3&=A_1+2A_2+3A_3+4A_4.
+\label{eq:bernstein-derivative}
+\end{align}
 
 \begin{proposition}[Unique instrument-switching threshold]
-Suppose $P(0)>0$, $P(1)<0$, and all Bernstein coefficients of $P'$ on $[0,1]$ are strictly negative. Then there exists a unique $\theta^*\in(0,1)$ such that
-\[
-\theta<\theta^* \Rightarrow \frac{\partial h_A^{BR}}{\partial s_B}<0,
-\qquad
-\theta>\theta^* \Rightarrow \frac{\partial h_A^{BR}}{\partial s_B}>0.
-\]
+\label{prop:threshold}
+Suppose the firm-stage regularity and government strict-concavity conditions hold, and suppose
+\begin{equation}
+P(0)>0,\qquad P(1)<0,
+\qquad B_0,B_1,B_2,B_3<0.
+\label{eq:threshold-conditions}
+\end{equation}
+Then there exists a unique $\theta^*\in(0,1)$ such that
+\begin{equation}
+\theta<\theta^*
+\quad\Longrightarrow\quad
+\frac{\partial h_A^{BR}}{\partial s_B}<0,
+\end{equation}
+and
+\begin{equation}
+\theta>\theta^*
+\quad\Longrightarrow\quad
+\frac{\partial h_A^{BR}}{\partial s_B}>0.
+\end{equation}
 \end{proposition}
 
-\begin{proposition}[Dual-investment necessity]
-In the benchmark without conventional competitive investment, $1/k_x\to0$, if the Bernstein coefficients of the benchmark polynomial are strictly positive on $[0,1]$, then
+The proof is simple once the equilibrium has been reduced to \eqref{eq:P-sign}. The conditions $B_0,\ldots,B_3<0$ imply $P'(u)<0$ throughout $[0,1]$ because the cubic Bernstein basis is nonnegative on that interval. Combined with $P(0)>0>P(1)$, this yields a unique root $u^*\in(0,1)$ and hence $\theta^*=\sqrt{u^*}$.
+
+\subsection{Economic mechanism}
+
+A higher $s_B$ raises firm $B$'s green investment. When $\mu>0$, that investment also lowers $B$'s marginal production cost and raises its output. The resulting business stealing lowers $A$'s output and changes both $x_A$ and $g_A$. The key amplification term is
 \[
-\frac{\partial h_A^{BR}}{\partial s_B}<0\quad\forall\theta\in(0,1],
+R=\frac1{k_x}+\frac{\mu^2}{k_g}.
 \]
-so the instrument-switching reversal disappears.
+At low rivalry, the rival subsidy mainly contracts local activity, reducing the marginal return to both local support instruments. At sufficiently high rivalry, however, the endogenous adjustment of conventional investment makes preserving local competitiveness more valuable. Shared green infrastructure then becomes a dual-purpose instrument: it improves local competitiveness through $\nu h_A$ while also reducing emissions through $\xi h_A$. Proposition~\ref{prop:threshold} formalizes the point at which this force dominates.
+
+\subsection{Canonical interior witness}
+
+For illustration, set
+\[
+k_x=4,\quad k_g=18,\quad \mu=0.9,\quad \nu=1.2,
+\quad \kappa=0.8,
+\]
+\[
+d=2,\quad e=1.1,\quad \beta=1.7,\quad \xi=0.1,
+\quad a-c=2,\quad \bar E_i=0.
+\]
+A convenient positive rescaling of the switching polynomial is
+\begin{align}
+\widetilde P(u)=
+&602500u^4-8101550u^3+39588109u^2\\
+&-74143042u+31863144.
+\label{eq:witness-P}
+\end{align}
+It has exactly one root in $[0,1]$,
+\[
+u^*=0.5987732279\ldots,
+\qquad
+\theta^*=0.7738043861\ldots.
+\]
+The equilibrium is interior in the economically relevant neighborhood. At $\theta=0.9$ the symmetric Nash equilibrium is
+\[
+(s^*,h^*)=(2.0594,0.7443),
+\]
+with
+\[
+(q,x,g,E)=(1.1842,0.3712,0.1887,0.9075).
+\]
+Table~\ref{tab:br-slopes} shows the best-response slopes on the two sides of the threshold.
+
+\begin{table}[htbp]
+\centering
+\caption{Response of jurisdiction $A$ to a higher rival green subsidy}
+\label{tab:br-slopes}
+\begin{tabular}{lcc}
+\toprule
+& $\theta=0.5$ & $\theta=0.9$\\
+\midrule
+$\partial s_A^{BR}/\partial s_B$ & $-0.02590$ & $-0.02750$\\
+$\partial h_A^{BR}/\partial s_B$ & $-0.00455$ & $+0.00711$\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Thus the high-rivalry response is not subsidy matching. The local government continues to reduce its own firm-specific subsidy in this witness but raises shared infrastructure instead.
+
+\subsection{Why conventional competitive investment matters}
+
+To isolate the role of the second firm investment margin, consider the nested benchmark in which conventional investment is removed, equivalently $1/k_x\rightarrow0$. Let $\bar P(u)$ denote the resulting cross-instrument polynomial and let $C_0,\ldots,C_4$ be its degree-four Bernstein coefficients.
+
+\begin{proposition}[Benchmark without conventional competitive investment]
+\label{prop:no-x}
+Suppose the benchmark is interior and strictly concave. If
+\[
+C_0,C_1,C_2,C_3,C_4>0,
+\]
+then
+\[
+\frac{\partial h_A^{BR}}{\partial s_B}<0
+\qquad\forall\theta\in(0,1].
+\]
+Hence the sign reversal in Proposition~\ref{prop:threshold} is absent from the benchmark.
 \end{proposition}
+
+For the canonical parameter values, the no-$x$ expression is proportional to
+\begin{equation}
+602500u^2-3281550u+3486659,
+\label{eq:no-x-witness}
+\end{equation}
+which is strictly positive on $u\in[0,1]$. The full and nested models therefore generate qualitatively different best-response networks at the same environmental and policy primitives. This is the sense in which conventional investment is essential to the switching mechanism rather than merely an additional state variable.
 
 \begin{corollary}[Competitiveness link]
-If $\mu=0$, green investment does not affect product-market competitiveness and the cross-jurisdictional policy response through this mechanism vanishes.
+\label{cor:mu-zero}
+If $\mu=0$, green investment has no effect on product-market competitiveness. A rival subsidy then changes rival abatement but not rival output through this channel, and
+\[
+\frac{\partial s_A^{BR}}{\partial s_B}
+=
+\frac{\partial h_A^{BR}}{\partial s_B}=0.
+\]
 \end{corollary}
 
-Local comparative statics around the canonical interior region satisfy $\partial\theta^*/\partial\nu<0$ and $\partial\theta^*/\partial k_x>0$.
+Finally, the threshold has economically interpretable local comparative statics. Around the canonical interior region,
+\[
+\frac{\partial\theta^*}{\partial\nu}<0,
+\qquad
+\frac{\partial\theta^*}{\partial k_x}>0.
+\]
+Thus switching occurs at weaker product-market rivalry when shared infrastructure is more productive or when firms can adjust conventional competitive investment more flexibly. These derivatives are local results rather than global monotonicity claims.
