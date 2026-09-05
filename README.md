@@ -40,14 +40,15 @@ At the same canonical remaining primitives, removing conventional competitive in
 - Stage 9R repository/reproducibility alignment: `GO`.
 - Stage 10R post-repair section-by-section manuscript reconstruction: `GO`.
 - Stage 11R post-repair robustness/referee attack gate: `GO TO JOURNAL POSITIONING`.
-- Stage 12 journal positioning: `PRIMARY JOURNAL SELECTED — GO TO INTEGRATION`.
+- Stage 12 journal positioning: `PRIMARY JOURNAL SELECTED — ZERO-FEE CONSTRAINT SATISFIED SUBJECT TO LIVE PORTAL HARD GATE`.
+- Stage 13 ITPF full-paper integration: `INTEGRATED MANUSCRIPT READY FOR SUBMISSION QA`.
 
 Stage 11R found no new unresolved fatal attack. It sharpened the Hauptmeier/Morita–Okoshi novelty boundary and added an exact target-intensity scope check: holding other canonical primitives fixed, the interior response is negative throughout at `d=1.5`, switches once at `d=2`, and is positive throughout at `d=3`. The result is therefore a conditional strategic-feedback theorem, not a claim that rivalry mechanically creates switching.
 
-Stage 12 selects **International Tax and Public Finance** as the primary submission target. Recommended default ladder: `ITPF -> Environmental and Resource Economics -> Journal of Public Economic Theory`. `Journal of Environmental Economics and Management` is retained only as an optional high-risk stretch submission. Current positioning details are in `docs/STAGE12_JOURNAL_POSITIONING.md`.
+Stage 12 selects **International Tax and Public Finance** as the primary submission target. Under the zero-fee constraint, the active ladder is `ITPF -> Environmental and Resource Economics -> Journal of Public Economic Theory -> FinanzArchiv / European Journal of Public Finance -> Environmental Economics and Policy Studies`. `Journal of Environmental Economics and Management` is removed from the active ladder because it does not satisfy the zero-submission-fee constraint. See `docs/STAGE12_JOURNAL_POSITIONING.md` and the authoritative fee amendment `docs/STAGE12_FEE_CONSTRAINT_AMENDMENT.md`.
 
-GitHub Actions runner access resumed during Stage 11R; the full symbolic verification stack, pytest, and manuscript PDF build passed on the Stage-11R pull request.
+Stage 13 integrates the manuscript for ITPF without changing frozen theory. The abstract and Introduction foreground the cross-instrument public-finance contribution and closest-paper boundary; Data Availability, Code Availability, and generative-AI-use statements are included. The Stage-13 pull request passed the complete symbolic/regression suite, pytest, and LaTeX manuscript build. Full audit details are in `docs/STAGE13_FULL_PAPER_INTEGRATION.md`.
 
-Next: **Stage 13 — Full Paper Integration for International Tax and Public Finance**.
+Next: **Stage 14 — ITPF Submission QA**.
 
 Any theory change after v2 requires an explicit theory-change record and rerunning the earliest affected workflow gates.
