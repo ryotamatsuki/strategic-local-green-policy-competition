@@ -10,23 +10,29 @@ m\equiv a-c,
 r_i\equiv x_i+\mu g_i+\nu h_i.
 \end{equation}
 
-\subsection{Stage 3: Cournot competition}
+\subsection{Stage 3: nonnegative Cournot continuation}
 
-The quantity first-order conditions are
+For an active firm, the quantity first-order condition is
 \[
 a-c_i-2q_i-\theta q_j=0.
 \]
-Solving the two equations gives
+If both firms are active, solving the two equations gives
 \begin{equation}
 q_i
 =\frac{(2-\theta)m+2r_i-\theta r_j}{D}.
 \label{eq:cournot-output}
 \end{equation}
-The Cournot condition implies $p_i-c_i=q_i$, so operating profit is $q_i^2$.
+On this branch $p_i-c_i=q_i$, so operating profit is $q_i^2$. This identity is not global: an inactive firm instead satisfies the corresponding Kuhn--Tucker inequality.
 
-\subsection{Stage 2: conventional and green investment}
+It is useful to write
+\[
+v_i\equiv m+x_i+\mu g_i+\nu h_i.
+\]
+The complete nonnegative Cournot continuation is then piecewise. Both firms are active when $2v_i>\theta v_j$ for each $i$. Firm $A$ is the active monopolist when $v_B\leq\theta v_A/2$, in which case $q_A=v_A/2$ and $q_B=0$; the symmetric condition applies for firm $B$. These boundary regimes matter because a government can otherwise profitably deviate far enough to change market structure.
 
-A unilateral investment by firm $i$ changes both firms' Cournot quantities. Using the reduced operating profit $q_i^2$, the investment first-order conditions are
+\subsection{Stage 2: investment and the active-duopoly branch}
+
+On the two-active-firm branch, differentiating reduced operating profit $q_i^2$ gives
 \begin{equation}
 k_x x_i=\frac{4q_i}{D},
 \qquad
@@ -39,7 +45,7 @@ x_i^*=\frac{4q_i}{Dk_x},
 g_i^*=\frac{4\mu q_i/D+s_i}{k_g}.
 \label{eq:investment-solutions}
 \end{equation}
-The investment Hessian is
+The investment Hessian on this branch is
 \begin{equation}
 H_F=
 \frac{8}{D^2}
@@ -48,51 +54,78 @@ H_F=
 \mu&\mu^2
 \end{pmatrix}
 -
-\begin{pmatrix}
-k_x&0\\0&k_g
-\end{pmatrix}.
+\begin{pmatrix}k_x&0\\0&k_g\end{pmatrix}.
 \label{eq:firm-hessian}
 \end{equation}
-Condition \eqref{eq:regularity} is sufficient for $H_F\prec0$ on $\theta\in[0,1]$.
+Condition \eqref{eq:regularity} is sufficient for the required firm-stage concavity and reduced-system regularity.
 
-Substituting \eqref{eq:investment-solutions} into \eqref{eq:cournot-output}, define
+Define
 \begin{equation}
 \lambda\equiv\frac{4R}{D},
 \qquad
-y_i\equiv\frac{\mu}{k_g}s_i+\nu h_i.
+y_i\equiv\frac{\mu}{k_g}s_i+\nu h_i,
+\qquad
+w_i\equiv m+y_i,
+\qquad
+L\equiv2-\lambda.
 \label{eq:lambda-y}
 \end{equation}
-The Stage-2 equilibrium quantities solve
+The interior Stage-2 equilibrium quantities satisfy the compact system
 \begin{equation}
-(D-2\lambda)q_i+\theta\lambda q_j
-=(2-\theta)m+2y_i-\theta y_j.
+Lq_i+\theta q_j=w_i.
 \label{eq:reduced-output-system}
 \end{equation}
-Let
-\begin{equation}
-\Delta\equiv(D-2\lambda)^2-\theta^2\lambda^2.
-\end{equation}
-Under \eqref{eq:regularity}, $\Delta>0$. The reduced quantities can therefore be written as
+Under \eqref{eq:regularity}, $L>\theta$ for all $\theta\in[0,1]$. Therefore
 \begin{equation}
 q_i=q_0+t_0y_i+t_1y_j,
 \label{eq:q-linear-policies}
 \end{equation}
 where
 \begin{align}
-q_0&=\frac{(2-\theta)m}{D-(2-\theta)\lambda},\\
-t_0&=\frac{2(D-2\lambda)+\theta^2\lambda}{\Delta}>0,\\
-t_1&=-\frac{\theta D}{\Delta}\leq0.
+q_0&=\frac{m}{L+\theta},\\
+t_0&=\frac{L}{L^2-\theta^2}>0,\\
+t_1&=-\frac{\theta}{L^2-\theta^2}\leq0.
 \label{eq:t0t1}
 \end{align}
-Thus either local policy raises the local firm's output through $y_i$, while the rival's policy reduces local output whenever $\theta>0$.
+Thus either local policy raises the local firm's output through $y_i$, while the rival's policy lowers local output whenever $\theta>0$.
 
-Equation \eqref{eq:reduced-output-system} isolates the strategic amplification mechanism. The coefficient
+The coefficient
 \begin{equation}
 R=\underbrace{\frac1{k_x}}_{\text{conventional investment}}
 +\underbrace{\frac{\mu^2}{k_g}}_{\text{green investment}}
 \end{equation}
-controls how strongly policy-induced cost changes feed back through firms' investment choices into product-market competition. Removing conventional competitive investment deletes the first term. Moreover, for fixed primitives $\lambda=4R/(4-\theta^2)$ rises with product substitutability. Stronger rivalry therefore magnifies the feedback from local policy to endogenous firm investment and back to market shares.
+controls the strength of the investment feedback. Removing conventional competitive investment deletes the first term. For fixed primitives, $\lambda=4R/(4-\theta^2)$ rises with product substitutability.
 
-\subsection{Stage 1: government best responses}
+\subsection{Full Stage-2 regime map}
 
-After substituting \eqref{eq:investment-solutions} and \eqref{eq:q-linear-policies} into \eqref{eq:government-welfare}, each government's reduced objective is quadratic in the four policy variables $(s_A,h_A,s_B,h_B)$. Let $z_i=(s_i,h_i)'$. Whenever the own-policy Hessian $H_i\equiv W_{z_i z_i}$ is negative definite, the government's interior best response is unique and affine in the rival's policy vector. This linear-quadratic structure allows the cross-instrument response to be characterized exactly in Section~\ref{sec:results}.
+To verify global equilibrium, the investment game must also be solved when one firm becomes inactive. Let $z_i=x_i+\mu g_i$ be private cost reduction and define $u_i=z_i-(\mu/k_g)s_i$. Conditional on $u_i$, the cost-minimizing investment composition is
+\begin{equation}
+x_i=\frac{u_i}{Rk_x},
+\qquad
+g_i=\frac{s_i}{k_g}+\frac{\mu u_i}{Rk_g}.
+\label{eq:scalar-investment-composition}
+\end{equation}
+This reduces Stage 2 to a one-dimensional investment choice for each firm. For $\theta>0$, the unique continuation is classified by $w_A/w_B$:
+
+\begin{itemize}
+\item If $\theta w_A\geq(2-R)w_B$, firm $A$ is the active monopolist and
+\[
+q_A=\frac{w_A}{2-R},\qquad q_B=0,
+\qquad u_A=Rq_A,\quad u_B=0.
+\]
+\item If $Lw_B\leq\theta w_A\leq(2-R)w_B$, firm $A$ limit-prices at the kink and
+\[
+q_A=\frac{w_B}{\theta},\qquad q_B=0,
+\qquad u_A=\frac{2w_B}{\theta}-w_A,\quad u_B=0.
+\]
+\item If $\theta w_A<Lw_B$ and $\theta w_B<Lw_A$, both firms are active and \eqref{eq:reduced-output-system} applies, with $u_i=\lambda q_i$.
+\item The remaining two regions are the symmetric $B$-kink and $B$-monopoly cases.
+\end{itemize}
+
+At the regime boundaries the continuation formulas coincide. At $\theta=0$ strategic exclusion is impossible and the two-active-firm continuation covers the relevant policy problem.
+
+\subsection{Stage 1: government best responses and global qualification}
+
+On the interior duopoly branch, substituting \eqref{eq:investment-solutions} and \eqref{eq:q-linear-policies} into \eqref{eq:government-welfare} makes each government's reduced objective quadratic in $(s_A,h_A,s_B,h_B)$. Let $z_i=(s_i,h_i)'$. Whenever the own-policy Hessian $H_i\equiv W_{z_i z_i}$ is negative definite, the branch-specific interior best response is unique and affine in the rival policy vector. Section~\ref{sec:results} characterizes its cross-instrument derivative exactly.
+
+Branch-specific concavity alone is not sufficient for SPNE. For the canonical rational witness, we additionally compare the duopoly optimum with all nonnegative-policy kink and monopoly challengers. The outside-branch objectives attain their best values at the common kink/monopoly boundary, and the welfare gap from the symmetric duopoly optimum is strictly positive for every $\theta\in(0,1]$; representative gaps are $7.649$ at $\theta=.5$, $.428$ at $.9$, and $.073$ at $1$. Because these inequalities and the duopoly-region conditions are strict, the same global-SPNE property holds on a nonempty open neighborhood of primitives. Appendix~\ref{app:proofs} summarizes the certificate and the repository reproduces it exactly.
