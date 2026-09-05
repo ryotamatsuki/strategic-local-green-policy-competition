@@ -1,0 +1,38 @@
+\section{Main Results}
+The headline object is the cross-instrument best-response derivative
+\[
+\frac{\partial h_A^{BR}}{\partial s_B}.
+\]
+Let $H_A$ be government $A$'s own-policy Hessian. Under strict concavity,
+\[
+\frac{\partial h_A^{BR}}{\partial s_B}
+=\frac{W_{s_Ah_A}W_{s_As_B}-W_{s_As_A}W_{h_As_B}}{\det H_A}.
+\]
+The numerator can be reduced to a quartic polynomial $P(u)$ in $u=\theta^2$ such that
+\[
+\operatorname{sgn}\!\left(\frac{\partial h_A^{BR}}{\partial s_B}\right)
+=-\operatorname{sgn}P(\theta^2).
+\]
+
+\begin{proposition}[Unique instrument-switching threshold]
+Suppose $P(0)>0$, $P(1)<0$, and all Bernstein coefficients of $P'$ on $[0,1]$ are strictly negative. Then there exists a unique $\theta^*\in(0,1)$ such that
+\[
+\theta<\theta^* \Rightarrow \frac{\partial h_A^{BR}}{\partial s_B}<0,
+\qquad
+\theta>\theta^* \Rightarrow \frac{\partial h_A^{BR}}{\partial s_B}>0.
+\]
+\end{proposition}
+
+\begin{proposition}[Dual-investment necessity]
+In the benchmark without conventional competitive investment, $1/k_x\to0$, if the Bernstein coefficients of the benchmark polynomial are strictly positive on $[0,1]$, then
+\[
+\frac{\partial h_A^{BR}}{\partial s_B}<0\quad\forall\theta\in(0,1],
+\]
+so the instrument-switching reversal disappears.
+\end{proposition}
+
+\begin{corollary}[Competitiveness link]
+If $\mu=0$, green investment does not affect product-market competitiveness and the cross-jurisdictional policy response through this mechanism vanishes.
+\end{corollary}
+
+Local comparative statics around the canonical interior region satisfy $\partial\theta^*/\partial\nu<0$ and $\partial\theta^*/\partial k_x>0$.
