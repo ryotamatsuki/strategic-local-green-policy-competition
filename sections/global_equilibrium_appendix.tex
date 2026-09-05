@@ -9,7 +9,7 @@ b\equiv\frac{\mu}{k_g},\qquad
 w_i\equiv m+b s_i+\nu h_i,\qquad
 L\equiv2-\frac{4R}{D}.
 \]
-After minimizing investment cost conditional on effective private cost reduction, Stage 2 reduces to a scalar choice. For $\theta>0$ the unique continuation is partitioned into five regions. Firm $A$ is a monopolist if $\theta w_A\geq(2-R)w_B$; it limit-prices with $q_B=0$ if $Lw_B\leq\theta w_A\leq(2-R)w_B$; both firms are active if $\theta w_A<Lw_B$ and $\theta w_B<Lw_A$; and the remaining two regions are the symmetric $B$-kink and $B$-monopoly cases. The formulas in Section~\ref{sec:equilibrium} coincide at each boundary.
+We maintain $m=a-c>0$ as stated in Section~\ref{sec:model}. After minimizing investment cost conditional on effective private cost reduction, Stage 2 reduces to a scalar choice. For $\theta>0$ the unique continuation is partitioned into five regions. Firm $A$ is a monopolist if $\theta w_A\geq(2-R)w_B$; it limit-prices with $q_B=0$ if $Lw_B\leq\theta w_A\leq(2-R)w_B$; both firms are active if $\theta w_A<Lw_B$ and $\theta w_B<Lw_A$; and the remaining two regions are the symmetric $B$-kink and $B$-monopoly cases. The formulas in Section~\ref{sec:equilibrium} coincide at each boundary.
 
 For the rational canonical vector
 \[
@@ -24,7 +24,12 @@ The own-kink and own-monopoly government problems are compared directly. Their b
 \]
 Exact KKT signs select that common boundary, and the welfare gap between the symmetric duopoly optimum and the best exclusionary challenger is strictly positive over $\theta\in(0,1]$. Representative values are approximately $7.64866$ at $\theta=.5$, $.42775$ at $.9$, and $.07341$ at $1$. At $\theta=0$ strategic exclusion is unavailable.
 
-The gap numerator and all regime inequalities are strict on the compact interval, so continuity implies a nonempty open primitive neighborhood in which the same global-SPNE configuration survives. The repository script \texttt{verify\_stage4rg\_global.py} reconstructs these comparisons independently and retains the hostile-audit parameter vector for which the old interior candidate fails as a regression test.
+For the open-neighborhood qualification, the endpoint $\theta=0$ requires one additional regularity observation. The unscaled rational representation of the exclusionary welfare gap is singular at zero, but the scaled gap $\theta^2\Delta W(\theta)$ extends continuously to $\theta=0$ and satisfies
+\[
+\lim_{\theta\downarrow0}\theta^2\Delta W(\theta)
+=\frac{46316976555179}{8043085428750}>0.
+\]
+Moreover, the determinants of both the symmetric and antisymmetric blocks of the full policy first-order-condition Jacobian are root-free on $[0,1]$. Hence the equilibrium policy solution varies regularly throughout the interval. Together with the strict curvature, feasibility, regime, and welfare-gap margins on the compact interval, these facts imply by continuity a common nonempty open primitive neighborhood in which the same global-SPNE configuration survives. The repository script \texttt{verify\_stage4rg\_global.py} reconstructs the global comparisons independently and retains the hostile-audit parameter vector for which the old interior candidate fails as a regression test.
 
 \subsection{Limits of the no-conventional-investment comparison}
 
