@@ -1,6 +1,8 @@
 # Stage 4R-G — Global Equilibrium / Boundary Repair
 
-Status: `GO`, subject to CI on the repair pull request.
+Status: `GO`.
+
+Verification: repair PR CI passed both symbolic verification and manuscript build. The exact global-equilibrium certificate, the retained hostile counterexample regression, the no-x counterexample, legacy algebra checks, pytest, and PDF build all passed.
 
 Trigger: hostile Stage-11 audit of commit `98612b15ac34c3cb050ea8485a0ee1171c86bbc4` found a valid deviation in which one government induces rival-firm inactivity.  The previous interior Hessian/IFT conditions therefore did not by themselves establish SPNE of the original nonnegative-quantity game.
 
@@ -140,6 +142,12 @@ The repair script reconstructs the symmetric policy FOCs on the duopoly branch a
 The proof of item 6 uses exact KKT multipliers.  At the common kink/monopoly boundary, the multiplier from the kink side is positive and the multiplier from the monopoly side is negative.  Strict concavity therefore makes the common boundary the maximum of each outside branch.
 
 The exact global-gap numerator factors into two root-free polynomials that are both negative on `[0,1]`; the denominator is positive.  Hence the product, and the welfare gap, is strictly positive.
+
+CI checkpoints for the exact gap are approximately:
+
+- `theta=.5`: `7.6486576065`;
+- `theta=.9`: `.4277511004`;
+- `theta=1`: `.0734123751`.
 
 Consequently the canonical symmetric policy candidate is a true global policy Nash equilibrium, not merely an interior stationary point.  Because the branch gap and all regularity inequalities are strict, continuity gives a nonempty open neighborhood of primitives in which the same global-SPNE property survives.
 
