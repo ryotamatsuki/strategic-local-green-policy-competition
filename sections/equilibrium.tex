@@ -1,17 +1,98 @@
 \section{Equilibrium Characterization}
-Let $D\equiv 4-\theta^2$. At the Cournot stage, $p_i-c_i=q_i$. Backward induction yields
+\label{sec:equilibrium}
+
+We solve the game by backward induction. Let
+\begin{equation}
+D\equiv4-\theta^2,
+\qquad
+m\equiv a-c,
+\qquad
+r_i\equiv x_i+\mu g_i+\nu h_i.
+\end{equation}
+
+\subsection{Stage 3: Cournot competition}
+
+The quantity first-order conditions are
 \[
-x_i^*=\frac{4q_i}{Dk_x},\qquad
+a-c_i-2q_i-\theta q_j=0.
+\]
+Solving the two equations gives
+\begin{equation}
+q_i
+=\frac{(2-\theta)m+2r_i-\theta r_j}{D}.
+\label{eq:cournot-output}
+\end{equation}
+The Cournot condition implies $p_i-c_i=q_i$, so operating profit is $q_i^2$.
+
+\subsection{Stage 2: conventional and green investment}
+
+A unilateral investment by firm $i$ changes both firms' Cournot quantities. Using the reduced operating profit $q_i^2$, the investment first-order conditions are
+\begin{equation}
+k_x x_i=\frac{4q_i}{D},
+\qquad
+k_g g_i=\frac{4\mu q_i}{D}+s_i.
+\end{equation}
+Hence
+\begin{equation}
+x_i^*=\frac{4q_i}{Dk_x},
+\qquad
 g_i^*=\frac{4\mu q_i/D+s_i}{k_g}.
-\]
-Define
-\[
-R\equiv\frac1{k_x}+\frac{\mu^2}{k_g},\qquad
-\lambda\equiv\frac{4R}{D},\qquad
+\label{eq:investment-solutions}
+\end{equation}
+The investment Hessian is
+\begin{equation}
+H_F=
+\frac{8}{D^2}
+\begin{pmatrix}
+1&\mu\\
+\mu&\mu^2
+\end{pmatrix}
+-
+\begin{pmatrix}
+k_x&0\\0&k_g
+\end{pmatrix}.
+\label{eq:firm-hessian}
+\end{equation}
+Condition \eqref{eq:regularity} is sufficient for $H_F\prec0$ on $\theta\in[0,1]$.
+
+Substituting \eqref{eq:investment-solutions} into \eqref{eq:cournot-output}, define
+\begin{equation}
+\lambda\equiv\frac{4R}{D},
+\qquad
 y_i\equiv\frac{\mu}{k_g}s_i+\nu h_i.
-\]
-A convenient sufficient regularity condition is $R<3/4$. The reduced output system is
-\[
-(D-2\lambda)q_i+\theta\lambda q_j=(2-\theta)(a-c)+2y_i-\theta y_j.
-\]
-All manuscript algebra must be checked against the symbolic verification scripts in this repository.
+\label{eq:lambda-y}
+\end{equation}
+The Stage-2 equilibrium quantities solve
+\begin{equation}
+(D-2\lambda)q_i+\theta\lambda q_j
+=(2-\theta)m+2y_i-\theta y_j.
+\label{eq:reduced-output-system}
+\end{equation}
+Let
+\begin{equation}
+\Delta\equiv(D-2\lambda)^2-\theta^2\lambda^2.
+\end{equation}
+Under \eqref{eq:regularity}, $\Delta>0$. The reduced quantities can therefore be written as
+\begin{equation}
+q_i=q_0+t_0y_i+t_1y_j,
+\label{eq:q-linear-policies}
+\end{equation}
+where
+\begin{align}
+q_0&=\frac{(2-\theta)m}{D-(2-\theta)\lambda},\\
+t_0&=\frac{2(D-2\lambda)+\theta^2\lambda}{\Delta}>0,\\
+t_1&=-\frac{\theta D}{\Delta}\leq0.
+\label{eq:t0t1}
+\end{align}
+Thus either local policy raises the local firm's output through $y_i$, while the rival's policy reduces local output whenever $\theta>0$.
+
+Equation \eqref{eq:reduced-output-system} isolates the strategic amplification mechanism. The coefficient
+\begin{equation}
+R=\underbrace{\frac1{k_x}}_{\text{conventional investment}}
++\underbrace{\frac{\mu^2}{k_g}}_{\text{green investment}}
+\end{equation}
+controls how strongly policy-induced cost changes feed back through firms' investment choices into product-market competition. Removing conventional competitive investment deletes the first term. Moreover, for fixed primitives $\lambda=4R/(4-\theta^2)$ rises with product substitutability. Stronger rivalry therefore magnifies the feedback from local policy to endogenous firm investment and back to market shares.
+
+\subsection{Stage 1: government best responses}
+
+After substituting \eqref{eq:investment-solutions} and \eqref{eq:q-linear-policies} into \eqref{eq:government-welfare}, each government's reduced objective is quadratic in the four policy variables $(s_A,h_A,s_B,h_B)$. Let $z_i=(s_i,h_i)'$. Whenever the own-policy Hessian $H_i\equiv W_{z_i z_i}$ is negative definite, the government's interior best response is unique and affine in the rival's policy vector. This linear-quadratic structure allows the cross-instrument response to be characterized exactly in Section~\ref{sec:results}.
