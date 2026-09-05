@@ -40,11 +40,14 @@ At the same canonical remaining primitives, removing conventional competitive in
 - Stage 9R repository/reproducibility alignment: `GO`.
 - Stage 10R post-repair section-by-section manuscript reconstruction: `GO`.
 - Stage 11R post-repair robustness/referee attack gate: `GO TO JOURNAL POSITIONING`.
+- Stage 12 journal positioning: `PRIMARY JOURNAL SELECTED — GO TO INTEGRATION`.
 
 Stage 11R found no new unresolved fatal attack. It sharpened the Hauptmeier/Morita–Okoshi novelty boundary and added an exact target-intensity scope check: holding other canonical primitives fixed, the interior response is negative throughout at `d=1.5`, switches once at `d=2`, and is positive throughout at `d=3`. The result is therefore a conditional strategic-feedback theorem, not a claim that rivalry mechanically creates switching.
 
-GitHub Actions runner execution is temporarily unavailable because the account has exhausted its included Actions minutes. The repository remains wired to run the full v2 regression and manuscript-verification stack automatically when runner access resumes. This external quota condition is recorded in the stage status files and is not a theory/manuscript failure.
+Stage 12 selects **International Tax and Public Finance** as the primary submission target. Recommended default ladder: `ITPF -> Environmental and Resource Economics -> Journal of Public Economic Theory`. `Journal of Environmental Economics and Management` is retained only as an optional high-risk stretch submission. Current positioning details are in `docs/STAGE12_JOURNAL_POSITIONING.md`.
 
-Next: **Stage 12 — Journal Positioning**.
+GitHub Actions runner access resumed during Stage 11R; the full symbolic verification stack, pytest, and manuscript PDF build passed on the Stage-11R pull request.
+
+Next: **Stage 13 — Full Paper Integration for International Tax and Public Finance**.
 
 Any theory change after v2 requires an explicit theory-change record and rerunning the earliest affected workflow gates.
