@@ -16,7 +16,6 @@ FORBIDDEN_PRODUCTION_STRINGS = [
     "Instrument Switching through Dual Investment",
     "conventional investment is necessary for switching",
     "dual-investment necessity",
-    "h/(s+h)",
 ]
 
 REQUIRED_FILES = [
@@ -67,6 +66,13 @@ def verify_production_claim_hygiene() -> None:
             if forbidden.lower() in lower:
                 violations.append(f"{path.relative_to(ROOT)}: {forbidden}")
     assert not violations, "Superseded v1 language in production manuscript: " + "; ".join(violations)
+
+    welfare = read("sections/welfare.tex")
+    assert "\\phi_h" in welfare
+    assert "\\frac{\\kappa h^2/2}{s g+\\kappa h^2/2}" in welfare
+    # The invalid ratio may be mentioned only in an explicit explanation of why it is rejected.
+    if "h/(s+h)" in welfare:
+        assert "no meaningful unit interpretation" in welfare
 
 
 def verify_full_game_is_in_manuscript() -> None:
