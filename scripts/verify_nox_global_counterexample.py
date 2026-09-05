@@ -69,9 +69,13 @@ def exact_point(theta: sp.Rational):
         - kappa * hA**2 / 2 - d * (e * qM - beta * gM - xi * hA) ** 2 / 2
     )
 
+    # In the no-x kink branch, subsidy changes are exactly offset by green-investment
+    # changes needed to hold the rival at q_B=0.  Hence W_K is flat in s_A and
+    # strictly concave only in h_A; negative definiteness would be the wrong test.
     HK = sp.hessian(W_K, (sA, hA))
     HM = sp.hessian(W_M, (sA, hA))
-    assert HK[0, 0] < 0 and sp.factor(HK.det()) > 0
+    assert sp.simplify(sp.diff(W_K, sA)) == 0
+    assert HK[0, 0] == 0 and HK[0, 1] == 0 and HK[1, 0] == 0 and HK[1, 1] < 0
     assert HM[0, 0] < 0 and sp.factor(HM.det()) > 0
 
     # Common kink/monopoly boundary and its best policy composition.
@@ -84,14 +88,25 @@ def exact_point(theta: sp.Rational):
     h_boundary_star = sp.factor(h_boundary.subs(z, s_boundary))
     assert s_boundary > 0 and h_boundary_star > 0
 
+    # The kink objective has a unique optimal h_A but a flat subsidy direction.
+    # Verify that this optimal h_A is feasible throughout the kink strip and that
+    # the selected boundary point is one of its (continuum of) global kink maxima.
+    Ah, bh = sp.linear_eq_to_matrix([sp.diff(W_K, hA).subs(WB, wB_star)], [hA])
+    h_kink_star = sp.factor(Ah.LUsolve(bh)[0])
+    lower_w = sp.factor(L * wB_star / theta)
+    s_at_lower = sp.factor((lower_w - m - nu * h_kink_star) / b)
+    s_at_upper = sp.factor((boundary_w - m - nu * h_kink_star) / b)
+    assert h_kink_star > 0
+    assert s_at_lower >= 0 and s_at_upper > s_at_lower
+    assert sp.simplify(h_boundary_star - h_kink_star) == 0
+    assert sp.simplify(s_boundary - s_at_upper) == 0
+
     gradK = [sp.factor(sp.diff(W_K, v).subs({WB: wB_star, sA: s_boundary, hA: h_boundary_star})) for v in (sA, hA)]
     gradM = [sp.factor(sp.diff(W_M, v).subs({sA: s_boundary, hA: h_boundary_star})) for v in (sA, hA)]
     assert sp.simplify(nu * gradK[0] - b * gradK[1]) == 0
     assert sp.simplify(nu * gradM[0] - b * gradM[1]) == 0
     lambdaK = sp.factor(gradK[1] / nu)
     lambdaM = sp.factor(gradM[1] / nu)
-    # At these no-x points the kink-side multiplier is exactly zero; strict
-    # concavity still makes the boundary the kink-branch maximum.
     assert lambdaK == 0
     assert lambdaM < 0
 
