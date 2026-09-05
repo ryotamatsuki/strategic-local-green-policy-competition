@@ -22,6 +22,7 @@ jobs:
       - run: python scripts/verify_nox_global_counterexample.py
       - run: python scripts/verify_stage7_postrepair.py
       - run: python scripts/verify_stage10.py
+      - run: python scripts/verify_stage11r_target_scope.py
       - run: python -m pytest -q
 
   manuscript-build:
