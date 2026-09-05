@@ -1,10 +1,12 @@
-# Stage 9 Status
+# Stage 9 Status — Historical Initialization
 
-Status: `GO`.
+Status: `GO (HISTORICAL INITIALIZATION)`.
 
-Required Stage 9 components:
+The original Stage 9 created the production repository and its reproducibility skeleton under the superseded v1 freeze.
 
-- [x] canonical theory freeze record
+Required initialization components were completed:
+
+- [x] canonical theory-freeze record
 - [x] modular LaTeX manuscript skeleton
 - [x] symbolic verification script
 - [x] automated tests
@@ -13,10 +15,10 @@ Required Stage 9 components:
 - [x] CI verification workflow
 - [x] decision/provenance log
 - [x] literature-boundary ledger
-- [x] first CI run passes on the Stage 9 initialization commit
+- [x] first CI run passed
 
 Initialization PR: #1 (`Stage 9: repository and reproducibility setup`).
 
-Stage 9 verdict: `GO`.
+This record is retained for provenance. After the hostile-audit rollback and the v2 theory freeze, the submission-valid repository-alignment gate is `docs/STAGE9R_STATUS.md` under canonical freeze `SLGPC-THEORY-FREEZE-2026-09-05-v2`.
 
-Routing: Stage 10 — Section-by-Section Paper Construction.
+Current routing is controlled by Stage 9R, not by this historical initialization record.

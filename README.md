@@ -37,7 +37,10 @@ At the same canonical remaining primitives, removing conventional competitive in
 - Stage 7 post-repair welfare/generality/institutional validation: `GO`.
 - Stage 7.5 repeat: `GO`.
 - Stage 8 post-repair canonical theory freeze: `GO — THEORY FROZEN`.
+- Stage 9R repository/reproducibility alignment: `GO`.
 
-Next: **Stage 9R — Repository / Reproducibility Alignment**. The production repository already exists, so Stage 9R aligns all verification, status, manuscript, and CI artifacts to v2 before Stage 10 reconstruction.
+GitHub Actions runner execution is temporarily unavailable because the account has exhausted its included Actions minutes. The repository remains wired to run the full v2 regression stack automatically when runner access resumes; this external quota condition is recorded in `docs/STAGE9R_STATUS.md` and is not a theory/manuscript failure.
+
+Next: **Stage 10R — Post-Repair Section-by-Section Paper Reconstruction**.
 
 Any theory change after v2 requires an explicit theory-change record and rerunning the earliest affected workflow gates.

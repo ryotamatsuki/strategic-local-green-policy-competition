@@ -15,6 +15,7 @@ jobs:
           python-version: '3.12'
       - run: python -m pip install --upgrade pip
       - run: pip install -r requirements.txt
+      - run: python scripts/verify_stage9r_alignment.py
       - run: python scripts/verify_freeze.py
       - run: python scripts/verify_stage4rg_global.py
       - run: python scripts/verify_nox_global_counterexample.py
