@@ -39,11 +39,12 @@ At the same canonical remaining primitives, removing conventional competitive in
 - Stage 8 post-repair canonical theory freeze: `GO — THEORY FROZEN`.
 - Stage 9R repository/reproducibility alignment: `GO`.
 - Stage 10R post-repair section-by-section manuscript reconstruction: `GO`.
+- Stage 11R post-repair robustness/referee attack gate: `GO TO JOURNAL POSITIONING`.
 
-The Stage-10R manuscript explicitly includes the full nonnegative continuation, a formal canonical global-SPNE bridge, the unique switching-threshold proposition, matched no-`x` benchmark, corrected welfare metric, composite mechanism interpretation, and local-only robustness scope.
+Stage 11R found no new unresolved fatal attack. It sharpened the Hauptmeier/Morita–Okoshi novelty boundary and added an exact target-intensity scope check: holding other canonical primitives fixed, the interior response is negative throughout at `d=1.5`, switches once at `d=2`, and is positive throughout at `d=3`. The result is therefore a conditional strategic-feedback theorem, not a claim that rivalry mechanically creates switching.
 
 GitHub Actions runner execution is temporarily unavailable because the account has exhausted its included Actions minutes. The repository remains wired to run the full v2 regression and manuscript-verification stack automatically when runner access resumes. This external quota condition is recorded in the stage status files and is not a theory/manuscript failure.
 
-Next: **Stage 11R — Post-Repair Robustness / Referee Attack Gate**.
+Next: **Stage 12 — Journal Positioning**.
 
 Any theory change after v2 requires an explicit theory-change record and rerunning the earliest affected workflow gates.
