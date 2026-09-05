@@ -38,9 +38,12 @@ At the same canonical remaining primitives, removing conventional competitive in
 - Stage 7.5 repeat: `GO`.
 - Stage 8 post-repair canonical theory freeze: `GO — THEORY FROZEN`.
 - Stage 9R repository/reproducibility alignment: `GO`.
+- Stage 10R post-repair section-by-section manuscript reconstruction: `GO`.
 
-GitHub Actions runner execution is temporarily unavailable because the account has exhausted its included Actions minutes. The repository remains wired to run the full v2 regression stack automatically when runner access resumes; this external quota condition is recorded in `docs/STAGE9R_STATUS.md` and is not a theory/manuscript failure.
+The Stage-10R manuscript explicitly includes the full nonnegative continuation, a formal canonical global-SPNE bridge, the unique switching-threshold proposition, matched no-`x` benchmark, corrected welfare metric, composite mechanism interpretation, and local-only robustness scope.
 
-Next: **Stage 10R — Post-Repair Section-by-Section Paper Reconstruction**.
+GitHub Actions runner execution is temporarily unavailable because the account has exhausted its included Actions minutes. The repository remains wired to run the full v2 regression and manuscript-verification stack automatically when runner access resumes. This external quota condition is recorded in the stage status files and is not a theory/manuscript failure.
+
+Next: **Stage 11R — Post-Repair Robustness / Referee Attack Gate**.
 
 Any theory change after v2 requires an explicit theory-change record and rerunning the earliest affected workflow gates.

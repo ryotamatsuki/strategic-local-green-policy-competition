@@ -10,6 +10,13 @@ from scripts.verify_stage9r_alignment import (
     verify_regression_guards_are_wired,
     verify_required_files,
 )
+from scripts.verify_stage10r_manuscript import (
+    verify_appendix_matches_compact_reduced_system,
+    verify_headline_results_are_formalized,
+    verify_manuscript_identity_and_structure,
+    verify_no_unresolved_markers,
+    verify_welfare_and_robustness_scope,
+)
 
 
 def test_firm_stage_closed_forms():
@@ -39,3 +46,14 @@ def test_stage9r_manuscript_hygiene_and_full_game():
 
 def test_stage9r_ci_regression_guards():
     verify_regression_guards_are_wired()
+
+
+def test_stage10r_structure_and_headline_results():
+    verify_manuscript_identity_and_structure()
+    verify_headline_results_are_formalized()
+
+
+def test_stage10r_scope_and_appendix_consistency():
+    verify_welfare_and_robustness_scope()
+    verify_appendix_matches_compact_reduced_system()
+    verify_no_unresolved_markers()

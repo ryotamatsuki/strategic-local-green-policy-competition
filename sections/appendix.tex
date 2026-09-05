@@ -15,7 +15,11 @@ By the matrix determinant lemma and positive definiteness of $K$, $H_F\prec0$ wh
 \]
 Since $D\geq3$ for $\theta\in[0,1]$, $R<3/4$ is sufficient.
 
-The reduced output matrix in \eqref{eq:reduced-output-system} has eigenvalues
+The compact reduced-output matrix in \eqref{eq:reduced-output-system} is
+\[
+\begin{pmatrix}L&\theta\\ \theta&L\end{pmatrix},
+\]
+with eigenvalues $L-\theta$ and $L+\theta$. Equivalently, before the linear transformation that produces \eqref{eq:reduced-output-system}, the reduced system has eigenvalues
 \[
 D-\lambda(2-\theta),
 \qquad
@@ -26,7 +30,7 @@ The smaller eigenvalue is positive if
 R<\frac{D^2}{4(2+\theta)}
 =\frac{(2-\theta)^2(2+\theta)}4.
 \]
-The right-hand side is at least $3/4$ on $[0,1]$, so condition \eqref{eq:regularity} also guarantees nonsingularity of the reduced output system.
+The right-hand side is at least $3/4$ on $[0,1]$, so condition \eqref{eq:regularity} also guarantees nonsingularity of the reduced output system and, equivalently, $L>\theta$.
 
 \subsection{Cross-instrument numerator}
 
