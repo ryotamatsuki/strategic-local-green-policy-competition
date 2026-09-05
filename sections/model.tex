@@ -3,9 +3,9 @@
 
 There are two jurisdictions, indexed by $i\in\{A,B\}$, and one incumbent manufacturing firm in each jurisdiction. Plant locations are fixed. The model is intended to capture industries in which production is geographically anchored but product-market competition is broader than the jurisdiction itself. Information is complete and all primitives are common knowledge.
 
-\subsection{Timing}
+\subsection{Timing and action sets}
 
-The game has three stages. In Stage 1, local governments simultaneously choose a firm-specific green-investment subsidy $s_i$ and shared green public infrastructure $h_i$. In Stage 2, firms simultaneously choose conventional cost-reducing investment $x_i$ and green investment $g_i$. In Stage 3, firms compete in quantities. We solve for a subgame-perfect Nash equilibrium by backward induction.
+The game has three stages. In Stage 1, local governments simultaneously choose a firm-specific green-investment subsidy $s_i\geq0$ and shared green public infrastructure $h_i\geq0$. In Stage 2, firms simultaneously choose conventional cost-reducing investment $x_i\geq0$ and green investment $g_i\geq0$. In Stage 3, firms compete in nonnegative quantities $q_i\geq0$. We solve for a subgame-perfect Nash equilibrium by backward induction. Because sufficiently aggressive policies can change the set of active firms, the continuation game is defined on the full nonnegative action space rather than only on the two-active-firm branch.
 
 \subsection{Product market}
 
@@ -70,23 +70,23 @@ W_i
 \qquad \kappa,d>0,
 \label{eq:government-welfare}
 \end{equation}
-where
+where producer surplus is defined globally as
 \begin{equation}
-PS_i=q_i^2-\frac{k_x}{2}x_i^2-\frac{k_g}{2}g_i^2.
+PS_i=(p_i-c_i)q_i-\frac{k_x}{2}x_i^2-\frac{k_g}{2}g_i^2.
 \label{eq:producer-surplus}
 \end{equation}
-At the Cournot stage, operating profit equals $q_i^2$. The subsidy payment $s_i g_i$ is an intrajurisdictional transfer and therefore cancels from regional welfare in the baseline. The quadratic emissions term should be interpreted as a reduced-form loss from deviating from a delegated or territorial decarbonization objective, not as local physical climate damages from carbon emissions.
+On an active interior Cournot branch, $p_i-c_i=q_i$, so \eqref{eq:producer-surplus} reduces to $q_i^2-(k_x/2)x_i^2-(k_g/2)g_i^2$. The global definition remains valid when a firm is inactive. The subsidy payment $s_i g_i$ is an intrajurisdictional transfer and therefore cancels from regional welfare in the full-local-capture baseline. The quadratic emissions term should be interpreted as a reduced-form loss from deviating from a delegated or territorial decarbonization objective, not as local physical climate damages from carbon emissions.
 
-\subsection{Regularity}
+\subsection{Regularity and equilibrium scope}
 
 Define
 \begin{equation}
 R\equiv\frac1{k_x}+\frac{\mu^2}{k_g}.
 \label{eq:R}
 \end{equation}
-We focus on interior equilibria and impose the convenient sufficient condition
+We impose the convenient sufficient condition
 \begin{equation}
 R<\frac34.
 \label{eq:regularity}
 \end{equation}
-This condition is stronger than necessary, but it guarantees strict concavity of the firms' investment problem and nonsingularity of the reduced output system for all $\theta\in[0,1]$. Government-side strict concavity is imposed where the relevant best-response comparative statics are evaluated. The numerical witness used below satisfies these conditions with slack.
+This condition is stronger than necessary, but it guarantees the relevant firm-stage regularity and nonsingularity conditions for all $\theta\in[0,1]$. The comparative statics in Section~\ref{sec:results} are derived on the interior two-active-firm branch, where the government own-policy Hessian is negative definite. Separately, the global-equilibrium verification compares that branch with the nonnegative-policy kink and monopoly continuations. For the canonical rational witness, the interior policy candidate is a true global policy Nash equilibrium for every $\theta\in[0,1]$, and all inequalities hold strictly on a nonempty neighborhood of primitives. Thus the reported local best-response derivative is locally the derivative of the true global best response, not merely of a stationary branch.
