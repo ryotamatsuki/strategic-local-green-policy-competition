@@ -1,0 +1,140 @@
+\appendix
+\section{Proofs and Algebra}
+\label{app:proofs}
+
+\subsection{Firm-stage regularity}
+
+Let $v=(1,\mu)'$ and $K=\operatorname{diag}(k_x,k_g)$. The firm investment Hessian in \eqref{eq:firm-hessian} can be written as
+\[
+H_F=-K+\frac{8}{D^2}vv'.
+\]
+By the matrix determinant lemma and positive definiteness of $K$, $H_F\prec0$ whenever
+\[
+\frac{8}{D^2}v'K^{-1}v
+=\frac{8R}{D^2}<1.
+\]
+Since $D\geq3$ for $\theta\in[0,1]$, $R<3/4$ is sufficient.
+
+The reduced output matrix in \eqref{eq:reduced-output-system} has eigenvalues
+\[
+D-\lambda(2-\theta),
+\qquad
+D-\lambda(2+\theta).
+\]
+The smaller eigenvalue is positive if
+\[
+R<\frac{D^2}{4(2+\theta)}
+=\frac{(2-\theta)^2(2+\theta)}4.
+\]
+The right-hand side is at least $3/4$ on $[0,1]$, so condition \eqref{eq:regularity} also guarantees nonsingularity of the reduced output system.
+
+\subsection{Cross-instrument numerator}
+
+Because quantities are affine in policies, only their slope vectors are required for the government Hessian. Write
+\[
+q_A=q_0+a'z,\qquad q_B=q_0+b'z,
+\qquad z=(s_A,h_A,s_B,h_B)'.
+\]
+From \eqref{eq:q-linear-policies}--\eqref{eq:t0t1},
+\[
+a=\left(t_0\frac{\mu}{k_g},\;t_0\nu,\;t_1\frac{\mu}{k_g},\;t_1\nu\right)',
+\]
+and $b$ is obtained by interchanging $t_0$ and $t_1$ across jurisdictions. Also define
+\[
+\chi_x=\frac{4}{Dk_x},
+\qquad
+\chi_g=\frac{4\mu}{Dk_g},
+\qquad
+\delta=e-\beta\chi_g.
+\]
+Then
+\[
+x_A=\chi_x q_A,
+\qquad
+g_A=\chi_g q_A+\frac{s_A}{k_g},
+\]
+and the emissions slope vector is
+\[
+\nabla_z E_A=\delta a-\frac{\beta}{k_g}e_s-\xi e_h,
+\]
+where $e_s=(1,0,0,0)'$ and $e_h=(0,1,0,0)'$.
+
+Substituting these expressions into the Hessian of $W_A$ and forming
+\[
+\Psi(\theta)
+\equiv
+W_{s_Ah_A}W_{s_As_B}-W_{s_As_A}W_{h_As_B}
+\]
+yields
+\begin{equation}
+\Psi(\theta)
+=
+\frac{k_x^2\mu\theta(\theta^2-4)P(\theta^2)}
+{2L_-(\theta)^2L_+(\theta)^2},
+\label{eq:psi-factor-app}
+\end{equation}
+where
+\begin{align*}
+L_-(\theta)
+={}&k_gk_x\theta^3-2k_gk_x\theta^2-4k_gk_x\theta+8k_gk_x-4k_g-4k_x\mu^2,\\
+L_+(\theta)
+={}&k_gk_x\theta^3+2k_gk_x\theta^2-4k_gk_x\theta-8k_gk_x+4k_g+4k_x\mu^2.
+\end{align*}
+The denominator is positive whenever the reduced equilibrium is nonsingular. Since $\det H_A>0$ under government strict concavity, equation \eqref{eq:psi-factor-app} establishes \eqref{eq:P-sign}.
+
+The polynomial coefficients are functions only of $(k_x,k_g,\mu,\nu,d,e,\beta,\xi)$. For completeness,
+\begin{align}
+A_4={}&k_gk_x^2\left(\beta^2d\nu-\beta d\mu\xi+2de k_g\xi+k_g\nu\right),\\
+A_3={}&k_gk_x^2\left(-20\beta^2d\nu-\beta de\mu\nu+20\beta d\mu\xi+4de^2k_g\nu-32de k_g\xi+de\mu^2\xi-20k_g\nu\right),
+\end{align}
+\begin{align}
+A_2={}&-4k_x\Big[
+-36\beta^2dk_gk_x\nu+2\beta^2dk_g\nu+3\beta^2dk_x\mu^2\nu
+-3\beta de k_gk_x\mu\nu+\beta de k_g\mu\nu+\beta de k_x\mu^3\nu\\
+&\quad+36\beta dk_gk_x\mu\xi-2\beta dk_g\mu\xi-3\beta dk_x\mu^3\xi
++12de^2k_g^2k_x\nu-2de^2k_g^2\nu-2de^2k_gk_x\mu^2\nu\\
+&\quad-48de k_g^2k_x\xi+8de k_g^2\xi+7de k_gk_x\mu^2\xi-de k_g\mu^2\xi-de k_x\mu^4\xi
+-36k_g^2k_x\nu+2k_g^2\nu+3k_gk_x\mu^2\nu\Big],
+\end{align}
+\begin{align}
+A_1={}&16\Big[
+-28\beta^2dk_gk_x^2\nu+8\beta^2dk_gk_x\nu+\beta^2dk_g\nu+6\beta^2dk_x^2\mu^2\nu+\beta^2dk_x\mu^2\nu\\
+&\quad-3\beta de k_gk_x^2\mu\nu+2\beta de k_gk_x\mu\nu+2\beta de k_x^2\mu^3\nu
++28\beta dk_gk_x^2\mu\xi-8\beta dk_gk_x\mu\xi-\beta dk_g\mu\xi\\
+&\quad-6\beta dk_x^2\mu^3\xi-\beta dk_x\mu^3\xi+12de^2k_g^2k_x^2\nu-4de^2k_g^2k_x\nu-4de^2k_gk_x^2\mu^2\nu\\
+&\quad-32de k_g^2k_x^2\xi+16de k_g^2k_x\xi-2de k_g^2\xi+11de k_gk_x^2\mu^2\xi-4de k_gk_x\mu^2\xi-2de k_x^2\mu^4\xi\\
+&\quad-28k_g^2k_x^2\nu+8k_g^2k_x\nu+k_g^2\nu+6k_gk_x^2\mu^2\nu+k_gk_x\mu^2\nu\Big],
+\end{align}
+\begin{align}
+A_0={}&-64\Big[
+-8\beta^2dk_gk_x^2\nu+6\beta^2dk_gk_x\nu-\beta^2dk_g\nu+3\beta^2dk_x^2\mu^2\nu-\beta^2dk_x\mu^2\nu\\
+&\quad-\beta de k_gk_x^2\mu\nu+\beta de k_gk_x\mu\nu+\beta de k_x^2\mu^3\nu
++8\beta dk_gk_x^2\mu\xi-6\beta dk_gk_x\mu\xi+\beta dk_g\mu\xi\\
+&\quad-3\beta dk_x^2\mu^3\xi+\beta dk_x\mu^3\xi+4de^2k_g^2k_x^2\nu-2de^2k_g^2k_x\nu-2de^2k_gk_x^2\mu^2\nu\\
+&\quad-8de k_g^2k_x^2\xi+8de k_g^2k_x\xi-2de k_g^2\xi+5de k_gk_x^2\mu^2\xi-3de k_gk_x\mu^2\xi-de k_x^2\mu^4\xi\\
+&\quad-8k_g^2k_x^2\nu+6k_g^2k_x\nu-k_g^2\nu+3k_gk_x^2\mu^2\nu-k_gk_x\mu^2\nu\Big].
+\end{align}
+Two cancellations are useful for interpretation. Neither the market-size term $a-c$ nor the emissions-target level $\bar E_i$ appears in the slope polynomial. The infrastructure-cost parameter $\kappa$ affects the government Hessian determinant and policy levels but not $P$; conditional on strict concavity, it therefore does not move the switching threshold in the baseline linear-quadratic model.
+
+\subsection{Proof of Proposition~\ref{prop:threshold}}
+
+For $u\in[0,1]$, the derivative of $P$ can be written in the cubic Bernstein basis as
+\[
+P'(u)
+=B_0(1-u)^3+3B_1u(1-u)^2+3B_2u^2(1-u)+B_3u^3.
+\]
+Every basis function is nonnegative on $[0,1]$. Hence $B_0,\ldots,B_3<0$ implies $P'(u)<0$ throughout the interval. With $P(0)>0>P(1)$, the intermediate value theorem gives a root $u^*\in(0,1)$, and strict monotonicity makes it unique. Since $u=\theta^2$ is strictly increasing for $\theta>0$, $\theta^*=\sqrt{u^*}$ is the unique switching threshold. Equation \eqref{eq:P-sign} then yields the two sign regions. \qed
+
+\subsection{Benchmark without conventional investment}
+
+Let $1/k_x\rightarrow0$. After dividing $P(u)$ by $k_x^2$ and taking the limit, obtain a benchmark quartic $\bar P(u)$. If its degree-four Bernstein coefficients $C_0,\ldots,C_4$ are all positive, then $\bar P(u)>0$ for all $u\in[0,1]$, and equation \eqref{eq:P-sign} implies a negative cross-infrastructure response for every $\theta>0$.
+
+At the canonical parameter vector, the benchmark polynomial factorizes, up to a positive constant, as
+\[
+(4-u)^2\left(602500u^2-3281550u+3486659\right).
+\]
+The quadratic factor is positive on $[0,1]$, establishing the numerical benchmark reported in Proposition~\ref{prop:no-x}. \qed
+
+\subsection{Verification protocol}
+
+All algebra in this appendix is independently reconstructed in the repository's symbolic scripts rather than copied from the manuscript. The verification checks the firm first-order conditions, the general factorization \eqref{eq:psi-factor-app}, the canonical polynomial and unique root, the no-conventional-investment benchmark, and the numerical robustness calculations. This separation is intended to make manuscript transcription errors detectable by continuous integration.
