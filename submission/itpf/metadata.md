@@ -18,6 +18,12 @@ Status: **Stage 14 conditional package — author/declaration metadata completed
 - Corresponding-author email: ryota.matsuki@gmail.com
 - ORCID: 0009-0005-2329-531X
 
+## Author contributions — submission interface
+
+Ryota Matsuki: Conceptualization; Formal analysis; Investigation; Methodology; Software; Validation; Writing – original draft; Writing – review & editing.
+
+No generative-AI tool is assigned an authorship or CRediT role.
+
 ## Manuscript metadata
 
 **Title**
