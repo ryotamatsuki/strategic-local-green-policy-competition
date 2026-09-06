@@ -16,6 +16,6 @@ Sincerely,
 
 Ryota Matsuki
 Independent Researcher
-Matsuyama, Ehime 790-0853, Japan
+Matsuyama, Ehime, Japan
 ryota.matsuki@gmail.com
 ORCID: 0009-0005-2329-531X
