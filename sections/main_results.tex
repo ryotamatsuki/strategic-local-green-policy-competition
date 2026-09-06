@@ -145,6 +145,15 @@ u^*=0.5987732279\ldots,
 \]
 The full nonnegative-policy continuation in Section~\ref{sec:equilibrium} verifies that the symmetric interior policy candidate is a true global policy Nash equilibrium throughout $\theta\in[0,1]$ for this rational witness. The comparison with the best kink/monopoly challenger is strict, so the property survives on a nonempty open neighborhood of primitives.
 
+\begin{figure}[!t]
+\centering
+\includegraphics[width=0.72\textwidth]{figures/figure1_threshold_response.pdf}
+\caption{Canonical cross-instrument infrastructure response. The solid line is the full model and the dashed line is the matched no-conventional-investment benchmark at the same remaining canonical primitives. The horizontal line marks zero and the vertical marker indicates $\theta^*=0.7738043861\ldots$. The full-model response crosses zero once, whereas the matched no-$x$ response remains negative for all $\theta\in(0,1]$.}
+\label{fig:threshold-response}
+\end{figure}
+
+Figure~\ref{fig:threshold-response} plots the canonical cross-infrastructure response over the full rivalry range. The response is initially negative, becomes more negative at intermediate rivalry, and then rises through zero exactly once at $\theta^*=0.7738043861\ldots$. Thus the result is a threshold sign change rather than a globally monotone increase in the response as product-market rivalry intensifies.
+
 At $\theta=0.9$ the symmetric equilibrium is
 \[
 (s^*,h^*)=(2.0594,0.7443),
@@ -153,7 +162,7 @@ with
 \[
 (q,x,g,E)=(1.1842,0.3712,0.1887,0.9075).
 \]
-Table~\ref{tab:br-slopes} shows the best-response slopes on the two sides of the threshold.
+Table~\ref{tab:br-slopes} reports representative values of the two best-response slopes on either side of the threshold plotted in Figure~\ref{fig:threshold-response}.
 
 \begin{table}[htbp]
 \centering
@@ -168,8 +177,6 @@ $\partial h_A^{BR}/\partial s_B$ & $-0.00455$ & $+0.00711$\\
 \bottomrule
 \end{tabular}
 \end{table}
-
-The infrastructure response is not globally increasing in $\theta$: for example it becomes more negative between $\theta=.1$ and $.5$ before turning upward and crossing zero. The model therefore predicts a threshold sign change, not a globally positive linear interaction between rivalry and the cross-policy response.
 
 \subsection{Matched benchmark without conventional competitive investment}
 
@@ -195,6 +202,8 @@ For the canonical parameter values, the no-$x$ expression is proportional to
 \label{eq:no-x-witness}
 \end{equation}
 which is strictly positive on $u\in[0,1]$. The full and nested models therefore generate qualitatively different best-response networks at the same canonical environmental and policy primitives.
+
+The dashed curve in Figure~\ref{fig:threshold-response} visualizes this matched benchmark separation: at the same canonical remaining primitives, the no-$x$ response stays below zero for all positive rivalry levels.
 
 This is a matched benchmark separation, not a universal necessity result. Holding the other primitives fixed but changing $\beta$ to $1.3$ produces a verified no-$x$ global-equilibrium example in which the response is negative at $\theta=.9$ and positive at $\theta=1$. Conventional investment can therefore create a reversal that is absent under the matched canonical benchmark, but it is not necessary for every possible reversal.
 
