@@ -62,22 +62,34 @@ Added to the repository:
 - `scripts/make_figure1_threshold_response.py`;
 - `figures/figure1_threshold_response.pdf`.
 
-The generator also creates `figures/figure1_threshold_response.png` as a preview during regeneration. CI is updated to regenerate Figure 1 before symbolic verification and before the LaTeX build. The Stage-14 checker now requires the generator, nonempty PDF, label, and Introduction/Main-Results references. The source ZIP includes the regenerated figure directory and generator script.
+The generator also creates `figures/figure1_threshold_response.png` as a preview during regeneration. CI regenerates Figure 1 before symbolic verification and before the LaTeX build. The Stage-14 checker requires the generator, nonempty PDF, label, and Introduction/Main-Results references. The source ZIP includes the regenerated figure directory and generator script.
+
+Pull request: **#16 — `Stage 13R: bounded figure integration`**.
+
+Substantive implementation head checked by CI: `59dec8cb7dd4c0aa22675bfbee23cebd37052a71`.
+
+GitHub Actions run: `34007273858` (`verify-theory`, run #71).
+
+Result: **SUCCESS** for both `symbolic-verification` and `manuscript-build`.
+
+The run regenerated Figure 1 before verification and build, passed the complete Stage 9R/10R/freeze/global-SPNE/no-`x`/Stage-7/Stage-10/Stage-11R checks, passed the figure-aware Stage-14 machine checker, and reported **9 pytest tests passed**.
 
 ## 7. Build and visual QA
 
-Local bounded QA before the pull request:
+Local bounded QA and PR-artifact QA both pass.
 
-- figure generation: PASS;
-- exact baseline regression checkpoints: PASS;
-- no-`x` sign check: PASS;
-- LaTeX build: PASS;
-- unresolved Figure 1 reference after full build: none;
-- resulting manuscript: 24 pages;
-- PDF preflight: openable, unencrypted, non-scanned;
-- Figure 1 page rendered and inspected: axes, legend, zero line, threshold marker, solid/dashed curves, caption, Table 1 transition, and grayscale distinction are readable; no clipping or overlap detected.
+The PR-generated artifact is `stage14-itpf-manuscript`:
 
-The initial float placement produced excessive whitespace on a figure-only page. The final integration uses a smaller `0.72\textwidth` top float and a shorter self-contained caption; Figure 1 now appears with the associated interpretation and Table 1 on the same page.
+- artifact ID: `9981369722`;
+- artifact digest: `sha256:550ee4803ff88b2790f5326df1b9c80ca36c6f352bccb890680a0daf28dc3cf5`;
+- generated `main.pdf` SHA-256: `4fe4c00cc3fd1e926d4705dcdfd66d9063560323919c94d11efa728a27dddaea`;
+- generated `itpf-source.zip` SHA-256: `05169e62bc88e0cdd1d69758dbe3227598c62a6de1882b9dae131e05017646ad`;
+- regenerated Figure 1 PDF SHA-256 inside the source ZIP: `1f07e10bdd01af9b351f9fbe512d8cafdf62d661cda6451814c55e01e2bedd7e`;
+- regenerated PNG preview SHA-256: `abf3af527fc578e17ac228340360de95612ad0b23f7ccc8edc793a3a778d5e11`.
+
+The manuscript is **24 pages**, openable and unencrypted. The actual PR-generated PDF was rendered and Figure 1 on page 10 inspected. Axes, legend, zero line, threshold marker, solid/dashed curves, caption, Table 1 transition, and grayscale distinction are readable; no clipping, overlap, broken glyph, or float-placement blocker was found.
+
+The initial local float placement produced excessive whitespace on a figure-only page. The final integration uses a smaller `0.72\textwidth` top float and a shorter self-contained caption; Figure 1 now appears with the associated interpretation and Table 1 on the same page.
 
 ## 8. Hostile self-audit
 
@@ -87,11 +99,12 @@ The initial float placement produced excessive whitespace on a figure-only page.
 - Claim that no-`x` switching is impossible for all primitives: absent; the text retains the verified counterexample qualification.
 - Global-SPNE claim outside the certified canonical neighborhood: absent.
 - Arbitrary polynomial normalization presented as a derivative: absent.
+- Proposition/proof/table-value changes: absent.
 
 ## 9. Remaining blocker and next stage
 
-The only action after this bounded integration is to complete repository CI/PR verification and then rerun Stage 14 submission QA on the new 24-page package. Stage 15 remains blocked until Stage 14 re-QA is complete and the live ITPF portal fee gate is cleared.
+Stage 13R has no remaining substantive or presentation blocker. The next required step is **Stage 14 re-QA** on the new 24-page package. Stage 15 remains blocked until Stage 14 re-QA is complete and the live ITPF portal fee gate is cleared.
 
 ## 10. Verdict
 
-**`BOUNDED FIGURE INTEGRATION COMPLETE — READY FOR STAGE 14 RE-QA`**, conditional only on the pull-request CI reproducing the local checks above.
+**`BOUNDED FIGURE INTEGRATION COMPLETE — READY FOR STAGE 14 RE-QA`.**
