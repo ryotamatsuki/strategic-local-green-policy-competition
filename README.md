@@ -43,7 +43,8 @@ At the same canonical remaining primitives, removing conventional competitive in
 - Stage 12 journal positioning: `PRIMARY JOURNAL SELECTED — ZERO-FEE CONSTRAINT SATISFIED SUBJECT TO LIVE PORTAL HARD GATE`.
 - Stage 13 ITPF full-paper integration: `INTEGRATED MANUSCRIPT READY FOR SUBMISSION QA`.
 - Post-Stage-13 Astra one-shot hostile audit: `GO WITH MINOR REPAIR`; bounded repairs incorporated, with no fatal finding or novelty collapse.
-- Stage 14 ITPF submission QA: `CONDITIONAL PASS — LIVE PORTAL FEE GATE ONLY`.
+- Stage 13R bounded figure integration: `COMPLETE SUBJECT TO PR CI` — canonical switching response and matched no-`x` benchmark visualized; no theory change.
+- Prior Stage 14 ITPF submission QA: `CONDITIONAL PASS — LIVE PORTAL FEE GATE ONLY`; Stage 14 re-QA is required after the Stage 13R figure integration.
 
 Stage 11R found no new unresolved fatal attack. It sharpened the Hauptmeier/Morita–Okoshi novelty boundary and added an exact target-intensity scope check: holding other canonical primitives fixed, the interior response is negative throughout at `d=1.5`, switches once at `d=2`, and is positive throughout at `d=3`. The result is therefore a conditional strategic-feedback theorem, not a claim that rivalry mechanically creates switching.
 
@@ -53,10 +54,12 @@ Stage 13 integrates the manuscript for ITPF without changing frozen theory. The 
 
 The one-shot Astra audit independently rechecked the global-SPNE certificate, switching polynomial, Bernstein uniqueness argument, canonical threshold, matched no-conventional-investment benchmark, and closest-paper novelty boundary. Its bounded repairs make explicit the `m=a-c>0` continuation domain, the `mu>0` switching-theorem scope, and the scaled-gap/Jacobian regularity used in the open-neighborhood proof. See `docs/POST_STAGE13_ASTRA_BOUNDED_REPAIR.md`.
 
-Stage 14 adds ITPF-specific machine QA, full DOI-link rendering, source/PDF build artifacts, submission metadata, and a cover letter. The complete verification suite, 9 pytest tests, citation/cross-reference checks, and LaTeX build pass. The actual 23-page CI-generated PDF was visually inspected page by page with no clipping, overlap, broken glyph, unresolved reference, or table-layout blocker. Author metadata, affiliation, corresponding-author email, ORCID, Funding, and Competing Interests have now been finalized consistently in the manuscript and submission package from previously confirmed submission records. See `docs/STAGE14_ITPF_SUBMISSION_QA.md`.
+Stage 13R adds a reproducible Figure 1 that plots the actual canonical derivative `∂h_A^BR/∂s_B` and the matched no-`x` derivative over the rivalry range, with the zero line and the verified threshold `theta*=0.773804386083461...`. The Introduction and Main Results receive bounded exposition edits only; propositions, proofs, table values, theory, robustness, and contribution claims are unchanged. See `docs/STAGE13R_FIGURE_INTEGRATION.md`.
 
-The only remaining Stage-14 condition is the live ITPF portal hard gate. If the submission workflow requests any mandatory submission fee or payment, stop before payment and return to Stage 12. The subscription publication route itself has no APC.
+The prior Stage 14 package added ITPF-specific machine QA, full DOI-link rendering, source/PDF build artifacts, submission metadata, and a cover letter. Author metadata, affiliation, corresponding-author email, ORCID, Funding, and Competing Interests remain finalized. Because Stage 13R changes the rendered manuscript and source package, Stage 14 must now be rerun before submission freeze.
 
-Next: **verify the live ITPF portal fee gate; then Stage 15 — Submission Freeze and Record**.
+The live ITPF portal hard gate remains unchanged. If the submission workflow requests any mandatory submission fee or payment, stop before payment and return to Stage 12. The subscription publication route itself has no APC.
+
+Next: **Stage 14 re-QA after figure integration**.
 
 Any theory change after v2 requires an explicit theory-change record and rerunning the earliest affected workflow gates.
