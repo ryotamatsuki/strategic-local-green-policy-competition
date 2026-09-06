@@ -18,7 +18,7 @@ Previously open factual metadata gates have now been resolved from author inform
 
 - author: Ryota Matsuki;
 - affiliation: Independent Researcher;
-- location/postal affiliation: Matsuyama, Ehime 790-0853, Japan;
+- location: Matsuyama, Ehime, Japan;
 - corresponding-author email: ryota.matsuki@gmail.com;
 - ORCID: 0009-0005-2329-531X;
 - Funding: No external funding supported this work.;
@@ -56,7 +56,7 @@ The official publishing page states that the subscription publishing model has *
 
 ## 3. Machine and mathematical verification
 
-Final post-metadata verification commit: `67147c20c871538a334b6559bc7a4ab6af8bf925`.
+Final post-metadata verification commit before removal of the non-required postal code: `67147c20c871538a334b6559bc7a4ab6af8bf925`.
 
 GitHub Actions run: `34005056160` (`verify-theory`, run #65).
 
@@ -79,7 +79,7 @@ Successful checks include:
 - unresolved citation/cross-reference rejection check;
 - source-ZIP construction and artifact upload.
 
-The Stage-14 checker now enforces the finalized metadata/declarations rather than treating them as optional human gates. It reports author metadata, Funding, and Competing Interests as ready.
+The Stage-14 checker enforces the finalized metadata/declarations rather than treating them as optional human gates. It reports author metadata, Funding, and Competing Interests as ready.
 
 The frozen numerical invariants continue to reproduce, including `theta_star=0.7738043861`, the Stage-4R-G global-SPNE gaps, the no-conventional-investment counterexample, welfare calculations, robustness values, and Stage-11R target-scope signs.
 
@@ -91,43 +91,21 @@ All 13 entries in `references.bib` are cited in the manuscript, and the machine 
 
 ## 5. Source-package QA
 
-PASS.
+PASS as of run #65; a fresh build is required after the postal-code-only metadata cleanup before Stage 15 freeze.
 
-The post-metadata build artifact `stage14-itpf-manuscript` contains:
+The Stage-14 build artifact `stage14-itpf-manuscript` contains:
 
 - `main.pdf`;
 - `main.log`;
 - `itpf-source.zip` containing `main.tex`, `references.bib`, and the complete `sections/` tree.
 
-For run #65:
-
-- GitHub artifact ID: `9980679058`;
-- artifact digest: `sha256:82378c0fc964a550b5c720848cb83f7f3de8c52d99783d6514d05619a9c19c94`;
-- inspected `main.pdf` SHA-256: `8b668dcebf3e566316800bc5ae396827ca7679f893c58339ca6f2903494eaee2`;
-- inspected `itpf-source.zip` SHA-256: `002cbee92dfb9460c9fe05ca4ddc44e89c493308bf806ec38426fcc0f053c9f8`.
+The run #65 hashes are retained only as the immediately preceding verified state. They must not be used as the Stage-15 freeze hashes after the postal-code cleanup.
 
 ## 6. PDF visual QA
 
-PASS.
+PASS for the immediately preceding post-metadata build; the postal-code deletion is a title-page-only metadata cleanup and requires a fresh final build before freeze.
 
-The actual post-metadata CI-generated PDF from run #65 was downloaded and rendered at 160 dpi. All **23 pages** were inspected after inserting author/declaration metadata.
-
-The review found:
-
-- title page correctly displays author, affiliation/location, corresponding-author email, and ORCID;
-- Funding and Competing Interests render correctly in Statements and Declarations;
-- no clipped prose or equations;
-- no overlapping text;
-- no broken glyphs or black squares;
-- no missing table content;
-- no unresolved `??` references;
-- no stale `TODO`, `TBD`, `FIXME`, or placeholder tokens in manuscript sources;
-- tables remain inside the text area;
-- appendix equations remain legible;
-- reference URLs remain readable;
-- the manuscript remains **23 pages**.
-
-The title-page expansion did not introduce a layout blocker.
+The run #65 PDF contained 23 pages and had no clipping, overlap, broken glyph, unresolved reference, or table-layout blocker.
 
 ## 7. Manuscript metadata and declarations
 
@@ -136,7 +114,7 @@ READY.
 - Title: ready.
 - Author: Ryota Matsuki.
 - Affiliation: Independent Researcher.
-- Location: Matsuyama, Ehime 790-0853, Japan.
+- Location: Matsuyama, Ehime, Japan.
 - Corresponding-author email: ryota.matsuki@gmail.com.
 - ORCID: 0009-0005-2329-531X.
 - Abstract: ready.
@@ -149,13 +127,13 @@ READY.
 - Generative-AI disclosure: ready.
 - Author Contributions/CRediT metadata: ready for the submission interface.
 
-Phone details are deliberately omitted from the public manuscript/package because the public title-page guidance does not require them; they should be entered only if the private submission form explicitly requires a phone field.
+Postal code and phone details are deliberately omitted from the public manuscript/package because the public title-page guidance does not require them; they should be entered only if the private submission form explicitly requires such fields.
 
 ## 8. Cover letter and submission-system metadata
 
 READY.
 
-`submission/itpf/cover_letter_body.md` now contains the final signatory block.
+`submission/itpf/cover_letter_body.md` contains the final signatory block without a postal code.
 
 `submission/itpf/metadata.md` contains copy-ready:
 
@@ -187,7 +165,7 @@ This portal-only condition cannot be certified from the repository or the public
 
 ## 10. Change-scope audit
 
-No theory change, new proposition, new robustness result, or contribution expansion was made in closing the Stage-14 metadata gates.
+No theory change, new proposition, new robustness result, or contribution expansion was made in closing the Stage-14 metadata gates or removing the non-required postal code.
 
 Changes are limited to:
 
@@ -195,21 +173,23 @@ Changes are limited to:
 - Funding and Competing Interests declarations;
 - final cover-letter signature block;
 - copy-ready Author Contributions/CRediT metadata;
-- QA automation that now requires these finalized fields;
+- QA automation that requires these finalized fields;
+- removal of the non-required postal code from public submission materials;
 - updated QA/provenance records.
 
 The theory freeze remains valid.
 
 ## 11. Stage 15 entry condition
 
-**Stage 15 remains blocked only by the live portal fee gate.**
+**Stage 15 remains blocked only by a fresh post-cleanup build and the live portal fee gate.**
 
 Before creating the immutable submission freeze:
 
-1. enter the ITPF live submission workflow;
-2. confirm that no mandatory submission fee or payment requirement is presented;
-3. if any mandatory fee appears, STOP before payment and return to Stage 12;
-4. once the fee gate is clear, create the Stage-15 freeze from the validated package;
-5. before the final submit action, compare any portal-generated manuscript PDF against the frozen source/PDF.
+1. confirm the post-cleanup verification/build passes;
+2. enter the ITPF live submission workflow;
+3. confirm that no mandatory submission fee or payment requirement is presented;
+4. if any mandatory fee appears, STOP before payment and return to Stage 12;
+5. once the fee gate is clear, create the Stage-15 freeze from the validated package;
+6. before the final submit action, compare any portal-generated manuscript PDF against the frozen source/PDF.
 
 No earlier theory or manuscript-construction stage needs to be reopened.
