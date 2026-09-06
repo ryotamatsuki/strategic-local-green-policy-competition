@@ -13,7 +13,7 @@ Status: **Stage 14 conditional package — author/declaration metadata completed
 
 - Author: Ryota Matsuki
 - Affiliation: Independent Researcher
-- Location/postal affiliation: Matsuyama, Ehime 790-0853, Japan
+- Location: Matsuyama, Ehime, Japan
 - Corresponding author: Ryota Matsuki
 - Corresponding-author email: ryota.matsuki@gmail.com
 - ORCID: 0009-0005-2329-531X
