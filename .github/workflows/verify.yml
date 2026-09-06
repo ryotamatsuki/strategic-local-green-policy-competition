@@ -39,10 +39,16 @@ jobs:
       - run: pip install -r requirements.txt
       - name: Regenerate Figure 1
         run: python scripts/make_figure1_threshold_response.py
-      - name: Install TeX and archive utility
+      - name: Install TeX, PDF inspection, and archive utilities
         run: |
           sudo apt-get update
-          sudo apt-get install -y latexmk texlive-latex-base texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended zip
+          sudo apt-get install -y latexmk texlive-latex-base texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended poppler-utils zip
+      - name: Require embedded Figure 1 fonts
+        run: |
+          fonts="$(pdffonts figures/figure1_threshold_response.pdf | awk 'NR>2 && NF')"
+          test -n "$fonts"
+          echo "$fonts"
+          echo "$fonts" | awk '{ if ($5 != "yes") exit 1 }'
       - name: Compile manuscript
         run: latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
       - name: Require PDF
