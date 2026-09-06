@@ -14,4 +14,8 @@ Thank you for considering the manuscript.
 
 Sincerely,
 
-[Corresponding-author signature block to be inserted only after factual author metadata are supplied for Stage 15]
+Ryota Matsuki
+Independent Researcher
+Matsuyama, Ehime 790-0853, Japan
+ryota.matsuki@gmail.com
+ORCID: 0009-0005-2329-531X
