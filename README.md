@@ -10,7 +10,7 @@ Canonical workflow: `ryotamatsuki/research-paper-workflow`, version `v1.1`, rele
 
 ## Research question
 
-When competing local governments can use a targeted green-investment subsidy and productive green infrastructure, can stronger product-market rivalry reverse the sign of a local government's infrastructure response to a rival productive green-policy shock when firms endogenously adjust conventional and green investment?
+When competing local governments can use a targeted green-investment subsidy and productive green public infrastructure, can stronger product-market rivalry reverse the sign of a local government's infrastructure response to a rival productive green-policy shock when firms endogenously adjust conventional and green investment?
 
 The headline cross-instrument object is `∂h_A^BR/∂s_B`. On the interior reduced system, rival policy enters through the composite `y_B=(mu/k_g)s_B+nu h_B`, so the subsidy is a headline normalization rather than a uniquely identified rival-policy channel.
 
