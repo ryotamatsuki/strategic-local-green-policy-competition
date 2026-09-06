@@ -1,6 +1,6 @@
 # ITPF Submission Metadata
 
-Status: **Stage 14 conditional package — author/declaration metadata completed; live portal fee gate remains open**.
+Status: **Stage 14 re-QA conditional package — manuscript/package QA complete; live portal fee gate only**.
 
 ## Journal and article type
 
@@ -68,6 +68,10 @@ Symbolic and numerical verification materials supporting the analytical and comp
 
 Generative AI tools were used to assist with exploratory model development, literature organization, symbolic cross-checking, and manuscript preparation. All model specifications, mathematical derivations, proofs, numerical results, citations, and substantive conclusions were independently reviewed and verified by the author, who assumes full responsibility for the work.
 
+## Stage 14 re-QA package note
+
+The post-Stage-13R 24-page manuscript has completed the Stage 14 mathematical, reproducibility, bibliography, metadata/declaration, source-package, artwork, and visual QA. Figure 1 is regenerated from the verified derivative expressions and uses embedded TrueType fonts; CI enforces this artwork requirement. No theory or manuscript claim changed in the artwork repair.
+
 ## Live portal hard gate
 
 Official ITPF/Springer publishing information confirms a subscription publishing route without an APC. The project nevertheless retains a stricter live-portal gate because historical ITPF instructions have included a submission charge: **if the live submission portal requests any mandatory submission fee, stop before payment and return to journal positioning.**
@@ -78,4 +82,4 @@ Official ITPF/Springer publishing information confirms a subscription publishing
 - Suggested reviewers may be supplied if useful but are not treated as a Stage 14 mandatory file.
 - Highlights and a graphical abstract are not identified as mandatory for a regular ITPF article.
 - Editable LaTeX source and compiled PDF are retained in the Stage 14 build artifact.
-- Phone details are intentionally omitted from the public manuscript/package because they are not required for the title page; enter them only in a private portal field if the submission system explicitly requires them.
+- Phone and postal-code details are intentionally omitted from the public manuscript/package because they are not required for the title page; enter them only in private portal fields if the submission system explicitly requires them.
