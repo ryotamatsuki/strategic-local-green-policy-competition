@@ -8,52 +8,57 @@ Theory freeze: `SLGPC-THEORY-FREEZE-2026-09-05-v2`.
 
 Primary target: **International Tax and Public Finance (ITPF)**.
 
-Stage 14 branch: `stage14-itpf-submission-qa`.
-
 ## 1. Executive verdict
 
-**`CONDITIONAL PASS`**.
+**`CONDITIONAL PASS — LIVE PORTAL FEE GATE ONLY`**.
 
-No substantive, mathematical, novelty, reproducibility, citation, source-package, or PDF-layout defect was found. The manuscript is technically ready for submission once four factual/external gates are closed:
+No substantive, mathematical, novelty, reproducibility, citation, source-package, metadata, declaration, or PDF-layout defect remains.
 
-1. official author/affiliation/corresponding-author metadata;
-2. Funding statement;
-3. Competing Interests statement, including any applicable non-financial interest;
-4. live ITPF submission-portal confirmation that no mandatory submission fee is requested.
+Previously open factual metadata gates have now been resolved from author information already confirmed in prior journal-submission records and inserted consistently in the ITPF package:
 
-These are non-substantive submission facts. They do not justify reopening the theory. Stage 15 is nevertheless blocked until they are resolved because they are required for an accurate submission record.
+- author: Ryota Matsuki;
+- affiliation: Independent Researcher;
+- location/postal affiliation: Matsuyama, Ehime 790-0853, Japan;
+- corresponding-author email: ryota.matsuki@gmail.com;
+- ORCID: 0009-0005-2329-531X;
+- Funding: No external funding supported this work.;
+- Competing interests: The author declares that he has no competing interests.;
+- single-author CRediT metadata prepared for the submission interface.
+
+The only remaining condition is the project's external zero-submission-fee hard gate: the live ITPF portal must not request a mandatory submission fee or payment.
 
 ## 2. Current ITPF requirement audit
 
-The current official pages checked for this QA are:
+The current official pages checked on 2026-09-06 are:
 
 - `https://link.springer.com/journal/10797/submission-guidelines`
 - `https://link.springer.com/journal/10797/how-to-publish-with-us`
 
-The package satisfies the requirements that can be verified without author-specific factual declarations:
+The package now satisfies the publicly verifiable requirements for a regular article:
 
-- regular-article route selected;
 - editable LaTeX source retained together with compiled PDF;
 - abstract: **157 words**, within the current 150--250-word requirement;
 - keywords: **5**, within the current 4--6 requirement;
 - JEL codes: **6** and present;
 - title present and stable;
+- author name, affiliation/location, active corresponding-author email, and ORCID present;
 - Data Availability statement present;
 - Code Availability statement present;
+- Funding statement present;
+- Competing Interests statement present;
+- Author Contributions/CRediT metadata prepared for the submission interface;
 - substantive generative-AI use disclosed transparently;
 - bibliography and DOI metadata checked;
 - all bibliography entries cited;
-- no ITPF-specific double-blind requirement was identified in the current instructions; the journal instead requests author/title-page metadata.
+- no ITPF-specific double-blind requirement identified in the current instructions.
 
-The official publishing page states that the subscription publishing model has no APC. The repository's stricter zero-fee rule remains in force because a live submission charge cannot be ruled out solely from the publishing page.
+The official publishing page states that the subscription publishing model has **no APC charges**. Optional open access carries an APC and is not the project route.
 
 ## 3. Machine and mathematical verification
 
-Pull request #15 runs the complete existing verification suite plus a Stage-14 package checker.
+Final post-metadata verification commit: `67147c20c871538a334b6559bc7a4ab6af8bf925`.
 
-Final verified manuscript commit before this audit record: `e13e68597af93ad50bcc27524d8bafb3f1b0d79b`.
-
-GitHub Actions run: `34003198125` (`verify-theory`, run #55).
+GitHub Actions run: `34005056160` (`verify-theory`, run #65).
 
 Result: **SUCCESS**.
 
@@ -74,16 +79,7 @@ Successful checks include:
 - unresolved citation/cross-reference rejection check;
 - source-ZIP construction and artifact upload.
 
-The Stage-14 checker reports:
-
-- `abstract_words=157`;
-- `keywords=5`;
-- `jel_codes=6`;
-- `bibliography_entries=13`;
-- `citations_resolved=13`;
-- `author_metadata_ready=False`.
-
-The last item is a deliberate factual gate, not a technical failure.
+The Stage-14 checker now enforces the finalized metadata/declarations rather than treating them as optional human gates. It reports author metadata, Funding, and Competing Interests as ready.
 
 The frozen numerical invariants continue to reproduce, including `theta_star=0.7738043861`, the Stage-4R-G global-SPNE gaps, the no-conventional-investment counterexample, welfare calculations, robustness values, and Stage-11R target-scope signs.
 
@@ -91,33 +87,35 @@ The frozen numerical invariants continue to reproduce, including `theta_star=0.7
 
 PASS.
 
-All 13 entries in `references.bib` are cited in the manuscript, and the machine checker rejects unknown or uncited keys. The bibliographic metadata of the principal theoretical and institutional references were cross-checked against publisher/official sources during Stage 14.
-
-Because the manuscript uses `apalike`, which does not reliably print the `doi` field by itself, Stage 14 adds full `https://doi.org/...` links in the printable note field for entries with verified DOIs. No DOI was invented for the Bayindir-Upmann emissions article where a DOI was not independently confirmed.
+All 13 entries in `references.bib` are cited in the manuscript, and the machine checker rejects unknown or uncited keys. Full DOI links are exposed in the rendered `apalike` reference list where verified. No unverifiable DOI was inserted.
 
 ## 5. Source-package QA
 
 PASS.
 
-The build job produces `stage14-itpf-manuscript`, containing:
+The post-metadata build artifact `stage14-itpf-manuscript` contains:
 
 - `main.pdf`;
 - `main.log`;
 - `itpf-source.zip` containing `main.tex`, `references.bib`, and the complete `sections/` tree.
 
-For the final inspected artifact from run #55:
+For run #65:
 
-- GitHub artifact ID: `9980120378`;
-- artifact digest: `sha256:85546ab3269e87a44b81b61c2e5b3640b86a208ccb63db6deca6e61bad6633d4`;
-- inspected `main.pdf` SHA-256: `ff7d92d7d15a35c8e89a66a47083370f3bc62be5be4e6eb2edc6bb99c5fdfa7e`;
-- inspected `itpf-source.zip` SHA-256: `aa00f524e83ee2e26e92abefbcf2f6073cd9610e0b275434434fff4871180440`.
+- GitHub artifact ID: `9980679058`;
+- artifact digest: `sha256:82378c0fc964a550b5c720848cb83f7f3de8c52d99783d6514d05619a9c19c94`;
+- inspected `main.pdf` SHA-256: `8b668dcebf3e566316800bc5ae396827ca7679f893c58339ca6f2903494eaee2`;
+- inspected `itpf-source.zip` SHA-256: `002cbee92dfb9460c9fe05ca4ddc44e89c493308bf806ec38426fcc0f053c9f8`.
 
 ## 6. PDF visual QA
 
-PASS, subject only to the intentionally blank author metadata.
+PASS.
 
-The actual CI-generated PDF was downloaded, rendered at 160 dpi, and all **23 pages** were inspected. The review found:
+The actual post-metadata CI-generated PDF from run #65 was downloaded and rendered at 160 dpi. All **23 pages** were inspected after inserting author/declaration metadata.
 
+The review found:
+
+- title page correctly displays author, affiliation/location, corresponding-author email, and ORCID;
+- Funding and Competing Interests render correctly in Statements and Declarations;
 - no clipped prose or equations;
 - no overlapping text;
 - no broken glyphs or black squares;
@@ -127,78 +125,91 @@ The actual CI-generated PDF was downloaded, rendered at 160 dpi, and all **23 pa
 - tables remain inside the text area;
 - appendix equations remain legible;
 - reference URLs remain readable;
-- hyperlink border boxes were removed with `hidelinks` for a cleaner submission PDF;
-- paragraph overfull warnings were eliminated with `\emergencystretch`.
+- the manuscript remains **23 pages**.
 
-The final log retains one negligible 1.71451pt display-math overfull warning in the long appendix polynomial and three underfull warnings. Visual inspection confirms that the equation is not clipped and remains within usable page space. This is not a submission blocker.
+The title-page expansion did not introduce a layout blocker.
 
 ## 7. Manuscript metadata and declarations
 
-### Verified and ready
+READY.
 
 - Title: ready.
+- Author: Ryota Matsuki.
+- Affiliation: Independent Researcher.
+- Location: Matsuyama, Ehime 790-0853, Japan.
+- Corresponding-author email: ryota.matsuki@gmail.com.
+- ORCID: 0009-0005-2329-531X.
 - Abstract: ready.
 - Keywords: ready.
 - JEL: ready.
+- Funding: ready.
+- Competing Interests: ready.
 - Data Availability: ready.
 - Code Availability: ready.
-- Generative-AI disclosure: ready, provided it accurately describes the author's actual review and verification.
+- Generative-AI disclosure: ready.
+- Author Contributions/CRediT metadata: ready for the submission interface.
 
-### Factual human gates
-
-The repository does not contain authoritative values for the following fields, and Stage 14 does not infer them from GitHub ownership or prior context:
-
-- official author name;
-- affiliation and postal affiliation details;
-- active corresponding-author email;
-- ORCID, if any;
-- Funding statement;
-- Competing Interests statement.
-
-These must be provided by the author before Stage 15. Once supplied, the same values must be inserted consistently in `main.tex`, `sections/declarations.tex`, the cover-letter signature block, and the live submission form.
+Phone details are deliberately omitted from the public manuscript/package because the public title-page guidance does not require them; they should be entered only if the private submission form explicitly requires a phone field.
 
 ## 8. Cover letter and submission-system metadata
 
-A target-specific cover-letter body and copy-ready metadata record are prepared under `submission/itpf/`.
+READY.
 
-The cover letter deliberately avoids certifying factual matters that have not yet been supplied. The final signatory block must be inserted before Stage 15.
+`submission/itpf/cover_letter_body.md` now contains the final signatory block.
 
-Suggested reviewers are not treated as a mandatory Stage-14 file because current ITPF guidance welcomes suggestions but does not make a repository reviewer list a prerequisite for manuscript readiness.
+`submission/itpf/metadata.md` contains copy-ready:
+
+- author/affiliation/corresponding-author metadata;
+- ORCID;
+- title;
+- abstract;
+- keywords;
+- JEL codes;
+- single-author CRediT statement;
+- Funding;
+- Competing Interests;
+- Data Availability;
+- Code Availability;
+- generative-AI disclosure;
+- zero-fee portal instruction.
+
+Suggested reviewers are not treated as a mandatory Stage-14 file because current ITPF guidance does not make a repository reviewer list a prerequisite for readiness.
 
 ## 9. Zero-fee gate
 
-Official current Springer information confirms that ITPF's subscription publishing route carries no APC. This satisfies the mandatory-publication-charge side of the project's constraint.
+Official current Springer information confirms that ITPF's subscription publishing route carries no APC. This satisfies the mandatory-publication-charge side of the project constraint.
 
-The live portal remains authoritative for any submission charge. The gate is therefore:
+The live portal remains authoritative for any submission charge. The hard gate is:
 
 > If the ITPF submission workflow displays any mandatory submission fee or payment requirement, STOP before payment and return to Stage 12 journal positioning.
 
-Stage 14 cannot certify this portal-only condition from the repository or public journal pages.
+This portal-only condition cannot be certified from the repository or the public publishing page.
 
 ## 10. Change-scope audit
 
-Stage 14 made no theory changes and added no robustness result. Changes are limited to:
+No theory change, new proposition, new robustness result, or contribution expansion was made in closing the Stage-14 metadata gates.
 
-- submission QA automation;
-- DOI-link rendering;
-- submission metadata/cover-letter preparation;
-- PDF artifact generation;
-- `hidelinks` and emergency paragraph stretching for clean rendering;
-- this QA record.
+Changes are limited to:
+
+- author/title-page metadata;
+- Funding and Competing Interests declarations;
+- final cover-letter signature block;
+- copy-ready Author Contributions/CRediT metadata;
+- QA automation that now requires these finalized fields;
+- updated QA/provenance records.
 
 The theory freeze remains valid.
 
 ## 11. Stage 15 entry condition
 
-**Stage 15 must not begin yet.**
+**Stage 15 remains blocked only by the live portal fee gate.**
 
-Entry requires all of the following:
+Before creating the immutable submission freeze:
 
-1. factual author/title-page metadata supplied and inserted;
-2. Funding supplied and inserted;
-3. Competing Interests supplied and inserted;
-4. final cover-letter signatory block completed;
-5. live ITPF portal checked and no mandatory submission fee requested;
-6. portal-generated submission PDF compared against the verified source/PDF before the final submit action.
+1. enter the ITPF live submission workflow;
+2. confirm that no mandatory submission fee or payment requirement is presented;
+3. if any mandatory fee appears, STOP before payment and return to Stage 12;
+4. once the fee gate is clear, create the Stage-15 freeze from the validated package;
+5. before the final submit action, compare any portal-generated manuscript PDF against the frozen source/PDF.
 
-Once items 1--5 are satisfied, Stage 14 can be converted from `CONDITIONAL PASS` to `SUBMISSION QA PASS` without reopening any earlier research stage, provided the resulting PDF remains mechanically identical in substantive content.
+No earlier theory or manuscript-construction stage needs to be reopened.
