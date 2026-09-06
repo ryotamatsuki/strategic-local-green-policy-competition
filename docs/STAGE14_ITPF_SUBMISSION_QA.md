@@ -1,4 +1,4 @@
-# Stage 14 — ITPF Submission QA
+# Stage 14 — ITPF Submission QA (Post-Stage-13R Re-QA)
 
 Date: 2026-09-06.
 
@@ -12,58 +12,51 @@ Primary target: **International Tax and Public Finance (ITPF)**.
 
 **`CONDITIONAL PASS — LIVE PORTAL FEE GATE ONLY`**.
 
-No substantive, mathematical, novelty, reproducibility, citation, source-package, metadata, declaration, or PDF-layout defect remains.
+Stage 14 has been rerun after the Stage 13R bounded figure integration. No substantive, mathematical, novelty, reproducibility, citation, metadata, declaration, source-package, or manuscript-layout defect remains.
 
-Previously open factual metadata gates have now been resolved from author information already confirmed in prior journal-submission records and inserted consistently in the ITPF package:
+The re-QA found one non-substantive artwork-format defect: the initial Stage-13R vector PDF referenced a non-embedded PDF core font. Current Springer/ITPF artwork guidance requires fonts in vector graphics to be embedded. PR #17 replaces only the Figure 1 output path with deterministic Matplotlib PDF generation using embedded TrueType fonts and adds a CI kill test for font embedding. The plotted expressions, numerical values, caption, manuscript text, and theory are unchanged.
 
-- author: Ryota Matsuki;
-- affiliation: Independent Researcher;
-- location: Matsuyama, Ehime, Japan;
-- corresponding-author email: ryota.matsuki@gmail.com;
-- ORCID: 0009-0005-2329-531X;
-- Funding: No external funding supported this work.;
-- Competing interests: The author declares that he has no competing interests.;
-- single-author CRediT metadata prepared for the submission interface.
-
-The only remaining condition is the project's external zero-submission-fee hard gate: the live ITPF portal must not request a mandatory submission fee or payment.
+The only remaining condition is the project's external zero-submission-fee hard gate: the live ITPF submission workflow must not request a mandatory submission fee or payment.
 
 ## 2. Current ITPF requirement audit
 
-The current official pages checked on 2026-09-06 are:
+Official Springer pages were rechecked on 2026-09-06:
 
 - `https://link.springer.com/journal/10797/submission-guidelines`
 - `https://link.springer.com/journal/10797/how-to-publish-with-us`
 
-The package now satisfies the publicly verifiable requirements for a regular article:
+The post-Stage-13R package satisfies the publicly verifiable requirements for a regular article:
 
-- editable LaTeX source retained together with compiled PDF;
+- editable LaTeX source retained together with the compiled PDF;
 - abstract: **157 words**, within the current 150--250-word requirement;
 - keywords: **5**, within the current 4--6 requirement;
 - JEL codes: **6** and present;
-- title present and stable;
-- author name, affiliation/location, active corresponding-author email, and ORCID present;
-- Data Availability statement present;
-- Code Availability statement present;
-- Funding statement present;
-- Competing Interests statement present;
-- Author Contributions/CRediT metadata prepared for the submission interface;
-- substantive generative-AI use disclosed transparently;
-- bibliography and DOI metadata checked;
-- all bibliography entries cited;
-- no ITPF-specific double-blind requirement identified in the current instructions.
+- title page contains author, affiliation/location, active corresponding-author email, and ORCID;
+- Author Contributions/CRediT metadata is prepared for the submission interface;
+- Funding, Competing Interests, Data Availability, Code Availability, and generative-AI-use statements are present and consistent;
+- all bibliography entries are cited and verified DOI links are exposed as full links;
+- no current ITPF-specific double-blind requirement was identified;
+- no mandatory highlights or graphical abstract requirement was identified for a regular article;
+- the Short Paper 6,000-word/five-figure-table restriction is not applied to this Regular Article;
+- Figure 1 is a vector graphic with embedded fonts, uses line-style distinctions that remain legible in grayscale, and is placed with its caption in the manuscript.
 
 The official publishing page states that the subscription publishing model has **no APC charges**. Optional open access carries an APC and is not the project route.
 
-## 3. Machine and mathematical verification
+## 3. Mathematical, numerical, and reproducibility verification
 
-Final post-metadata verification commit before removal of the non-required postal code: `67147c20c871538a334b6559bc7a4ab6af8bf925`.
+Post-Stage-13R re-QA PR: **#17 — `Stage 14 re-QA: figure package compliance`**.
 
-GitHub Actions run: `34005056160` (`verify-theory`, run #65).
+Initial complete PR verification head: `4ca19a2caf08c2b1bda8f41f88e626f536591022`.
 
-Result: **SUCCESS**.
+GitHub Actions run: `34008166839` (`verify-theory`, run #75).
+
+Result: **SUCCESS** for both `symbolic-verification` and `manuscript-build`.
 
 Successful checks include:
 
+- deterministic Figure 1 regeneration;
+- nonempty Figure 1 PDF check;
+- embedded-font kill test using `pdffonts`;
 - `verify_stage9r_alignment.py`;
 - `verify_stage10r_manuscript.py`;
 - `verify_freeze.py`;
@@ -74,42 +67,90 @@ Successful checks include:
 - `verify_stage11r_target_scope.py`;
 - `verify_stage14_submission_package.py`;
 - `pytest`: **9 passed**;
-- LaTeX build;
-- nonempty PDF check;
+- LaTeX clean CI build;
+- nonempty manuscript PDF check;
 - unresolved citation/cross-reference rejection check;
 - source-ZIP construction and artifact upload.
 
-The Stage-14 checker enforces the finalized metadata/declarations rather than treating them as optional human gates. It reports author metadata, Funding, and Competing Interests as ready.
-
 The frozen numerical invariants continue to reproduce, including `theta_star=0.7738043861`, the Stage-4R-G global-SPNE gaps, the no-conventional-investment counterexample, welfare calculations, robustness values, and Stage-11R target-scope signs.
 
-## 4. Citation and bibliography QA
+Figure 1 regeneration reproduces:
+
+- `theta=.5`: `-0.004552218909`;
+- `theta=.9`: `+0.007112572287`;
+- `theta*=0.773804386083461`;
+- matched no-`x` response strictly negative over the positive canonical rivalry grid.
+
+## 4. Figure and table regeneration QA
 
 PASS.
 
-All 13 entries in `references.bib` are cited in the manuscript, and the machine checker rejects unknown or uncited keys. Full DOI links are exposed in the rendered `apalike` reference list where verified. No unverifiable DOI was inserted.
+Figure 1 is generated by `scripts/make_figure1_threshold_response.py` from the verified canonical welfare/Hessian system rather than from hand-entered plotted data or an arbitrary polynomial normalization.
 
-## 5. Source-package QA
+The fixed Figure 1 PDF contains only embedded/subset TrueType fonts:
 
-PASS as of run #65; a fresh build is required after the postal-code-only metadata cleanup before Stage 15 freeze.
+- `DejaVuSans-Oblique`: `emb=yes`, `sub=yes`;
+- `DejaVuSans`: `emb=yes`, `sub=yes`.
 
-The Stage-14 build artifact `stage14-itpf-manuscript` contains:
+The PDF/PNG generator is deterministic under the pinned environment. The reviewed run #75 source artifact contains:
 
-- `main.pdf`;
-- `main.log`;
-- `itpf-source.zip` containing `main.tex`, `references.bib`, and the complete `sections/` tree.
+- Figure 1 PDF SHA-256: `27acad363f6262d3d8ec70dc443ffe81f302a163e942f46b38e5db96828cf573`;
+- Figure 1 PNG SHA-256: `abf3af527fc578e17ac228340360de95612ad0b23f7ccc8edc793a3a778d5e11`;
+- generator SHA-256: `2f0bb238dd7c6865250dafdce4e27d895fb34963bc37799dc5ba1fb6f0e6fa1c`.
 
-The run #65 hashes are retained only as the immediately preceding verified state. They must not be used as the Stage-15 freeze hashes after the postal-code cleanup.
+Existing Tables 1--3 remain unchanged in numerical content and render within the page width.
 
-## 6. PDF visual QA
+## 5. Citation and bibliography QA
 
-PASS for the immediately preceding post-metadata build; the postal-code deletion is a title-page-only metadata cleanup and requires a fresh final build before freeze.
+PASS.
 
-The run #65 PDF contained 23 pages and had no clipping, overlap, broken glyph, unresolved reference, or table-layout blocker.
+All 13 entries in `references.bib` are cited in the manuscript. The machine checker rejects unknown or uncited keys. Full DOI links are exposed where verified. No fabricated or unverifiable citation was introduced by Stage 13R or this re-QA.
 
-## 7. Manuscript metadata and declarations
+## 6. Source-package QA
 
-READY.
+PASS for the reviewed run #75 package.
+
+Artifact: `stage14-itpf-manuscript`.
+
+- artifact ID: `9981631581`;
+- artifact digest: `sha256:9351eec5b5fd5230756aac712123fe6769d9a1e8dc2ab05a2087aa59c653186d`.
+
+Reviewed artifact hashes:
+
+- `main.pdf`: `0e4efbb2e9c4ce263f965747d88da10ec93d0b52d9c97f0ae99d3df549053750`;
+- `main.log`: `c15a35515490e08469bd866e8ad174e044ccf7f44e7039f0db57e7a2b818d55b`;
+- `itpf-source.zip`: `c03ce001247b0ddb35a44670b9a9c0e3f18dd715e3dbcea6ffe80bfa6c68d259`.
+
+The source archive contains:
+
+- `main.tex`;
+- `references.bib`;
+- the complete `sections/` tree;
+- `figures/figure1_threshold_response.pdf`;
+- `figures/figure1_threshold_response.png`;
+- `scripts/make_figure1_threshold_response.py`.
+
+These hashes document the artifact that received the Stage-14 visual inspection. Stage 15 will create the immutable final freeze and record the definitive submission hashes.
+
+## 7. PDF visual QA
+
+PASS.
+
+The actual CI-generated run #75 PDF was preflighted and rendered page by page:
+
+- pages: **24**;
+- openable: yes;
+- encrypted: no;
+- likely scanned: no;
+- unresolved citations/cross-references: none in the successful build.
+
+All 24 pages were visually inspected. No clipping, overlap, broken glyph, unreadable footnote, equation overflow, table-width blocker, or abnormal page break was found.
+
+Figure 1 on page 10 was additionally inspected at full rendered resolution. Its axes, mathematical y-axis label, legend, zero line, threshold marker, full-model solid curve, no-`x` dashed curve, caption, surrounding interpretation, Table 1 transition, and grayscale distinction are readable. The font-embedding repair did not alter the plotted result or create a layout regression.
+
+## 8. Manuscript metadata and declarations
+
+READY and internally consistent.
 
 - Title: ready.
 - Author: Ryota Matsuki.
@@ -127,69 +168,64 @@ READY.
 - Generative-AI disclosure: ready.
 - Author Contributions/CRediT metadata: ready for the submission interface.
 
-Postal code and phone details are deliberately omitted from the public manuscript/package because the public title-page guidance does not require them; they should be entered only if the private submission form explicitly requires such fields.
+Postal code and phone details remain deliberately omitted from the public manuscript/package because the public title-page guidance does not require them; they should be entered only if the private submission form explicitly requires such fields.
 
-## 8. Cover letter and submission-system metadata
+## 9. Cover letter and submission metadata
 
 READY.
 
-`submission/itpf/cover_letter_body.md` contains the final signatory block without a postal code.
+`submission/itpf/cover_letter_body.md` and `submission/itpf/metadata.md` agree with the manuscript on title, author identity, affiliation/location, corresponding-author information, contribution positioning, declarations, and repository availability.
 
-`submission/itpf/metadata.md` contains copy-ready:
+Suggested reviewers are not treated as a mandatory Stage-14 file because the current public ITPF guidance does not make a repository reviewer list a prerequisite for readiness.
 
-- author/affiliation/corresponding-author metadata;
-- ORCID;
-- title;
-- abstract;
-- keywords;
-- JEL codes;
-- single-author CRediT statement;
-- Funding;
-- Competing Interests;
-- Data Availability;
-- Code Availability;
-- generative-AI disclosure;
-- zero-fee portal instruction.
+## 10. Zero-fee hard gate
 
-Suggested reviewers are not treated as a mandatory Stage-14 file because current ITPF guidance does not make a repository reviewer list a prerequisite for readiness.
+The current official Springer publishing page confirms that ITPF's subscription publishing route carries no APC. This closes the mandatory-publication-charge side of the project constraint.
 
-## 9. Zero-fee gate
+The public pages do not certify the absence of a submission charge, and the live submission portal cannot be inspected through the current repository/web tooling. Therefore the project retains the hard gate:
 
-Official current Springer information confirms that ITPF's subscription publishing route carries no APC. This satisfies the mandatory-publication-charge side of the project constraint.
+> If the live ITPF submission workflow displays any mandatory submission fee or payment requirement, STOP before payment and return to Stage 12 journal positioning.
 
-The live portal remains authoritative for any submission charge. The hard gate is:
+No Stage-15 freeze may be treated as submission-ready until this portal-only condition is cleared.
 
-> If the ITPF submission workflow displays any mandatory submission fee or payment requirement, STOP before payment and return to Stage 12 journal positioning.
+## 11. Change-scope and theory-freeze audit
 
-This portal-only condition cannot be certified from the repository or the public publishing page.
+PASS.
 
-## 10. Change-scope audit
+Stage 13R changed presentation only: one verified figure plus bounded figure references in the Introduction and Main Results. The Stage-14 re-QA font repair changes only the vector-output implementation and CI artwork compliance check.
 
-No theory change, new proposition, new robustness result, or contribution expansion was made in closing the Stage-14 metadata gates or removing the non-required postal code.
+There is:
 
-Changes are limited to:
+- **NO THEORY CHANGE**;
+- **NO PROPOSITION OR PROOF CHANGE**;
+- **NO NEW ROBUSTNESS RESULT**;
+- **NO CONTRIBUTION EXPANSION**;
+- **NO CHANGE TO THE CANONICAL PARAMETERS OR `theta*`**;
+- **NO CHANGE TO EXISTING TABLE VALUES**.
 
-- author/title-page metadata;
-- Funding and Competing Interests declarations;
-- final cover-letter signature block;
-- copy-ready Author Contributions/CRediT metadata;
-- QA automation that requires these finalized fields;
-- removal of the non-required postal code from public submission materials;
-- updated QA/provenance records.
+The theory freeze `SLGPC-THEORY-FREEZE-2026-09-05-v2` remains valid.
 
-The theory freeze remains valid.
+## 12. Remaining warnings
 
-## 11. Stage 15 entry condition
+No manuscript or repository correction remains pending.
 
-**Stage 15 remains blocked only by a fresh post-cleanup build and the live portal fee gate.**
+One external operational condition remains: the live ITPF submission-fee gate.
 
-Before creating the immutable submission freeze:
+## 13. Stage 15 entry condition
 
-1. confirm the post-cleanup verification/build passes;
-2. enter the ITPF live submission workflow;
-3. confirm that no mandatory submission fee or payment requirement is presented;
-4. if any mandatory fee appears, STOP before payment and return to Stage 12;
-5. once the fee gate is clear, create the Stage-15 freeze from the validated package;
-6. before the final submit action, compare any portal-generated manuscript PDF against the frozen source/PDF.
+**Stage 15 remains blocked only by the live portal fee gate.**
+
+The required operational sequence is:
+
+1. enter the live ITPF submission workflow;
+2. confirm that no mandatory submission fee or payment requirement is presented;
+3. if any mandatory fee appears, STOP before payment and return to Stage 12;
+4. once the fee gate is clear, execute Stage 15 — Submission Freeze and Record;
+5. record the immutable final commit/package/PDF/source hashes in Stage 15;
+6. before final submission, compare any portal-generated manuscript PDF against the frozen package.
 
 No earlier theory or manuscript-construction stage needs to be reopened.
+
+## 14. Final verdict
+
+**`CONDITIONAL PASS — LIVE PORTAL FEE GATE ONLY`.**
