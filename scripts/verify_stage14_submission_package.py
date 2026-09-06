@@ -61,9 +61,15 @@ for path in [MAIN, *SECTIONS, BIB]:
     if re.search(r"\b(TODO|FIXME|TBD|PLACEHOLDER)\b", text, re.I):
         fail(f"stale placeholder token in {path.relative_to(ROOT)}")
 
-# Required disclosure hooks already knowable without author-specific facts.
+# Required declarations for the final Stage-14 package.
 declarations = (ROOT / "sections" / "declarations.tex").read_text(encoding="utf-8")
-for required in ["Data availability", "Code availability", "Use of generative AI"]:
+for required in [
+    "Funding",
+    "Competing interests",
+    "Data availability",
+    "Code availability",
+    "Use of generative AI",
+]:
     if required not in declarations:
         fail(f"missing declaration: {required}")
 
@@ -72,9 +78,19 @@ for doi in re.findall(r"doi\s*=\s*\{([^}]+)\}", bib):
     if f"https://doi.org/{doi}" not in bib:
         fail(f"DOI is not exposed as a full link: {doi}")
 
-# Author-specific metadata is deliberately a human/factual gate, not guessed by CI.
-author_match = re.search(r"\\author\{([^}]*)\}", main)
-author_ready = bool(author_match and author_match.group(1).strip())
+# Author/title-page metadata is now finalized and must remain present.
+author_match = re.search(r"\\author\{(.*?)\}\s*\\date", main, re.S)
+if not author_match or not author_match.group(1).strip():
+    fail("author metadata missing")
+author_block = author_match.group(1)
+for required in [
+    "Ryota Matsuki",
+    "Independent Researcher",
+    "ryota.matsuki@gmail.com",
+    "0009-0005-2329-531X",
+]:
+    if required not in author_block:
+        fail(f"author metadata incomplete: {required}")
 
 print("STAGE14 MACHINE QA PASS")
 print(f"abstract_words={len(words)}")
@@ -82,8 +98,7 @@ print(f"keywords={len(keywords)}")
 print(f"jel_codes={len(jel)}")
 print(f"bibliography_entries={len(bib_keys)}")
 print(f"citations_resolved={len(cited_keys)}")
-print(f"author_metadata_ready={author_ready}")
-if not author_ready:
-    print("STAGE14 HUMAN GATE: author/affiliation/corresponding-author metadata remains required before Stage 15.")
-print("STAGE14 HUMAN GATE: Funding and Competing Interests must be supplied factually before Stage 15.")
+print("author_metadata_ready=True")
+print("funding_declaration_ready=True")
+print("competing_interests_ready=True")
 print("STAGE14 PORTAL GATE: stop before payment if the live ITPF portal requests any mandatory submission fee.")
