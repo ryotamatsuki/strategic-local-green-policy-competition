@@ -1,6 +1,6 @@
 # ITPF Submission Metadata
 
-Status: **Stage 14 conditional package — factual author/declaration fields and live portal fee gate remain open**.
+Status: **Stage 14 conditional package — author/declaration metadata completed; live portal fee gate remains open**.
 
 ## Journal and article type
 
@@ -8,6 +8,15 @@ Status: **Stage 14 conditional package — factual author/declaration fields and
 - Article type: Regular Article
 - Publishing route required by project constraint: subscription / non-open-access route with no mandatory APC
 - Theory freeze: `SLGPC-THEORY-FREEZE-2026-09-05-v2`
+
+## Author metadata
+
+- Author: Ryota Matsuki
+- Affiliation: Independent Researcher
+- Location/postal affiliation: Matsuyama, Ehime 790-0853, Japan
+- Corresponding author: Ryota Matsuki
+- Corresponding-author email: ryota.matsuki@gmail.com
+- ORCID: 0009-0005-2329-531X
 
 ## Manuscript metadata
 
@@ -31,7 +40,15 @@ How does product-market rivalry alter cross-instrument policy responses when jur
 
 H23; H71; L13; Q55; Q58; R58
 
-## Statements already verified
+## Statements and declarations
+
+**Funding**
+
+No external funding supported this work.
+
+**Competing interests**
+
+The author declares that he has no competing interests.
 
 **Data availability**
 
@@ -45,26 +62,14 @@ Symbolic and numerical verification materials supporting the analytical and comp
 
 Generative AI tools were used to assist with exploratory model development, literature organization, symbolic cross-checking, and manuscript preparation. All model specifications, mathematical derivations, proofs, numerical results, citations, and substantive conclusions were independently reviewed and verified by the author, who assumes full responsibility for the work.
 
-## Factual author gates — MUST be completed before Stage 15
-
-The following fields are intentionally not guessed from repository ownership, account metadata, or prior conversations:
-
-- official author name;
-- affiliation and full postal affiliation address;
-- active corresponding-author email;
-- ORCID, if available;
-- Funding statement;
-- Competing Interests statement, including any relevant non-financial interest disclosure.
-
-These are factual author declarations. Stage 15 submission freeze is blocked until they are supplied and inserted consistently into the manuscript/title page and submission system.
-
 ## Live portal hard gate
 
 Official ITPF/Springer publishing information confirms a subscription publishing route without an APC. The project nevertheless retains a stricter live-portal gate because historical ITPF instructions have included a submission charge: **if the live submission portal requests any mandatory submission fee, stop before payment and return to journal positioning.**
 
 ## Other package notes
 
-- No ITPF-specific double-blind requirement was identified in the current official submission instructions; author information is required on the title page.
+- No ITPF-specific double-blind requirement was identified in the current official submission instructions; author information is included on the title page.
 - Suggested reviewers may be supplied if useful but are not treated as a Stage 14 mandatory file.
 - Highlights and a graphical abstract are not identified as mandatory for a regular ITPF article.
 - Editable LaTeX source and compiled PDF are retained in the Stage 14 build artifact.
+- Phone details are intentionally omitted from the public manuscript/package because they are not required for the title page; enter them only in a private portal field if the submission system explicitly requires them.
