@@ -43,6 +43,7 @@ At the same canonical remaining primitives, removing conventional competitive in
 - Stage 12 journal positioning: `PRIMARY JOURNAL SELECTED — ZERO-FEE CONSTRAINT SATISFIED SUBJECT TO LIVE PORTAL HARD GATE`.
 - Stage 13 ITPF full-paper integration: `INTEGRATED MANUSCRIPT READY FOR SUBMISSION QA`.
 - Post-Stage-13 Astra one-shot hostile audit: `GO WITH MINOR REPAIR`; bounded repairs incorporated, with no fatal finding or novelty collapse.
+- Stage 14 ITPF submission QA: `CONDITIONAL PASS — FACTUAL AUTHOR/DECLARATION METADATA + LIVE PORTAL FEE GATE ONLY`.
 
 Stage 11R found no new unresolved fatal attack. It sharpened the Hauptmeier/Morita–Okoshi novelty boundary and added an exact target-intensity scope check: holding other canonical primitives fixed, the interior response is negative throughout at `d=1.5`, switches once at `d=2`, and is positive throughout at `d=3`. The result is therefore a conditional strategic-feedback theorem, not a claim that rivalry mechanically creates switching.
 
@@ -52,6 +53,10 @@ Stage 13 integrates the manuscript for ITPF without changing frozen theory. The 
 
 The one-shot Astra audit independently rechecked the global-SPNE certificate, switching polynomial, Bernstein uniqueness argument, canonical threshold, matched no-conventional-investment benchmark, and closest-paper novelty boundary. Its bounded repairs make explicit the `m=a-c>0` continuation domain, the `mu>0` switching-theorem scope, and the scaled-gap/Jacobian regularity used in the open-neighborhood proof. See `docs/POST_STAGE13_ASTRA_BOUNDED_REPAIR.md`.
 
-Next: **Stage 14 — ITPF Submission QA**.
+Stage 14 adds ITPF-specific machine QA, full DOI-link rendering, source/PDF build artifacts, submission metadata, and a cover-letter body. The complete verification suite, 9 pytest tests, citation/cross-reference checks, and LaTeX build pass. The actual 23-page CI-generated PDF has been visually inspected page by page with no clipping, overlap, broken glyph, unresolved reference, or table-layout blocker. See `docs/STAGE14_ITPF_SUBMISSION_QA.md`.
+
+Before Stage 15, factual author/affiliation/corresponding-author metadata, Funding, and Competing Interests must be supplied and inserted, and the live ITPF portal must confirm that no mandatory submission fee is requested. If any mandatory fee appears, stop before payment and return to Stage 12.
+
+Next: **close the Stage 14 factual/portal gates; then Stage 15 — Submission Freeze and Record**.
 
 Any theory change after v2 requires an explicit theory-change record and rerunning the earliest affected workflow gates.

@@ -23,17 +23,36 @@ jobs:
       - run: python scripts/verify_stage7_postrepair.py
       - run: python scripts/verify_stage10.py
       - run: python scripts/verify_stage11r_target_scope.py
+      - run: python scripts/verify_stage14_submission_package.py
       - run: python -m pytest -q
 
   manuscript-build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Install TeX
+      - name: Install TeX and archive utility
         run: |
           sudo apt-get update
-          sudo apt-get install -y latexmk texlive-latex-base texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended
+          sudo apt-get install -y latexmk texlive-latex-base texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended zip
       - name: Compile manuscript
         run: latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
       - name: Require PDF
         run: test -s main.pdf
+      - name: Require resolved citations and cross-references
+        run: |
+          if grep -Eq 'Citation .* undefined|Reference .* undefined|There were undefined references|There were undefined citations' main.log; then
+            echo 'Unresolved citation or cross-reference detected.'
+            exit 1
+          fi
+      - name: Build Stage 14 submission artifact
+        run: |
+          mkdir -p submission-build
+          cp main.pdf main.log submission-build/
+          zip -r submission-build/itpf-source.zip main.tex references.bib sections >/dev/null
+      - name: Upload Stage 14 manuscript artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: stage14-itpf-manuscript
+          path: submission-build/
+          if-no-files-found: error
+          retention-days: 30
