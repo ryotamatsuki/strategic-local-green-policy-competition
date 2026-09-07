@@ -64,7 +64,7 @@ lemma hasDerivAt_witnessP (u : ℝ) :
       (((hasDerivAt_id u).pow 2).const_mul 39588109)).sub
       ((hasDerivAt_id u).const_mul 74143042)).const_add 31863144 using 1
   · funext x
-    simp only [Pi.pow_apply, id_eq]
+    simp only [Pi.pow_apply, Pi.sub_apply, Pi.add_apply, id_eq]
     ring
   · simp only [id_eq]
     ring
