@@ -11,7 +11,7 @@ Pinned environment:
 - Lean: `v4.33.0`
 - mathlib: `v4.33.0`
 - CI: `leanprover/lean-action@v1`
-- independent checker: `nanoda`, with `sorry` disallowed
+- proof-integrity audit: `axiom-audit` on the `SLGPC` namespace, with only `propext`, `Classical.choice`, and `Quot.sound` permitted; `sorryAx` is not permitted
 
 ## Formally verified in v1
 
@@ -54,7 +54,7 @@ lake update
 lake build
 ```
 
-CI runs the same project automatically on pull requests. The Lean job also invokes the independent `nanoda` checker and rejects any proof containing `sorry`.
+CI runs the same project automatically on pull requests. The Lean job kernel-checks the project with warnings treated as failures and runs an axiom audit over `SLGPC`; proofs depending on `sorryAx` or unapproved axioms fail CI.
 
 ## Next formalization targets
 
