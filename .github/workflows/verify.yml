@@ -38,14 +38,16 @@ jobs:
           echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
       - name: Resolve pinned Lean dependencies
         run: lake update
-      - name: Kernel-check Lean formalization
+      - name: Kernel-check and audit Lean formalization
         uses: leanprover/lean-action@v1
         with:
           build-args: "--wfail"
           test: false
           lint: false
-          nanoda: true
-          nanoda-allow-sorry: false
+          nanoda: false
+          axiom-audit: true
+          axiom-audit-root: "SLGPC"
+          axiom-audit-allow: "propext,Classical.choice,Quot.sound"
 
   manuscript-build:
     runs-on: ubuntu-latest
