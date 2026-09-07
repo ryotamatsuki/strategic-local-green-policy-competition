@@ -11,7 +11,7 @@ Pinned environment:
 - Lean: `v4.33.0`
 - mathlib: `v4.33.0`
 - CI: `leanprover/lean-action@v1`
-- proof-integrity audit: `axiom-audit` on the `SLGPC` namespace, with only `propext`, `Classical.choice`, and `Quot.sound` permitted; `sorryAx` is not permitted
+- proof-integrity audit: `axiom-audit` over the `StrategicLocalGreenPolicyCompetition` Lean library, with only `propext`, `Classical.choice`, and `Quot.sound` permitted; `sorryAx` is not permitted
 
 ## Formally verified in v1
 
@@ -54,7 +54,7 @@ lake update
 lake build
 ```
 
-CI runs the same project automatically on pull requests. The Lean job kernel-checks the project with warnings treated as failures and runs an axiom audit over `SLGPC`; proofs depending on `sorryAx` or unapproved axioms fail CI.
+CI runs the same project automatically on pull requests. The Lean job kernel-checks the project with warnings treated as failures and runs an axiom audit over the Lean library; proofs depending on `sorryAx` or unapproved axioms fail CI.
 
 ## Next formalization targets
 
