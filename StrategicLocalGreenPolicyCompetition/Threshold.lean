@@ -62,7 +62,12 @@ lemma hasDerivAt_witnessP (u : ℝ) :
     ((((((hasDerivAt_id u).pow 4).const_mul 602500).sub
       (((hasDerivAt_id u).pow 3).const_mul 8101550)).add
       (((hasDerivAt_id u).pow 2).const_mul 39588109)).sub
-      ((hasDerivAt_id u).const_mul 74143042)).const_add 31863144 using 1 <;> ring
+      ((hasDerivAt_id u).const_mul 74143042)).const_add 31863144 using 1
+  · funext x
+    simp only [id_eq]
+    ring
+  · simp only [id_eq]
+    ring
 
 lemma witnessP_continuous : Continuous witnessP := by
   unfold witnessP
@@ -107,10 +112,10 @@ theorem witnessP_unique_root :
   obtain ⟨u, hu, hPu⟩ := witnessP_exists_root
   refine ⟨u, ⟨hu, hPu⟩, ?_⟩
   intro v hv
-  apply witnessP_strictAntiOn.injOn
-  · exact ⟨hu.1.le, hu.2.le⟩
-  · exact ⟨hv.1.1.le, hv.1.2.le⟩
-  · rw [hPu, hv.2]
+  exact witnessP_strictAntiOn.injOn
+    ⟨hv.1.1.le, hv.1.2.le⟩
+    ⟨hu.1.le, hu.2.le⟩
+    (by rw [hv.2, hPu])
 
 lemma witnessP_5987_pos : 0 < witnessP ((5987 : ℝ) / 10000) := by
   norm_num [witnessP]
