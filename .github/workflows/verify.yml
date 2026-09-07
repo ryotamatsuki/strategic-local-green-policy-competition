@@ -28,6 +28,16 @@ jobs:
       - run: python scripts/verify_stage14_submission_package.py
       - run: python -m pytest -q
 
+  lean-verification:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          build-args: "--wfail"
+          nanoda: true
+          nanoda-allow-sorry: false
+
   manuscript-build:
     runs-on: ubuntu-latest
     steps:
