@@ -64,7 +64,9 @@ lemma hasDerivAt_witnessP (u : ℝ) :
       (((hasDerivAt_id u).pow 2).const_mul 39588109)).sub
       ((hasDerivAt_id u).const_mul 74143042)).const_add 31863144 using 1
   · funext x
-    simp only [id_eq]
+    change
+      31863144 - x * 74143042 + x ^ 2 * 39588109 - x ^ 3 * 8101550 + x ^ 4 * 602500 =
+        31863144 + (((x ^ 4 * 602500 - x ^ 3 * 8101550) + x ^ 2 * 39588109) - x * 74143042)
     ring
   · simp only [id_eq]
     ring
