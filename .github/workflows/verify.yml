@@ -46,7 +46,6 @@ jobs:
           lint: false
           nanoda: false
           axiom-audit: true
-          axiom-audit-root: "SLGPC"
           axiom-audit-allow: "propext,Classical.choice,Quot.sound"
 
   manuscript-build:
