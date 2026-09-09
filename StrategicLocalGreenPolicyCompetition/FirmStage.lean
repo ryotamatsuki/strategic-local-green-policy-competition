@@ -121,10 +121,10 @@ theorem cournot_active_solution
   constructor
   · apply (eq_div_iff hDne).2
     unfold cournotD
-    nlinarith [hA, hB]
+    linear_combination 2 * hA - θ * hB
   · apply (eq_div_iff hDne).2
     unfold cournotD
-    nlinarith [hA, hB]
+    linear_combination 2 * hB - θ * hA
 
 /-- The active Cournot system has at most one solution on `θ ∈ [0,1]`. -/
 theorem cournot_active_unique
@@ -179,9 +179,9 @@ theorem reduced_system_solution
     qB = (L * wB - θ * wA) / (L ^ 2 - θ ^ 2) := by
   constructor
   · apply (eq_div_iff hdet).2
-    nlinarith [hA, hB]
+    linear_combination L * hA - θ * hB
   · apply (eq_div_iff hdet).2
-    nlinarith [hA, hB]
+    linear_combination L * hB - θ * hA
 
 /-- Under `R < 3/4`, the reduced Stage-2 system has a unique solution. -/
 theorem reduced_system_unique
@@ -207,8 +207,10 @@ theorem reduced_solution_eq_affine
     (L * (m + yi) - θ * (m + yj)) / (L ^ 2 - θ ^ 2) =
       reducedQ0 m L θ + reducedT0 L θ * yi + reducedT1 L θ * yj := by
   unfold reducedQ0 reducedT0 reducedT1
+  have hfactor : L ^ 2 - θ ^ 2 = (L - θ) * (L + θ) := by ring
   have hdet : L ^ 2 - θ ^ 2 ≠ 0 := by
-    nlinarith [mul_ne_zero (sub_ne_zero.mpr hLθ) hLpθ]
+    rw [hfactor]
+    exact mul_ne_zero (sub_ne_zero.mpr hLθ) hLpθ
   field_simp [hdet, hLpθ]
   ring
 
