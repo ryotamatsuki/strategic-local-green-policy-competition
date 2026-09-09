@@ -22,10 +22,10 @@ theorem thresholdQuartic_sign_around_root
         0 < thresholdQuartic A4 A3 A2 A1 A0 u) ∧
       (∀ u ∈ Ioc uStar (1 : ℝ),
         thresholdQuartic A4 A3 A2 A1 A0 u < 0) := by
-  let P := thresholdQuartic A4 A3 A2 A1 A0
   obtain ⟨uStar, huStar, hPStar⟩ :=
     (thresholdQuartic_unique_root hP0 hP1 hB0 hB1 hB2 hB3).exists
-  have hanti : StrictAntiOn P (Icc (0 : ℝ) 1) :=
+  have hanti :
+      StrictAntiOn (thresholdQuartic A4 A3 A2 A1 A0) (Icc (0 : ℝ) 1) :=
     thresholdQuartic_strictAntiOn hB0 hB1 hB2 hB3
   have huStarClosed : uStar ∈ Icc (0 : ℝ) 1 :=
     ⟨huStar.1.le, huStar.2.le⟩
