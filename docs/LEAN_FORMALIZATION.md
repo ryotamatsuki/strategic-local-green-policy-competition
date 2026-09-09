@@ -60,21 +60,62 @@ They prove:
 Thus the Bernstein/root/sign-switch argument stated in Proposition 2 is machine checked once the manuscript's reduced-form representation
 `d h_A^BR / d s_B = -Omega(theta) P(theta^2)` and `Omega(theta)>0` are supplied.
 
-## What Phase 2 does not yet prove
+## Phase 3 — active firm-stage regularity and reduction
 
-Phase 2 deliberately does **not** claim that the entire economic model or the global-SPNE theorem is machine checked. In particular, the following remain outside Lean and continue to rely on the existing symbolic/numerical verification stack:
+The modules
 
+- `StrategicLocalGreenPolicyCompetition/FirmStage.lean`, and
+- `StrategicLocalGreenPolicyCompetition/FirmHessian.lean`
+
+formalize the algebraic and regularity backbone of the active-duopoly firm stage.
+
+`FirmStage.lean` proves:
+
+1. with `D = 4 - theta^2`, `D >= 3` and hence `D > 0` for every `theta in [0,1]`;
+2. with `R = 1/kx + mu^2/kg`, the maintained condition `R < 3/4` implies
+   `lambda = 4R/D < 1`;
+3. therefore `L = 2 - lambda > theta` throughout `theta in [0,1]`;
+4. consequently `L > 0` and `L^2 - theta^2 > 0`;
+5. the active Stage-3 Cournot equations
+   `2 qA + theta qB = vA` and `theta qA + 2 qB = vB`
+   have the manuscript's closed-form solution with denominator `D`, and that solution is unique;
+6. the manuscript's interior Stage-2 investment formulas
+   `x_i = 4 q_i/(D kx)` and `g_i = (4 mu q_i/D + s_i)/kg`
+   imply the exact private-cost-reduction identity `x_i + mu g_i + nu h_i = lambda q_i + y_i`;
+7. combining that identity with the active Cournot equation yields the reduced system
+   `L q_i + theta q_j = w_i`;
+8. this reduced two-firm system has a unique closed-form solution whenever its determinant is nonzero, and the maintained regularity condition supplies strict positivity of that determinant;
+9. the closed form is algebraically identical to the manuscript representation
+   `q_i = q0 + t0 y_i + t1 y_j`;
+10. under the maintained regularity condition, `t0 > 0`, `t1 <= 0`, and `t1 < 0` when `theta > 0`.
+
+`FirmHessian.lean` proves, for `kx>0`, `kg>0`, `theta in [0,1]`, and `R<3/4`:
+
+1. the first leading principal Hessian entry is strictly negative;
+2. the exact determinant factorization
+   `det(H_F) = kx kg (1 - 8 R / D^2)`;
+3. the determinant is strictly positive;
+4. the two scalar Sylvester inequalities hold;
+5. more strongly, the Hessian quadratic form is strictly negative in every nonzero investment direction.
+
+Accordingly, Phase 3 machine-checks the manuscript's stated sufficient regularity chain linking `R<3/4` to active-branch firm-stage concavity, invertibility, uniqueness of the reduced quantity system, and the signs of its comparative-static coefficients.
+
+## What is not yet proved in Lean
+
+The formalization still deliberately stops short of claiming that the entire economic model or the global-SPNE theorem is machine checked. In particular, the following remain outside Lean and continue to rely on the existing symbolic/numerical verification stack:
+
+- calculus-level derivation of the Stage-2 investment first-order conditions from the primitive profit function and derivation of the displayed Hessian from those primitives;
+- the complete Stage-2 nonnegative piecewise investment continuation, including corner regimes, admissibility inequalities, and boundary continuity;
 - derivation from primitives of the full four-policy government Hessian;
 - derivation from primitives of the generic quartic coefficients `A0,...,A4` and the positive factor `Omega(theta)`;
-- proof that the maintained firm-stage regularity and government strict-concavity assumptions imply the required reduced-form representation on the relevant branch;
-- the complete Stage-2 piecewise investment continuation;
-- kink/monopoly regime comparisons and boundary continuity;
+- proof that government strict concavity plus the firm-stage objects imply the full Proposition 2 reduced-form response expression;
+- kink/monopoly regime comparisons;
 - the claim in the final sentence of Proposition 2 that the local interior derivative is also the derivative of the true global best response on an open neighborhood;
 - the canonical global-policy Nash / SPNE welfare-gap certificate over the full `theta in [0,1]` range;
 - open-neighborhood persistence around the canonical primitive vector;
 - welfare and robustness extensions.
 
-Accordingly, after Phase 2 the repository may describe Proposition 2's **reduced-form quartic threshold theorem** as formally verified. It should not describe the full economic derivation or global-SPNE bridge as formally verified.
+Thus the repository may describe the active-duopoly firm-stage **regularity, reduced linear system, and Hessian negative-definiteness certificates** as formally verified. It should not yet describe the full piecewise firm continuation, government-stage derivation, or global SPNE as formally verified.
 
 ## Commands
 
@@ -91,10 +132,11 @@ CI runs the same project automatically on pull requests. The Lean job kernel-che
 
 The highest-value next steps are:
 
-1. formalize the reduced two-firm linear system from primitives and the `R < 3/4` sufficient regularity chain;
-2. derive the relevant interior equilibrium objects needed to connect primitives to the government reduced form;
-3. encode the Stage-2 regime partition, admissibility conditions, and boundary continuity;
-4. formalize the canonical global-SPNE certificate using exact rational inequalities and interval-polynomial positivity certificates;
-5. only after those bridges are closed, formalize welfare and robustness extensions.
+1. formalize the Stage-2 regime partition, nonnegativity/admissibility conditions, and boundary continuity for the piecewise firm continuation;
+2. formalize the calculus bridge from the primitive profit function to the active Stage-2 FOCs/Hessian where useful for an end-to-end primitive certificate;
+3. connect the active firm-stage equilibrium objects to the government reduced objective and four-policy Hessian;
+4. derive the Proposition 2 quartic coefficients and positive factor `Omega(theta)` from primitives and connect them to the generic Phase-2 theorem;
+5. formalize the canonical global-policy Nash / SPNE certificate and neighborhood persistence;
+6. only after those bridges are closed, formalize welfare and robustness extensions.
 
 No manuscript theorem or theory-freeze statement should be strengthened beyond the exact scope certified above.
