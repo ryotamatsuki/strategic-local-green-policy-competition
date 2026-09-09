@@ -40,8 +40,8 @@ lemma kx_gt_four_thirds
     (4 / 3 : ℝ) < kx := by
   have hinv : 1 / kx < (3 / 4 : ℝ) :=
     inverse_kx_lt_three_quarters hkg hR
-  have hmul := (div_lt_iff₀ hkx).mp hinv
-  norm_num at hmul ⊢
+  have hmul : (1 : ℝ) < (3 / 4 : ℝ) * kx :=
+    (div_lt_iff₀ hkx).mp hinv
   nlinarith
 
 /-- The first leading principal entry of the firm Hessian is negative. -/
@@ -54,7 +54,8 @@ theorem firmH11_neg
   have hDpos : 0 < cournotD θ := cournotD_pos hθ
   have hDge : 3 ≤ cournotD θ := cournotD_ge_three hθ
   have hDsqPos : 0 < cournotD θ ^ 2 := sq_pos_of_pos hDpos
-  have hDsqGe : 9 ≤ cournotD θ ^ 2 := by nlinarith
+  have hDsqGe : 9 ≤ cournotD θ ^ 2 := by
+    nlinarith [sq_nonneg (cournotD θ - 3)]
   have hkxLower : (4 / 3 : ℝ) < kx := kx_gt_four_thirds hkx hkg hR
   have hscaled : (4 / 3 : ℝ) * cournotD θ ^ 2 < kx * cournotD θ ^ 2 :=
     mul_lt_mul_of_pos_right hkxLower hDsqPos
@@ -85,7 +86,8 @@ theorem firmHDet_pos
   have hDpos : 0 < cournotD θ := cournotD_pos hθ
   have hDge : 3 ≤ cournotD θ := cournotD_ge_three hθ
   have hDsqPos : 0 < cournotD θ ^ 2 := sq_pos_of_pos hDpos
-  have hDsqGe : 9 ≤ cournotD θ ^ 2 := by nlinarith
+  have hDsqGe : 9 ≤ cournotD θ ^ 2 := by
+    nlinarith [sq_nonneg (cournotD θ - 3)]
   have hfrac : 8 * investmentR kx kg μ / cournotD θ ^ 2 < 1 := by
     rw [div_lt_one hDsqPos]
     nlinarith
@@ -120,14 +122,15 @@ lemma twoByTwo_quadratic_neg_of_sylvester
     by_cases hy : y = 0
     · have hx : x ≠ 0 := hxy.resolve_right hy
       subst y
-      simp only [mul_zero, add_zero, zero_pow, mul_zero]
-      exact sq_pos_of_ne_zero (mul_ne_zero ha.ne hx)
+      simpa using sq_pos_of_ne_zero (mul_ne_zero ha.ne hx)
     · have hysq : 0 < y ^ 2 := sq_pos_of_ne_zero hy
       have hterm : 0 < (a * c - b ^ 2) * y ^ 2 := mul_pos hdet hysq
       nlinarith [sq_nonneg (a * x + b * y)]
-  have hmul : 0 < a * Q := by simpa [hid]
+  have hmul : 0 < a * Q := by
+    rw [hid]
+    exact hrhs
   rcases (mul_pos_iff.mp hmul) with hpp | hnn
-  · exact (False.elim ((not_lt_of_ge ha.le) hpp.1))
+  · linarith
   · exact hnn.2
 
 /-- Full scalar negative-definiteness statement for the manuscript's Stage-2 firm Hessian. -/
@@ -139,9 +142,9 @@ theorem firmHQuadraticForm_neg
     (hdir : dx ≠ 0 ∨ dg ≠ 0) :
     firmHQuadraticForm kx kg μ θ dx dg < 0 := by
   unfold firmHQuadraticForm
-  exact twoByTwo_quadratic_neg_of_sylvester
-    (firmH11_neg hkx hkg hθ hR)
-    (firmHDet_pos hkx hkg hθ hR)
-    hdir
+  apply twoByTwo_quadratic_neg_of_sylvester
+  · exact firmH11_neg hkx hkg hθ hR
+  · simpa [firmHDet] using firmHDet_pos hkx hkg hθ hR
+  · exact hdir
 
 end SLGPC
