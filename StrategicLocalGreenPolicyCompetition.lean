@@ -1,1 +1,2 @@
 import StrategicLocalGreenPolicyCompetition.Threshold
+import StrategicLocalGreenPolicyCompetition.Proposition2
