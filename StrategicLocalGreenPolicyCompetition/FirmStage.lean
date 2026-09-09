@@ -82,10 +82,10 @@ theorem reducedL_gt_theta
     (hθ : θ ∈ Icc (0 : ℝ) 1)
     (hR : investmentR kx kg μ < (3 / 4 : ℝ)) :
     θ < reducedL kx kg μ θ := by
-  have hλ : investmentLambda kx kg μ θ < 1 :=
+  have hLam : investmentLambda kx kg μ θ < 1 :=
     investmentLambda_lt_one hθ hR
   unfold reducedL
-  linarith [hθ.2]
+  linarith [hθ.2, hLam]
 
 lemma reducedL_pos
     {kx kg μ θ : ℝ}
@@ -165,9 +165,8 @@ theorem reduced_output_equation
   have hcost := interior_cost_reduction_eq
     (kx := kx) (kg := kg) (μ := μ) (ν := ν) (s := s) (h := h)
     (θ := θ) (q := qi) hkx hkg hDne
-  rw [hcost] at hCournot
   unfold reducedL reducedW
-  linarith
+  nlinarith [hCournot, hcost]
 
 /-- Closed form for the reduced two-firm Stage-2 quantity system. -/
 theorem reduced_system_solution
