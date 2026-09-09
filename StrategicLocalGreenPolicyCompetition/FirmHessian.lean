@@ -120,7 +120,10 @@ lemma twoByTwo_quadratic_neg_of_sylvester
   have hrhs :
       0 < (a * x + b * y) ^ 2 + (a * c - b ^ 2) * y ^ 2 := by
     by_cases hy : y = 0
-    · have hx : x ≠ 0 := hxy.resolve_right hy
+    · have hx : x ≠ 0 := by
+        rcases hxy with hx | hyne
+        · exact hx
+        · exact False.elim (hyne hy)
       subst y
       simpa using sq_pos_of_ne_zero (mul_ne_zero ha.ne hx)
     · have hysq : 0 < y ^ 2 := sq_pos_of_ne_zero hy
