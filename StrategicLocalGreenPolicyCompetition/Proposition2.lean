@@ -148,6 +148,6 @@ theorem thresholdQuartic_unique_root
   exact hanti.injOn
     ⟨hv.1.1.le, hv.1.2.le⟩
     ⟨hu_open.1.le, hu_open.2.le⟩
-    (by rw [hv.2, hPu])
+    (by simpa [P] using hv.2.trans hPu.symm)
 
 end SLGPC
