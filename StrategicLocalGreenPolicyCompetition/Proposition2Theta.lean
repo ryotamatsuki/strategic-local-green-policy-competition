@@ -23,19 +23,19 @@ theorem thresholdQuartic_unique_theta_root
     ∃! θ : ℝ,
       θ ∈ Ioo (0 : ℝ) 1 ∧
         thresholdQuartic A4 A3 A2 A1 A0 (θ ^ 2) = 0 := by
-  let P := thresholdQuartic A4 A3 A2 A1 A0
   obtain ⟨uStar, huStar, hPStar, huUnique⟩ :=
     thresholdQuartic_unique_root hP0 hP1 hB0 hB1 hB2 hB3
   let θStar : ℝ := Real.sqrt uStar
   have huNonneg : 0 ≤ uStar := huStar.1.le
   have hθsq : θStar ^ 2 = uStar := by
     simpa [θStar] using Real.sq_sqrt huNonneg
-  have hθNonneg : 0 ≤ θStar := by
-    dsimp [θStar]
-    exact Real.sqrt_nonneg uStar
   have hθPos : 0 < θStar := by
     by_contra h
-    have hzero : θStar = 0 := by linarith
+    have hzero : θStar = 0 := by
+      have hnonneg : 0 ≤ θStar := by
+        dsimp [θStar]
+        exact Real.sqrt_nonneg uStar
+      linarith
     rw [hzero] at hθsq
     norm_num at hθsq
     linarith
@@ -48,20 +48,14 @@ theorem thresholdQuartic_unique_theta_root
     exact hPStar
   · intro θ hθ
     have hθPos' : 0 < θ := hθ.1.1
-    have hθLeOne : θ ≤ 1 := hθ.1.2.le
     have hθSqPos : 0 < θ ^ 2 := sq_pos_of_pos hθPos'
-    have hunitProd : 0 ≤ (1 - θ) * (1 + θ) := by
-      exact mul_nonneg (by linarith) (by linarith)
+    have hunitProd : 0 < (1 - θ) * (1 + θ) := by
+      exact mul_pos (by linarith [hθ.1.2]) (by linarith)
     have hθSqLtOne : θ ^ 2 < 1 := by
-      by_contra h
-      have hge : 1 ≤ θ ^ 2 := by linarith
-      have hsqle : θ ^ 2 ≤ 1 := by nlinarith [hunitProd]
-      have hsqeq : θ ^ 2 = 1 := le_antisymm hsqle hge
-      have hθeq : θ = 1 := by nlinarith
-      exact (ne_of_lt hθ.1.2) hθeq
+      nlinarith [hunitProd]
     have hθSquareMem : θ ^ 2 ∈ Ioo (0 : ℝ) 1 := ⟨hθSqPos, hθSqLtOne⟩
     have hsqEq : θ ^ 2 = uStar :=
-      huUnique θ hθSquareMem hθ.2
+      huUnique (θ ^ 2) ⟨hθSquareMem, hθ.2⟩
     have hprod : (θ - θStar) * (θ + θStar) = 0 := by
       nlinarith [hsqEq, hθsq]
     rcases mul_eq_zero.mp hprod with hdiff | hsum
@@ -95,12 +89,13 @@ theorem thresholdResponse_unique_switch
   have huNonneg : 0 ≤ uStar := huStar.1.le
   have hθsq : θStar ^ 2 = uStar := by
     simpa [θStar] using Real.sq_sqrt huNonneg
-  have hθNonneg : 0 ≤ θStar := by
-    dsimp [θStar]
-    exact Real.sqrt_nonneg uStar
   have hθPos : 0 < θStar := by
     by_contra h
-    have hzero : θStar = 0 := by linarith
+    have hzero : θStar = 0 := by
+      have hnonneg : 0 ≤ θStar := by
+        dsimp [θStar]
+        exact Real.sqrt_nonneg uStar
+      linarith
     rw [hzero] at hθsq
     norm_num at hθsq
     linarith
