@@ -2,3 +2,4 @@ import StrategicLocalGreenPolicyCompetition.Threshold
 import StrategicLocalGreenPolicyCompetition.Proposition2
 import StrategicLocalGreenPolicyCompetition.Proposition2Sign
 import StrategicLocalGreenPolicyCompetition.Proposition2Theta
+import StrategicLocalGreenPolicyCompetition.FirmStage
