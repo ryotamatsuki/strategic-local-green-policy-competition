@@ -116,7 +116,8 @@ lemma canonicalReducedDetNumerator_factor (θ : ℝ) :
 lemma canonicalReducedDetNumerator_pos {θ : ℝ} (hθ : θ ∈ Icc (0 : ℝ) 1) :
     0 < canonicalReducedDetNumerator θ := by
   rw [canonicalReducedDetNumerator_factor]
-  exact mul_pos (neg_pos.mpr (canonicalDetFactor_left_pos hθ))
+  exact mul_pos_of_neg_of_neg
+    (neg_neg_of_pos (canonicalDetFactor_left_pos hθ))
     (canonicalDetFactor_right_neg hθ)
 
 lemma canonicalSlopeCore_pos {θ : ℝ} (hθ : θ ∈ Icc (0 : ℝ) 1) :
@@ -129,6 +130,7 @@ lemma canonicalL_closed {θ : ℝ} (hθ : θ ∈ Icc (0 : ℝ) 1) :
   have hD : cournotD θ ≠ 0 := (cournotD_pos hθ).ne'
   unfold canonicalL reducedL investmentLambda investmentR
   field_simp [hD]
+  unfold cournotD
   ring
 
 lemma canonicalT0_closed {θ : ℝ} (hθ : θ ∈ Icc (0 : ℝ) 1) :
@@ -195,41 +197,67 @@ def canonicalHhCrossPoly (θ : ℝ) : ℝ :=
   102500 * θ ^ 8 - 1205500 * θ ^ 6 + 5196340 * θ ^ 4 -
     8170549 * θ ^ 2 + 1317283
 
-private tactic_elab "canonical_hessian_nf" : tactic => `(tactic|
-  (simp [canonicalGovernmentHessianEntry, modelGovernmentHessianEntry,
-      qASlope, qBSlope, ownSubsidySlope, ownInfrastructureSlope];
-   rw [canonicalT0_closed ‹_›, canonicalT1_closed ‹_›,
-      canonicalChiG_closed, canonicalRho_closed];
-   unfold governmentHessianEntry reducedEmissionsSlope canonicalSlopeCore;
-   field_simp [cournotD_pos ‹_› |>.ne', canonicalReducedDetNumerator_pos ‹_› |>.ne'];
-   ring))
-
 lemma canonicalHss_closed {θ : ℝ} (hθ : θ ∈ Icc (0 : ℝ) 1) :
     canonicalGovernmentHessianEntry θ .sA .sA =
       -canonicalHssPoly θ / (162 * canonicalSlopeCore θ) := by
-  canonical_hessian_nf
+  simp [canonicalGovernmentHessianEntry, modelGovernmentHessianEntry,
+    qASlope, qBSlope, ownSubsidySlope, ownInfrastructureSlope]
+  rw [canonicalT0_closed hθ, canonicalT1_closed hθ,
+    canonicalChiG_closed, canonicalRho_closed]
+  unfold governmentHessianEntry reducedEmissionsSlope canonicalSlopeCore
+  field_simp [(cournotD_pos hθ).ne', (canonicalReducedDetNumerator_pos hθ).ne']
+  unfold canonicalHssPoly canonicalReducedDetNumerator cournotD
+  ring
 
 lemma canonicalHsh_closed {θ : ℝ} (hθ : θ ∈ Icc (0 : ℝ) 1) :
     canonicalGovernmentHessianEntry θ .sA .hA =
       -canonicalHshPoly θ / (36 * canonicalSlopeCore θ) := by
-  canonical_hessian_nf
+  simp [canonicalGovernmentHessianEntry, modelGovernmentHessianEntry,
+    qASlope, qBSlope, ownSubsidySlope, ownInfrastructureSlope]
+  rw [canonicalT0_closed hθ, canonicalT1_closed hθ,
+    canonicalChiG_closed, canonicalRho_closed]
+  unfold governmentHessianEntry reducedEmissionsSlope canonicalSlopeCore
+  field_simp [(cournotD_pos hθ).ne', (canonicalReducedDetNumerator_pos hθ).ne']
+  unfold canonicalHshPoly canonicalReducedDetNumerator cournotD
+  ring
 
 lemma canonicalHhh_closed {θ : ℝ} (hθ : θ ∈ Icc (0 : ℝ) 1) :
     canonicalGovernmentHessianEntry θ .hA .hA =
       -canonicalHhhPoly θ / (10 * canonicalSlopeCore θ) := by
-  canonical_hessian_nf
+  simp [canonicalGovernmentHessianEntry, modelGovernmentHessianEntry,
+    qASlope, qBSlope, ownSubsidySlope, ownInfrastructureSlope]
+  rw [canonicalT0_closed hθ, canonicalT1_closed hθ,
+    canonicalChiG_closed, canonicalRho_closed]
+  unfold governmentHessianEntry reducedEmissionsSlope canonicalSlopeCore
+  field_simp [(cournotD_pos hθ).ne', (canonicalReducedDetNumerator_pos hθ).ne']
+  unfold canonicalHhhPoly canonicalReducedDetNumerator cournotD
+  ring
 
 lemma canonicalHsCross_closed {θ : ℝ} (hθ : θ ∈ Icc (0 : ℝ) 1) :
     canonicalGovernmentHessianEntry θ .sA .sB =
       -5 * θ * cournotD θ * canonicalHsCrossPoly θ /
         (72 * canonicalSlopeCore θ) := by
-  canonical_hessian_nf
+  simp [canonicalGovernmentHessianEntry, modelGovernmentHessianEntry,
+    qASlope, qBSlope, ownSubsidySlope, ownInfrastructureSlope]
+  rw [canonicalT0_closed hθ, canonicalT1_closed hθ,
+    canonicalChiG_closed, canonicalRho_closed]
+  unfold governmentHessianEntry reducedEmissionsSlope canonicalSlopeCore
+  field_simp [(cournotD_pos hθ).ne', (canonicalReducedDetNumerator_pos hθ).ne']
+  unfold canonicalHsCrossPoly canonicalReducedDetNumerator cournotD
+  ring
 
 lemma canonicalHhCross_closed {θ : ℝ} (hθ : θ ∈ Icc (0 : ℝ) 1) :
     canonicalGovernmentHessianEntry θ .hA .sB =
       -5 * θ * cournotD θ * canonicalHhCrossPoly θ /
         (2 * canonicalSlopeCore θ) := by
-  canonical_hessian_nf
+  simp [canonicalGovernmentHessianEntry, modelGovernmentHessianEntry,
+    qASlope, qBSlope, ownSubsidySlope, ownInfrastructureSlope]
+  rw [canonicalT0_closed hθ, canonicalT1_closed hθ,
+    canonicalChiG_closed, canonicalRho_closed]
+  unfold governmentHessianEntry reducedEmissionsSlope canonicalSlopeCore
+  field_simp [(cournotD_pos hθ).ne', (canonicalReducedDetNumerator_pos hθ).ne']
+  unfold canonicalHhCrossPoly canonicalReducedDetNumerator cournotD
+  ring
 
 /-- Exact canonical factorization of the response numerator. -/
 theorem canonicalCrossInstrumentNumerator_factorization
@@ -243,6 +271,7 @@ theorem canonicalCrossInstrumentNumerator_factorization
   unfold canonicalHssPoly canonicalHshPoly canonicalHsCrossPoly
     canonicalHhCrossPoly witnessP
   field_simp [hcore]
+  unfold canonicalSlopeCore canonicalReducedDetNumerator cournotD
   ring
 
 /-- Exact canonical factorization of the own-policy Hessian determinant. -/
@@ -255,6 +284,7 @@ theorem canonicalOwnPolicyDet_factorization
   rw [canonicalHss_closed hθ, canonicalHsh_closed hθ, canonicalHhh_closed hθ]
   unfold canonicalHssPoly canonicalHshPoly canonicalHhhPoly witnessDetQ
   field_simp [hcore]
+  unfold canonicalSlopeCore canonicalReducedDetNumerator cournotD
   ring
 
 lemma canonicalCrossInstrumentNumerator_closed
@@ -265,7 +295,11 @@ lemma canonicalCrossInstrumentNumerator_closed
   have hden : 864 * canonicalSlopeCore θ ≠ 0 :=
     mul_ne_zero (by norm_num) (canonicalSlopeCore_pos hθ).ne'
   apply (eq_div_iff hden).2
-  simpa [mul_assoc] using canonicalCrossInstrumentNumerator_factorization hθ
+  calc
+    canonicalCrossInstrumentNumerator θ * (864 * canonicalSlopeCore θ) =
+        864 * canonicalSlopeCore θ * canonicalCrossInstrumentNumerator θ := by ring
+    _ = -25 * θ * cournotD θ * witnessP (θ ^ 2) :=
+      canonicalCrossInstrumentNumerator_factorization hθ
 
 lemma canonicalOwnPolicyDet_closed
     {θ : ℝ} (hθ : θ ∈ Icc (0 : ℝ) 1) :
@@ -274,7 +308,10 @@ lemma canonicalOwnPolicyDet_closed
   have hden : 6480 * canonicalSlopeCore θ ≠ 0 :=
     mul_ne_zero (by norm_num) (canonicalSlopeCore_pos hθ).ne'
   apply (eq_div_iff hden).2
-  simpa [mul_assoc] using canonicalOwnPolicyDet_factorization hθ
+  calc
+    canonicalOwnPolicyDet θ * (6480 * canonicalSlopeCore θ) =
+        6480 * canonicalSlopeCore θ * canonicalOwnPolicyDet θ := by ring
+    _ = witnessDetQ (θ ^ 2) := canonicalOwnPolicyDet_factorization hθ
 
 /-- Positive factor multiplying the canonical switching polynomial in the
 2x2 differentiated-FOC response algebra. -/
@@ -316,9 +353,10 @@ theorem canonicalInfrastructureResponse_eq_thresholdResponse
         mul_nonneg (sub_nonneg.mpr hθ.2) (by linarith [hθ.1])
       nlinarith
   have hQ : witnessDetQ (θ ^ 2) ≠ 0 := (witnessDetQ_pos hsq).ne'
+  unfold canonicalInfrastructureResponse
   rw [canonicalCrossInstrumentNumerator_closed hθIcc,
       canonicalOwnPolicyDet_closed hθIcc]
-  unfold canonicalInfrastructureResponse canonicalOmega
+  unfold canonicalOmega
   field_simp [hcore, hQ]
   ring
 
