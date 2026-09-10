@@ -29,65 +29,18 @@ def monopolyScalarProfit (R wi u : ℝ) : ℝ :=
 def inactiveScalarProfit (R u : ℝ) : ℝ :=
   -u ^ 2 / (2 * R)
 
-/-- Product-rule form of the active-duopoly scalar derivative. -/
+/-- Algebraic first-order expression on the active-duopoly scalar branch. -/
 def duopolyScalarGradient (R θ wi vj u : ℝ) : ℝ :=
   2 * duopolyOwnQuantity θ wi vj u * (2 / cournotD θ) -
     2 * u / (2 * R)
 
-/-- Product-rule form of the monopoly scalar derivative. -/
+/-- Algebraic first-order expression on the monopoly scalar branch. -/
 def monopolyScalarGradient (R wi u : ℝ) : ℝ :=
   2 * monopolyOwnQuantity wi u * (1 / 2) - 2 * u / (2 * R)
 
-/-- Derivative on the inactive branch. -/
+/-- Algebraic first-order expression on the inactive branch. -/
 def inactiveScalarGradient (R u : ℝ) : ℝ :=
   -2 * u / (2 * R)
-
-/-- The active-duopoly gradient is the actual derivative of the reduced profit. -/
-theorem duopolyScalarProfit_hasDerivAt
-    {R θ wi vj u : ℝ} :
-    HasDerivAt (fun t => duopolyScalarProfit R θ wi vj t)
-      (duopolyScalarGradient R θ wi vj u) u := by
-  have hshift : HasDerivAt (fun t : ℝ => wi + t) 1 u := by
-    convert (hasDerivAt_id u).add_const wi using 1 <;> ring
-  have hnum : HasDerivAt (fun t : ℝ => 2 * (wi + t) - θ * vj) 2 u := by
-    convert (HasDerivAt.const_mul 2 hshift).sub_const (θ * vj) using 1 <;> ring
-  have hq : HasDerivAt (fun t : ℝ => duopolyOwnQuantity θ wi vj t)
-      (2 / cournotD θ) u := by
-    simpa only [duopolyOwnQuantity] using hnum.div_const (cournotD θ)
-  have hu2 : HasDerivAt (fun t : ℝ => t * t) (u + u) u := by
-    simpa using (hasDerivAt_id u).mul (hasDerivAt_id u)
-  have hcost : HasDerivAt (fun t : ℝ => t * t / (2 * R))
-      ((u + u) / (2 * R)) u := hu2.div_const (2 * R)
-  have hprofit := (hq.mul hq).sub hcost
-  simpa only [duopolyScalarProfit, duopolyScalarGradient, pow_two] using hprofit
-
-/-- The monopoly gradient is the actual derivative of the reduced profit. -/
-theorem monopolyScalarProfit_hasDerivAt
-    {R wi u : ℝ} :
-    HasDerivAt (fun t => monopolyScalarProfit R wi t)
-      (monopolyScalarGradient R wi u) u := by
-  have hshift : HasDerivAt (fun t : ℝ => wi + t) 1 u := by
-    convert (hasDerivAt_id u).add_const wi using 1 <;> ring
-  have hq : HasDerivAt (fun t : ℝ => monopolyOwnQuantity wi t) (1 / 2) u := by
-    simpa only [monopolyOwnQuantity] using hshift.div_const 2
-  have hu2 : HasDerivAt (fun t : ℝ => t * t) (u + u) u := by
-    simpa using (hasDerivAt_id u).mul (hasDerivAt_id u)
-  have hcost : HasDerivAt (fun t : ℝ => t * t / (2 * R))
-      ((u + u) / (2 * R)) u := hu2.div_const (2 * R)
-  have hprofit := (hq.mul hq).sub hcost
-  simpa only [monopolyScalarProfit, monopolyScalarGradient, pow_two] using hprofit
-
-/-- The inactive gradient is the actual derivative of the inactive reduced profit. -/
-theorem inactiveScalarProfit_hasDerivAt
-    {R u : ℝ} :
-    HasDerivAt (fun t => inactiveScalarProfit R t)
-      (inactiveScalarGradient R u) u := by
-  have hu2 : HasDerivAt (fun t : ℝ => t * t) (u + u) u := by
-    simpa using (hasDerivAt_id u).mul (hasDerivAt_id u)
-  have hcost : HasDerivAt (fun t : ℝ => t * t / (2 * R))
-      ((u + u) / (2 * R)) u := hu2.div_const (2 * R)
-  have hneg := hcost.neg
-  simpa only [inactiveScalarProfit, inactiveScalarGradient, pow_two] using hneg
 
 /-- Simplified manuscript form of the active-duopoly scalar FOC. -/
 theorem duopolyScalarGradient_eq
@@ -95,23 +48,27 @@ theorem duopolyScalarGradient_eq
     duopolyScalarGradient R θ wi vj u =
       4 * duopolyOwnQuantity θ wi vj u / cournotD θ - u / R := by
   unfold duopolyScalarGradient
-  field_simp [hR]
+  field_simp [hR] <;> ring
 
 /-- Simplified manuscript form of the monopoly scalar FOC. -/
 theorem monopolyScalarGradient_eq
     {R wi u : ℝ} (hR : R ≠ 0) :
     monopolyScalarGradient R wi u = monopolyOwnQuantity wi u - u / R := by
   unfold monopolyScalarGradient
-  field_simp [hR]
+  field_simp [hR] <;> ring
 
 /-- Generic quadratic used for exact branch-optimality certificates. -/
 def quadraticValue (A B C u : ℝ) : ℝ :=
   A * u ^ 2 + B * u + C
 
+/-- Algebraic derivative of the generic quadratic. -/
+def quadraticGradient (A B u : ℝ) : ℝ := 2 * A * u + B
+
 lemma quadratic_global_max_of_stationary
     {A B C u0 u : ℝ}
-    (hA : A < 0) (hstat : 2 * A * u0 + B = 0) :
+    (hA : A < 0) (hstat : quadraticGradient A B u0 = 0) :
     quadraticValue A B C u ≤ quadraticValue A B C u0 := by
+  unfold quadraticGradient at hstat
   have hB : B = -2 * A * u0 := by linarith
   rw [hB]
   unfold quadraticValue
@@ -121,8 +78,9 @@ lemma quadratic_global_max_of_stationary
 
 lemma quadratic_left_max_of_nonnegative_gradient
     {A B C u0 u : ℝ}
-    (hA : A < 0) (hgrad : 0 ≤ 2 * A * u0 + B) (hu : u ≤ u0) :
+    (hA : A < 0) (hgrad : 0 ≤ quadraticGradient A B u0) (hu : u ≤ u0) :
     quadraticValue A B C u ≤ quadraticValue A B C u0 := by
+  unfold quadraticGradient at hgrad
   have hdelta : 0 ≤ u0 - u := sub_nonneg.mpr hu
   have hbracket : 0 ≤ A * (u0 + u) + B := by nlinarith
   have hprod : 0 ≤ (u0 - u) * (A * (u0 + u) + B) :=
@@ -132,8 +90,9 @@ lemma quadratic_left_max_of_nonnegative_gradient
 
 lemma quadratic_right_max_of_nonpositive_gradient
     {A B C u0 u : ℝ}
-    (hA : A < 0) (hgrad : 2 * A * u0 + B ≤ 0) (hu : u0 ≤ u) :
+    (hA : A < 0) (hgrad : quadraticGradient A B u0 ≤ 0) (hu : u0 ≤ u) :
     quadraticValue A B C u ≤ quadraticValue A B C u0 := by
+  unfold quadraticGradient at hgrad
   have hdelta : u0 - u ≤ 0 := sub_nonpos.mpr hu
   have hbracket : A * (u0 + u) + B ≤ 0 := by nlinarith
   have hprod : 0 ≤ (u0 - u) * (A * (u0 + u) + B) :=
@@ -161,12 +120,14 @@ theorem duopolyScalarProfit_quadratic
     duopolyQuadraticA duopolyQuadraticB duopolyQuadraticC
   ring
 
-/-- The active-duopoly gradient is exactly the derivative of its quadratic expansion. -/
+/-- The displayed active-duopoly first-order expression is exactly the formal
+quadratic derivative `2 A u + B`. -/
 theorem duopolyScalarGradient_quadratic
     {R θ wi vj u : ℝ} :
     duopolyScalarGradient R θ wi vj u =
-      2 * duopolyQuadraticA R θ * u + duopolyQuadraticB θ wi vj := by
-  unfold duopolyScalarGradient duopolyOwnQuantity duopolyQuadraticA duopolyQuadraticB
+      quadraticGradient (duopolyQuadraticA R θ) (duopolyQuadraticB θ wi vj) u := by
+  unfold duopolyScalarGradient duopolyOwnQuantity quadraticGradient
+    duopolyQuadraticA duopolyQuadraticB
   ring
 
 /-- Monopoly scalar-profit quadratic coefficients. -/
@@ -184,12 +145,14 @@ theorem monopolyScalarProfit_quadratic
     monopolyQuadraticA monopolyQuadraticB monopolyQuadraticC
   ring
 
-/-- The monopoly gradient is exactly the derivative of its quadratic expansion. -/
+/-- The displayed monopoly first-order expression is exactly the formal quadratic
+derivative `2 A u + B`. -/
 theorem monopolyScalarGradient_quadratic
     {R wi u : ℝ} :
     monopolyScalarGradient R wi u =
-      2 * monopolyQuadraticA R * u + monopolyQuadraticB wi := by
-  unfold monopolyScalarGradient monopolyOwnQuantity monopolyQuadraticA monopolyQuadraticB
+      quadraticGradient (monopolyQuadraticA R) (monopolyQuadraticB wi) u := by
+  unfold monopolyScalarGradient monopolyOwnQuantity quadraticGradient
+    monopolyQuadraticA monopolyQuadraticB
   ring
 
 /-- Maintained firm-stage regularity makes active-duopoly scalar profit strictly concave. -/
@@ -253,29 +216,27 @@ theorem monopoly_branch_max_of_foc
 theorem model_aMonopoly_scalar_foc
     {kx kg μ θ wA wB : ℝ}
     (hkx : 0 < kx) (hkg : 0 < kg)
-    (hθ : θ ∈ Icc (0 : ℝ) 1)
-    (hR : investmentR kx kg μ < (3 / 4 : ℝ)) :
+    (_hθ : θ ∈ Icc (0 : ℝ) 1)
+    (_hR : investmentR kx kg μ < (3 / 4 : ℝ)) :
     monopolyScalarGradient (investmentR kx kg μ) wA
       (aMonopolyContinuation (investmentR kx kg μ) wA).uA = 0 := by
-  let R := investmentR kx kg μ
-  have hRpos : 0 < R := by dsimp [R]; exact investmentR_pos hkx hkg
+  have hRpos : 0 < investmentR kx kg μ := investmentR_pos hkx hkg
   rw [monopolyScalarGradient_eq hRpos.ne']
-  change wA / monopolyM R - (R * (wA / monopolyM R)) / R = 0
-  field_simp [hRpos.ne']
+  simp only [monopolyOwnQuantity, aMonopolyContinuation]
+  field_simp [hRpos.ne'] <;> ring
 
 /-- Symmetric B-monopoly scalar FOC. -/
 theorem model_bMonopoly_scalar_foc
     {kx kg μ θ wA wB : ℝ}
     (hkx : 0 < kx) (hkg : 0 < kg)
-    (hθ : θ ∈ Icc (0 : ℝ) 1)
-    (hR : investmentR kx kg μ < (3 / 4 : ℝ)) :
+    (_hθ : θ ∈ Icc (0 : ℝ) 1)
+    (_hR : investmentR kx kg μ < (3 / 4 : ℝ)) :
     monopolyScalarGradient (investmentR kx kg μ) wB
       (bMonopolyContinuation (investmentR kx kg μ) wB).uB = 0 := by
-  let R := investmentR kx kg μ
-  have hRpos : 0 < R := by dsimp [R]; exact investmentR_pos hkx hkg
+  have hRpos : 0 < investmentR kx kg μ := investmentR_pos hkx hkg
   rw [monopolyScalarGradient_eq hRpos.ne']
-  change wB / monopolyM R - (R * (wB / monopolyM R)) / R = 0
-  field_simp [hRpos.ne']
+  simp only [monopolyOwnQuantity, bMonopolyContinuation]
+  field_simp [hRpos.ne'] <;> ring
 
 /-- Both active-duopoly components of the Phase-4 continuation satisfy their scalar FOCs. -/
 theorem model_duopoly_scalar_focs
@@ -310,36 +271,34 @@ theorem model_duopoly_scalar_focs
       unfold duopolyOwnQuantity
       exact hcournot.1.symm
     rw [duopolyScalarGradient_eq hRpos.ne', hq, hfeedbackA]
-    field_simp [hRpos.ne', hDpos.ne']
+    field_simp [hRpos.ne', hDpos.ne'] <;> ring
   · have hq : duopolyOwnQuantity θ wB (wA + z.uA) z.uB = z.qB := by
       unfold duopolyOwnQuantity
       exact hcournot.2.symm
     rw [duopolyScalarGradient_eq hRpos.ne', hq, hfeedbackB]
-    field_simp [hRpos.ne', hDpos.ne']
+    field_simp [hRpos.ne', hDpos.ne'] <;> ring
 
-/-- Generic A-kink identity for the duopoly-side derivative after clearing positive denominators. -/
-theorem aKink_duopoly_gradient_scaled
-    {R θ wA wB : ℝ}
+/-- Generic kink identity for the duopoly-side derivative after clearing denominators. -/
+theorem kink_duopoly_gradient_scaled
+    {R θ wi wj : ℝ}
     (hR : R ≠ 0) (hθ : θ ≠ 0) (hD : cournotD θ ≠ 0) :
     R * θ * cournotD θ *
-        duopolyScalarGradient R θ wA wB (2 * wB / θ - wA) =
+        duopolyScalarGradient R θ wi wj (2 * wj / θ - wi) =
       cournotD θ *
-        (θ * wA - (2 - 4 * R / cournotD θ) * wB) := by
+        (θ * wi - (2 - 4 * R / cournotD θ) * wj) := by
   rw [duopolyScalarGradient_eq hR]
-  unfold duopolyOwnQuantity
-  field_simp [hR, hθ, hD]
-  ring
+  unfold duopolyOwnQuantity cournotD
+  field_simp [hR, hθ, hD] <;> ring
 
-/-- Generic A-kink identity for the monopoly-side derivative after clearing denominators. -/
-theorem aKink_monopoly_gradient_scaled
-    {R θ wA wB : ℝ}
+/-- Generic kink identity for the monopoly-side derivative after clearing denominators. -/
+theorem kink_monopoly_gradient_scaled
+    {R θ wi wj : ℝ}
     (hR : R ≠ 0) (hθ : θ ≠ 0) :
-    R * θ * monopolyScalarGradient R wA (2 * wB / θ - wA) =
-      θ * wA - (2 - R) * wB := by
+    R * θ * monopolyScalarGradient R wi (2 * wj / θ - wi) =
+      θ * wi - (2 - R) * wj := by
   rw [monopolyScalarGradient_eq hR]
   unfold monopolyOwnQuantity
-  field_simp [hR, hθ]
-  ring
+  field_simp [hR, hθ] <;> ring
 
 /-- At an A-kink candidate the left derivative is nonnegative and the right derivative
 is nonpositive: the one-sided KKT conditions are exactly the Phase-4 kink inequalities. -/
@@ -360,11 +319,11 @@ theorem model_aKink_one_sided_kkt
     simpa [R, reducedL, investmentLambda] using hAK.1
   have hupp : θ * wA < (2 - R) * wB := by
     simpa [R, aKinkRegion, monopolyM] using hAK.2
-  have hleft := aKink_duopoly_gradient_scaled
-    (R := R) (θ := θ) (wA := wA) (wB := wB)
+  have hleft := kink_duopoly_gradient_scaled
+    (R := R) (θ := θ) (wi := wA) (wj := wB)
     hRpos.ne' hθpos.ne' hDpos.ne'
-  have hright := aKink_monopoly_gradient_scaled
-    (R := R) (θ := θ) (wA := wA) (wB := wB) hRpos.ne' hθpos.ne'
+  have hright := kink_monopoly_gradient_scaled
+    (R := R) (θ := θ) (wi := wA) (wj := wB) hRpos.ne' hθpos.ne'
   change 0 ≤ duopolyScalarGradient R θ wA wB (2 * wB / θ - wA) ∧
     monopolyScalarGradient R wA (2 * wB / θ - wA) ≤ 0
   constructor
@@ -394,11 +353,11 @@ theorem model_bKink_one_sided_kkt
     simpa [R, reducedL, investmentLambda] using hBK.1
   have hupp : θ * wB < (2 - R) * wA := by
     simpa [R, bKinkRegion, monopolyM] using hBK.2
-  have hleft := aKink_duopoly_gradient_scaled
-    (R := R) (θ := θ) (wA := wB) (wB := wA)
+  have hleft := kink_duopoly_gradient_scaled
+    (R := R) (θ := θ) (wi := wB) (wj := wA)
     hRpos.ne' hθpos.ne' hDpos.ne'
-  have hright := aKink_monopoly_gradient_scaled
-    (R := R) (θ := θ) (wA := wB) (wB := wA) hRpos.ne' hθpos.ne'
+  have hright := kink_monopoly_gradient_scaled
+    (R := R) (θ := θ) (wi := wB) (wj := wA) hRpos.ne' hθpos.ne'
   change 0 ≤ duopolyScalarGradient R θ wB wA (2 * wA / θ - wB) ∧
     monopolyScalarGradient R wB (2 * wA / θ - wB) ≤ 0
   constructor
@@ -410,7 +369,7 @@ theorem model_bKink_one_sided_kkt
   · have hmult : 0 < R * θ := mul_pos hRpos hθpos
     nlinarith
 
-/-- The A-kink candidate maximizes the duopoly-side quadratic over all scalar choices
+/-- The A-kink candidate maximizes the duopoly-side quadratic over scalar choices
 weakly to the left of the kink. -/
 theorem model_aKink_left_branch_max
     {kx kg μ θ wA wB u : ℝ}
@@ -429,7 +388,7 @@ theorem model_aKink_left_branch_max
     exact (model_aKink_one_sided_kkt hkx hkg hθ hθpos hR hAK).1
   · exact hu
 
-/-- The A-kink candidate maximizes the monopoly-side quadratic over all scalar choices
+/-- The A-kink candidate maximizes the monopoly-side quadratic over scalar choices
 weakly to the right of the kink. -/
 theorem model_aKink_right_branch_max
     {kx kg μ θ wA wB u : ℝ}
@@ -448,7 +407,7 @@ theorem model_aKink_right_branch_max
     exact (model_aKink_one_sided_kkt hkx hkg hθ hθpos hR hAK).2
   · exact hu
 
-/-- Symmetric left-side branch maximum at the B kink. -/
+/-- Symmetric duopoly-side branch maximum at the B kink. -/
 theorem model_bKink_left_branch_max
     {kx kg μ θ wA wB u : ℝ}
     (hkx : 0 < kx) (hkg : 0 < kg)
@@ -466,7 +425,7 @@ theorem model_bKink_left_branch_max
     exact (model_bKink_one_sided_kkt hkx hkg hθ hθpos hR hBK).1
   · exact hu
 
-/-- Symmetric right-side branch maximum at the B kink. -/
+/-- Symmetric monopoly-side branch maximum at the B kink. -/
 theorem model_bKink_right_branch_max
     {kx kg μ θ wA wB u : ℝ}
     (hkx : 0 < kx) (hkg : 0 < kg)
@@ -484,20 +443,18 @@ theorem model_bKink_right_branch_max
     exact (model_bKink_one_sided_kkt hkx hkg hθ hθpos hR hBK).2
   · exact hu
 
-/-- With positive `R`, the inactive branch is maximized by zero scalar investment over
-all nonnegative scalar choices. -/
+/-- With positive `R`, the inactive branch is maximized at zero over nonnegative scalar choices. -/
 theorem inactive_branch_max_at_zero
-    {R u : ℝ} (hR : 0 < R) (hu : 0 ≤ u) :
+    {R u : ℝ} (hR : 0 < R) (_hu : 0 ≤ u) :
     inactiveScalarProfit R u ≤ inactiveScalarProfit R 0 := by
   have hden : 0 < 2 * R := mul_pos (by norm_num) hR
-  have hq : 0 ≤ u ^ 2 / (2 * R) := div_nonneg (sq_nonneg _) hden.le
   unfold inactiveScalarProfit
   norm_num
-  exact neg_nonpos.mpr hq
+  exact div_nonpos_of_nonpos_of_nonneg (neg_nonpos.mpr (sq_nonneg u)) hden.le
 
 /-- Conditional on a common scalar reduction `u` and the same active Stage-3 quantity,
 the Phase-4 cost-minimizing `(x,g)` composition weakly dominates every primitive
-investment composition that implements that `u`. -/
+investment composition implementing that `u`. -/
 theorem primitive_scalar_candidate_dominates_same_u
     {a c kx kg μ ν s h θ qi qj u x g : ℝ}
     (hkx : 0 < kx) (hkg : 0 < kg)
