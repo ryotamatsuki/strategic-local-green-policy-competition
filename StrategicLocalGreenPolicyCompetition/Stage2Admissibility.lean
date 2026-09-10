@@ -32,14 +32,26 @@ theorem aMonopoly_admissible
     (aMonopolyContinuation R wA).uB = 0 ∧
     wB ≤ θ * (aMonopolyContinuation R wA).qA := by
   have hq : 0 < wA / monopolyM R := div_pos hwA hM
+  have hAM' : wB * monopolyM R ≤ θ * wA := by
+    simpa [aMonopolyRegion, mul_comm] using hAM
   have hinactive0 : wB ≤ (θ * wA) / monopolyM R :=
-    (le_div_iff₀ hM).2 hAM
+    (le_div_iff₀ hM).2 hAM'
   have hinactive : wB ≤ θ * (wA / monopolyM R) := by
     calc
       wB ≤ (θ * wA) / monopolyM R := hinactive0
       _ = θ * (wA / monopolyM R) := by ring
-  simp only [aMonopolyContinuation]
-  exact ⟨hq, rfl, mul_pos hR hq, rfl, hinactive⟩
+  constructor
+  · change 0 < wA / monopolyM R
+    exact hq
+  · constructor
+    · rfl
+    · constructor
+      · change 0 < R * (wA / monopolyM R)
+        exact mul_pos hR hq
+      · constructor
+        · rfl
+        · change wB ≤ θ * (wA / monopolyM R)
+          exact hinactive
 
 /-- An A-kink continuation has positive own output and private cost reduction and
 places the rival exactly at its Stage-3 activity kink. -/
@@ -66,8 +78,18 @@ theorem aKink_admissible
   have hu : 0 < 2 * wB / θ - wA := by linarith
   have hkink : wB = θ * (wB / θ) := by
     field_simp [hθ.ne']
-  simp only [aKinkContinuation]
-  exact ⟨hq, rfl, hu, rfl, hkink⟩
+  constructor
+  · change 0 < wB / θ
+    exact hq
+  · constructor
+    · rfl
+    · constructor
+      · change 0 < 2 * wB / θ - wA
+        exact hu
+      · constructor
+        · rfl
+        · change wB = θ * (wB / θ)
+          exact hkink
 
 /-- Interior-duopoly region inequalities imply positive quantities; `L<2` then
 implies positive private cost reductions in the encoded continuation. -/
@@ -81,8 +103,17 @@ theorem duopoly_admissible
     0 < (duopolyContinuation L θ wA wB).uB := by
   obtain ⟨hqA, hqB⟩ := duopoly_outputs_pos hdet hD
   have hfeedback : 0 < 2 - L := sub_pos.mpr hL2
-  simp only [duopolyContinuation]
-  exact ⟨hqA, hqB, mul_pos hfeedback hqA, mul_pos hfeedback hqB⟩
+  constructor
+  · change 0 < duopolyQA L θ wA wB
+    exact hqA
+  · constructor
+    · change 0 < duopolyQB L θ wA wB
+      exact hqB
+    · constructor
+      · change 0 < (2 - L) * duopolyQA L θ wA wB
+        exact mul_pos hfeedback hqA
+      · change 0 < (2 - L) * duopolyQB L θ wA wB
+        exact mul_pos hfeedback hqB
 
 /-- Symmetric B-kink admissibility certificate. -/
 theorem bKink_admissible
@@ -108,8 +139,18 @@ theorem bKink_admissible
   have hu : 0 < 2 * wA / θ - wB := by linarith
   have hkink : wA = θ * (wA / θ) := by
     field_simp [hθ.ne']
-  simp only [bKinkContinuation]
-  exact ⟨rfl, hq, rfl, hu, hkink⟩
+  constructor
+  · rfl
+  · constructor
+    · change 0 < wA / θ
+      exact hq
+    · constructor
+      · rfl
+      · constructor
+        · change 0 < 2 * wA / θ - wB
+          exact hu
+        · change wA = θ * (wA / θ)
+          exact hkink
 
 /-- Symmetric B-monopoly admissibility certificate. -/
 theorem bMonopoly_admissible
@@ -122,14 +163,26 @@ theorem bMonopoly_admissible
     0 < (bMonopolyContinuation R wB).uB ∧
     wA ≤ θ * (bMonopolyContinuation R wB).qB := by
   have hq : 0 < wB / monopolyM R := div_pos hwB hM
+  have hBM' : wA * monopolyM R ≤ θ * wB := by
+    simpa [bMonopolyRegion, mul_comm] using hBM
   have hinactive0 : wA ≤ (θ * wB) / monopolyM R :=
-    (le_div_iff₀ hM).2 hBM
+    (le_div_iff₀ hM).2 hBM'
   have hinactive : wA ≤ θ * (wB / monopolyM R) := by
     calc
       wA ≤ (θ * wB) / monopolyM R := hinactive0
       _ = θ * (wB / monopolyM R) := by ring
-  simp only [bMonopolyContinuation]
-  exact ⟨rfl, hq, rfl, mul_pos hR hq, hinactive⟩
+  constructor
+  · rfl
+  · constructor
+    · change 0 < wB / monopolyM R
+      exact hq
+    · constructor
+      · rfl
+      · constructor
+        · change 0 < R * (wB / monopolyM R)
+          exact mul_pos hR hq
+        · change wA ≤ θ * (wB / monopolyM R)
+          exact hinactive
 
 /-- Symmetric active-firm Stage-3 identity for the B-monopoly branch. -/
 theorem bMonopoly_stage3_identity
