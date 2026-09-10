@@ -152,21 +152,58 @@ Accordingly, Phase 5 closes the **primitive-to-scalar Stage-2 optimization bridg
 
 This Phase-5 closure is intentionally narrower than a claim that the entire primitive Stage-2 game has been formalized as one global constrained optimization theorem. In particular, it does not silently promote branchwise certificates into a stronger cross-regime global theorem.
 
+## Phase 6 — active government-stage objective and Hessian bridge
+
+The modules
+
+- `StrategicLocalGreenPolicyCompetition/GovernmentStage.lean`, and
+- `StrategicLocalGreenPolicyCompetition/GovernmentPolicySlopes.lean`
+
+connect the Phase-3 active-duopoly firm continuation to the Stage-1 government objective and its four-policy Hessian.
+
+`GovernmentStage.lean` proves:
+
+1. the exact interior investment loadings `chi_x = 4/(D kx)` and `chi_g = 4 mu/(D kg)`;
+2. after substituting the interior firm-investment rules, active producer surplus reduces to the quadratic form with coefficient `rho = 1-kx chi_x^2/2-kg chi_g^2/2`, including the exact subsidy terms;
+3. territorial emissions reduce to the affine expression `(e-beta chi_g)q-(beta/kg)s-xi h`;
+4. primitive active-branch regional welfare, with the subsidy transfer cancelled as in the manuscript, equals the explicit reduced quadratic government objective after the interior firm rules are substituted;
+5. for arbitrary affine policy directions, the mixed second finite difference of that reduced objective is exactly `t*r` times the displayed generic Hessian entry, providing a direct algebraic Hessian certificate rather than relying on a symbolic black box;
+6. the generic reduced-government Hessian is symmetric;
+7. the manuscript policy ordering `(s_A,h_A,s_B,h_B)` and its firm-output slope vectors are represented explicitly using `t0`, `t1`, `mu/kg`, and `nu`;
+8. the own-policy determinant is `W_sAsA W_hAhA-W_sAhA^2`, and the 2x2 differentiated-FOC system implies exactly the manuscript infrastructure-response formula `(W_sAhA W_sAsB-W_sAsA W_hAsB)/det(H_A)`;
+9. the Sylvester-form inequality `W_sAhA^2 < W_sAsA W_hAhA` implies positivity of the own-policy determinant;
+10. on the interior continuation, the rival-infrastructure output direction is `(nu kg/mu)` times the rival-subsidy output direction, matching the manuscript's proportional policy-loading argument;
+11. the generic Hessian entry is linear in its second policy direction.
+
+`GovernmentPolicySlopes.lean` closes the provenance gap between the Phase-3 quantity formula and those Hessian directions. It proves:
+
+1. firm A and firm B quantities are affine functions of the Stage-1 policy profile through `q0`, `t0`, `t1`, and `y_i`;
+2. shifting any one of the four policy coordinates changes `q_A` and `q_B` by exactly the corresponding `qASlope` and `qBSlope` coefficients;
+3. the direct own-subsidy and own-infrastructure coordinates have exactly the stated unit/zero policy slopes;
+4. two successive policy shifts add their induced quantity and direct-policy changes exactly;
+5. the primitive active policy-welfare function equals the reduced policy-welfare function after substituting the interior firm continuation;
+6. the model-specialized four-policy Hessian entry is exactly the mixed second finite difference of the reduced policy objective;
+7. therefore the same Hessian certificate applies directly to the primitive active policy-welfare function after the interior firm continuation is substituted.
+
+Accordingly, Phase 6 closes the **active-interior government-stage primitive-to-reduced objective and four-policy Hessian bridge**. The government quadratic form, policy-slope provenance, Hessian entries, symmetry, own-policy determinant algebra, and the 2x2 differentiated-FOC infrastructure-response identity are machine checked.
+
+This closure remains deliberately conditional where the manuscript is conditional. Phase 6 does not assert that the government own-policy Hessian is negative definite for every primitive vector, does not by itself prove existence or uniqueness of the true global government best response, and does not yet derive the quartic sign representation `-Omega(theta) P(theta^2)` from the model-specialized Hessian entries.
+
 ## What is not yet proved in Lean
 
 The formalization still deliberately stops short of claiming that the entire economic model or the global-SPNE theorem is machine checked. The principal remaining bridges are:
 
 - a single end-to-end primitive constrained Stage-2 best-response theorem that quantifies over all feasible primitive `(x,g)` deviations and all induced downstream regime switches simultaneously, rather than using the branchwise/KKT certificates now proved in Phase 5;
-- derivation from primitives of the full four-policy government Hessian;
-- derivation from primitives of the generic quartic coefficients `A0,...,A4` and the positive factor `Omega(theta)`;
-- proof that government strict concavity plus the firm-stage objects imply the full Proposition 2 reduced-form response expression;
+- model-specific verification of the maintained government own-policy negative-definiteness / strict-concavity condition where needed for the local best-response interpretation;
+- derivation from the Phase-6 model Hessian entries of the Proposition-2 numerator, its factorization into the generic quartic coefficients `A0,...,A4`, and the positive factor `Omega(theta)`;
+- a calculus/implicit-function bridge identifying the differentiated government FOC system with the derivative of the actual local best-response map, beyond the exact 2x2 linear-system algebra proved in Phase 6;
 - primitive government-objective comparisons across kink/monopoly regimes;
 - the final Proposition 2 neighborhood claim identifying the local interior derivative with the derivative of the true global best response on an open neighborhood;
 - the canonical global-policy Nash / SPNE welfare-gap certificate over the full `theta in [0,1]` range;
 - open-neighborhood persistence around the canonical primitive vector;
 - welfare and robustness extensions.
 
-Thus the repository may state that the **primitive Stage-2 profit/scalarization bridge and branchwise FOC/KKT optimality certificates are formally verified**, together with the Phase-4 regime partition and continuation. It should not state that a single global primitive Stage-2 best-response theorem, the government stage, or the full global SPNE is already machine checked.
+Thus the repository may state that the **active-interior government objective, policy-slope provenance, and four-policy Hessian are formally derived from the primitive active welfare representation**, and that the manuscript's 2x2 differentiated-FOC response formula is algebraically verified. It should not state that the quartic Proposition-2 response representation, an actual global government best-response derivative, or the full global SPNE is already machine checked.
 
 ## Commands
 
@@ -183,10 +220,10 @@ CI runs the same project automatically on pull requests. The Lean job kernel-che
 
 The highest-value next steps are:
 
-1. connect the firm-stage equilibrium objects to the government reduced objective and four-policy Hessian;
-2. derive the Proposition 2 quartic coefficients and positive factor `Omega(theta)` from primitives and connect them to the generic Phase-2 theorem;
+1. Phase 7: derive the Proposition-2 cross-instrument numerator from the Phase-6 model Hessian entries, factor it into `-Omega(theta) P(theta^2)`, prove the required denominator/prefactor positivity, and connect the result end-to-end to the generic Phase-2 sign-switch theorem;
+2. formalize the local implicit-function / actual-best-response derivative bridge and the maintained government own-policy strict-concavity condition to the extent needed by Proposition 2;
 3. formalize the canonical global-policy Nash / SPNE certificate and neighborhood persistence;
 4. optionally strengthen Phase 5 further with a single cross-regime primitive Stage-2 best-response theorem if that stronger certificate is needed for an audit target;
 5. only after those bridges are closed, formalize welfare and robustness extensions.
 
-No manuscript theorem or theory-freeze statement is strengthened by Phase 5 beyond the exact primitive/scalar and branchwise optimization scope certified above.
+No manuscript theorem or theory-freeze statement is strengthened by Phase 6 beyond the exact active-interior government objective, policy-slope, Hessian, and differentiated-FOC algebra certified above.
