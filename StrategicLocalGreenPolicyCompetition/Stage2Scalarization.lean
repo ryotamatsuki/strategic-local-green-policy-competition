@@ -48,7 +48,7 @@ theorem scalar_candidate_constraint
   calc
     u / (R * kx) + μ * (μ * u / (R * kg)) =
         (u / R) * (1 / kx + μ ^ 2 / kg) := by
-          field_simp [hRne, hkx.ne', hkg.ne'] <;> ring
+          field_simp [hRne, hkx.ne', hkg.ne']
     _ = (u / R) * R := by rfl
     _ = u := by field_simp [hRne]
 
@@ -65,7 +65,7 @@ theorem scalar_candidate_ratio
     exact (investmentR_pos hkx hkg).ne'
   change μ * kx * scalarX kx R u = kg * scalarGreenCentered kg μ R u
   unfold scalarX scalarGreenCentered
-  field_simp [hRne, hkx.ne', hkg.ne'] <;> ring
+  field_simp [hRne, hkx.ne', hkg.ne']
 
 /-- Exact weighted Cauchy gap underlying the one-dimensional Stage-2 reduction. -/
 theorem scalar_weighted_gap_identity
@@ -75,7 +75,8 @@ theorem scalar_weighted_gap_identity
         (x + μ * v) ^ 2 =
       (μ * kx * x - kg * v) ^ 2 / (kx * kg) := by
   unfold investmentR
-  field_simp [hkx, hkg] <;> ring
+  field_simp [hkx, hkg]
+  ring
 
 /-- Positive investment-cost weights imply the scalar reduction cannot be achieved
 with weighted energy below the Cauchy lower bound. -/
@@ -163,7 +164,8 @@ theorem netInvestmentCost_complete_square
       centeredInvestmentCost kx kg x (centeredGreen kg s g) -
         s ^ 2 / (2 * kg) := by
   unfold netInvestmentCost centeredInvestmentCost centeredGreen
-  field_simp [hkg] <;> ring
+  field_simp [hkg]
+  ring
 
 /-- Therefore, among all `(x,g)` delivering the same scalar reduction `u`, the
 manuscript composition minimizes the original quadratic investment cost net of subsidy. -/
