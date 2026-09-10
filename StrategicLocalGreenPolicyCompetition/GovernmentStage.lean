@@ -32,12 +32,13 @@ def activeProducerSurplus (kx kg q x g : ℝ) : ℝ :=
 /-- Substituting the interior firm-investment rules gives the quadratic producer-
 surplus representation used in the symbolic government Hessian. -/
 theorem activeProducerSurplus_reduction
-    {kx kg μ s θ q : ℝ} :
+    {kx kg μ s θ q : ℝ} (hkg : kg ≠ 0) :
     activeProducerSurplus kx kg q (interiorX kx θ q) (interiorG kg μ s θ q) =
       producerRho kx kg μ θ * q ^ 2 -
         interiorChiG kg μ θ * s * q - s ^ 2 / (2 * kg) := by
   rw [interiorX_eq_chi, interiorG_eq_chi]
   unfold activeProducerSurplus producerRho
+  field_simp [hkg]
   ring
 
 /-- One half of integrated-market consumer surplus, which is the consumer-surplus
@@ -60,9 +61,10 @@ theorem active_emissions_reduction
   ring
 
 /-- Government welfare on the active interior firm branch after using the Cournot
-markup identity but before eliminating the firms' investment choices. -/
+markup identity but before eliminating the firms' investment choices.  The subsidy
+argument is retained to mirror the policy vector, although the transfer cancels. -/
 def activeGovernmentWelfare
-    (kx kg κ d e β ξ Ebar θ qA qB xA gA sA hA : ℝ) : ℝ :=
+    (kx kg κ d e β ξ Ebar θ qA qB xA gA _sA hA : ℝ) : ℝ :=
   halfConsumerSurplus θ qA qB + activeProducerSurplus kx kg qA xA gA -
     κ / 2 * hA ^ 2 - d / 2 * (e * qA - β * gA - ξ * hA - Ebar) ^ 2
 
@@ -79,13 +81,13 @@ def reducedGovernmentWelfare
 /-- Primitive active-branch welfare evaluated at the firms' interior investment
 rules is exactly the reduced quadratic government objective. -/
 theorem activeGovernmentWelfare_reduction
-    {kx kg μ κ d e β ξ Ebar θ qA qB sA hA : ℝ} :
+    {kx kg μ κ d e β ξ Ebar θ qA qB sA hA : ℝ} (hkg : kg ≠ 0) :
     activeGovernmentWelfare kx kg κ d e β ξ Ebar θ qA qB
         (interiorX kx θ qA) (interiorG kg μ sA θ qA) sA hA =
       reducedGovernmentWelfare θ (producerRho kx kg μ θ)
         (interiorChiG kg μ θ) kg κ d e β ξ Ebar qA qB sA hA := by
   unfold activeGovernmentWelfare
-  rw [activeProducerSurplus_reduction, active_emissions_reduction]
+  rw [activeProducerSurplus_reduction hkg, active_emissions_reduction]
   unfold reducedGovernmentWelfare halfConsumerSurplus
   ring
 
@@ -218,15 +220,15 @@ theorem rival_policy_output_direction_proportional
     {kg μ ν L θ : ℝ} (hkg : kg ≠ 0) (hμ : μ ≠ 0) :
     qASlope kg μ ν L θ .hB = (ν * kg / μ) * qASlope kg μ ν L θ .sB ∧
     qBSlope kg μ ν L θ .hB = (ν * kg / μ) * qBSlope kg μ ν L θ .sB := by
-  constructor <;> simp [qASlope, qBSlope] <;> field_simp [hkg, hμ] <;> ring
+  constructor <;> simp [qASlope, qBSlope] <;> field_simp [hkg, hμ]
 
 /-- A Hessian entry is linear in its second policy direction. -/
 theorem governmentHessianEntry_scale_second
     {θ rho cg kg κ d e β ξ
-      ai aj bi bj esi esj ehi ehj λ : ℝ} :
+      ai aj bi bj esi esj ehi ehj scale : ℝ} :
     governmentHessianEntry θ rho cg kg κ d e β ξ
-        ai (λ * aj) bi (λ * bj) esi (λ * esj) ehi (λ * ehj) =
-      λ * governmentHessianEntry θ rho cg kg κ d e β ξ
+        ai (scale * aj) bi (scale * bj) esi (scale * esj) ehi (scale * ehj) =
+      scale * governmentHessianEntry θ rho cg kg κ d e β ξ
         ai aj bi bj esi esj ehi ehj := by
   unfold governmentHessianEntry reducedEmissionsSlope
   ring
