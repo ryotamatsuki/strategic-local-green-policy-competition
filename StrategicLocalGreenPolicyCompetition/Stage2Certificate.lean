@@ -6,6 +6,15 @@ open Set
 
 namespace SLGPC
 
+/-- Extensionality for the four-component Stage-2 continuation record. -/
+lemma stage2Continuation_ext
+    {x y : Stage2Continuation}
+    (hqA : x.qA = y.qA) (hqB : x.qB = y.qB)
+    (huA : x.uA = y.uA) (huB : x.uB = y.uB) : x = y := by
+  cases x
+  cases y
+  simp_all
+
 /-- Under the model assumptions, the five tie-broken regime predicates form a
 pairwise-disjoint family. Together with `model_stage2_region_exists`, this is the
 formal partition certificate for positive rivalry. -/
@@ -77,7 +86,7 @@ theorem aKink_aMonopoly_boundary_continuation
     (hθ : θ ≠ 0) (hM : monopolyM R ≠ 0)
     (hb : θ * wA = monopolyM R * wB) :
     aKinkContinuation θ wA wB = aMonopolyContinuation R wA := by
-  apply Stage2Continuation.ext
+  apply stage2Continuation_ext
   · exact aKink_aMonopoly_boundary_q hθ hM hb
   · rfl
   · exact aKink_aMonopoly_boundary_u hθ hM hb
@@ -89,7 +98,7 @@ theorem aKink_duopoly_boundary_continuation
     (hθ : θ ≠ 0) (hdet : L ^ 2 - θ ^ 2 ≠ 0)
     (hb : θ * wA = L * wB) :
     duopolyContinuation L θ wA wB = aKinkContinuation θ wA wB := by
-  apply Stage2Continuation.ext
+  apply stage2Continuation_ext
   · exact aKink_duopoly_boundary_qA hθ hdet hb
   · change duopolyQB L θ wA wB = 0
     exact aKink_duopoly_boundary_qB hb
@@ -104,7 +113,7 @@ theorem bKink_duopoly_boundary_continuation
     (hθ : θ ≠ 0) (hdet : L ^ 2 - θ ^ 2 ≠ 0)
     (hb : θ * wB = L * wA) :
     duopolyContinuation L θ wA wB = bKinkContinuation θ wA wB := by
-  apply Stage2Continuation.ext
+  apply stage2Continuation_ext
   · change duopolyQA L θ wA wB = 0
     exact bKink_duopoly_boundary_qA hb
   · exact bKink_duopoly_boundary_qB hθ hdet hb
@@ -119,7 +128,7 @@ theorem bKink_bMonopoly_boundary_continuation
     (hθ : θ ≠ 0) (hM : monopolyM R ≠ 0)
     (hb : θ * wB = monopolyM R * wA) :
     bKinkContinuation θ wA wB = bMonopolyContinuation R wB := by
-  apply Stage2Continuation.ext
+  apply stage2Continuation_ext
   · rfl
   · exact bKink_bMonopoly_boundary_q hθ hM hb
   · rfl
