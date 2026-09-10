@@ -64,7 +64,6 @@ theorem scalar_candidate_centered_cost_eq
   have hR : 0 < investmentR kx kg μ := investmentR_pos hkx hkg
   unfold centeredInvestmentCost scalarX scalarGreenCentered investmentR
   field_simp [hkx.ne', hkg.ne', hR.ne']
-  ring
 
 /-- Reintroducing the subsidy shift gives the exact minimized primitive investment
 cost net of subsidy. -/
