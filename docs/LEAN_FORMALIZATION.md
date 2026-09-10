@@ -100,22 +100,52 @@ formalize the algebraic and regularity backbone of the active-duopoly firm stage
 
 Accordingly, Phase 3 machine-checks the manuscript's stated sufficient regularity chain linking `R<3/4` to active-branch firm-stage concavity, invertibility, uniqueness of the reduced quantity system, and the signs of its comparative-static coefficients.
 
+## Phase 4 — Stage-2 piecewise regime formalization
+
+The modules
+
+- `StrategicLocalGreenPolicyCompetition/Stage2Scalarization.lean`,
+- `StrategicLocalGreenPolicyCompetition/Stage2Regimes.lean`,
+- `StrategicLocalGreenPolicyCompetition/Stage2Admissibility.lean`,
+- `StrategicLocalGreenPolicyCompetition/Stage2Partition.lean`,
+- `StrategicLocalGreenPolicyCompetition/Stage2Certificate.lean`, and
+- `StrategicLocalGreenPolicyCompetition/Stage2Endpoint.lean`
+
+formalize the reduced Stage-2 continuation across the interior and corner regimes.
+
+The Phase-4 layer proves:
+
+1. the five tie-broken regimes for positive rivalry: A monopoly, A kink, active duopoly, B kink, and B monopoly;
+2. algebraic exhaustiveness of those five region predicates;
+3. under `kx>0`, `kg>0`, `theta in [0,1]`, `theta>0`, `R<3/4`, and positive reduced intercepts, the maintained ordering
+   `theta < L < M`, where `M = 2-R`;
+4. under the same model conditions, pairwise disjointness of all five tie-broken regimes, including exclusion of simultaneous A-side and B-side dominance;
+5. the closed-form continuation record `(qA,qB,uA,uB)` in every regime;
+6. exact solution of the reduced linear system on the active-duopoly branch and strict positivity of both active outputs there;
+7. branch-specific admissibility certificates: the active firm's quantity and scalar investment are positive, the corner firm's corresponding objects are zero, and the relevant inactive-rival inequality or kink equality holds;
+8. Stage-3 consistency identities for monopoly, kink, and active-duopoly continuations;
+9. exact equality of the full continuation record across each adjacent regime boundary: A monopoly/A kink, A kink/duopoly, duopoly/B kink, and B kink/B monopoly;
+10. at the endpoint `theta=0`, positive reduced intercepts imply the active-duopoly region and rule out all four exclusion/kink predicates;
+11. the scalarization bridge `u = x + mu (g-s/kg)`: the displayed composition delivers the requested scalar reduction, minimizes the centered quadratic investment cost and the original net investment cost conditional on `u`, and is nonnegative under nonnegative `mu`, subsidy, and scalar reduction.
+
+Accordingly, the **reduced Stage-2 piecewise continuation — regime partition, branch admissibility, and adjacent-boundary matching — is machine checked in Lean**. This closes the Phase-4 target at the reduced-continuation level.
+
 ## What is not yet proved in Lean
 
 The formalization still deliberately stops short of claiming that the entire economic model or the global-SPNE theorem is machine checked. In particular, the following remain outside Lean and continue to rely on the existing symbolic/numerical verification stack:
 
-- calculus-level derivation of the Stage-2 investment first-order conditions from the primitive profit function and derivation of the displayed Hessian from those primitives;
-- the complete Stage-2 nonnegative piecewise investment continuation, including corner regimes, admissibility inequalities, and boundary continuity;
+- calculus-level derivation of the Stage-2 investment first-order conditions and Kuhn-Tucker/corner conditions directly from the primitive profit function, and derivation of the displayed Hessian from those primitives;
+- an end-to-end theorem identifying the Phase-4 reduced piecewise continuation as the global constrained optimum of the primitive Stage-2 firm problem;
 - derivation from primitives of the full four-policy government Hessian;
 - derivation from primitives of the generic quartic coefficients `A0,...,A4` and the positive factor `Omega(theta)`;
 - proof that government strict concavity plus the firm-stage objects imply the full Proposition 2 reduced-form response expression;
-- kink/monopoly regime comparisons;
+- primitive government-objective comparisons across kink/monopoly regimes;
 - the claim in the final sentence of Proposition 2 that the local interior derivative is also the derivative of the true global best response on an open neighborhood;
 - the canonical global-policy Nash / SPNE welfare-gap certificate over the full `theta in [0,1]` range;
 - open-neighborhood persistence around the canonical primitive vector;
 - welfare and robustness extensions.
 
-Thus the repository may describe the active-duopoly firm-stage **regularity, reduced linear system, and Hessian negative-definiteness certificates** as formally verified. It should not yet describe the full piecewise firm continuation, government-stage derivation, or global SPNE as formally verified.
+Thus the repository may describe the Phase-4 **reduced Stage-2 piecewise regime partition, admissibility, scalar composition certificate, and boundary matching** as formally verified. It should not describe the primitive constrained Stage-2 optimization problem, government-stage derivation, or global SPNE as fully machine checked.
 
 ## Commands
 
@@ -132,11 +162,10 @@ CI runs the same project automatically on pull requests. The Lean job kernel-che
 
 The highest-value next steps are:
 
-1. formalize the Stage-2 regime partition, nonnegativity/admissibility conditions, and boundary continuity for the piecewise firm continuation;
-2. formalize the calculus bridge from the primitive profit function to the active Stage-2 FOCs/Hessian where useful for an end-to-end primitive certificate;
-3. connect the active firm-stage equilibrium objects to the government reduced objective and four-policy Hessian;
-4. derive the Proposition 2 quartic coefficients and positive factor `Omega(theta)` from primitives and connect them to the generic Phase-2 theorem;
-5. formalize the canonical global-policy Nash / SPNE certificate and neighborhood persistence;
-6. only after those bridges are closed, formalize welfare and robustness extensions.
+1. formalize the calculus/KKT bridge from the primitive firm profit function to the Phase-4 piecewise Stage-2 continuation, if an end-to-end primitive certificate is desired;
+2. connect the firm-stage equilibrium objects to the government reduced objective and four-policy Hessian;
+3. derive the Proposition 2 quartic coefficients and positive factor `Omega(theta)` from primitives and connect them to the generic Phase-2 theorem;
+4. formalize the canonical global-policy Nash / SPNE certificate and neighborhood persistence;
+5. only after those bridges are closed, formalize welfare and robustness extensions.
 
-No manuscript theorem or theory-freeze statement should be strengthened beyond the exact scope certified above.
+No manuscript theorem or theory-freeze statement is strengthened by Phase 4 beyond the exact reduced-continuation scope certified above.
