@@ -189,21 +189,50 @@ Accordingly, Phase 6 closes the **active-interior government-stage primitive-to-
 
 This closure remains deliberately conditional where the manuscript is conditional. Phase 6 does not assert that the government own-policy Hessian is negative definite for every primitive vector, does not by itself prove existence or uniqueness of the true global government best response, and does not yet derive the quartic sign representation `-Omega(theta) P(theta^2)` from the model-specialized Hessian entries.
 
+## Phase 7 — canonical government-Hessian to quartic response bridge
+
+The module
+
+- `StrategicLocalGreenPolicyCompetition/CanonicalQuarticBridge.lean`
+
+specializes the Phase-6 Hessian to the manuscript's canonical primitive vector and closes the reduced-form gap that remained in the Phase-2 Proposition-2 theorem.
+
+It proves:
+
+1. the canonical reduced coefficient `L`, the determinant numerator of the reduced two-firm system, and the exact rational closed forms for `t0`, `t1`, `chi_g`, and `rho`;
+2. strict positivity of the canonical reduced determinant numerator and its squared Hessian denominator core over `theta in [0,1]`;
+3. exact closed forms for the five canonical government-Hessian entries required by the rival-subsidy infrastructure response;
+4. the exact cross-instrument numerator factorization
+   `864 * core(theta) * N(theta) = -25 * theta * D(theta) * witnessP(theta^2)`;
+5. the exact own-policy determinant factorization
+   `6480 * core(theta) * det(H_A(theta)) = witnessDetQ(theta^2)`;
+6. strict positivity of `witnessDetQ(u)` for every `u in [0,1]`, certified through an exact positive Bernstein representation;
+7. strict positivity on `theta in (0,1]` of the resulting prefactor
+   `Omega(theta) = 375 theta D(theta) / (2 witnessDetQ(theta^2))`;
+8. the exact identity between the Phase-6 differentiated-FOC response quotient and
+   `-Omega(theta) * witnessP(theta^2)`;
+9. exact identification of `witnessP` with the generic Phase-2 quartic coefficients
+   `(A4,A3,A2,A1,A0) = (602500,-8101550,39588109,-74143042,31863144)`;
+10. by feeding that identity and `Omega(theta)>0` into the generic Phase-2 theorem, existence of a unique switching `thetaStar in (0,1)`, with the canonical differentiated-FOC infrastructure response negative below `thetaStar` and positive above it.
+
+Accordingly, Phase 7 closes the **canonical Phase-6 Hessian → Proposition-2 quartic → unique sign-switch bridge**. The quartic response representation is no longer an externally supplied reduced-form assumption at the canonical witness vector; it is machine derived from the Phase-6 government Hessian and connected end-to-end to the generic sign-switch theorem.
+
+This Phase-7 closure remains an interior differentiated-FOC certificate. It does **not** yet identify that algebraic response quotient with the derivative of the actual global government best-response correspondence on an open neighborhood, and it does not establish the full global-policy Nash/SPNE theorem.
+
 ## What is not yet proved in Lean
 
 The formalization still deliberately stops short of claiming that the entire economic model or the global-SPNE theorem is machine checked. The principal remaining bridges are:
 
 - a single end-to-end primitive constrained Stage-2 best-response theorem that quantifies over all feasible primitive `(x,g)` deviations and all induced downstream regime switches simultaneously, rather than using the branchwise/KKT certificates now proved in Phase 5;
 - model-specific verification of the maintained government own-policy negative-definiteness / strict-concavity condition where needed for the local best-response interpretation;
-- derivation from the Phase-6 model Hessian entries of the Proposition-2 numerator, its factorization into the generic quartic coefficients `A0,...,A4`, and the positive factor `Omega(theta)`;
-- a calculus/implicit-function bridge identifying the differentiated government FOC system with the derivative of the actual local best-response map, beyond the exact 2x2 linear-system algebra proved in Phase 6;
-- primitive government-objective comparisons across kink/monopoly regimes;
-- the final Proposition 2 neighborhood claim identifying the local interior derivative with the derivative of the true global best response on an open neighborhood;
+- a calculus/implicit-function bridge identifying the differentiated government FOC system with the derivative of the actual local best-response map, beyond the exact 2x2 linear-system algebra proved in Phase 6 and the canonical response factorization proved in Phase 7;
+- primitive government-objective comparisons across kink/monopoly regimes and boundary deviations;
+- the final Proposition 2 neighborhood claim identifying the canonical interior derivative with the derivative of the true global best response on an open neighborhood;
 - the canonical global-policy Nash / SPNE welfare-gap certificate over the full `theta in [0,1]` range;
 - open-neighborhood persistence around the canonical primitive vector;
 - welfare and robustness extensions.
 
-Thus the repository may state that the **active-interior government objective, policy-slope provenance, and four-policy Hessian are formally derived from the primitive active welfare representation**, and that the manuscript's 2x2 differentiated-FOC response formula is algebraically verified. It should not state that the quartic Proposition-2 response representation, an actual global government best-response derivative, or the full global SPNE is already machine checked.
+Thus the repository may state that the **canonical differentiated-FOC infrastructure response is formally derived from the primitive active-welfare/Hessian chain, equals `-Omega(theta) P(theta^2)` with `Omega(theta)>0`, and has a unique machine-checked sign switch**. It should not state that this quotient is already the derivative of the true global best-response correspondence or that the full global SPNE is machine checked.
 
 ## Commands
 
@@ -220,10 +249,10 @@ CI runs the same project automatically on pull requests. The Lean job kernel-che
 
 The highest-value next steps are:
 
-1. Phase 7: derive the Proposition-2 cross-instrument numerator from the Phase-6 model Hessian entries, factor it into `-Omega(theta) P(theta^2)`, prove the required denominator/prefactor positivity, and connect the result end-to-end to the generic Phase-2 sign-switch theorem;
-2. formalize the local implicit-function / actual-best-response derivative bridge and the maintained government own-policy strict-concavity condition to the extent needed by Proposition 2;
-3. formalize the canonical global-policy Nash / SPNE certificate and neighborhood persistence;
-4. optionally strengthen Phase 5 further with a single cross-regime primitive Stage-2 best-response theorem if that stronger certificate is needed for an audit target;
+1. formalize the local implicit-function / actual-best-response derivative bridge and the maintained government own-policy strict-concavity condition to the extent needed by Proposition 2;
+2. formalize government boundary deviations, cross-regime global maximization, and the canonical global-policy Nash / SPNE certificate;
+3. if required for the strongest end-to-end SPNE certificate, strengthen Phase 5 with a single primitive cross-regime Stage-2 best-response theorem;
+4. formalize the Proposition-2 open-neighborhood persistence claim around the canonical primitive vector;
 5. only after those bridges are closed, formalize welfare and robustness extensions.
 
-No manuscript theorem or theory-freeze statement is strengthened by Phase 6 beyond the exact active-interior government objective, policy-slope, Hessian, and differentiated-FOC algebra certified above.
+No manuscript theorem or theory-freeze statement is strengthened by Phase 7 beyond the exact canonical differentiated-FOC response factorization, positivity, and unique sign-switch certificate proved above.
