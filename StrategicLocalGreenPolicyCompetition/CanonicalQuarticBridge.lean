@@ -1,11 +1,14 @@
 import StrategicLocalGreenPolicyCompetition.GovernmentPolicySlopes
 import StrategicLocalGreenPolicyCompetition.Proposition2Theta
+import StrategicLocalGreenPolicyCompetition.Threshold
 
 noncomputable section
 
 open Set
 
 namespace SLGPC
+
+set_option maxRecDepth 100000
 
 /-- Canonical reduced firm-stage coefficient `L` at the manuscript witness vector. -/
 def canonicalL (θ : ℝ) : ℝ :=
@@ -161,7 +164,8 @@ theorem canonicalOmega_pos {θ : ℝ} (hθ : θ ∈ Ioc (0 : ℝ) 1) :
       nlinarith
   have hQ : 0 < witnessDetQ (θ ^ 2) := witnessDetQ_pos hsq
   unfold canonicalOmega
-  positivity
+  exact div_pos (mul_pos (mul_pos (by norm_num) hθ.1) hD)
+    (mul_pos (by norm_num) hQ)
 
 /-- Canonical infrastructure response expressed directly as the quotient supplied
 by the Phase-6 2x2 differentiated-FOC algebra. -/
