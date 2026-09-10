@@ -35,25 +35,37 @@ def netInvestmentCost (kx kg s x g : ℝ) : ℝ :=
 /-- The manuscript's composition formulas exactly deliver the requested scalar reduction. -/
 theorem scalar_candidate_constraint
     {kx kg μ u : ℝ}
-    (hkx : kx ≠ 0) (hkg : kg ≠ 0)
-    (hR : investmentR kx kg μ ≠ 0) :
+    (hkx : 0 < kx) (hkg : 0 < kg) :
     scalarX kx (investmentR kx kg μ) u +
       μ * scalarGreenCentered kg μ (investmentR kx kg μ) u = u := by
-  unfold scalarX scalarGreenCentered investmentR
-  field_simp [hkx, hkg, hR]
-  ring
+  let R := investmentR kx kg μ
+  have hRpos : 0 < R := by
+    dsimp [R]
+    exact investmentR_pos hkx hkg
+  have hRne : R ≠ 0 := hRpos.ne'
+  change scalarX kx R u + μ * scalarGreenCentered kg μ R u = u
+  unfold scalarX scalarGreenCentered
+  calc
+    u / (R * kx) + μ * (μ * u / (R * kg)) =
+        (u / R) * (1 / kx + μ ^ 2 / kg) := by
+          field_simp [hRne, hkx.ne', hkg.ne'] <;> ring
+    _ = (u / R) * R := by rfl
+    _ = u := by field_simp [hRne]
 
 /-- The candidate components satisfy the equality condition in the weighted
 Cauchy--Schwarz certificate. -/
 theorem scalar_candidate_ratio
     {kx kg μ u : ℝ}
-    (hkx : kx ≠ 0) (hkg : kg ≠ 0)
-    (hR : investmentR kx kg μ ≠ 0) :
+    (hkx : 0 < kx) (hkg : 0 < kg) :
     μ * kx * scalarX kx (investmentR kx kg μ) u =
       kg * scalarGreenCentered kg μ (investmentR kx kg μ) u := by
+  let R := investmentR kx kg μ
+  have hRne : R ≠ 0 := by
+    dsimp [R]
+    exact (investmentR_pos hkx hkg).ne'
+  change μ * kx * scalarX kx R u = kg * scalarGreenCentered kg μ R u
   unfold scalarX scalarGreenCentered
-  field_simp [hkx, hkg, hR]
-  ring
+  field_simp [hRne, hkx.ne', hkg.ne'] <;> ring
 
 /-- Exact weighted Cauchy gap underlying the one-dimensional Stage-2 reduction. -/
 theorem scalar_weighted_gap_identity
@@ -63,8 +75,7 @@ theorem scalar_weighted_gap_identity
         (x + μ * v) ^ 2 =
       (μ * kx * x - kg * v) ^ 2 / (kx * kg) := by
   unfold investmentR
-  field_simp [hkx, hkg]
-  ring
+  field_simp [hkx, hkg] <;> ring
 
 /-- Positive investment-cost weights imply the scalar reduction cannot be achieved
 with weighted energy below the Cauchy lower bound. -/
@@ -96,11 +107,10 @@ theorem scalar_composition_minimizes_centered_cost
   have hRpos : 0 < R := by
     dsimp [R]
     exact investmentR_pos hkx hkg
-  have hRne : R ≠ 0 := hRpos.ne'
   have hcandidate := scalar_candidate_constraint
-    (kx := kx) (kg := kg) (μ := μ) (u := u) hkx.ne' hkg.ne' hRne
+    (kx := kx) (kg := kg) (μ := μ) (u := u) hkx hkg
   have hratio := scalar_candidate_ratio
-    (kx := kx) (kg := kg) (μ := μ) (u := u) hkx.ne' hkg.ne' hRne
+    (kx := kx) (kg := kg) (μ := μ) (u := u) hkx hkg
   have hcandidateGap := scalar_weighted_gap_identity
     (kx := kx) (kg := kg) (μ := μ)
     (x := scalarX kx R u)
@@ -133,7 +143,7 @@ theorem scalar_composition_minimizes_centered_cost
       kx * (scalarX kx R u) ^ 2 +
           kg * (scalarGreenCentered kg μ R u) ^ 2 ≤
         kx * x ^ 2 + kg * v ^ 2 :=
-    (mul_le_mul_left hRpos).mp hmult
+    le_of_mul_le_mul_left hmult hRpos
   unfold centeredInvestmentCost
   nlinarith
 
@@ -153,8 +163,7 @@ theorem netInvestmentCost_complete_square
       centeredInvestmentCost kx kg x (centeredGreen kg s g) -
         s ^ 2 / (2 * kg) := by
   unfold netInvestmentCost centeredInvestmentCost centeredGreen
-  field_simp [hkg]
-  ring
+  field_simp [hkg] <;> ring
 
 /-- Therefore, among all `(x,g)` delivering the same scalar reduction `u`, the
 manuscript composition minimizes the original quadratic investment cost net of subsidy. -/
