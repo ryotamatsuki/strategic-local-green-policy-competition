@@ -61,7 +61,7 @@ theorem stage2_regions_exhaustive (R L θ wA wB : ℝ) :
 simultaneously satisfy the dominance-side inequality. -/
 theorem stage2_dominance_sides_incompatible
     {L θ wA wB : ℝ}
-    (hθ : 0 < θ) (hL : θ < L) (hwA : 0 < wA) (hwB : 0 < wB) :
+    (hθ : 0 < θ) (hL : θ < L) (_hwA : 0 < wA) (hwB : 0 < wB) :
     ¬ (L * wB ≤ θ * wA ∧ L * wA ≤ θ * wB) := by
   rintro ⟨hA, hB⟩
   have hLpos : 0 < L := lt_trans hθ hL
@@ -136,7 +136,8 @@ lemma reducedL_lt_two
     (hkx : 0 < kx) (hkg : 0 < kg)
     (hθ : θ ∈ Icc (0 : ℝ) 1) :
     reducedL kx kg μ θ < 2 := by
-  have hlam := investmentLambda_pos hkx hkg hθ
+  have hlam : 0 < investmentLambda kx kg μ θ :=
+    investmentLambda_pos (kx := kx) (kg := kg) (μ := μ) (θ := θ) hkx hkg hθ
   unfold reducedL
   linarith
 
@@ -183,7 +184,6 @@ structure Stage2Continuation where
   qB : ℝ
   uA : ℝ
   uB : ℝ
-  deriving Repr
 
 def aMonopolyContinuation (R wA : ℝ) : Stage2Continuation :=
   { qA := wA / monopolyM R
@@ -309,7 +309,6 @@ theorem aKink_aMonopoly_boundary_u
 /-- At the A kink/duopoly boundary, the inactive firm's duopoly formula is zero. -/
 theorem aKink_duopoly_boundary_qB
     {L θ wA wB : ℝ}
-    (hdet : L ^ 2 - θ ^ 2 ≠ 0)
     (hb : θ * wA = L * wB) :
     duopolyQB L θ wA wB = 0 := by
   unfold duopolyQB
@@ -374,7 +373,6 @@ theorem bKink_bMonopoly_boundary_u
 /-- Symmetric B kink/duopoly boundary: the A quantity is zero. -/
 theorem bKink_duopoly_boundary_qA
     {L θ wA wB : ℝ}
-    (hdet : L ^ 2 - θ ^ 2 ≠ 0)
     (hb : θ * wB = L * wA) :
     duopolyQA L θ wA wB = 0 := by
   unfold duopolyQA
