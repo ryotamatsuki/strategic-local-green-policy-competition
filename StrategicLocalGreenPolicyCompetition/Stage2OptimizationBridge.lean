@@ -212,7 +212,7 @@ theorem monopoly_branch_max_of_foc
 
 /-- The Phase-4 A-monopoly continuation satisfies the scalar monopoly FOC. -/
 theorem model_aMonopoly_scalar_foc
-    {kx kg μ θ wA wB : ℝ}
+    {kx kg μ θ wA _wB : ℝ}
     (hkx : 0 < kx) (hkg : 0 < kg)
     (hθ : θ ∈ Icc (0 : ℝ) 1)
     (hR : investmentR kx kg μ < (3 / 4 : ℝ)) :
@@ -230,7 +230,7 @@ theorem model_aMonopoly_scalar_foc
 
 /-- Symmetric B-monopoly scalar FOC. -/
 theorem model_bMonopoly_scalar_foc
-    {kx kg μ θ wA wB : ℝ}
+    {kx kg μ θ _wA wB : ℝ}
     (hkx : 0 < kx) (hkg : 0 < kg)
     (hθ : θ ∈ Icc (0 : ℝ) 1)
     (hR : investmentR kx kg μ < (3 / 4 : ℝ)) :
