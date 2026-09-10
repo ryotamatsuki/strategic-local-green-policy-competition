@@ -66,7 +66,6 @@ lemma interiorPolicyQA_shift_two
       interiorPolicyQA m kg μ ν L θ z +
         t * qASlope kg μ ν L θ i + r * qASlope kg μ ν L θ j := by
   rw [interiorPolicyQA_shift, interiorPolicyQA_shift]
-  ring
 
 lemma interiorPolicyQB_shift_two
     {m kg μ ν L θ t r : ℝ} {z : PolicyProfile} (i j : PolicyCoord) :
@@ -74,21 +73,18 @@ lemma interiorPolicyQB_shift_two
       interiorPolicyQB m kg μ ν L θ z +
         t * qBSlope kg μ ν L θ i + r * qBSlope kg μ ν L θ j := by
   rw [interiorPolicyQB_shift, interiorPolicyQB_shift]
-  ring
 
 lemma shiftPolicy_sA_two
     {z : PolicyProfile} {t r : ℝ} (i j : PolicyCoord) :
     (shiftPolicy (shiftPolicy z i t) j r).sA =
       z.sA + t * ownSubsidySlope i + r * ownSubsidySlope j := by
   rw [shiftPolicy_sA, shiftPolicy_sA]
-  ring
 
 lemma shiftPolicy_hA_two
     {z : PolicyProfile} {t r : ℝ} (i j : PolicyCoord) :
     (shiftPolicy (shiftPolicy z i t) j r).hA =
       z.hA + t * ownInfrastructureSlope i + r * ownInfrastructureSlope j := by
   rw [shiftPolicy_hA, shiftPolicy_hA]
-  ring
 
 /-- Reduced active-duopoly government welfare as an actual function of the Stage-1
 policy profile, with Phase-3 affine firm quantities substituted. -/
