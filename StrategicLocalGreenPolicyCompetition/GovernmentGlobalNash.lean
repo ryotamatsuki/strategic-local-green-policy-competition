@@ -159,6 +159,11 @@ def canonicalSymmetricProfile (θ : ℝ) : PolicyProfile :=
     sB := canonicalSymmetricS θ
     hB := canonicalSymmetricH θ }
 
+/-- Generic symmetric policy point used to keep the FOC provenance proof separate
+from substitution of the closed-form canonical solution. -/
+def canonicalSymmetricPolicyPoint (s h : ℝ) : PolicyProfile :=
+  { sA := s, hA := h, sB := s, hB := h }
+
 theorem canonicalSymmetricPolicies_pos {θ : ℝ} (hθ : θ ∈ Icc (0 : ℝ) 1) :
     0 < canonicalSymmetricS θ ∧ 0 < canonicalSymmetricH θ := by
   constructor
@@ -184,56 +189,159 @@ theorem canonicalSymmetricW_pos {θ : ℝ} (hθ : θ ∈ Icc (0 : ℝ) 1) :
   unfold canonicalSymmetricW reducedW policyY
   nlinarith
 
-lemma canonicalQ0DenPoly_pos {θ : ℝ} (hθ : θ ∈ Icc (0 : ℝ) 1) :
-    0 < 341 + 200 * θ - 100 * θ ^ 2 - 50 * θ ^ 3 := by
+/-- The positive cubic denominator in the canonical closed form for `q0`. -/
+def canonicalQ0Den (θ : ℝ) : ℝ :=
+  341 + 200 * θ - 100 * θ ^ 2 - 50 * θ ^ 3
+
+lemma canonicalQ0Den_pos {θ : ℝ} (hθ : θ ∈ Icc (0 : ℝ) 1) :
+    0 < canonicalQ0Den θ := by
   have hsq : θ ^ 2 ≤ 1 := by
     nlinarith [mul_nonneg hθ.1 (sub_nonneg.mpr hθ.2)]
   have hcub : θ ^ 3 ≤ 1 := by
     have hnonneg : 0 ≤ θ ^ 2 * (1 - θ) :=
       mul_nonneg (sq_nonneg θ) (sub_nonneg.mpr hθ.2)
     nlinarith
+  unfold canonicalQ0Den
   nlinarith [hθ.1]
 
+/-- Backward-compatible form used by the existing global-regime certificates. -/
+lemma canonicalQ0DenPoly_pos {θ : ℝ} (hθ : θ ∈ Icc (0 : ℝ) 1) :
+    0 < 341 + 200 * θ - 100 * θ ^ 2 - 50 * θ ^ 3 := by
+  simpa [canonicalQ0Den] using canonicalQ0Den_pos hθ
+
+/-- Exact closed form of the canonical reduced quantity intercept.  This lemma
+prevents the `L+θ` inverse from being reintroduced inside the government FOC
+normalization. -/
+lemma canonicalReducedQ0_closed {θ : ℝ} (hθ : θ ∈ Icc (0 : ℝ) 1) :
+    reducedQ0 2 (canonicalL θ) θ =
+      100 * cournotD θ / canonicalQ0Den θ := by
+  have hD : cournotD θ ≠ 0 := (cournotD_pos hθ).ne'
+  have hq0 : canonicalQ0Den θ ≠ 0 := (canonicalQ0Den_pos hθ).ne'
+  rw [canonicalL_closed hθ]
+  unfold reducedQ0 canonicalQ0Den
+  field_simp [hD, hq0]
+  unfold cournotD
+  ring
+
+/-- Polynomial numerator of the canonical own-subsidy government FOC at a generic
+symmetric policy point.  Its provenance is certified below directly against the
+primitive-reduced government gradient. -/
+def canonicalSubsidyFOCNumerator (θ s h : ℝ) : ℝ :=
+  -5945000 * θ ^ 9 * s - 1530000 * θ ^ 9 * h -
+    10947250 * θ ^ 8 * s + 19566000 * θ ^ 8 * h + 37710000 * θ ^ 8 +
+    93335750 * θ ^ 7 * s + 20268000 * θ ^ 7 * h - 4050000 * θ ^ 7 +
+    166217600 * θ ^ 6 * s - 283800600 * θ ^ 6 * h - 545652000 * θ ^ 6 -
+    524501245 * θ ^ 5 * s - 93583980 * θ ^ 5 * h + 43821000 * θ ^ 5 -
+    899191796 * θ ^ 4 * s + 1455164496 * θ ^ 4 * h + 2792259360 * θ ^ 4 +
+    1244829060 * θ ^ 3 * s + 169293240 * θ ^ 3 * h - 156168000 * θ ^ 3 +
+    2057170028 * θ ^ 2 * s - 3110178366 * θ ^ 2 * h - 5954933736 * θ ^ 2 -
+    1038864320 * θ * s - 85301280 * θ * h + 182736000 * θ -
+    1669070876 * s + 2307188268 * h + 4399276464
+
+/-- Polynomial numerator of the canonical own-infrastructure government FOC at a
+generic symmetric policy point. -/
+def canonicalInfrastructureFOCNumerator (θ s h : ℝ) : ℝ :=
+  -425000 * θ ^ 9 * s - 18450000 * θ ^ 9 * h +
+    72500 * θ ^ 8 * s - 14760000 * θ ^ 8 * h + 36900000 * θ ^ 8 -
+    5095000 * θ ^ 7 * s + 267120000 * θ ^ 7 * h - 27000000 * θ ^ 7 -
+    21541000 * θ ^ 6 * s + 252081000 * θ ^ 6 * h - 487980000 * θ ^ 6 +
+    82261700 * θ ^ 5 * s - 1376953200 * θ ^ 5 * h + 292140000 * θ ^ 5 +
+    203272360 * θ ^ 4 * s - 1403379360 * θ ^ 4 * h + 2423102400 * θ ^ 4 -
+    312559950 * θ ^ 3 * s + 2940588900 * θ ^ 3 * h - 1041120000 * θ ^ 3 -
+    633658435 * θ ^ 2 * s + 3404004840 * θ ^ 2 * h - 4806352440 * θ ^ 2 +
+    368932600 * θ * s - 2103584400 * θ * h + 1218240000 * θ +
+    640885630 * s - 3302078274 * h + 2551321080
+
+/-- Statement-faithful factorization of the actual canonical own-subsidy gradient.
+All denominator factors are inherited from the firm continuation and are nonzero
+on the manuscript domain. -/
+theorem canonicalSubsidyGradient_factorization
+    {θ : ℝ} (hθ : θ ∈ Icc (0 : ℝ) 1) (s h : ℝ) :
+    canonicalActiveGovernmentGradient θ (canonicalSymmetricPolicyPoint s h) .sA =
+      canonicalSubsidyFOCNumerator θ s h /
+        (648 * canonicalReducedDetNumerator θ * canonicalQ0Den θ) := by
+  have hD : cournotD θ ≠ 0 := (cournotD_pos hθ).ne'
+  have hred : canonicalReducedDetNumerator θ ≠ 0 :=
+    (canonicalReducedDetNumerator_pos hθ).ne'
+  have hq0 : canonicalQ0Den θ ≠ 0 := (canonicalQ0Den_pos hθ).ne'
+  unfold canonicalActiveGovernmentGradient modelGovernmentGradient
+    canonicalSymmetricPolicyPoint interiorPolicyQA interiorPolicyQB
+    qASlope qBSlope ownSubsidySlope ownInfrastructureSlope policyY
+    governmentDirectionalGradient reducedEmissions reducedEmissionsSlope
+  rw [canonicalT0_closed hθ, canonicalT1_closed hθ,
+    canonicalReducedQ0_closed hθ, canonicalChiG_closed, canonicalRho_closed]
+  unfold canonicalSubsidyFOCNumerator canonicalQ0Den
+  field_simp [hD, hred, hq0]
+  unfold canonicalReducedDetNumerator cournotD
+  ring
+
+/-- Statement-faithful factorization of the actual canonical own-infrastructure
+gradient. -/
+theorem canonicalInfrastructureGradient_factorization
+    {θ : ℝ} (hθ : θ ∈ Icc (0 : ℝ) 1) (s h : ℝ) :
+    canonicalActiveGovernmentGradient θ (canonicalSymmetricPolicyPoint s h) .hA =
+      canonicalInfrastructureFOCNumerator θ s h /
+        (180 * canonicalReducedDetNumerator θ * canonicalQ0Den θ) := by
+  have hD : cournotD θ ≠ 0 := (cournotD_pos hθ).ne'
+  have hred : canonicalReducedDetNumerator θ ≠ 0 :=
+    (canonicalReducedDetNumerator_pos hθ).ne'
+  have hq0 : canonicalQ0Den θ ≠ 0 := (canonicalQ0Den_pos hθ).ne'
+  unfold canonicalActiveGovernmentGradient modelGovernmentGradient
+    canonicalSymmetricPolicyPoint interiorPolicyQA interiorPolicyQB
+    qASlope qBSlope ownSubsidySlope ownInfrastructureSlope policyY
+    governmentDirectionalGradient reducedEmissions reducedEmissionsSlope
+  rw [canonicalT0_closed hθ, canonicalT1_closed hθ,
+    canonicalReducedQ0_closed hθ, canonicalChiG_closed, canonicalRho_closed]
+  unfold canonicalInfrastructureFOCNumerator canonicalQ0Den
+  field_simp [hD, hred, hq0]
+  unfold canonicalReducedDetNumerator cournotD
+  ring
+
+/-- The closed-form symmetric policy solves the polynomial subsidy FOC numerator.
+After clearing only the already-certified symmetric-policy denominator, this is a
+pure polynomial identity. -/
+theorem canonicalSymmetricSubsidyFOCNumerator_zero
+    {θ : ℝ} (hθ : θ ∈ Icc (0 : ℝ) 1) :
+    canonicalSubsidyFOCNumerator θ
+      (canonicalSymmetricS θ) (canonicalSymmetricH θ) = 0 := by
+  have hden : canonicalSymmetricDen θ ≠ 0 :=
+    (canonicalSymmetricDen_pos hθ).ne'
+  unfold canonicalSubsidyFOCNumerator canonicalSymmetricS canonicalSymmetricH
+  field_simp [hden]
+  unfold canonicalSymmetricDen canonicalSymmetricSNum canonicalSymmetricHNum
+  ring
+
+/-- The closed-form symmetric policy solves the polynomial infrastructure FOC
+numerator. -/
+theorem canonicalSymmetricInfrastructureFOCNumerator_zero
+    {θ : ℝ} (hθ : θ ∈ Icc (0 : ℝ) 1) :
+    canonicalInfrastructureFOCNumerator θ
+      (canonicalSymmetricS θ) (canonicalSymmetricH θ) = 0 := by
+  have hden : canonicalSymmetricDen θ ≠ 0 :=
+    (canonicalSymmetricDen_pos hθ).ne'
+  unfold canonicalInfrastructureFOCNumerator canonicalSymmetricS canonicalSymmetricH
+  field_simp [hden]
+  unfold canonicalSymmetricDen canonicalSymmetricSNum canonicalSymmetricHNum
+  ring
+
+/-- The canonical symmetric profile satisfies the actual government FOCs.  The
+proof is deliberately assembled from the two provenance factorizations and the
+polynomial numerator identities rather than normalizing the full rational gradient
+in one step. -/
 theorem canonicalSymmetricProfile_FOCs
     {θ : ℝ} (hθ : θ ∈ Icc (0 : ℝ) 1) :
     canonicalActiveGovernmentGradient θ (canonicalSymmetricProfile θ) .sA = 0 ∧
     canonicalActiveGovernmentGradient θ (canonicalSymmetricProfile θ) .hA = 0 := by
-  have hD : cournotD θ ≠ 0 := (cournotD_pos hθ).ne'
-  have hred : canonicalReducedDetNumerator θ ≠ 0 :=
-    (canonicalReducedDetNumerator_pos hθ).ne'
-  have hden : canonicalSymmetricDen θ ≠ 0 :=
-    (canonicalSymmetricDen_pos hθ).ne'
-  have hq0 : 341 + 200 * θ - 100 * θ ^ 2 - 50 * θ ^ 3 ≠ 0 :=
-    (canonicalQ0DenPoly_pos hθ).ne'
-  have hq0' : 341 + θ * 200 - θ ^ 2 * 100 - θ ^ 3 * 50 ≠ 0 := by
-    convert hq0 using 1 <;> ring
+  have hs := canonicalSubsidyGradient_factorization hθ
+    (canonicalSymmetricS θ) (canonicalSymmetricH θ)
+  have hh := canonicalInfrastructureGradient_factorization hθ
+    (canonicalSymmetricS θ) (canonicalSymmetricH θ)
+  rw [canonicalSymmetricSubsidyFOCNumerator_zero hθ] at hs
+  rw [canonicalSymmetricInfrastructureFOCNumerator_zero hθ] at hh
+  simp at hs hh
   constructor
-  · unfold canonicalActiveGovernmentGradient modelGovernmentGradient
-      canonicalSymmetricProfile canonicalSymmetricS canonicalSymmetricH
-      interiorPolicyQA interiorPolicyQB qASlope qBSlope ownSubsidySlope
-      ownInfrastructureSlope policyY governmentDirectionalGradient
-      reducedEmissions reducedEmissionsSlope
-    rw [canonicalT0_closed hθ, canonicalT1_closed hθ, canonicalL_closed hθ,
-      canonicalChiG_closed, canonicalRho_closed]
-    unfold reducedQ0
-    field_simp [hD, hred, hden]
-    field_simp [hq0']
-    unfold canonicalSymmetricDen canonicalSymmetricSNum canonicalSymmetricHNum
-      canonicalReducedDetNumerator cournotD
-    ring
-  · unfold canonicalActiveGovernmentGradient modelGovernmentGradient
-      canonicalSymmetricProfile canonicalSymmetricS canonicalSymmetricH
-      interiorPolicyQA interiorPolicyQB qASlope qBSlope ownSubsidySlope
-      ownInfrastructureSlope policyY governmentDirectionalGradient
-      reducedEmissions reducedEmissionsSlope
-    rw [canonicalT0_closed hθ, canonicalT1_closed hθ, canonicalL_closed hθ,
-      canonicalChiG_closed, canonicalRho_closed]
-    unfold reducedQ0
-    field_simp [hD, hred, hden]
-    field_simp [hq0']
-    unfold canonicalSymmetricDen canonicalSymmetricSNum canonicalSymmetricHNum
-      canonicalReducedDetNumerator cournotD
-    ring
+  · simpa [canonicalSymmetricProfile, canonicalSymmetricPolicyPoint] using hs
+  · simpa [canonicalSymmetricProfile, canonicalSymmetricPolicyPoint] using hh
 
 theorem canonicalSymmetricProfile_active_best_response
     {θ : ℝ} (hθ : θ ∈ Icc (0 : ℝ) 1) (ds dh : ℝ) :
