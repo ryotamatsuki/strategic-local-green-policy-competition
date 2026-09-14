@@ -144,8 +144,14 @@ theorem fullCournot_quantities_global_nash
         field_simp [hDpos.ne']
         unfold cournotD
         ring
+      have hzA_nonneg : 0 ≤ fullCournotOwnQuantity θ vA vB := by
+        rw [hzA]
+        exact hnumA.le
+      have hzB_nonneg : 0 ≤ fullCournotOwnQuantity θ vB vA := by
+        rw [hzB]
+        exact hnumB.le
       constructor
-      · exact stage3_active_global_best_response hFOCA hnumA.le hqA
-      · exact stage3_active_global_best_response hFOCB hnumB.le hqB
+      · exact stage3_active_global_best_response hFOCA hzA_nonneg hqA
+      · exact stage3_active_global_best_response hFOCB hzB_nonneg hqB
 
 end SLGPC
