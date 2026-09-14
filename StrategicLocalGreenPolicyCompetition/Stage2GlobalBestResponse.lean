@@ -44,7 +44,7 @@ theorem fullCournotOwnOperatingProfit_mono
     {θ vi vi' vj : ℝ} (hθ : θ ∈ Icc (0 : ℝ) 1) (hvi : vi ≤ vi') :
     fullCournotOwnOperatingProfit θ vi vj ≤
       fullCournotOwnOperatingProfit θ vi' vj := by
-  have hq := fullCournotOwnQuantity_mono hθ hvi
+  have hq := fullCournotOwnQuantity_mono (vj := vj) hθ hvi
   have hq0 := fullCournotOwnQuantity_nonneg θ vi vj
   have hq0' := fullCournotOwnQuantity_nonneg θ vi' vj
   have hdiff :
