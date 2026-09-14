@@ -45,7 +45,9 @@ theorem fullCournotOperatingProfit_le_duopoly_square
       le_of_not_ge hd
     have hdm :
         (2 * (wi + u) - θ * vj) / cournotD θ ≤ (wi + u) / 2 := by
-      linarith
+      calc
+        (2 * (wi + u) - θ * vj) / cournotD θ ≤ (0 : ℝ) := hdle
+        _ ≤ (wi + u) / 2 := hm
     rw [min_eq_right hdm, max_eq_left hdle]
     exact sq_nonneg _
 
