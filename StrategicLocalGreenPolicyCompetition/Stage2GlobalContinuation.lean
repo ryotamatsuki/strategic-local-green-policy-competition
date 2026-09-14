@@ -24,14 +24,28 @@ theorem fullCournotOperatingProfit_le_duopoly_square
     rw [max_eq_right hmin]
     have hle :
         min ((wi + u) / 2) ((2 * (wi + u) - θ * vj) / cournotD θ) ≤
-          (2 * (wi + u) - θ * vj) / cournotD θ :=
-      min_le_right _ _
+          (2 * (wi + u) - θ * vj) / cournotD θ := by
+      exact min_le_right _ _
+    have hdiff :
+        0 ≤ (2 * (wi + u) - θ * vj) / cournotD θ -
+          min ((wi + u) / 2) ((2 * (wi + u) - θ * vj) / cournotD θ) :=
+      sub_nonneg.mpr hle
+    have hsum :
+        0 ≤ (2 * (wi + u) - θ * vj) / cournotD θ +
+          min ((wi + u) / 2) ((2 * (wi + u) - θ * vj) / cournotD θ) :=
+      add_nonneg hd hmin
+    have hprod :
+        0 ≤ ((2 * (wi + u) - θ * vj) / cournotD θ -
+          min ((wi + u) / 2) ((2 * (wi + u) - θ * vj) / cournotD θ)) *
+          ((2 * (wi + u) - θ * vj) / cournotD θ +
+          min ((wi + u) / 2) ((2 * (wi + u) - θ * vj) / cournotD θ)) :=
+      mul_nonneg hdiff hsum
     nlinarith
   · have hdle : (2 * (wi + u) - θ * vj) / cournotD θ ≤ 0 :=
       le_of_not_ge hd
     have hdm :
-        (2 * (wi + u) - θ * vj) / cournotD θ ≤ (wi + u) / 2 :=
-      le_trans hdle hm
+        (2 * (wi + u) - θ * vj) / cournotD θ ≤ (wi + u) / 2 := by
+      linarith
     rw [min_eq_right hdm, max_eq_left hdle]
     exact sq_nonneg _
 
@@ -59,6 +73,14 @@ theorem fullScalarContinuationProfit_le_monopolyScalarProfit
     exact max_le hm (min_le_left _ _)
   have hsquare :
       fullCournotOwnQuantity θ (wi + u) vj ^ 2 ≤ ((wi + u) / 2) ^ 2 := by
+    have hdiff : 0 ≤ (wi + u) / 2 - fullCournotOwnQuantity θ (wi + u) vj :=
+      sub_nonneg.mpr hqle
+    have hsum : 0 ≤ (wi + u) / 2 + fullCournotOwnQuantity θ (wi + u) vj :=
+      add_nonneg hm hq0
+    have hprod :
+        0 ≤ ((wi + u) / 2 - fullCournotOwnQuantity θ (wi + u) vj) *
+          ((wi + u) / 2 + fullCournotOwnQuantity θ (wi + u) vj) :=
+      mul_nonneg hdiff hsum
     nlinarith
   unfold fullScalarContinuationProfit fullCournotOwnOperatingProfit
     monopolyScalarProfit monopolyOwnQuantity
@@ -96,8 +118,11 @@ theorem fullScalarContinuationProfit_eq_inactive
     fullScalarContinuationProfit R θ wi vj u = inactiveScalarProfit R u := by
   unfold fullScalarContinuationProfit fullCournotOwnOperatingProfit
     fullCournotOwnQuantity inactiveScalarProfit duopolyOwnQuantity at *
-  have hmin : min ((wi + u) / 2) ((2 * (wi + u) - θ * vj) / cournotD θ) ≤ 0 :=
-    le_trans (min_le_right _ _) hD
+  have hmin : min ((wi + u) / 2) ((2 * (wi + u) - θ * vj) / cournotD θ) ≤ 0 := by
+    have hright :
+        min ((wi + u) / 2) ((2 * (wi + u) - θ * vj) / cournotD θ) ≤
+          (2 * (wi + u) - θ * vj) / cournotD θ := min_le_right _ _
+    linarith
   rw [max_eq_left hmin]
   ring
 
