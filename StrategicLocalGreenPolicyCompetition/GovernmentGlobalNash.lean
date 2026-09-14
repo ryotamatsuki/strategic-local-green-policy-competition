@@ -138,7 +138,7 @@ theorem canonicalSymmetricHNum_pos {θ : ℝ} (hθ : θ ∈ Icc (0 : ℝ) 1) :
     have h3n : 0 ≤ 490198555840 * θ ^ 3 * (1 - θ) ^ 5 := by positivity
     have h4n : 0 ≤ 526058534680 * θ ^ 4 * (1 - θ) ^ 4 := by positivity
     have h5n : 0 ≤ 331591967000 * θ ^ 5 * (1 - θ) ^ 3 := by positivity
-    have h6n : 0 ≤ 117924432920 * θ ^ 6 * (1 - θ) ^ 2 := by positivity
+    have h6n : 0 ≤ 117924432920 * θ ^ 6 * (1 - θ) ^ 4 := by positivity
     have h7n : 0 ≤ 20944472920 * θ ^ 7 * (1 - θ) := by positivity
     have h8n : 0 ≤ 1302916720 * θ ^ 8 := by positivity
     have hb : 0 < canonicalSymmetricHNumBernstein θ := by
@@ -216,7 +216,8 @@ theorem canonicalSymmetricProfile_FOCs
     rw [canonicalT0_closed hθ, canonicalT1_closed hθ, canonicalL_closed hθ,
       canonicalChiG_closed, canonicalRho_closed]
     unfold reducedQ0
-    field_simp [hD, hred, hden, hq0, hq0']
+    field_simp [hD, hred, hden]
+    field_simp [hq0']
     unfold canonicalSymmetricDen canonicalSymmetricSNum canonicalSymmetricHNum
       canonicalReducedDetNumerator cournotD
     ring
@@ -228,7 +229,8 @@ theorem canonicalSymmetricProfile_FOCs
     rw [canonicalT0_closed hθ, canonicalT1_closed hθ, canonicalL_closed hθ,
       canonicalChiG_closed, canonicalRho_closed]
     unfold reducedQ0
-    field_simp [hD, hred, hden, hq0, hq0']
+    field_simp [hD, hred, hden]
+    field_simp [hq0']
     unfold canonicalSymmetricDen canonicalSymmetricSNum canonicalSymmetricHNum
       canonicalReducedDetNumerator cournotD
     ring
