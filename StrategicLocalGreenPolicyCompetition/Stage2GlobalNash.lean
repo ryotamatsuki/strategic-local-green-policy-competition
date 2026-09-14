@@ -8,7 +8,7 @@ open Set
 namespace SLGPC
 
 set_option maxHeartbeats 1000000
-local instance (p : Prop) : Decidable p := Classical.propDecidable p
+local instance stage2GlobalNashDecidableProp (p : Prop) : Decidable p := Classical.propDecidable p
 
 /-- Symmetric active-firm global best response on the B-monopoly branch. -/
 theorem model_bMonopoly_fullScalar_best_response
@@ -269,10 +269,10 @@ def modelStage2Continuation (kx kg μ θ wA wB : ℝ) : Stage2Continuation :=
   else
     bMonopolyContinuation (investmentR kx kg μ) wB
 
-/-- Across the complete five-regime partition, the selected scalar continuation is
- a global Nash equilibrium of Stage 2 against every nonnegative scalar investment
- deviation.  This includes `theta=0`, where the endpoint certificate forces the
- duopoly branch. -/
+/-- Across the complete five-regime Stage-2 partition, the selected scalar
+continuation is a global Nash equilibrium against every nonnegative scalar
+investment deviation.  This includes `theta = 0`, where the endpoint certificate
+forces the duopoly branch. -/
 theorem modelStage2Continuation_fullScalar_global_nash
     {kx kg μ θ wA wB uA uB : ℝ}
     (hkx : 0 < kx) (hkg : 0 < kg)
