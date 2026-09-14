@@ -22,8 +22,10 @@ theorem fullCournotOperatingProfit_le_duopoly_square
         0 ≤ min ((wi + u) / 2) ((2 * (wi + u) - θ * vj) / cournotD θ) :=
       le_min hm hd
     rw [max_eq_right hmin]
-    have hle := min_le_right ((wi + u) / 2)
-      ((2 * (wi + u) - θ * vj) / cournotD θ)
+    have hle :
+        min ((wi + u) / 2) ((2 * (wi + u) - θ * vj) / cournotD θ) ≤
+          (2 * (wi + u) - θ * vj) / cournotD θ :=
+      min_le_right _ _
     nlinarith
   · have hdle : (2 * (wi + u) - θ * vj) / cournotD θ ≤ 0 :=
       le_of_not_ge hd
@@ -158,7 +160,9 @@ theorem model_duopoly_fullScalar_best_responses
       exact hqB.le
     · rw [hownB]
       exact hmonB
-  have hfocs := model_duopoly_scalar_focs hkx hkg hθ hR
+  have hfocs := model_duopoly_scalar_focs
+    (kx := kx) (kg := kg) (μ := μ) (θ := θ) (wA := wA) (wB := wB)
+    hkx hkg hθ hR
   constructor
   · calc
       fullScalarContinuationProfit R θ wA (wB + z.uB) uA ≤
