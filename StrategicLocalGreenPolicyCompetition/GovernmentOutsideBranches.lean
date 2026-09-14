@@ -116,7 +116,7 @@ theorem canonicalKinkQuadratic_nonpos (ds dh : ℝ) :
   by_cases hdir : ds ≠ 0 ∨ dh ≠ 0
   · exact (twoByTwo_quadratic_neg_of_sylvester
       canonicalKinkHessian_sylvester.1 canonicalKinkHessian_sylvester.2 hdir).le
-  · push_neg at hdir
+  · push Not at hdir
     rcases hdir with ⟨rfl, rfl⟩
     norm_num
 
@@ -127,7 +127,7 @@ theorem canonicalMonopolyQuadratic_nonpos (ds dh : ℝ) :
   by_cases hdir : ds ≠ 0 ∨ dh ≠ 0
   · exact (twoByTwo_quadratic_neg_of_sylvester
       canonicalMonopolyHessian_sylvester.1 canonicalMonopolyHessian_sylvester.2 hdir).le
-  · push_neg at hdir
+  · push Not at hdir
     rcases hdir with ⟨rfl, rfl⟩
     norm_num
 
