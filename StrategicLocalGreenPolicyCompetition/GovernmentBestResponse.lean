@@ -262,7 +262,9 @@ lemma twoByTwo_response_solution
         b * ((b * p - a * q) / (a * c - b ^ 2)) = -p ∧
     b * ((b * q - c * p) / (a * c - b ^ 2)) +
         c * ((b * p - a * q) / (a * c - b ^ 2)) = -q := by
-  constructor <;> field_simp [hdet] <;> ring
+  have hdet' : -b ^ 2 + c * a ≠ 0 := by
+    simpa [sub_eq_add_neg, add_comm, add_left_comm, add_assoc, mul_comm] using hdet
+  constructor <;> field_simp [hdet, hdet'] <;> ring_nf
 
 /-- The two canonical response coefficients solve the differentiated government
 FOC system exactly. -/
@@ -276,12 +278,12 @@ theorem canonicalResponse_solves_linearized_FOCs
         canonicalGovernmentHessianEntry θ .hA .hA *
           canonicalInfrastructureResponse θ =
       -canonicalGovernmentHessianEntry θ .hA .sB := by
+  have hdet0 := (canonicalOwnPolicyDet_pos hθ).ne'
   have hdet :
       canonicalGovernmentHessianEntry θ .sA .sA *
           canonicalGovernmentHessianEntry θ .hA .hA -
         canonicalGovernmentHessianEntry θ .sA .hA ^ 2 ≠ 0 := by
-    exact (canonicalOwnPolicyDet_pos hθ).ne' |> by
-      simpa [canonicalOwnPolicyDet, ownPolicyDet]
+    simpa [canonicalOwnPolicyDet, ownPolicyDet] using hdet0
   have h := twoByTwo_response_solution
     (a := canonicalGovernmentHessianEntry θ .sA .sA)
     (b := canonicalGovernmentHessianEntry θ .sA .hA)
