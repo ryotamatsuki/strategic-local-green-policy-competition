@@ -33,7 +33,7 @@ theorem fullScalar_zero_best_response_of_inactive
       unfold duopolyOwnQuantity
       exact div_nonpos_of_nonpos_of_nonneg (by linarith) hDpos.le
     rw [fullScalarContinuationProfit_eq_inactive hq, hzero]
-    exact inactive_branch_max_at_zero hRpos hu
+    simpa [inactiveScalarProfit] using inactive_branch_max_at_zero hRpos hu
   · have hnum : 0 < 2 * (wi + u) - θ * vj := by
       linarith [lt_of_not_ge hact]
     have hqnonneg : 0 ≤ duopolyOwnQuantity θ wi vj u := by
@@ -111,8 +111,8 @@ theorem model_aMonopoly_fullScalar_best_response
     · rw [hmEq]
       exact hduo
   have hfoc := model_aMonopoly_scalar_foc
-    (kx := kx) (kg := kg) (μ := μ) (θ := θ) (wA := wA) (by exact hkx)
-    (by exact hkg) hθ hR
+    (kx := kx) (kg := kg) (μ := μ) (θ := θ) (wA := wA) (wB := wB)
+    hkx hkg hθ hR
   calc
     fullScalarContinuationProfit R θ wA wB u ≤ monopolyScalarProfit R wA u :=
       fullScalarContinuationProfit_le_monopolyScalarProfit hwA hu
