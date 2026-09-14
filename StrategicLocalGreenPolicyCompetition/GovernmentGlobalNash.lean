@@ -272,16 +272,16 @@ theorem canonicalSubsidyGradient_factorization
   have hD : cournotD θ ≠ 0 := (cournotD_pos hθ).ne'
   have hred : canonicalReducedDetNumerator θ ≠ 0 :=
     (canonicalReducedDetNumerator_pos hθ).ne'
-  have hq0n := canonicalQ0Den_normalized_ne hθ
+  have hq0 : canonicalQ0Den θ ≠ 0 := (canonicalQ0Den_pos hθ).ne'
   unfold canonicalActiveGovernmentGradient modelGovernmentGradient
     canonicalSymmetricPolicyPoint interiorPolicyQA interiorPolicyQB
     qASlope qBSlope ownSubsidySlope ownInfrastructureSlope policyY
     governmentDirectionalGradient reducedEmissions reducedEmissionsSlope
   rw [canonicalT0_closed hθ, canonicalT1_closed hθ,
     canonicalReducedQ0_closed hθ, canonicalChiG_closed, canonicalRho_closed]
-  unfold canonicalSubsidyFOCNumerator canonicalQ0Den
-  field_simp [hD, hred, hq0n]
-  unfold canonicalReducedDetNumerator cournotD
+  unfold canonicalSubsidyFOCNumerator
+  field_simp [hD, hred, hq0]
+  unfold canonicalQ0Den canonicalReducedDetNumerator cournotD
   ring_nf
 
 /-- Statement-faithful factorization of the actual canonical own-infrastructure
@@ -294,16 +294,16 @@ theorem canonicalInfrastructureGradient_factorization
   have hD : cournotD θ ≠ 0 := (cournotD_pos hθ).ne'
   have hred : canonicalReducedDetNumerator θ ≠ 0 :=
     (canonicalReducedDetNumerator_pos hθ).ne'
-  have hq0n := canonicalQ0Den_normalized_ne hθ
+  have hq0 : canonicalQ0Den θ ≠ 0 := (canonicalQ0Den_pos hθ).ne'
   unfold canonicalActiveGovernmentGradient modelGovernmentGradient
     canonicalSymmetricPolicyPoint interiorPolicyQA interiorPolicyQB
     qASlope qBSlope ownSubsidySlope ownInfrastructureSlope policyY
     governmentDirectionalGradient reducedEmissions reducedEmissionsSlope
   rw [canonicalT0_closed hθ, canonicalT1_closed hθ,
     canonicalReducedQ0_closed hθ, canonicalChiG_closed, canonicalRho_closed]
-  unfold canonicalInfrastructureFOCNumerator canonicalQ0Den
-  field_simp [hD, hred, hq0n]
-  unfold canonicalReducedDetNumerator cournotD
+  unfold canonicalInfrastructureFOCNumerator
+  field_simp [hD, hred, hq0]
+  unfold canonicalQ0Den canonicalReducedDetNumerator cournotD
   ring_nf
 
 /-- The closed-form symmetric policy solves the polynomial subsidy FOC numerator.
