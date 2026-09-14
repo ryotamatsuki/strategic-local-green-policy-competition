@@ -262,9 +262,19 @@ lemma twoByTwo_response_solution
         b * ((b * p - a * q) / (a * c - b ^ 2)) = -p ∧
     b * ((b * q - c * p) / (a * c - b ^ 2)) +
         c * ((b * p - a * q) / (a * c - b ^ 2)) = -q := by
-  have hdet' : -b ^ 2 + c * a ≠ 0 := by
-    simpa [sub_eq_add_neg, add_comm, add_left_comm, add_assoc, mul_comm] using hdet
-  constructor <;> field_simp [hdet, hdet'] <;> ring_nf
+  constructor
+  · calc
+      a * ((b * q - c * p) / (a * c - b ^ 2)) +
+          b * ((b * p - a * q) / (a * c - b ^ 2)) =
+        ((b ^ 2 - a * c) * p) / (a * c - b ^ 2) := by ring
+      _ = (-(a * c - b ^ 2) * p) / (a * c - b ^ 2) := by ring
+      _ = -p := by field_simp [hdet]
+  · calc
+      b * ((b * q - c * p) / (a * c - b ^ 2)) +
+          c * ((b * p - a * q) / (a * c - b ^ 2)) =
+        ((b ^ 2 - a * c) * q) / (a * c - b ^ 2) := by ring
+      _ = (-(a * c - b ^ 2) * q) / (a * c - b ^ 2) := by ring
+      _ = -q := by field_simp [hdet]
 
 /-- The two canonical response coefficients solve the differentiated government
 FOC system exactly. -/
