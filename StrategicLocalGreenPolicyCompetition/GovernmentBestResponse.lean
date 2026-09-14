@@ -7,8 +7,8 @@ open Set
 
 namespace SLGPC
 
-/-- The canonical own-subsidy Hessian numerator written as a polynomial in
-`u = theta^2`. -/
+/-- Polynomial numerator certifying negativity of the canonical own-subsidy
+Hessian entry after the positive denominator has been removed. -/
 def canonicalHssU (u : ℝ) : ℝ :=
   74312500 * u ^ 6 - 1737628125 * u ^ 5 + 16311746125 * u ^ 4 -
     78435270800 * u ^ 3 + 203312608309 * u ^ 2 -
@@ -34,8 +34,13 @@ lemma canonicalHssPoly_eq_u (θ : ℝ) :
   unfold canonicalHssPoly canonicalHssU
   ring
 
-/-- The numerator determining the sign of the canonical own-subsidy Hessian
-entry is positive throughout the rivalry interval. -/
+lemma theta_sq_mem_Icc {θ : ℝ} (hθ : θ ∈ Icc (0 : ℝ) 1) :
+    θ ^ 2 ∈ Icc (0 : ℝ) 1 := by
+  constructor
+  · exact sq_nonneg θ
+  · nlinarith [mul_nonneg hθ.1 (sub_nonneg.mpr hθ.2)]
+
+/-- The canonical own-subsidy Hessian numerator is positive on `[0,1]`. -/
 theorem canonicalHssU_pos {u : ℝ} (hu : u ∈ Icc (0 : ℝ) 1) :
     0 < canonicalHssU u := by
   rcases hu with ⟨hu0, hu1⟩
@@ -43,25 +48,19 @@ theorem canonicalHssU_pos {u : ℝ} (hu : u ∈ Icc (0 : ℝ) 1) :
   · subst u
     norm_num [canonicalHssU]
   · have huLt : u < 1 := lt_of_le_of_ne hu1 h1
-    have h1u : 0 < 1 - u := by linarith
+    have hbase : 0 < 1 - u := by linarith
     have h0 : 0 < 4268648765370 * (1 - u) ^ 6 := by positivity
-    have hA : 0 ≤ 17540580608610 * u * (1 - u) ^ 5 := by positivity
-    have hB : 0 ≤ 29772549811770 * u ^ 2 * (1 - u) ^ 4 := by positivity
-    have hC : 0 ≤ 26704310344380 * u ^ 3 * (1 - u) ^ 3 := by positivity
-    have hD : 0 ≤ 13343059151820 * u ^ 4 * (1 - u) ^ 2 := by positivity
-    have hE : 0 ≤ 3520247223000 * u ^ 5 * (1 - u) := by positivity
-    have hF : 0 ≤ 383109822030 * u ^ 6 := by positivity
+    have h1n : 0 ≤ 17540580608610 * u * (1 - u) ^ 5 := by positivity
+    have h2n : 0 ≤ 29772549811770 * u ^ 2 * (1 - u) ^ 4 := by positivity
+    have h3n : 0 ≤ 26704310344380 * u ^ 3 * (1 - u) ^ 3 := by positivity
+    have h4n : 0 ≤ 13343059151820 * u ^ 4 * (1 - u) ^ 2 := by positivity
+    have h5n : 0 ≤ 3520247223000 * u ^ 5 * (1 - u) := by positivity
+    have h6n : 0 ≤ 383109822030 * u ^ 6 := by positivity
     have hscaled : 0 < 30 * canonicalHssU u := by
       rw [canonicalHssU_scaled_eq_bernstein]
       unfold canonicalHssUBernsteinScaled
       nlinarith
     nlinarith
-
-lemma theta_sq_mem_Icc {θ : ℝ} (hθ : θ ∈ Icc (0 : ℝ) 1) :
-    θ ^ 2 ∈ Icc (0 : ℝ) 1 := by
-  constructor
-  · exact sq_nonneg θ
-  · nlinarith [mul_nonneg hθ.1 (sub_nonneg.mpr hθ.2)]
 
 /-- Canonical active-duopoly government welfare is strictly concave in its own
 subsidy direction. -/
@@ -76,8 +75,7 @@ theorem canonicalGovernmentHss_neg
     mul_pos (by norm_num) (canonicalSlopeCore_pos hθ)
   exact div_neg_of_neg_of_pos (by linarith) hden
 
-/-- The canonical own-policy Hessian determinant is positive on the full rivalry
-interval, including the zero-rivalry endpoint. -/
+/-- The canonical own-policy Hessian determinant is positive on `[0,1]`. -/
 theorem canonicalOwnPolicyDet_pos
     {θ : ℝ} (hθ : θ ∈ Icc (0 : ℝ) 1) :
     0 < canonicalOwnPolicyDet θ := by
@@ -99,11 +97,9 @@ theorem canonicalGovernmentOwnQuadraticForm_neg
   · exact hdir
 
 /-- Exact first directional coefficient of the reduced quadratic government
-objective.  Since the objective is quadratic, this is also its directional
-derivative, but the definition itself is purely algebraic. -/
+objective. -/
 def governmentDirectionalGradient
-    (θ rho cg kg κ d e β ξ Ebar qA qB sA hA
-      aq bq es eh : ℝ) : ℝ :=
+    (θ rho cg kg κ d e β ξ Ebar qA qB sA hA aq bq es eh : ℝ) : ℝ :=
   2 * ((1 : ℝ) / 4 + rho) * qA * aq +
     (1 : ℝ) / 2 * qB * bq +
     θ / 2 * (aq * qB + qA * bq) -
@@ -112,8 +108,8 @@ def governmentDirectionalGradient
     d * (reducedEmissions e β cg kg ξ qA sA hA - Ebar) *
       reducedEmissionsSlope e β cg kg ξ aq es eh
 
-/-- Directional gradient of the Stage-1 policy objective after inserting the
-Phase-3 affine firm continuation. -/
+/-- Government directional gradient after inserting the Phase-3 affine firm
+continuation. -/
 def modelGovernmentGradient
     (kx kg μ ν κ d e β ξ Ebar m L θ : ℝ)
     (z : PolicyProfile) (i : PolicyCoord) : ℝ :=
@@ -124,9 +120,7 @@ def modelGovernmentGradient
     (qASlope kg μ ν L θ i) (qBSlope kg μ ν L θ i)
     (ownSubsidySlope i) (ownInfrastructureSlope i)
 
-/-- A policy shift changes the exact first directional coefficient by the
-corresponding Hessian entry times the shift.  This is the algebraic content of
-linearizing the government FOC system. -/
+/-- Exact affine-gradient/Hessian identity. -/
 theorem modelGovernmentGradient_shift
     {kx kg μ ν κ d e β ξ Ebar m L θ r : ℝ}
     {z : PolicyProfile} (i j : PolicyCoord) :
@@ -141,8 +135,6 @@ theorem modelGovernmentGradient_shift
     reducedEmissions reducedEmissionsSlope
   ring
 
-/-- The model-specialized Hessian inherits symmetry from the generic quadratic
- government objective. -/
 lemma modelGovernmentHessianEntry_symm
     (kx kg μ ν κ d e β ξ L θ : ℝ) (i j : PolicyCoord) :
     modelGovernmentHessianEntry kx kg μ ν κ d e β ξ L θ i j =
@@ -177,7 +169,7 @@ theorem interiorReducedGovernmentPolicyWelfare_own_shift_expansion
   simp [qASlope, qBSlope, ownSubsidySlope, ownInfrastructureSlope]
   ring
 
-/-- Canonical active-duopoly government objective used in the global witness. -/
+/-- Canonical active-duopoly government objective. -/
 def canonicalActiveGovernmentWelfare (θ : ℝ) (z : PolicyProfile) : ℝ :=
   interiorReducedGovernmentPolicyWelfare 4 18 (9 / 10 : ℝ) (6 / 5 : ℝ)
     (4 / 5 : ℝ) 2 (11 / 10 : ℝ) (17 / 10 : ℝ) (1 / 10 : ℝ)
@@ -206,13 +198,12 @@ theorem canonicalActiveGovernment_strict_best_response
     {ds dh : ℝ} (hdir : ds ≠ 0 ∨ dh ≠ 0) :
     canonicalActiveGovernmentWelfare θ (ownPolicyShift z ds dh) <
       canonicalActiveGovernmentWelfare θ z := by
-  have hexp :=
-    interiorReducedGovernmentPolicyWelfare_own_shift_expansion
-      (kx := (4 : ℝ)) (kg := (18 : ℝ)) (μ := (9 / 10 : ℝ))
-      (ν := (6 / 5 : ℝ)) (κ := (4 / 5 : ℝ)) (d := (2 : ℝ))
-      (e := (11 / 10 : ℝ)) (β := (17 / 10 : ℝ)) (ξ := (1 / 10 : ℝ))
-      (Ebar := (0 : ℝ)) (m := (2 : ℝ)) (L := canonicalL θ)
-      (θ := θ) (ds := ds) (dh := dh) (z := z)
+  have hexp := interiorReducedGovernmentPolicyWelfare_own_shift_expansion
+    (kx := (4 : ℝ)) (kg := (18 : ℝ)) (μ := (9 / 10 : ℝ))
+    (ν := (6 / 5 : ℝ)) (κ := (4 / 5 : ℝ)) (d := (2 : ℝ))
+    (e := (11 / 10 : ℝ)) (β := (17 / 10 : ℝ)) (ξ := (1 / 10 : ℝ))
+    (Ebar := (0 : ℝ)) (m := (2 : ℝ)) (L := canonicalL θ)
+    (θ := θ) (ds := ds) (dh := dh) (z := z)
   have hs' :
       modelGovernmentGradient 4 18 (9 / 10 : ℝ) (6 / 5 : ℝ)
         (4 / 5 : ℝ) 2 (11 / 10 : ℝ) (17 / 10 : ℝ) (1 / 10 : ℝ)
@@ -247,26 +238,31 @@ theorem canonicalActiveGovernment_best_response
     (ds dh : ℝ) :
     canonicalActiveGovernmentWelfare θ (ownPolicyShift z ds dh) ≤
       canonicalActiveGovernmentWelfare θ z := by
-  by_cases hdir : ds ≠ 0 ∨ dh ≠ 0
-  · exact (canonicalActiveGovernment_strict_best_response hθ hs hh hdir).le
-  · have hds : ds = 0 := by
-      by_contra hne
-      exact hdir (Or.inl hne)
-    have hdh : dh = 0 := by
-      by_contra hne
-      exact hdir (Or.inr hne)
-    subst ds
-    subst dh
-    simp [ownPolicyShift, shiftPolicy]
+  by_cases hds : ds = 0
+  · by_cases hdh : dh = 0
+    · subst ds
+      subst dh
+      simp [ownPolicyShift, shiftPolicy]
+    · exact (canonicalActiveGovernment_strict_best_response hθ hs hh (Or.inr hdh)).le
+  · exact (canonicalActiveGovernment_strict_best_response hθ hs hh (Or.inl hds)).le
 
-/-- Own-subsidy response coefficient obtained from the same 2x2 FOC system as
-Phase 7's infrastructure response. -/
+/-- Own-subsidy response coefficient from the same 2x2 FOC system as the Phase-7
+infrastructure response. -/
 def canonicalSubsidyResponse (θ : ℝ) : ℝ :=
   (canonicalGovernmentHessianEntry θ .sA .hA *
       canonicalGovernmentHessianEntry θ .hA .sB -
     canonicalGovernmentHessianEntry θ .hA .hA *
       canonicalGovernmentHessianEntry θ .sA .sB) /
     canonicalOwnPolicyDet θ
+
+/-- Generic inverse-of-a-symmetric-2x2-system identity. -/
+lemma twoByTwo_response_solution
+    {a b c p q : ℝ} (hdet : a * c - b ^ 2 ≠ 0) :
+    a * ((b * q - c * p) / (a * c - b ^ 2)) +
+        b * ((b * p - a * q) / (a * c - b ^ 2)) = -p ∧
+    b * ((b * q - c * p) / (a * c - b ^ 2)) +
+        c * ((b * p - a * q) / (a * c - b ^ 2)) = -q := by
+  constructor <;> field_simp [hdet] <;> ring
 
 /-- The two canonical response coefficients solve the differentiated government
 FOC system exactly. -/
@@ -280,23 +276,21 @@ theorem canonicalResponse_solves_linearized_FOCs
         canonicalGovernmentHessianEntry θ .hA .hA *
           canonicalInfrastructureResponse θ =
       -canonicalGovernmentHessianEntry θ .hA .sB := by
-  have hdet : canonicalOwnPolicyDet θ ≠ 0 :=
-    (canonicalOwnPolicyDet_pos hθ).ne'
-  have hdet' :
+  have hdet :
       canonicalGovernmentHessianEntry θ .sA .sA *
           canonicalGovernmentHessianEntry θ .hA .hA -
         canonicalGovernmentHessianEntry θ .sA .hA ^ 2 ≠ 0 := by
-    simpa [canonicalOwnPolicyDet, ownPolicyDet] using hdet
-  have hdet'' :
-      -canonicalGovernmentHessianEntry θ .sA .hA ^ 2 +
-          canonicalGovernmentHessianEntry θ .hA .hA *
-            canonicalGovernmentHessianEntry θ .sA .sA ≠ 0 := by
-    convert hdet' using 1 <;> ring
-  constructor <;>
-    unfold canonicalSubsidyResponse canonicalInfrastructureResponse
-      canonicalCrossInstrumentNumerator crossInstrumentNumerator
-      canonicalOwnPolicyDet ownPolicyDet <;>
-    field_simp [hdet', hdet''] <;> ring
+    exact (canonicalOwnPolicyDet_pos hθ).ne' |> by
+      simpa [canonicalOwnPolicyDet, ownPolicyDet]
+  have h := twoByTwo_response_solution
+    (a := canonicalGovernmentHessianEntry θ .sA .sA)
+    (b := canonicalGovernmentHessianEntry θ .sA .hA)
+    (c := canonicalGovernmentHessianEntry θ .hA .hA)
+    (p := canonicalGovernmentHessianEntry θ .sA .sB)
+    (q := canonicalGovernmentHessianEntry θ .hA .sB) hdet
+  simpa [canonicalSubsidyResponse, canonicalInfrastructureResponse,
+    canonicalCrossInstrumentNumerator, crossInstrumentNumerator,
+    canonicalOwnPolicyDet, ownPolicyDet] using h
 
 /-- Actual active-branch best-response path induced by changing the rival subsidy
 by `r`, starting from any canonical active FOC point. -/
@@ -306,10 +300,14 @@ def canonicalActiveBRPath
     (r * canonicalSubsidyResponse θ)
     (r * canonicalInfrastructureResponse θ)
 
-/-- Along the canonical path, both exact government FOCs remain zero.  Combined
-with strict concavity, this turns the Phase-7 linear-system quotient into the
-slope of the actual unique active-branch best response, not merely a formal FOC
-solution. -/
+lemma canonicalActiveGovernmentGradient_shift
+    {θ r : ℝ} {z : PolicyProfile} (i j : PolicyCoord) :
+    canonicalActiveGovernmentGradient θ (shiftPolicy z j r) i =
+      canonicalActiveGovernmentGradient θ z i +
+        r * canonicalGovernmentHessianEntry θ i j := by
+  exact modelGovernmentGradient_shift i j
+
+/-- Along the canonical path both exact government FOCs remain zero. -/
 theorem canonicalActiveBRPath_FOCs
     {θ : ℝ} (hθ : θ ∈ Icc (0 : ℝ) 1) {z : PolicyProfile}
     (hs : canonicalActiveGovernmentGradient θ z .sA = 0)
@@ -318,50 +316,17 @@ theorem canonicalActiveBRPath_FOCs
     canonicalActiveGovernmentGradient θ (canonicalActiveBRPath θ z r) .sA = 0 ∧
     canonicalActiveGovernmentGradient θ (canonicalActiveBRPath θ z r) .hA = 0 := by
   rcases canonicalResponse_solves_linearized_FOCs hθ with ⟨hrespS, hrespH⟩
-  have hs' :
-      modelGovernmentGradient 4 18 (9 / 10 : ℝ) (6 / 5 : ℝ)
-        (4 / 5 : ℝ) 2 (11 / 10 : ℝ) (17 / 10 : ℝ) (1 / 10 : ℝ)
-        0 2 (canonicalL θ) θ z .sA = 0 := by
-    simpa [canonicalActiveGovernmentGradient] using hs
-  have hh' :
-      modelGovernmentGradient 4 18 (9 / 10 : ℝ) (6 / 5 : ℝ)
-        (4 / 5 : ℝ) 2 (11 / 10 : ℝ) (17 / 10 : ℝ) (1 / 10 : ℝ)
-        0 2 (canonicalL θ) θ z .hA = 0 := by
-    simpa [canonicalActiveGovernmentGradient] using hh
-  have hrespS' :
-      modelGovernmentHessianEntry 4 18 (9 / 10 : ℝ) (6 / 5 : ℝ)
-        (4 / 5 : ℝ) 2 (11 / 10 : ℝ) (17 / 10 : ℝ) (1 / 10 : ℝ)
-        (canonicalL θ) θ .sA .sA * canonicalSubsidyResponse θ +
-      modelGovernmentHessianEntry 4 18 (9 / 10 : ℝ) (6 / 5 : ℝ)
-        (4 / 5 : ℝ) 2 (11 / 10 : ℝ) (17 / 10 : ℝ) (1 / 10 : ℝ)
-        (canonicalL θ) θ .sA .hA * canonicalInfrastructureResponse θ =
-      -modelGovernmentHessianEntry 4 18 (9 / 10 : ℝ) (6 / 5 : ℝ)
-        (4 / 5 : ℝ) 2 (11 / 10 : ℝ) (17 / 10 : ℝ) (1 / 10 : ℝ)
-        (canonicalL θ) θ .sA .sB := by
-    simpa [canonicalGovernmentHessianEntry] using hrespS
-  have hrespH' :
-      modelGovernmentHessianEntry 4 18 (9 / 10 : ℝ) (6 / 5 : ℝ)
-        (4 / 5 : ℝ) 2 (11 / 10 : ℝ) (17 / 10 : ℝ) (1 / 10 : ℝ)
-        (canonicalL θ) θ .hA .sA * canonicalSubsidyResponse θ +
-      modelGovernmentHessianEntry 4 18 (9 / 10 : ℝ) (6 / 5 : ℝ)
-        (4 / 5 : ℝ) 2 (11 / 10 : ℝ) (17 / 10 : ℝ) (1 / 10 : ℝ)
-        (canonicalL θ) θ .hA .hA * canonicalInfrastructureResponse θ =
-      -modelGovernmentHessianEntry 4 18 (9 / 10 : ℝ) (6 / 5 : ℝ)
-        (4 / 5 : ℝ) 2 (11 / 10 : ℝ) (17 / 10 : ℝ) (1 / 10 : ℝ)
-        (canonicalL θ) θ .hA .sB := by
-    rw [modelGovernmentHessianEntry_symm 4 18 (9 / 10 : ℝ) (6 / 5 : ℝ)
-      (4 / 5 : ℝ) 2 (11 / 10 : ℝ) (17 / 10 : ℝ) (1 / 10 : ℝ)
-      (canonicalL θ) θ .hA .sA]
-    simpa [canonicalGovernmentHessianEntry] using hrespH
+  unfold canonicalActiveBRPath ownPolicyShift
   constructor
-  · unfold canonicalActiveBRPath ownPolicyShift canonicalActiveGovernmentGradient
-    rw [modelGovernmentGradient_shift, modelGovernmentGradient_shift,
-        modelGovernmentGradient_shift, hs']
-    linear_combination r * hrespS'
-  · unfold canonicalActiveBRPath ownPolicyShift canonicalActiveGovernmentGradient
-    rw [modelGovernmentGradient_shift, modelGovernmentGradient_shift,
-        modelGovernmentGradient_shift, hh']
-    linear_combination r * hrespH'
+  · rw [canonicalActiveGovernmentGradient_shift,
+      canonicalActiveGovernmentGradient_shift,
+      canonicalActiveGovernmentGradient_shift, hs]
+    linear_combination r * hrespS
+  · rw [canonicalActiveGovernmentGradient_shift,
+      canonicalActiveGovernmentGradient_shift,
+      canonicalActiveGovernmentGradient_shift, hh]
+    rw [canonicalGovernmentHessianEntry_symm θ .hA .sA]
+    linear_combination r * hrespH
 
 /-- Every point on the FOC-preserving path is the actual unique maximizer of the
 active quadratic branch. -/
@@ -376,34 +341,29 @@ theorem canonicalActiveBRPath_is_best_response
   rcases canonicalActiveBRPath_FOCs hθ hs hh r with ⟨hS, hH⟩
   exact canonicalActiveGovernment_best_response hθ hS hH ds dh
 
-/-- The infrastructure coordinate of the actual active best-response path is
-explicitly affine in the rival subsidy perturbation. -/
+/-- Infrastructure coordinate of the exact active best-response path. -/
 lemma canonicalActiveBRPath_hA
     (θ : ℝ) (z : PolicyProfile) (r : ℝ) :
     (canonicalActiveBRPath θ z r).hA =
       z.hA + r * canonicalInfrastructureResponse θ := by
   simp [canonicalActiveBRPath, ownPolicyShift, shiftPolicy]
 
-/-- Calculus-level closure of the IFT bridge: the derivative of the actual unique
-active-branch best-response path equals the Phase-7 response quotient. -/
+/-- Calculus-level closure of the IFT bridge. -/
 theorem canonicalActiveBRPath_hasDerivAt_hA
     (θ : ℝ) (z : PolicyProfile) (r : ℝ) :
     HasDerivAt (fun x => (canonicalActiveBRPath θ z x).hA)
       (canonicalInfrastructureResponse θ) r := by
-  have hfun :
-      (fun x : ℝ => (canonicalActiveBRPath θ z x).hA) =
-        (fun x : ℝ => z.hA + x * canonicalInfrastructureResponse θ) := by
-    funext x
-    exact canonicalActiveBRPath_hA θ z x
-  rw [hfun]
-  have hc : HasDerivAt (fun _ : ℝ => z.hA) 0 r := hasDerivAt_const r z.hA
-  have hx : HasDerivAt (fun x : ℝ => x * canonicalInfrastructureResponse θ)
+  have hmul : HasDerivAt (fun x : ℝ => x * canonicalInfrastructureResponse θ)
       (canonicalInfrastructureResponse θ) r := by
     simpa using (hasDerivAt_id r).mul_const (canonicalInfrastructureResponse θ)
-  simpa using hc.add hx
+  have haff : HasDerivAt
+      (fun x : ℝ => z.hA + x * canonicalInfrastructureResponse θ)
+      (canonicalInfrastructureResponse θ) r := by
+    simpa using hmul.const_add z.hA
+  simpa [canonicalActiveBRPath, ownPolicyShift, shiftPolicy] using haff
 
-/-- Combining the actual-best-response derivative bridge with Phase 7 identifies
-its derivative with the canonical quartic response on positive rivalry. -/
+/-- The derivative of the actual active best response is the Phase-7 quartic
+response on positive rivalry. -/
 theorem canonicalActualActiveBRDerivative_eq_thresholdResponse
     {θ : ℝ} (hθ : θ ∈ Ioc (0 : ℝ) 1) (z : PolicyProfile) (r : ℝ) :
     HasDerivAt (fun x => (canonicalActiveBRPath θ z x).hA)
