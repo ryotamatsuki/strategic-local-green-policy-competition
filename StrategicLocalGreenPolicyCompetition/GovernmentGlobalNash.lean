@@ -279,10 +279,10 @@ theorem canonicalSubsidyGradient_factorization
   rw [canonicalT0_closed hθ, canonicalT1_closed hθ,
     canonicalReducedQ0_closed hθ, canonicalChiG_closed, canonicalRho_closed]
   unfold canonicalSubsidyFOCNumerator canonicalQ0Den
-  field_simp [hD, hred, hq0]
-  field_simp [hq0n]
-  unfold canonicalReducedDetNumerator cournotD
-  ring
+  field_simp [hD, hred, hq0] <;>
+    field_simp [hq0n] <;>
+    unfold canonicalReducedDetNumerator cournotD <;>
+    ring
 
 /-- Statement-faithful factorization of the actual canonical own-infrastructure
 gradient. -/
@@ -303,10 +303,10 @@ theorem canonicalInfrastructureGradient_factorization
   rw [canonicalT0_closed hθ, canonicalT1_closed hθ,
     canonicalReducedQ0_closed hθ, canonicalChiG_closed, canonicalRho_closed]
   unfold canonicalInfrastructureFOCNumerator canonicalQ0Den
-  field_simp [hD, hred, hq0]
-  field_simp [hq0n]
-  unfold canonicalReducedDetNumerator cournotD
-  ring
+  field_simp [hD, hred, hq0] <;>
+    field_simp [hq0n] <;>
+    unfold canonicalReducedDetNumerator cournotD <;>
+    ring
 
 /-- The closed-form symmetric policy solves the polynomial subsidy FOC numerator.
 After clearing only the already-certified symmetric-policy denominator, this is a
