@@ -7,6 +7,9 @@ open Set
 
 namespace SLGPC
 
+set_option maxHeartbeats 1000000
+local instance (p : Prop) : Decidable p := Classical.propDecidable p
+
 /-- Symmetric active-firm global best response on the B-monopoly branch. -/
 theorem model_bMonopoly_fullScalar_best_response
     {kx kg μ θ wA wB u : ℝ}
@@ -48,7 +51,7 @@ theorem model_bMonopoly_fullScalar_best_response
     · rw [hmEq]
       exact hduo
   have hfoc := model_bMonopoly_scalar_foc
-    (kx := kx) (kg := kg) (μ := μ) (θ := θ) (wB := wB)
+    (kx := kx) (kg := kg) (μ := μ) (θ := θ) (_wA := wA) (wB := wB)
     hkx hkg hθ hR
   calc
     fullScalarContinuationProfit R θ wB wA u ≤ monopolyScalarProfit R wB u :=
@@ -140,7 +143,7 @@ theorem model_aMonopoly_fullScalar_nash
   have hInactiveB : 2 * wB ≤ θ * (wA + z.uA) := by
     nlinarith [hinactive, hstage]
   constructor
-  · simpa [z, R] using
+  · simpa [z, R, aMonopolyContinuation] using
       model_aMonopoly_fullScalar_best_response
         (kx := kx) (kg := kg) (μ := μ) (θ := θ) (wA := wA) (wB := wB) (u := uA)
         hkx hkg hθ hR hwA hAM huA
@@ -174,7 +177,7 @@ theorem model_aKink_fullScalar_nash
   have hInactiveB : 2 * wB ≤ θ * (wA + z.uA) := by
     nlinarith [hkink, hstage]
   constructor
-  · simpa [z, R] using
+  · simpa [z, R, aKinkContinuation] using
       model_aKink_fullScalar_best_response
         (kx := kx) (kg := kg) (μ := μ) (θ := θ) (wA := wA) (wB := wB) (u := uA)
         hkx hkg hθ hθpos hR hwA hwB hAK huA
@@ -213,7 +216,7 @@ theorem model_bKink_fullScalar_nash
       (wi := wA) (vj := wB + z.uB) (u := uA)
       hkx hkg hθ hR hwA hInactiveA huA
     simpa [z, R, bKinkContinuation] using ha
-  · simpa [z, R] using
+  · simpa [z, R, bKinkContinuation] using
       model_bKink_fullScalar_best_response
         (kx := kx) (kg := kg) (μ := μ) (θ := θ) (wA := wA) (wB := wB) (u := uB)
         hkx hkg hθ hθpos hR hwA hwB hBK huB
@@ -248,7 +251,7 @@ theorem model_bMonopoly_fullScalar_nash
       (wi := wA) (vj := wB + z.uB) (u := uA)
       hkx hkg hθ hR hwA hInactiveA huA
     simpa [z, R, bMonopolyContinuation] using ha
-  · simpa [z, R] using
+  · simpa [z, R, bMonopolyContinuation] using
       model_bMonopoly_fullScalar_best_response
         (kx := kx) (kg := kg) (μ := μ) (θ := θ) (wA := wA) (wB := wB) (u := uB)
         hkx hkg hθ hR hwB hBM huB
@@ -267,9 +270,9 @@ def modelStage2Continuation (kx kg μ θ wA wB : ℝ) : Stage2Continuation :=
     bMonopolyContinuation (investmentR kx kg μ) wB
 
 /-- Across the complete five-regime partition, the selected scalar continuation is
-a global Nash equilibrium of Stage 2 against every nonnegative scalar investment
-deviation.  This includes `theta=0`, where the endpoint certificate forces the
-duopoly branch. -/
+ a global Nash equilibrium of Stage 2 against every nonnegative scalar investment
+ deviation.  This includes `theta=0`, where the endpoint certificate forces the
+ duopoly branch. -/
 theorem modelStage2Continuation_fullScalar_global_nash
     {kx kg μ θ wA wB uA uB : ℝ}
     (hkx : 0 < kx) (hkg : 0 < kg)
