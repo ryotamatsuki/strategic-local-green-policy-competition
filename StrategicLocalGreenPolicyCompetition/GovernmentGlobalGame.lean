@@ -9,6 +9,17 @@ namespace SLGPC
 
 set_option maxRecDepth 100000
 
+local instance (p : Prop) : Decidable p := Classical.propDecidable p
+
+/-- Extensionality for the four-component policy profile. -/
+lemma policyProfile_ext
+    {z z' : PolicyProfile}
+    (hsA : z.sA = z'.sA) (hhA : z.hA = z'.hA)
+    (hsB : z.sB = z'.sB) (hhB : z.hB = z'.hB) : z = z' := by
+  cases z
+  cases z'
+  simp_all
+
 /-- Canonical Stage-2 scalar investment coefficient. -/
 def canonicalR : ℝ := investmentR 4 18 (9 / 10 : ℝ)
 
@@ -36,7 +47,7 @@ lemma canonicalADeviationProfile_eq_shift (θ s h : ℝ) :
     ownPolicyShift (canonicalSymmetricProfile θ)
         (s - canonicalSymmetricS θ) (h - canonicalSymmetricH θ) =
       canonicalADeviationProfile θ s h := by
-  ext <;>
+  apply policyProfile_ext <;>
     simp [canonicalADeviationProfile, canonicalSymmetricProfile,
       ownPolicyShift, shiftPolicy] <;> ring
 
@@ -192,16 +203,23 @@ theorem canonical_equilibrium_welfare_gt_boundary
     canonicalMonopolyGovernmentWelfare θ
         (canonicalBoundaryS θ) (canonicalBoundaryH θ) <
       canonicalActiveGovernmentWelfare θ (canonicalSymmetricProfile θ) := by
-  have hden := canonicalSymmetricDen_pos ⟨hθ.1.le, hθ.2⟩
-  have hp6 := canonicalGapP6_pos hθ
-  have hp14 := canonicalGapP14_pos hθ
+  have hden : 0 < canonicalSymmetricDen θ :=
+    canonicalSymmetricDen_pos ⟨hθ.1.le, hθ.2⟩
+  have hp6 : 0 < canonicalGapP6 θ := canonicalGapP6_pos hθ
+  have hp14 : 0 < canonicalGapP14 θ := canonicalGapP14_pos hθ
+  have ht2 : 0 < θ ^ 2 := sq_pos_of_pos hθ.1
+  have hd2 : 0 < canonicalSymmetricDen θ ^ 2 := sq_pos_of_pos hden
   have hposden :
-      0 < 21358125 * θ ^ 2 * canonicalSymmetricDen θ ^ 2 := by positivity
+      0 < 21358125 * θ ^ 2 * canonicalSymmetricDen θ ^ 2 :=
+    mul_pos (mul_pos (by norm_num) ht2) hd2
+  have hnum : 0 < 32 * canonicalGapP6 θ * canonicalGapP14 θ :=
+    mul_pos (mul_pos (by norm_num) hp6) hp14
   have hgap :
       0 < 32 * canonicalGapP6 θ * canonicalGapP14 θ /
-        (21358125 * θ ^ 2 * canonicalSymmetricDen θ ^ 2) := by positivity
-  rw [canonical_equilibrium_boundary_gap_identity hθ] at hgap
-  linarith
+        (21358125 * θ ^ 2 * canonicalSymmetricDen θ ^ 2) :=
+    div_pos hnum hposden
+  have hid := canonical_equilibrium_boundary_gap_identity hθ
+  nlinarith
 
 /-- Cross-regime global government best response against the canonical symmetric
 rival.  The quantified deviation is the full nonnegative policy domain and the
@@ -228,8 +246,7 @@ theorem canonical_government_global_best_response
       simpa [canonicalAKinkRegion, canonicalR, canonicalL] using hz.2.2.1
     have hD : canonicalDuopolyRegion 0 s h := by
       simpa [canonicalDuopolyRegion, canonicalL] using hz.1
-    rw [canonicalGovernmentDeviationWelfare]
-    simp only [hAM, hAK, hD, if_false, if_true]
+    simp [canonicalGovernmentDeviationWelfare, hAM, hAK, hD]
     have hbr := canonicalSymmetricProfile_active_best_response
       (θ := (0 : ℝ)) (by constructor <;> norm_num)
       (s - canonicalSymmetricS 0) (h - canonicalSymmetricH 0)
@@ -238,8 +255,7 @@ theorem canonical_government_global_best_response
   · have hpos : θ ∈ Ioc (0 : ℝ) 1 :=
       ⟨lt_of_le_of_ne hθ.1 (Ne.symm hzero), hθ.2⟩
     by_cases hAM : canonicalAMonopolyRegion θ s h
-    · rw [canonicalGovernmentDeviationWelfare]
-      simp only [hAM, if_true]
+    · simp [canonicalGovernmentDeviationWelfare, hAM]
       have hb := canonicalBoundary_intercept hpos
       have hscaled :
           θ * canonicalOwnW (canonicalBoundaryS θ) (canonicalBoundaryH θ) ≤
@@ -258,8 +274,7 @@ theorem canonical_government_global_best_response
       have hgap := canonical_equilibrium_welfare_gt_boundary hpos
       exact le_trans hbranch hgap.le
     · by_cases hAK : canonicalAKinkRegion θ s h
-      · rw [canonicalGovernmentDeviationWelfare]
-        simp only [hAM, hAK, if_false, if_true]
+      · simp [canonicalGovernmentDeviationWelfare, hAM, hAK]
         have hb := canonicalBoundary_intercept hpos
         have hscaled :
             θ * canonicalOwnW s h <
@@ -279,8 +294,7 @@ theorem canonical_government_global_best_response
         rw [hkm] at hk
         exact le_trans hk hgap.le
       · by_cases hD : canonicalDuopolyRegion θ s h
-        · rw [canonicalGovernmentDeviationWelfare]
-          simp only [hAM, hAK, hD, if_false, if_true]
+        · simp [canonicalGovernmentDeviationWelfare, hAM, hAK, hD]
           have hbr := canonicalSymmetricProfile_active_best_response hθ
             (s - canonicalSymmetricS θ) (h - canonicalSymmetricH θ)
           rw [canonicalADeviationProfile_eq_shift] at hbr
