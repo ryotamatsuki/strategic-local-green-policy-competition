@@ -49,7 +49,7 @@ theorem fullCournotOperatingProfit_le_duopoly_square
         (2 * (wi + u) - θ * vj) / cournotD θ ≤ (0 : ℝ) := hdle
         _ ≤ (wi + u) / 2 := hm
     rw [min_eq_right hdm, max_eq_left hdle]
-    exact sq_nonneg _
+    simpa using (sq_nonneg ((2 * (wi + u) - θ * vj) / cournotD θ))
 
 /-- Hence the full scalar continuation payoff is bounded above by the active-
 duopoly quadratic on every nonnegative scalar deviation. -/
