@@ -111,7 +111,7 @@ theorem model_aMonopoly_fullScalar_best_response
     · rw [hmEq]
       exact hduo
   have hfoc := model_aMonopoly_scalar_foc
-    (kx := kx) (kg := kg) (μ := μ) (θ := θ) (wA := wA) (wB := wB)
+    (kx := kx) (kg := kg) (μ := μ) (θ := θ) (wA := wA) (_wB := wB)
     hkx hkg hθ hR
   calc
     fullScalarContinuationProfit R θ wA wB u ≤ monopolyScalarProfit R wA u :=
