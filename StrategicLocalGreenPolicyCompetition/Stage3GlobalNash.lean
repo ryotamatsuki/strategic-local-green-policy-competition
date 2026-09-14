@@ -102,50 +102,50 @@ theorem fullCournot_quantities_global_nash
       · apply stage3_inactive_global_best_response
         · linarith
         · exact hqB
-  · have hAact : θ * vB < 2 * vA := lt_of_not_ge hAin
-    have hBact : θ * vA < 2 * vB := lt_of_not_ge hBin
-    have hnumA : 0 < (2 * vA - θ * vB) / cournotD θ :=
-      div_pos (by linarith) hDpos
-    have hnumB : 0 < (2 * vB - θ * vA) / cournotD θ :=
-      div_pos (by linarith) hDpos
-    have hθA : θ * (θ * vA) ≤ θ * (2 * vB) :=
-      mul_le_mul_of_nonneg_left hBact.le hθ.1
-    have hθB : θ * (θ * vB) ≤ θ * (2 * vA) :=
-      mul_le_mul_of_nonneg_left hAact.le hθ.1
-    have hduoA : (2 * vA - θ * vB) / cournotD θ ≤ vA / 2 := by
-      apply (div_le_iff₀ hDpos).2
-      unfold cournotD
-      nlinarith [hθA]
-    have hduoB : (2 * vB - θ * vA) / cournotD θ ≤ vB / 2 := by
-      apply (div_le_iff₀ hDpos).2
-      unfold cournotD
-      nlinarith [hθB]
-    have hzA :
-        fullCournotOwnQuantity θ vA vB =
-          (2 * vA - θ * vB) / cournotD θ := by
-      unfold fullCournotOwnQuantity
-      rw [min_eq_right hduoA, max_eq_right hnumA.le]
-    have hzB :
-        fullCournotOwnQuantity θ vB vA =
-          (2 * vB - θ * vA) / cournotD θ := by
-      unfold fullCournotOwnQuantity
-      rw [min_eq_right hduoB, max_eq_right hnumB.le]
-    have hFOCA :
-        2 * fullCournotOwnQuantity θ vA vB +
-          θ * fullCournotOwnQuantity θ vB vA = vA := by
-      rw [hzA, hzB]
-      field_simp [hDpos.ne']
-      unfold cournotD
-      ring
-    have hFOCB :
-        2 * fullCournotOwnQuantity θ vB vA +
-          θ * fullCournotOwnQuantity θ vA vB = vB := by
-      rw [hzA, hzB]
-      field_simp [hDpos.ne']
-      unfold cournotD
-      ring
-    constructor
-    · exact stage3_active_global_best_response hFOCA hnumA.le hqA
-    · exact stage3_active_global_best_response hFOCB hnumB.le hqB
+    · have hAact : θ * vB < 2 * vA := lt_of_not_ge hAin
+      have hBact : θ * vA < 2 * vB := lt_of_not_ge hBin
+      have hnumA : 0 < (2 * vA - θ * vB) / cournotD θ :=
+        div_pos (by linarith) hDpos
+      have hnumB : 0 < (2 * vB - θ * vA) / cournotD θ :=
+        div_pos (by linarith) hDpos
+      have hθA : θ * (θ * vA) ≤ θ * (2 * vB) :=
+        mul_le_mul_of_nonneg_left hBact.le hθ.1
+      have hθB : θ * (θ * vB) ≤ θ * (2 * vA) :=
+        mul_le_mul_of_nonneg_left hAact.le hθ.1
+      have hduoA : (2 * vA - θ * vB) / cournotD θ ≤ vA / 2 := by
+        apply (div_le_iff₀ hDpos).2
+        unfold cournotD
+        nlinarith [hθA]
+      have hduoB : (2 * vB - θ * vA) / cournotD θ ≤ vB / 2 := by
+        apply (div_le_iff₀ hDpos).2
+        unfold cournotD
+        nlinarith [hθB]
+      have hzA :
+          fullCournotOwnQuantity θ vA vB =
+            (2 * vA - θ * vB) / cournotD θ := by
+        unfold fullCournotOwnQuantity
+        rw [min_eq_right hduoA, max_eq_right hnumA.le]
+      have hzB :
+          fullCournotOwnQuantity θ vB vA =
+            (2 * vB - θ * vA) / cournotD θ := by
+        unfold fullCournotOwnQuantity
+        rw [min_eq_right hduoB, max_eq_right hnumB.le]
+      have hFOCA :
+          2 * fullCournotOwnQuantity θ vA vB +
+            θ * fullCournotOwnQuantity θ vB vA = vA := by
+        rw [hzA, hzB]
+        field_simp [hDpos.ne']
+        unfold cournotD
+        ring
+      have hFOCB :
+          2 * fullCournotOwnQuantity θ vB vA +
+            θ * fullCournotOwnQuantity θ vA vB = vB := by
+        rw [hzA, hzB]
+        field_simp [hDpos.ne']
+        unfold cournotD
+        ring
+      constructor
+      · exact stage3_active_global_best_response hFOCA hnumA.le hqA
+      · exact stage3_active_global_best_response hFOCB hnumB.le hqB
 
 end SLGPC
