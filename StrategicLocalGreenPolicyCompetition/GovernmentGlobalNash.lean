@@ -214,7 +214,9 @@ lemma canonicalQ0Den_normalized_ne {θ : ℝ} (hθ : θ ∈ Icc (0 : ℝ) 1) :
     341 + θ * 200 - θ ^ 2 * 100 - θ ^ 3 * 50 ≠ 0 := by
   have hq : canonicalQ0Den θ ≠ 0 := (canonicalQ0Den_pos hθ).ne'
   unfold canonicalQ0Den at hq
-  convert hq using 1 <;> ring
+  intro hz
+  apply hq
+  nlinarith [hz]
 
 /-- Exact closed form of the canonical reduced quantity intercept.  This lemma
 prevents the `L+θ` inverse from being reintroduced inside the government FOC
@@ -270,7 +272,6 @@ theorem canonicalSubsidyGradient_factorization
   have hD : cournotD θ ≠ 0 := (cournotD_pos hθ).ne'
   have hred : canonicalReducedDetNumerator θ ≠ 0 :=
     (canonicalReducedDetNumerator_pos hθ).ne'
-  have hq0 : canonicalQ0Den θ ≠ 0 := (canonicalQ0Den_pos hθ).ne'
   have hq0n := canonicalQ0Den_normalized_ne hθ
   unfold canonicalActiveGovernmentGradient modelGovernmentGradient
     canonicalSymmetricPolicyPoint interiorPolicyQA interiorPolicyQB
@@ -279,10 +280,9 @@ theorem canonicalSubsidyGradient_factorization
   rw [canonicalT0_closed hθ, canonicalT1_closed hθ,
     canonicalReducedQ0_closed hθ, canonicalChiG_closed, canonicalRho_closed]
   unfold canonicalSubsidyFOCNumerator canonicalQ0Den
-  field_simp [hD, hred, hq0] <;>
-    field_simp [hq0n] <;>
-    unfold canonicalReducedDetNumerator cournotD <;>
-    ring
+  field_simp [hD, hred, hq0n]
+  unfold canonicalReducedDetNumerator cournotD
+  ring_nf
 
 /-- Statement-faithful factorization of the actual canonical own-infrastructure
 gradient. -/
@@ -294,7 +294,6 @@ theorem canonicalInfrastructureGradient_factorization
   have hD : cournotD θ ≠ 0 := (cournotD_pos hθ).ne'
   have hred : canonicalReducedDetNumerator θ ≠ 0 :=
     (canonicalReducedDetNumerator_pos hθ).ne'
-  have hq0 : canonicalQ0Den θ ≠ 0 := (canonicalQ0Den_pos hθ).ne'
   have hq0n := canonicalQ0Den_normalized_ne hθ
   unfold canonicalActiveGovernmentGradient modelGovernmentGradient
     canonicalSymmetricPolicyPoint interiorPolicyQA interiorPolicyQB
@@ -303,10 +302,9 @@ theorem canonicalInfrastructureGradient_factorization
   rw [canonicalT0_closed hθ, canonicalT1_closed hθ,
     canonicalReducedQ0_closed hθ, canonicalChiG_closed, canonicalRho_closed]
   unfold canonicalInfrastructureFOCNumerator canonicalQ0Den
-  field_simp [hD, hred, hq0] <;>
-    field_simp [hq0n] <;>
-    unfold canonicalReducedDetNumerator cournotD <;>
-    ring
+  field_simp [hD, hred, hq0n]
+  unfold canonicalReducedDetNumerator cournotD
+  ring_nf
 
 /-- The closed-form symmetric policy solves the polynomial subsidy FOC numerator.
 After clearing only the already-certified symmetric-policy denominator, this is a
