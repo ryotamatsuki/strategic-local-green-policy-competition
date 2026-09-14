@@ -32,8 +32,8 @@ theorem fullCournotOperatingProfit_le_duopoly_square
       sub_nonneg.mpr hle
     have hsum :
         0 ≤ (2 * (wi + u) - θ * vj) / cournotD θ +
-          min ((wi + u) / 2) ((2 * (wi + u) - θ * vj) / cournotD θ) :=
-      add_nonneg hd hmin
+          min ((wi + u) / 2) ((2 * (wi + u) - θ * vj) / cournotD θ) := by
+      linarith
     have hprod :
         0 ≤ ((2 * (wi + u) - θ * vj) / cournotD θ -
           min ((wi + u) / 2) ((2 * (wi + u) - θ * vj) / cournotD θ)) *
@@ -75,8 +75,8 @@ theorem fullScalarContinuationProfit_le_monopolyScalarProfit
       fullCournotOwnQuantity θ (wi + u) vj ^ 2 ≤ ((wi + u) / 2) ^ 2 := by
     have hdiff : 0 ≤ (wi + u) / 2 - fullCournotOwnQuantity θ (wi + u) vj :=
       sub_nonneg.mpr hqle
-    have hsum : 0 ≤ (wi + u) / 2 + fullCournotOwnQuantity θ (wi + u) vj :=
-      add_nonneg hm hq0
+    have hsum : 0 ≤ (wi + u) / 2 + fullCournotOwnQuantity θ (wi + u) vj := by
+      linarith
     have hprod :
         0 ≤ ((wi + u) / 2 - fullCournotOwnQuantity θ (wi + u) vj) *
           ((wi + u) / 2 + fullCournotOwnQuantity θ (wi + u) vj) :=
