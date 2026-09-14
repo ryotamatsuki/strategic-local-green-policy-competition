@@ -275,13 +275,20 @@ theorem canonicalBoundary_kink_gradient
   have ht : θ ≠ 0 := hθ.1.ne'
   have hden : canonicalSymmetricDen θ ≠ 0 :=
     (canonicalSymmetricDen_pos ⟨hθ.1.le, hθ.2⟩).ne'
-  constructor <;>
-    unfold canonicalKinkGradS canonicalKinkGradH canonicalSymmetricW
+  constructor
+  · unfold canonicalKinkGradS canonicalSymmetricW
       reducedW policyY canonicalSymmetricS canonicalSymmetricH
-      canonicalBoundaryS canonicalBoundaryH canonicalKinkMultiplier <;>
-    field_simp [ht, hden] <;>
+      canonicalBoundaryS canonicalBoundaryH canonicalKinkMultiplier
+    field_simp [ht, hden]
     unfold canonicalBoundarySPos canonicalBoundaryHPos canonicalKinkMultiplierPoly
-      canonicalSymmetricDen canonicalSymmetricSNum canonicalSymmetricHNum <;>
+      canonicalSymmetricDen canonicalSymmetricSNum canonicalSymmetricHNum
+    ring
+  · unfold canonicalKinkGradH canonicalSymmetricW
+      reducedW policyY canonicalSymmetricS canonicalSymmetricH
+      canonicalBoundaryS canonicalBoundaryH canonicalKinkMultiplier
+    field_simp [ht, hden]
+    unfold canonicalBoundarySPos canonicalBoundaryHPos canonicalKinkMultiplierPoly
+      canonicalSymmetricDen canonicalSymmetricSNum canonicalSymmetricHNum
     ring
 
 /-- The monopoly branch gradient is an inward negative normal at the common boundary. -/
@@ -294,12 +301,18 @@ theorem canonicalBoundary_monopoly_gradient
   have ht : θ ≠ 0 := hθ.1.ne'
   have hden : canonicalSymmetricDen θ ≠ 0 :=
     (canonicalSymmetricDen_pos ⟨hθ.1.le, hθ.2⟩).ne'
-  constructor <;>
-    unfold canonicalMonopolyGradS canonicalMonopolyGradH
-      canonicalBoundaryS canonicalBoundaryH canonicalMonopolyMultiplier <;>
-    field_simp [ht, hden] <;>
+  constructor
+  · unfold canonicalMonopolyGradS
+      canonicalBoundaryS canonicalBoundaryH canonicalMonopolyMultiplier
+    field_simp [ht, hden]
     unfold canonicalBoundarySPos canonicalBoundaryHPos canonicalMonopolyMultiplierPos
-      canonicalSymmetricDen <;>
+      canonicalSymmetricDen
+    ring
+  · unfold canonicalMonopolyGradH
+      canonicalBoundaryS canonicalBoundaryH canonicalMonopolyMultiplier
+    field_simp [ht, hden]
+    unfold canonicalBoundarySPos canonicalBoundaryHPos canonicalMonopolyMultiplierPos
+      canonicalSymmetricDen
     ring
 
 end SLGPC
