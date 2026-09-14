@@ -147,9 +147,13 @@ theorem modelStage2Continuation_fullPrimitive_global_nash
     (g := scalarGreen kg μ (investmentR kx kg μ) sB z.uB) hkg.ne'
   constructor
   · rw [hdevA, hcanA]
-    exact add_le_add_right hc.1 _
+    have hcA := hc.1
+    dsimp [z] at hcA ⊢
+    linarith
   · rw [hdevB, hcanB]
-    exact add_le_add_right hc.2 _
+    have hcB := hc.2
+    dsimp [z] at hcB ⊢
+    linarith
 
 /-- Canonical post-investment Stage-3 intercept.  The subsidy shift cancels between
 `w` and centered private cost reduction, exactly as in the primitive model. -/
