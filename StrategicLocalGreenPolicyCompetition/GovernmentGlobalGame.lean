@@ -47,9 +47,13 @@ lemma canonicalADeviationProfile_eq_shift (θ s h : ℝ) :
     ownPolicyShift (canonicalSymmetricProfile θ)
         (s - canonicalSymmetricS θ) (h - canonicalSymmetricH θ) =
       canonicalADeviationProfile θ s h := by
-  apply policyProfile_ext <;>
-    simp [canonicalADeviationProfile, canonicalSymmetricProfile,
-      ownPolicyShift, shiftPolicy] <;> ring
+  apply policyProfile_ext
+  · change canonicalSymmetricS θ + (s - canonicalSymmetricS θ) = s
+    ring
+  · change canonicalSymmetricH θ + (h - canonicalSymmetricH θ) = h
+    ring
+  · rfl
+  · rfl
 
 lemma canonicalOwnW_pos {s h : ℝ} (hs : 0 ≤ s) (hh : 0 ≤ h) :
     0 < canonicalOwnW s h := by
@@ -57,7 +61,7 @@ lemma canonicalOwnW_pos {s h : ℝ} (hs : 0 ≤ s) (hh : 0 ≤ h) :
   nlinarith
 
 /-- The five actual downstream regime predicates for an A-government deviation
-against the canonical rival. -/
+against the canonical rival policy. -/
 def canonicalAMonopolyRegion (θ s h : ℝ) : Prop :=
   aMonopolyRegion canonicalR θ (canonicalOwnW s h) (canonicalSymmetricW θ)
 
@@ -268,8 +272,8 @@ theorem canonical_government_global_best_response
           _ ≤ θ * canonicalOwnW s h := hAM
       have hside :
           canonicalOwnW (canonicalBoundaryS θ) (canonicalBoundaryH θ) ≤
-            canonicalOwnW s h :=
-        (mul_le_mul_left hpos.1).mp hscaled
+            canonicalOwnW s h := by
+        nlinarith [hscaled, hpos.1]
       have hbranch := canonicalMonopoly_branch_le_boundary hpos hside
       have hgap := canonical_equilibrium_welfare_gt_boundary hpos
       exact le_trans hbranch hgap.le
@@ -286,8 +290,8 @@ theorem canonical_government_global_best_response
                 rw [canonicalM_value]
             _ = θ * canonicalOwnW (canonicalBoundaryS θ) (canonicalBoundaryH θ) := hb.symm
         have hside : canonicalOwnW s h ≤
-            canonicalOwnW (canonicalBoundaryS θ) (canonicalBoundaryH θ) :=
-          ((mul_lt_mul_left hpos.1).mp hscaled).le
+            canonicalOwnW (canonicalBoundaryS θ) (canonicalBoundaryH θ) := by
+          nlinarith [hscaled, hpos.1]
         have hk := canonicalKink_branch_le_boundary hpos hside
         have hkm := canonicalBoundary_kink_eq_monopoly hpos
         have hgap := canonical_equilibrium_welfare_gt_boundary hpos
