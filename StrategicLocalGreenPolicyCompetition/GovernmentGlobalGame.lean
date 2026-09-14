@@ -91,10 +91,21 @@ theorem canonicalSymmetricDen_pos {θ : ℝ} (hθ : θ ∈ Icc (0 : ℝ) 1) :
   by_cases h1 : θ = 1
   · subst θ
     norm_num [canonicalSymmetricDen]
-  · have hbase := positive_bernstein_base hθ h1
+  · have hθ0 : 0 ≤ θ := hθ.1
+    have hbase : 0 < 1 - θ := positive_bernstein_base hθ h1
+    have h0 : 0 < 711929777328 * (1 - θ) ^ 9 := by positivity
+    have h1n : 0 ≤ 7074616488912 * θ * (1 - θ) ^ 8 := by positivity
+    have h2n : 0 ≤ 30246467240304 * θ ^ 2 * (1 - θ) ^ 7 := by positivity
+    have h3n : 0 ≤ 72491287738464 * θ ^ 3 * (1 - θ) ^ 6 := by positivity
+    have h4n : 0 ≤ 106565574163482 * θ ^ 4 * (1 - θ) ^ 5 := by positivity
+    have h5n : 0 ≤ 99012704671188 * θ ^ 5 * (1 - θ) ^ 4 := by positivity
+    have h6n : 0 ≤ 57906421844292 * θ ^ 6 * (1 - θ) ^ 3 := by positivity
+    have h7n : 0 ≤ 20557862515764 * θ ^ 7 * (1 - θ) ^ 2 := by positivity
+    have h8n : 0 ≤ 4035911590494 * θ ^ 8 * (1 - θ) := by positivity
+    have h9n : 0 ≤ 335939161572 * θ ^ 9 := by positivity
     have hb : 0 < canonicalSymmetricDenBernstein θ := by
       unfold canonicalSymmetricDenBernstein
-      positivity
+      nlinarith
     have hs := canonicalSymmetricDen_scaled θ
     nlinarith
 
@@ -104,10 +115,20 @@ theorem canonicalSymmetricSNum_pos {θ : ℝ} (hθ : θ ∈ Icc (0 : ℝ) 1) :
   by_cases h1 : θ = 1
   · subst θ
     norm_num [canonicalSymmetricSNum]
-  · have hbase := positive_bernstein_base hθ h1
+  · have hθ0 : 0 ≤ θ := hθ.1
+    have hbase : 0 < 1 - θ := positive_bernstein_base hθ h1
+    have h0 : 0 < 22244854016 * (1 - θ) ^ 8 := by positivity
+    have h1n : 0 ≤ 178479968128 * θ * (1 - θ) ^ 7 := by positivity
+    have h2n : 0 ≤ 595247864064 * θ ^ 2 * (1 - θ) ^ 6 := by positivity
+    have h3n : 0 ≤ 1068674310592 * θ ^ 3 * (1 - θ) ^ 5 := by positivity
+    have h4n : 0 ≤ 1119546664600 * θ ^ 4 * (1 - θ) ^ 4 := by positivity
+    have h5n : 0 ≤ 695438745176 * θ ^ 5 * (1 - θ) ^ 3 := by positivity
+    have h6n : 0 ≤ 249194983128 * θ ^ 6 * (1 - θ) ^ 2 := by positivity
+    have h7n : 0 ≤ 46963525784 * θ ^ 7 * (1 - θ) := by positivity
+    have h8n : 0 ≤ 3543173872 * θ ^ 8 := by positivity
     have hb : 0 < canonicalSymmetricSNumBernstein θ := by
       unfold canonicalSymmetricSNumBernstein
-      positivity
+      nlinarith
     have hs := canonicalSymmetricSNum_scaled θ
     nlinarith
 
@@ -117,10 +138,20 @@ theorem canonicalSymmetricHNum_pos {θ : ℝ} (hθ : θ ∈ Icc (0 : ℝ) 1) :
   by_cases h1 : θ = 1
   · subst θ
     norm_num [canonicalSymmetricHNum]
-  · have hbase := positive_bernstein_base hθ h1
+  · have hθ0 : 0 ≤ θ := hθ.1
+    have hbase : 0 < 1 - θ := positive_bernstein_base hθ h1
+    have h0 : 0 < 9255449280 * (1 - θ) ^ 8 := by positivity
+    have h1n : 0 ≤ 77015648640 * θ * (1 - θ) ^ 7 := by positivity
+    have h2n : 0 ≤ 265293660800 * θ ^ 2 * (1 - θ) ^ 6 := by positivity
+    have h3n : 0 ≤ 490198555840 * θ ^ 3 * (1 - θ) ^ 5 := by positivity
+    have h4n : 0 ≤ 526058534680 * θ ^ 4 * (1 - θ) ^ 4 := by positivity
+    have h5n : 0 ≤ 331591967000 * θ ^ 5 * (1 - θ) ^ 3 := by positivity
+    have h6n : 0 ≤ 117924432920 * θ ^ 6 * (1 - θ) ^ 2 := by positivity
+    have h7n : 0 ≤ 20944472920 * θ ^ 7 * (1 - θ) := by positivity
+    have h8n : 0 ≤ 1302916720 * θ ^ 8 := by positivity
     have hb : 0 < canonicalSymmetricHNumBernstein θ := by
       unfold canonicalSymmetricHNumBernstein
-      positivity
+      nlinarith
     have hs := canonicalSymmetricHNum_scaled θ
     nlinarith
 
@@ -185,7 +216,7 @@ theorem canonicalSymmetricProfile_FOCs
       interiorPolicyQA interiorPolicyQB qASlope qBSlope ownSubsidySlope
       ownInfrastructureSlope policyY governmentDirectionalGradient
       reducedEmissions reducedEmissionsSlope
-    rw [canonicalL_closed hθ, canonicalT0_closed hθ, canonicalT1_closed hθ,
+    rw [canonicalT0_closed hθ, canonicalT1_closed hθ, canonicalL_closed hθ,
       canonicalChiG_closed, canonicalRho_closed]
     unfold reducedQ0
     field_simp [hD, hred, hden]
@@ -197,7 +228,7 @@ theorem canonicalSymmetricProfile_FOCs
       interiorPolicyQA interiorPolicyQB qASlope qBSlope ownSubsidySlope
       ownInfrastructureSlope policyY governmentDirectionalGradient
       reducedEmissions reducedEmissionsSlope
-    rw [canonicalL_closed hθ, canonicalT0_closed hθ, canonicalT1_closed hθ,
+    rw [canonicalT0_closed hθ, canonicalT1_closed hθ, canonicalL_closed hθ,
       canonicalChiG_closed, canonicalRho_closed]
     unfold reducedQ0
     field_simp [hD, hred, hden]
