@@ -5,7 +5,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 
 FREEZE_ID = "SLGPC-THEORY-FREEZE-2026-09-05-v2"
-TITLE = "Strategic Local Green Policy Competition: Product-Market Rivalry and Instrument Switching"
+TITLE = "Green Subsidies, Public Infrastructure, and Product-Market Rivalry: When Cross-Instrument Responses Reverse"
 
 PRODUCTION_TEXT_FILES = [
     ROOT / "main.tex",
