@@ -1,6 +1,6 @@
 # Strategic Local Green Policy Competition
 
-Production repository for the theory paper tentatively titled **Strategic Local Green Policy Competition: Product-Market Rivalry and Instrument Switching**.
+Production repository for the theory paper titled **Green Subsidies, Public Infrastructure, and Product-Market Rivalry: When Cross-Instrument Responses Reverse**.
 
 Canonical theory freeze: `SLGPC-THEORY-FREEZE-2026-09-05-v2`.
 
