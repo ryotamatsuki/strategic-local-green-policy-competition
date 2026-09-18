@@ -3,7 +3,7 @@ from __future__ import annotations
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-TITLE = "Strategic Local Green Policy Competition: Product-Market Rivalry and Instrument Switching"
+TITLE = "Green Subsidies, Public Infrastructure, and Product-Market Rivalry: When Cross-Instrument Responses Reverse"
 
 REQUIRED_INPUTS = [
     "sections/introduction",

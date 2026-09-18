@@ -1,6 +1,6 @@
 Dear Editors,
 
-Please consider the manuscript “Strategic Local Green Policy Competition: Product-Market Rivalry and Instrument Switching” for publication in *International Tax and Public Finance*.
+Please consider the manuscript “Green Subsidies, Public Infrastructure, and Product-Market Rivalry: When Cross-Instrument Responses Reverse” for publication in *International Tax and Public Finance*.
 
 The paper studies interjurisdictional policy competition when local governments simultaneously use firm-specific green-investment support and productive public infrastructure, firms choose both conventional cost-reducing and green investment, and firms subsequently compete in a differentiated product market. The central object is a cross-instrument best response: how one jurisdiction’s infrastructure policy responds to a rival jurisdiction’s green-investment subsidy.
 

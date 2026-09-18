@@ -28,7 +28,7 @@ No generative-AI tool is assigned an authorship or CRediT role.
 
 **Title**
 
-Strategic Local Green Policy Competition: Product-Market Rivalry and Instrument Switching
+Green Subsidies, Public Infrastructure, and Product-Market Rivalry: When Cross-Instrument Responses Reverse
 
 **Abstract**
 
