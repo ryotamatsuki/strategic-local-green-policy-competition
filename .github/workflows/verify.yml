@@ -4,10 +4,16 @@ on:
   push:
     branches: [main]
   pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: verify-theory-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   symbolic-verification:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -30,6 +36,7 @@ jobs:
 
   lean-verification:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
       - name: Install elan
@@ -50,6 +57,7 @@ jobs:
 
   manuscript-build:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -90,4 +98,4 @@ jobs:
           name: stage14-itpf-manuscript
           path: submission-build/
           if-no-files-found: error
-          retention-days: 30
+          retention-days: 7
