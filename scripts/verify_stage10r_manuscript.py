@@ -55,9 +55,12 @@ def verify_headline_results_are_formalized() -> None:
 def verify_welfare_and_robustness_scope() -> None:
     welfare = read("sections/welfare.tex")
     robustness = read("sections/robustness.tex")
-    assert "\\max_{s_A,h_A,s_B,h_B\\geq0}" in welfare
+    assert "\\max_{s,h\\geq0}" in welfare
+    assert "\\left[W_A(s,h,s,h)+W_B(s,h,s,h)\\right]" in welfare
+    assert "\\max_{s_A,h_A,s_B,h_B\\geq0}" not in welfare
+    assert "not the solution to the unrestricted four-policy planner problem" in welfare
     assert "\\frac{\\kappa h^2/2}{s g+\\kappa h^2/2}" in welfare
-    assert "not a separate global-equilibrium theorem" in welfare
+    assert "No global planner solution or interregional-compensation mechanism" in welfare
     assert "does not establish a global Bertrand-SPNE theorem" in robustness
     assert "not claimed for arbitrary $\\omega$" in robustness
     assert "does not imply that conventional investment is necessary for every possible reversal" in robustness
