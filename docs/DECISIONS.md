@@ -90,3 +90,16 @@ The v2 freeze incorporates:
 The v1 freeze is historical only and must not be restored verbatim.
 
 Next step: `Stage 9R — Repository / Reproducibility Alignment`. The repository already exists, so Stage 9R must align all scripts, status files, manuscript entry points, and CI references to v2 before Stage 10 reconstruction.
+
+
+## 2026-10-12 — Stage 7 post-freeze welfare-benchmark scope correction (AUDIT BRANCH)
+
+Audit source: `audits/STAGE7_WELFARE_GENERALITY_INSTITUTIONAL_AUDIT_2026-10-12.md`. Pre-existing freeze: `SLGPC-THEORY-FREEZE-2026-09-05-v2`. This entry records a post-freeze welfare-scope correction; do not retroactively rewrite the historical September 5 certification.
+
+**Trigger W1:** Equation `eq:planner` asserted unrestricted four-instrument maximization of `W_A+W_B`; the existing coordinated values were only a maximum along `s_A=s_B=s, h_A=h_B=h` with both firms active. At `theta=9/10`, the feasible asymmetric monopoly policy `(30,18,0,0)` yields exact aggregate welfare `53153998/5232645 ≈ 10.158151`, strictly exceeding the symmetric candidate's `674272009120/181241003453 ≈ 3.720306`. **Therefore the printed unrestricted-planner claim was false.**
+
+**Authorized narrow change on this audit branch:** define and label the displayed welfare comparison as a **symmetric-policy restricted coordination benchmark**, with actual feasible set `s_A=s_B=s>=0`, `h_A=h_B=h>=0`, downstream continuation re-solved. This does not add an instrument, policy budget, plant relocation, or new strategic game; the Stage-4A equilibrium and switching theorem are unchanged. State that the unrestricted planner problem has NOT been solved and that non-symmetric welfare-improving policies need not be Pareto-improving. Amend Stage-10R manuscript guard; retain the exact counterexample as a regression in pytest, Makefile, and CI.
+
+**Change-control classification:** `WELFARE-BENCHMARK STATEMENT CORRECTION`, affecting the frozen welfare-scope text in `docs/THEORY_FREEZE.md` §17. Treat the September 5 v2 freeze as historical/provisionally stale **for its broad planner description**. A new Stage-8 freeze may be issued only after current-workflow Stage 7, Stage 7.5, and Stage 7.5A recertification; do not claim this audit branch has already refrozen theory. The previous frozen Stage-4A mathematics remains a separately supported result.
+
+Earliest analytic rollback: **Stage 7**; Stage 4A and Stage 6 remain unchanged. Stage 7 fixes the wording, certifies the restricted objective and reruns regressions. Stage 7.5 must independently assess economic significance and question completeness without relying on the historical September 5 GO.
