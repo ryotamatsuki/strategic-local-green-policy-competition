@@ -22,7 +22,9 @@ This executes, in order:
 4. `scripts/verify_stage4rg_global.py` — verifies the repaired duopoly/kink/monopoly continuation, canonical global-SPNE certificate, exact global-deviation gap, and retained hostile-audit counterexample regression.
 5. `scripts/verify_nox_global_counterexample.py` — verifies the no-`x` counterexample showing that universal conventional-investment necessity is false.
 6. `scripts/verify_stage7_postrepair.py` — verifies corrected welfare accounting, fiscal-composition statistic, mechanism decomposition, and related post-repair calculations.
-7. `scripts/verify_stage10.py` — independently reconstructs the cross-response Hessian/quartic factorization and local Bertrand/partial-ownership robustness calculations.
+7. `audits/stage7_exact_planner_counterexample.py` — exact-rational regression showing that the symmetric two-policy coordination benchmark is **not** the unrestricted four-policy welfare optimum; this script must keep passing even when the manuscript's restricted benchmark is correctly labeled.
+8. `audits/stage7_independent_local_robustness.py` — secondary independently constructed local Bertrand/partial-ownership sign checks, explicitly not global-SPNE theorems.
+9. `scripts/verify_stage10.py` — independently reconstructs the cross-response Hessian/quartic factorization and local Bertrand/partial-ownership robustness calculations.
 
 The hostile-audit counterexample and the no-`x` counterexample are permanent regression guards. They must not be removed merely because the canonical v2 witness survives them.
 
@@ -67,3 +69,7 @@ As of 2026-09-05, the linked GitHub account has exhausted its included Actions m
 Any change to a frozen primitive, action set, timing, continuation regime, policy instrument, objective, equilibrium concept, headline theorem, welfare proposition, robustness scope, or contribution boundary is a THEORY CHANGE. Record it first in `docs/DECISIONS.md`, identify the earliest affected workflow gate, rerun that gate and all affected downstream gates, and issue a new freeze if required.
 
 Ordinary manuscript clarification is permitted only when it preserves `SLGPC-THEORY-FREEZE-2026-09-05-v2` exactly.
+
+## October 12, 2026 Stage-7 audit change control (audit branch only)
+
+The existing v2 welfare freeze described the symmetric-coordination benchmark too broadly. The currently proposed manuscript correction restricts the displayed planner objective to `s_A=s_B, h_A=h_B`. See `docs/DECISIONS.md` (2026-10-12) and `audits/STAGE7_WELFARE_GENERALITY_INSTITUTIONAL_AUDIT_2026-10-12.md`. The historical v2 freeze has **not** been replaced by a Stage-8 refreeze and is not a fresh post-audit submission certificate. Retain the exact asymmetric monopoly counterexample and do not re-introduce the unrestricted four-instrument `eq:planner` formulation without a real global optimization proof.
