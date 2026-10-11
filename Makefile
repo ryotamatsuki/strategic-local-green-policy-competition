@@ -9,6 +9,8 @@ verify:
 	$(PYTHON) scripts/verify_stage4rg_global.py
 	$(PYTHON) scripts/verify_nox_global_counterexample.py
 	$(PYTHON) scripts/verify_stage7_postrepair.py
+	$(PYTHON) audits/stage7_exact_planner_counterexample.py
+	$(PYTHON) audits/stage7_independent_local_robustness.py
 	$(PYTHON) scripts/verify_stage10.py
 	$(PYTHON) scripts/verify_stage11r_target_scope.py
 
