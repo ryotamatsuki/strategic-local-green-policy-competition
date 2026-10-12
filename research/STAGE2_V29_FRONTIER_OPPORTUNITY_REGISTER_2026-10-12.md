@@ -45,3 +45,24 @@ These statuses capture **bounded search evidence**. A failure to identify a late
 **NEW Stage-2**: `CONDITIONAL GO` only to complete **N2 source-based parent-theorem absorption check** for Q1. Stage-3 model design is `NOT AUTHORIZED`; user has not selected a new canonical research question. Q2 goes to separately authorized empirical data-identification stage if chosen. Q3 is deferred, not a third invented promising topic.
 
 Most direct next action: full-text reconstruction of Caillaud–Jullien–Picard 1996 / Morasch 2003 / Hevia 2023 / Klibanoff–Poitevin 2022 and an **equivalence/embedding table**: players, private information, contracts, policy instruments, input-output linkages, optimal authorization, welfare ranking. Conclude with `KILLED / QUALIFIED QUESTION / UNRESOLVED` before any policy-game implementation or code.
+
+
+## E. N2 status update — 2026-10-12, NEW primary-theorem reading overrides earlier Q1 provisional ranking
+
+**Author-approved new research model: NONE.** New source audit: `research/STAGE2_N2_CLOSEST_THEOREM_ABSORPTION_2026-10-12.md`.
+**Stage-2 N2 decision:** `NO-GO` for Q1 as previously formulated, **not** an assertion that a literal all-feature parent model exists.
+
+Newly located sources and verified claims:
+- Caillaud–Jullien–Picard (1994 ancestor of EER 1996), 39-page author working paper, Theorems 1–5: central/local industrial incentive complementarity, local private information, interregional compensation and firm moral hazard already analyzed. §6 AUTHOR-STATED extensions: lack of interregional contingent transfers, endogenous center-agency charter, cross-country horizontal strategic renegotiation. **Final 1996 publisher PDF not inspected; don't transfer exact 1994 theorem labels to journal without checking.** https://www.cepremap.fr/depot/couv_orange/co9401.pdf
+- Morasch (2003) original **abstract** supplemented by Bartholomae–Morasch (2008) full **separate follow-on paper**, showing Cournot market, delegation vs regional bargaining and information-transfer welfare comparisons. 2008 §5 AUTHOR-STATED joint information-revelation **and side payments** bargaining case not solved in its chosen model. https://www.etsg.org/ETSG2008/Papers/Bartholomae-Morasch.pdf
+- Klibanoff–Poitevin (2022) FULL journal Theorems 5.1–5.2: conditions on private benefit/externality variance ratio and expected externality for centralized vs decentralized rights, bargaining and noncontractible central commitments; §6 AUTHOR-STATED protocol limitations. https://www.kellogg.northwestern.edu/faculty/klibanof/ftp/workpap/klibanoff-poitevin_decentralization.pdf
+- Hevia–Loayza–Meza-Cuadra (2023) FULL publisher article §3–4: targeted subsidy vs productive public-good with firm hidden types, fiscal budget and tax revelation contract; **§4 AUTHOR-STATED** costly verification, imperfect monitoring, and capital–infrastructure complementarity left for possible future analyses. https://revistas.pucp.edu.pe/index.php/economia/article/download/27317/25588/108441
+- New threats: Cho (2013) externalities AND local public input private information; JPubE (2004) two-dimensional private information local public works AND grants; IMF (2024) sectoral knowledge spillover network targeted versus horizontal innovation support. See N2 full report.
+
+**Versioned candidate decisions (replace previous Stage-2 Q1 priority, not old historical evidence):**
+- Original **Q1** (information + IO networks + subsidy/public good + choice of level): `KILLED AT QUESTION-SPECIFICATION GATE`. Every proposed mechanism component has very near prior theory; no specific independently new predicted institutional assignment, welfare result or feasibility condition was supplied. An exact all-component theorem was **not** proved absent/present.
+- **R1** (who verifies local project quality, can center credibly contract on signal and allocate financing/monitoring): `HYPOTHESIS / UNRESOLVED, PROPOSED / NOT AUTHORIZED`. Closest kill is existing JPubE 2004 infrastructure contract plus Caillaud/Hevia/Klibanoff parents. Require an explicit new implementability result BEFORE model choice.
+- **R2** (induced transport infrastructure and host/nonhost net welfare of industrial fiscal competition): `HYPOTHESIS / UNRESOLVED, PROPOSED / NOT AUTHORIZED`; primarily a separate causal-evaluation/data question.
+- **R3** (joint bargaining information disclosure and side payments with actual implementability protocol): `DEFERRED / UNRESOLVED, PROPOSED / NOT AUTHORIZED`; author-explicit 2008 Morasch technical omission, exceptionally strong general bargaining parent-threat.
+
+**Current original-paper verdict unchanged:** Stage-7.5 `NO-GO` ITPF full article. Regional-consent N1 Stage-6 `NO-GO` full paper. No new work on main, no release/theory-freeze change.
