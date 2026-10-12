@@ -12,6 +12,7 @@ verify:
 	$(PYTHON) audits/stage7_exact_planner_counterexample.py
 	$(PYTHON) audits/stage7_independent_local_robustness.py
 	$(PYTHON) research/stage4_n1_global_symmetry_exact.py
+	$(PYTHON) audits/STAGE4A_N1_INDEPENDENT_PRIMITIVES_2026-10-12.py
 	$(PYTHON) scripts/verify_stage10.py
 	$(PYTHON) scripts/verify_stage11r_target_scope.py
 
