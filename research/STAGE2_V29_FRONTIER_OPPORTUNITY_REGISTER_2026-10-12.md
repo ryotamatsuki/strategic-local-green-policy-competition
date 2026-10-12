@@ -66,3 +66,36 @@ Newly located sources and verified claims:
 - **R3** (joint bargaining information disclosure and side payments with actual implementability protocol): `DEFERRED / UNRESOLVED, PROPOSED / NOT AUTHORIZED`; author-explicit 2008 Morasch technical omission, exceptionally strong general bargaining parent-threat.
 
 **Current original-paper verdict unchanged:** Stage-7.5 `NO-GO` ITPF full article. Regional-consent N1 Stage-6 `NO-GO` full paper. No new work on main, no release/theory-freeze change.
+
+
+## F. NEW fresh frontier search after N2 — updated 2026-10-12; supersedes earlier R1 priority
+
+Source report: `research/STAGE2_V29_FRESH_FRONTIER_RESELECTION_2026-10-12.md`.
+Earlier R1 'finance versus verification authorities' remains merely a deferred conjecture, **not** default research agenda. Following a wider **JPE/JDE/QJE/Econometrica/Annual Review/OECD/RIETI** literature sweep, the old general local-versus-national hierarchy, standard sector targeting, policy experimentation and national-local R&D complementarities are **KILLED AS BROAD RESEARCH QUESTIONS**. A 2025 OECD future work on national-place targeting was followed by a publication on **2026-10-09**, so do not cite the 2025 promise as a still-open program.
+
+### Author-stated limits, with precision on what is and is not claimed
+
+- `A1` **Mazzucato & Rodrik (2026)**, `10.1093/icc/dtaf063`, publisher HTML §2: explicitly limit their conditionality taxonomy/cases and do **not** identify causal impact or overall public value; separate observed additionality from net welfare. **Current status:** `UNRESOLVED for target cross-jurisdiction public-value contract;` general incentive contracting already studied.
+- `A2` **Heinrich, Knill & Steinebach (2025)**, `10.1007/s11077-024-09559-0`, full publisher §Discussion/Conclusion: explicitly do not make causal claims; recommend longitudinal study; data only manufacturing regulations. **Status:** `PARTIALLY RESOLVED`; measurement framework itself published.
+- `A3` **Morita & Okoshi (2025)**, `10.1007/s10797-025-09894-9`, §5 Conclusion: future empirical work on infrastructure-mediated fiscal competition welfare. **Status:** `PARTIALLY RESOLVED/UNRESOLVED exact causal channel`; 2018 v. Ehrlich–Seidel, 2025 Slattery/Cingano/Siegloch already measure substantial nearby outcomes.
+- `A4` **OECD (2025)**, `10.1787/43edc0df-en`, indexed 2025 intro: territorializing national industrial strategy deferred to later paper; **RESOLVED as an OECD diagnostic/implementation-roadmap problem** by Rodriguez Montemayor (2026-10-09), `10.1787/284fcc80-en`. Neither text verifies general optimal information-mechanism theory. Full 2025/2026 reports not read in entirety.
+- `A5` **Rodríguez-Pose (2026)**, `10.1007/s13209-026-00341-4`, full §7: public project appraisal, monitoring, termination/adaptation urged; this is an **author policy recommendation**, not claimed uniquely unproved theory.
+- `A6` **Freedman & Neumark (2026-09-24)**, `10.1177/08912424261480670`, intro/abstract: where, how, for whom place policy works and design trade-offs; **author issue framing, not a proved absent theorem**.
+
+### Parent theory threats already close broad directions
+
+- `K1` Fajgelbaum & Gaubert (2025), NBER 33517: six formal spatial efficiency/place-based subsidy conclusions, including limited substitutability of infrastructure for labor-density correction.
+- `K2` Roper, Vanino & Hewitt-Dundas (2025), `10.1093/icc/dtae046`: national-regional-sector innovation aid dynamic complementarity empirically estimated.
+- `K3` Klimenko (2004) JDE: government Bayesian bandit industrial-targeting; Callander & Harstad (2015) QJE: decentralized policy experimentation/transparency; Cheng & Li (2019) AEJ: career incentives/transparency; Wang & Yang (2025) JPE: positively selected policy pilots, excess local effort and central interpretation bias. **Experimentation without more is NOT novel.**
+- `K4` Cingano, Palomba, Pinotti & Rettore (2025), Econometrica: objective grant ranking vs local political discretion and cost-per-job; Slattery (2025), JPE: bidding for firms and rent transfers; Siegloch, Wehrhöfer & Etzel (2025), AEJ:EP: causal local/trade connected subsidy spillovers. **Employment and displacement claims not novel.**
+- `K5` Mazzucato–Rodrik (2026) already taxonomizes incentive conditionalities. The standard principal-agent informativeness and spatial optimal-tax/sufficient-statistic theorems may fully absorb the specific next-theory idea; source screen not yet done.
+
+### RESELECTED candidate matrix
+
+| ID | Precisely stated economic question | Provenance | Evidence maturity | Smallest pre-model kill |
+|---|---|---|---|---|
+| **F1 — top THEORY TEST (not a GO)** | Under observable/local employment and investment compliance but partly unobserved displacement/fiscal losses to neighboring regions, which **additional verifiable outcomes**, if any, permit a continuation/clawback rule to select socially efficient place-based grants? Does an important nontrivial implementability/monitoring result exist beyond the usual 'include the externality'? | `A1+A5` author-stated scope + `CROSS-PAPER K4/K1` | `HYPOTHESIS / UNRESOLVED / NOT AUTHORIZED` | Full optimal contracting/observable-performance measurement parent theorem, general spatial welfare sufficient statistics, Slattery/Cingano welfare selection. Kill if just standard principal-agent weighted regional outcomes or adding one spillover term. |
+| **F2 — EMPIRICAL alternate** | Does subsidy bidding cause **additional unplanned transport/public input**, and what is its net aggregate benefit after nonhost displacement and fiscal costs? | `A3 AUTHOR` + `CROSS-PAPER` | `HYPOTHESIS / UNRESOLVED / NOT AUTHORIZED` | Verify losing bidders, ex ante infrastructure plans, funding source, timing and relevant counterfactual. Existing causal place subsidy studies not enough to identify mediator. |
+| **F3 — DEFERRED mixed/empirical** | Does **regulatory/monitoring conditionality** embedded in national/local policy portfolios alter causal industrial output and region-wide spillovers beyond subsidy amounts? | `A2 AUTHOR` + `CROSS-PAPER K2` | `HYPOTHESIS / DEFERRED / NOT AUTHORIZED` | Check exogenous staggered adoption of enforceable nonspending conditions, data to reconstruct program portfolio; generic policy-measurement is already solved. |
+
+**Stage-2 verdict:** broad R1/Q1 remains `NO-GO`; F1 is the **single preferred question for N3 literature kill only**, not a proved result or authorized Stage-3 model. F2 empirical can be selected as an entirely distinct project if data pass identification feasibility. The number of established new full-paper theory candidates is **ZERO**, an acceptable v2.9 outcome. Preserve original theory freezes and all NO-GO dispositions.
