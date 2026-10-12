@@ -11,6 +11,7 @@ verify:
 	$(PYTHON) scripts/verify_stage7_postrepair.py
 	$(PYTHON) audits/stage7_exact_planner_counterexample.py
 	$(PYTHON) audits/stage7_independent_local_robustness.py
+	$(PYTHON) research/stage4_n1_global_symmetry_exact.py
 	$(PYTHON) scripts/verify_stage10.py
 	$(PYTHON) scripts/verify_stage11r_target_scope.py
 
