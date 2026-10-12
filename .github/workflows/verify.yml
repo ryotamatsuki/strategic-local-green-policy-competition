@@ -26,6 +26,7 @@ jobs:
       - run: python audits/stage7_exact_planner_counterexample.py
       - run: python audits/stage7_independent_local_robustness.py
       - run: python research/stage4_n1_global_symmetry_exact.py
+      - run: python audits/STAGE4A_N1_INDEPENDENT_PRIMITIVES_2026-10-12.py
       - run: python scripts/verify_stage10.py
       - run: python scripts/verify_stage11r_target_scope.py
       - run: python scripts/verify_stage14_submission_package.py
