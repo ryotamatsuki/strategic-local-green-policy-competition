@@ -90,3 +90,14 @@ The v2 freeze incorporates:
 The v1 freeze is historical only and must not be restored verbatim.
 
 Next step: `Stage 9R — Repository / Reproducibility Alignment`. The repository already exists, so Stage 9R must align all scripts, status files, manuscript entry points, and CI references to v2 before Stage 10 reconstruction.
+
+
+## 2026-10-12 — Stage 2 v2.9 frontier reboot (RESEARCH BRANCH ONLY)
+
+**Verdict: CONDITIONAL GO FOR SOURCE-THEOREM FRONTIER VALIDATION; NOT Stage-3 model authorization or a new full-paper GO.**
+Evidence: `research/STAGE2_V29_INDUSTRIAL_POLICY_FRONTIER_2026-10-12.md` and `research/STAGE2_V29_FRONTIER_OPPORTUNITY_REGISTER_2026-10-12.md`.
+Literature cutoff 2026-10-12, workflow `ryotamatsuki/research-paper-workflow@v2.9`.
+
+The broad national-vs-local industrial policy hierarchy problem is already mature (Caillaud–Jullien–Picard 1996, Morasch 2003, Klibanoff–Poitevin 2022, Hevia–Loayza–Meza-Cuadra 2023). Its relabeled fiscal-federalism threshold is NO-GO. Q1, a narrower cross-paper question on *government-level assignment of targeted subsidies versus general public infrastructure under private information and interregional input-output spillovers*, is **LITERATURE-SCREENED / UNRESOLVED**, not proved novel; the decisive N2 blocker is full formal-theorem reading/mapping of Caillaud 1996, Morasch 2003 and relevant generic delegation theory, plus Hevia and Klibanoff–Poitevin. No new model, parameter or policy tool authorized. Q2 is an empirical Morita–Okoshi (2025) author-stated future-work lead, subject to separate identification/data feasibility. Q3 concerns author-stated Klibanoff–Poitevin bargaining-protocol limits but is **DEFERRED** pending strong parent-theorem screening.
+
+Keep **author-stated** source limits and **auditor-inferred / cross-paper** conjectures separate; none is certified open by negative search. The original fixed-location green-policy paper stays NO-GO for a full-length ITPF paper by the October Stage-7.5 audit, and regional-consent N1 full-paper extension stays Stage-6 NO-GO. These independent decisions are not reversed. `main` and `SLGPC-THEORY-FREEZE-2026-09-05-v2` remain unchanged.
