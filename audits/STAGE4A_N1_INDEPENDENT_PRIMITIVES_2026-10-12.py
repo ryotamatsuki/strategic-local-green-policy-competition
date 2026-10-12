@@ -97,6 +97,19 @@ def audit_full(theta):
     R,L,wa,wb,pay,reg=primitive(theta)
     A,B=reg("both");F=A+B
     pne,out=outside(theta,reg)
+    # Crucial: the coalition's outside option must be a TRUE stage-1 global
+    # best-response policy, not a convenient active-branch stationary point.
+    rival={c:pne[c],d:pne[d]}
+    assert S.factor(theta*wb.subs(rival)-2*L)<0
+    own=S.expand(A.subs(rival))
+    negative_definite(own,[a,b])
+    pbest,bestval=critical(own,[a,b])
+    assert pbest[a]==pne[a] and pbest[b]==pne[b] and bestval==out
+    for other_region in ("kink","monopoly"):
+        alt=S.expand(reg(other_region)[0].subs(rival))
+        negative_definite(alt,[a,b])
+        _,ub=critical(alt,[a,b])
+        assert ub<out
     assert out>host_upper(R,wa,pay,reg)
     p,vs=symmetric_candidate(F)
     assert all(v>0 for v in p.values())
