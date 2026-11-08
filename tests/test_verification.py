@@ -18,6 +18,7 @@ from scripts.verify_stage10r_manuscript import (
     verify_welfare_and_robustness_scope,
 )
 from scripts.verify_stage11r_target_scope import verify_target_intensity_scope
+from scripts.verify_itpf_mechanism import verify_mechanism_and_feedback_boundary
 
 
 def test_firm_stage_closed_forms():
@@ -63,3 +64,8 @@ def test_stage10r_scope_and_appendix_consistency():
 def test_stage11r_target_intensity_scope():
     results = verify_target_intensity_scope()
     assert len(results) == 3
+
+
+def test_itpf_portfolio_adjustment_and_investment_feedback_boundary():
+    critical = verify_mechanism_and_feedback_boundary()
+    assert critical > 0
