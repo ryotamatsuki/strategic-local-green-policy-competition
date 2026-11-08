@@ -19,6 +19,7 @@ from scripts.verify_stage10r_manuscript import (
 )
 from scripts.verify_stage11r_target_scope import verify_target_intensity_scope
 from scripts.verify_itpf_mechanism import verify_mechanism_and_feedback_boundary
+from scripts.verify_nox_canonical_global import verify_canonical_nox_global
 
 
 def test_firm_stage_closed_forms():
@@ -69,3 +70,8 @@ def test_stage11r_target_intensity_scope():
 def test_itpf_portfolio_adjustment_and_investment_feedback_boundary():
     critical = verify_mechanism_and_feedback_boundary()
     assert critical > 0
+
+
+def test_matched_canonical_no_x_is_globally_valid():
+    gap = verify_canonical_nox_global()
+    assert gap is not None
