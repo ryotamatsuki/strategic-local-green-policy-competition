@@ -35,7 +35,17 @@ Under strict concavity, $\det H_A>0$, so
 =\frac{W_{s_Ah_A}W_{s_As_B}-W_{s_As_A}W_{h_As_B}}{\det H_A}.
 \label{eq:cross-instrument-general}
 \end{equation}
-The numerator combines a direct cross effect, $W_{h_As_B}$, with an indirect term transmitted through the interaction between the local government's two instruments. A sign reversal is possible when product-market rivalry changes their relative strength.
+The numerator combines a direct cross effect, $W_{h_As_B}$, with an indirect term transmitted through the interaction between the local government's two instruments. A sign reversal is possible when product-market rivalry changes their relative strength. An equivalent Schur-complement representation makes the policy-adjustment channel explicit:
+\begin{equation}
+\frac{\partial h_A^{BR}}{\partial s_B}
+=-\frac{
+W_{h_As_B}-W_{h_As_A}W_{s_As_B}/W_{s_As_A}
+}{
+W_{h_Ah_A}-W_{h_As_A}^{\,2}/W_{s_As_A}
+}.
+\label{eq:schur-policy}
+\end{equation}
+Negative definiteness of $H_A$ makes the denominator strictly negative. Thus the sign is determined by the direct infrastructure cross effect \emph{net of} the adjustment permitted through the government's own subsidy. If the own subsidy were instead held fixed, the infrastructure-only response would be $-W_{h_As_B}/W_{h_Ah_A}$. Equation~\eqref{eq:schur-policy} is an algebraic decomposition of the established two-policy reaction system, not a novel comparative-statics theorem by itself.
 
 For $\mu>0$ in the model of Sections~\ref{sec:model}--\ref{sec:equilibrium}, symbolic reduction yields a positive function $\Omega(\theta)$ and a quartic
 \begin{equation}
@@ -177,6 +187,32 @@ $\partial h_A^{BR}/\partial s_B$ & $-0.00455$ & $+0.00711$\\
 \bottomrule
 \end{tabular}
 \end{table}
+
+\subsection{Policy adjustment and investment-feedback boundary}
+\label{subsec:investment-boundary}
+
+The Schur decomposition yields a sharper comparison at the canonical witness. Holding $s_A$ fixed, the infrastructure-only response $-W_{h_As_B}/W_{h_Ah_A}$ changes from negative to positive at $\theta_D\simeq0.4257368$. When $s_A$ can adjust jointly with $h_A$, the corresponding response does not become positive until $\theta^*\simeq0.7738044$. On $(\theta_D,\theta^*)$, therefore, the direct infrastructure incentive favors expansion, yet the government's simultaneous optimal subsidy adjustment makes its infrastructure best response contract. These are distinct \emph{response experiments} within the same reduced government objective, not a comparison of two globally solved policy games. The exact signs and uniqueness of both thresholds are verified in Appendix~\ref{app:investment-boundary}.
+
+The contribution of conventional investment can be expressed more systematically than a single no-$x$ comparison. Keep $(k_g,\mu,\nu,\kappa,d,e,\beta,\xi,m,\bar E)$ at their canonical values, while allowing $k_x$ to vary, and let
+\[
+r\equiv R=\frac1{k_x}+\frac{\mu^2}{k_g}
+\in\left[\frac9{200},\frac{59}{200}\right].
+\]
+The lower endpoint is the no-conventional-investment limit; the upper endpoint has $k_x=4$. The relevant cross-response numerator has the sign of the polynomial $Q(r,u)$ displayed in Appendix~\ref{app:investment-boundary}, with $u=\theta^2$.
+
+\begin{proposition}[Investment flexibility and the switching boundary on the interior branch]
+\label{prop:investment-boundary}
+On the active-duopoly continuation and the one-parameter primitive slice just specified, the government own-policy Hessian is negative definite for every $r\in[9/200,59/200]$ and $\theta\in[0,1]$. There is a unique
+\[
+r_c\in\left(\frac9{200},\frac{59}{200}\right),
+\qquad
+2198800r_c^2-4239456r_c+549747=0,
+\qquad r_c\simeq0.1398123,
+\]
+such that the infrastructure response to a rival subsidy is negative for all $\theta\in(0,1]$ when $r<r_c$; it is negative for $\theta\in(0,1)$ and zero at $\theta=1$ when $r=r_c$; and it switches exactly once from negative to positive for $\theta\in(0,1]$ when $r>r_c$. In the switching region, the threshold $\theta^*(r)$ strictly decreases with $r$.
+\end{proposition}
+
+The result isolates an economically interpretable boundary in \emph{investment flexibility}: with the remaining environmental primitives held fixed, sufficiently responsive conventional cost-reducing investment changes the qualitative strategic policy reaction, rather than simply shifting its magnitude. Because $r$ also includes the green-investment productivity term, this statement is a fixed-primitives comparative static, not a claim that conventional investment is universally necessary for switching. Indeed the separately verified no-$x$, $\beta=1.3$ example still switches. Proposition~\ref{prop:investment-boundary} is an \emph{interior-branch} result throughout the displayed $r$ interval; the existing cross-regime global-SPNE certificate applies to the canonical upper endpoint and its certified open neighborhood, not automatically to every $r$ in this interval.
 
 \subsection{Matched benchmark without conventional competitive investment}
 
