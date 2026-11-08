@@ -129,6 +129,62 @@ P'(u)
 \]
 Every basis function is nonnegative on $[0,1]$. Hence $B_0,\ldots,B_3<0$ implies $P'(u)<0$ throughout the interval. With $P(0)>0>P(1)$, the intermediate value theorem gives a root $u^*\in(0,1)$, and strict monotonicity makes it unique. Since $u=\theta^2$ is strictly increasing for $\theta>0$, $\theta^*=\sqrt{u^*}$ is the unique switching threshold. Equation \eqref{eq:P-sign} then yields the two sign regions. \qed
 
+\subsection{Exact certificate for the investment-flexibility boundary}
+\label{app:investment-boundary}
+
+Hold all non-$k_x$ primitives at their canonical rational values. Put $r=1/k_x+9/200$ and $u=\theta^2$. Reconstructing the four-policy Hessian from the affine firm-quantity slopes in the preceding subsection and substituting $d=2$ gives
+\begin{align}
+Q(r,u)={}&-120500u^4+1620310u^3
+-2(83620r+3934143)u^2 \nonumber\\
+&-8(135400r^2+579467r-2036302)u \nonumber\\
+&-32(241000r^2-680025r+378779).
+\label{eq:investment-Q}
+\end{align}
+The cross-response numerator $\Psi=W_{s_Ah_A}W_{s_As_B}-W_{s_As_A}W_{h_As_B}$ factors as
+\begin{equation}
+\Psi(\theta;r)
+=\frac{-\theta(\theta-2)(\theta+2)Q(r,\theta^2)}
+{43200000\,D_-(\theta,r)^2D_+(\theta,r)^2},
+\label{eq:investment-psi}
+\end{equation}
+where
+\begin{align*}
+D_-&=4r-\theta^3+2\theta^2+4\theta-8,\\
+D_+&=4r+\theta^3+2\theta^2-4\theta-8.
+\end{align*}
+Both denominator factors are squared; regularity excludes their zeroes. For $0<\theta\leq1$, the prefactor $-\theta(\theta-2)(\theta+2)$ is positive. Hence, when the government own-policy Hessian is negative definite, the cross-infrastructure derivative has exactly the sign of $Q(r,\theta^2)$.
+
+To certify government strict concavity on the \emph{entire} rational rectangle
+\[
+(r,u)\in\left[\frac9{200},\frac{59}{200}\right]\times[0,1],
+\]
+substitute $r=9/200+z/4$ with $z\in[0,1]$ into $W_{s_As_A}$, $W_{h_Ah_A}$, and $\det H_A$. After reducing to rational functions of $(z,u)$, the exact tensor-product Bernstein coefficients of the cleared numerators have the required strict signs (negative for the diagonal Hessian entries, positive for the determinant), and the denominator coefficients are strictly positive. The repository's \texttt{verify\_itpf\_mechanism.py} reconstructs these entries from the original welfare Hessian, checks the factorization~\eqref{eq:investment-psi}, and performs the exact rational Bernstein sign tests. This is a rectangle-wide algebraic certificate, not a numerical sampling argument.
+
+The same certificate verifies that every tensor-product Bernstein coefficient of $Q_u$ and $Q_r$ is strictly positive on the rectangle. Thus
+\[
+Q_u(r,u)>0,\qquad Q_r(r,u)>0
+\quad\text{throughout the rectangle}.
+\]
+At its endpoints in $u$,
+\begin{align*}
+Q(r,0)&=-32(241000r^2-680025r+378779)<0,\\
+Q(r,1)&=-4(2198800r^2-4239456r+549747).
+\end{align*}
+The first expression stays negative for the displayed $r$ interval. The second is strictly increasing in $r$ and has exactly one zero there:
+\[
+r_c=\frac{132483}{137425}
+-\frac{3\sqrt{22808771461}}{549700}
+\simeq0.1398122733.
+\]
+Consequently $Q$ is negative on all $u\in[0,1]$ when $r<r_c$; touches zero only at $u=1$ when $r=r_c$; and has a unique interior zero when $r>r_c$. Implicit differentiation of the zero condition yields $du^*/dr=-Q_r/Q_u<0$, hence $d\theta^*/dr<0$ on the switching range. This proves Proposition~\ref{prop:investment-boundary} for the interior best response. The original separate canonical global-SPNE proof remains necessary for interpretation as the true global response.
+
+Finally, the canonical direct cross derivative $W_{h_As_B}$ has the sign of $-D(u)$ for $\theta>0$, where
+\[
+D(u)=102500u^4-1205500u^3+5196340u^2
+-8170549u+1317283.
+\]
+Exact root counting gives one root in $u\in(0,1)$, with $\theta_D\simeq0.4257367755$. In contrast, the joint-policy derivative switches at $\theta^*\simeq0.7738043861$. Since $W_{h_Ah_A}<0$, the infrastructure-only best-response derivative $-W_{h_As_B}/W_{h_Ah_A}$ shares the sign of $W_{h_As_B}$. The two experiments therefore have opposite infrastructure-response signs throughout $(\theta_D,\theta^*)$. All root counts and signs are regression-tested by the repository verifier.
+
 \subsection{Benchmark without conventional investment}
 
 Let $1/k_x\rightarrow0$. After dividing $P(u)$ by $k_x^2$ and taking the limit, obtain a benchmark quartic $\bar P(u)$. If its degree-four Bernstein coefficients $C_0,\ldots,C_4$ are all positive, then $\bar P(u)>0$ for all $u\in[0,1]$, and equation \eqref{eq:P-sign} implies a negative cross-infrastructure response for every $\theta>0$.
@@ -138,6 +194,31 @@ At the canonical parameter vector, the benchmark polynomial factorizes, up to a 
 (4-u)^2\left(602500u^2-3281550u+3486659\right).
 \]
 The quadratic factor is positive on $[0,1]$, establishing the numerical benchmark reported in Proposition~\ref{prop:no-x}. \qed
+
+\subsection{Global validity of the matched no-conventional-investment benchmark}
+\label{app:nox-canonical-global}
+
+For the \emph{matched} no-$x$ canonical vector (in particular $\beta=17/10$, distinct from the no-$x$ counterexample with $\beta=13/10$), the baseline government best-response candidate has positive subsidy and infrastructure, a strictly negative-definite active-duopoly Hessian, and a strictly interior two-firm continuation for all $\theta\in[0,1]$. The symmetric rival policy also prevents nonnegative own policies from reaching the rival-monopoly and rival-kink regions. These claims follow from exact rational expressions with root-free numerators and denominators on the unit interval.
+
+It remains to compare government welfare against deviations that exclude the rival. Let $W_D$ denote the active-duopoly objective evaluated at the symmetric candidate. As in Appendix~\ref{app:global-equilibrium}, the possible exclusionary continuations are the own limit-pricing kink and own monopoly. In the no-$x$ kink, the subsidy direction is flat: $W_{K,s_A}=0$, while $W_{K,h_Ah_A}<0$. The kink-maximizing infrastructure has a feasible nonnegative subsidy interval, one endpoint of which is the common kink/monopoly boundary $\theta w_A=(2-R)w_B$. At that endpoint the kink-side policy gradient is zero, while the monopoly-side inward KKT multiplier is strictly negative. The monopoly objective is strictly concave, so this common boundary gives the best exclusionary challenger.
+
+Writing $\Delta W^0(\theta)$ for the active-duopoly candidate's welfare less that boundary challenger's welfare, exact simplification gives
+\begin{equation}
+\Delta W^0(\theta)=
+\frac{64\,A(\theta)^2\,B(\theta)}
+{21358125\,\theta^2(\theta^2-4)^2 C(\theta)^2},
+\label{eq:nox-global-gap}
+\end{equation}
+where
+\begin{align*}
+A(\theta)&=605750\theta^4-4380700\theta^2+7654607,\\
+B(\theta)&=2423000000\theta^8-28638162500\theta^6
++125470078500\theta^4\\
+&\quad-249583736600\theta^2+203475896783,\\
+C(\theta)&=48460000\theta^5+35591750\theta^4-307739750\theta^3\\
+&\quad-275461300\theta^2+449192485\theta+520398713.
+\end{align*}
+Exact real-root counts show that $B$ and $C$ have no zero on $[0,1]$ and are strictly positive there; $A$ is also root-free and nonzero on the interval. Thus $\Delta W^0(\theta)>0$ for every $\theta\in(0,1]$. At $\theta=0$, exclusion is impossible and the duopoly continuation applies; the scaled gap $\theta^2\Delta W^0(\theta)$ has a strictly positive right-hand limit. Together these results establish that the matched no-$x$ canonical candidate is a global policy equilibrium over the full rivalry range, with its unique downstream continuation yielding an SPNE. The exact signs of all policy levels, feasibility margins, kink/monopoly KKT terms, and the rational gap are checked in \texttt{verify\_nox\_canonical\_global.py}. The result does not extend the no-$x$ counterexample at $\beta=13/10$ to a full-interval theorem.
 
 \subsection{Verification protocol}
 
