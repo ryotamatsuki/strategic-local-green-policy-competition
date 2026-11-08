@@ -195,6 +195,31 @@ At the canonical parameter vector, the benchmark polynomial factorizes, up to a 
 \]
 The quadratic factor is positive on $[0,1]$, establishing the numerical benchmark reported in Proposition~\ref{prop:no-x}. \qed
 
+\subsection{Global validity of the matched no-conventional-investment benchmark}
+\label{app:nox-canonical-global}
+
+For the \emph{matched} no-$x$ canonical vector (in particular $\beta=17/10$, distinct from the no-$x$ counterexample with $\beta=13/10$), the baseline government best-response candidate has positive subsidy and infrastructure, a strictly negative-definite active-duopoly Hessian, and a strictly interior two-firm continuation for all $\theta\in[0,1]$. The symmetric rival policy also prevents nonnegative own policies from reaching the rival-monopoly and rival-kink regions. These claims follow from exact rational expressions with root-free numerators and denominators on the unit interval.
+
+It remains to compare government welfare against deviations that exclude the rival. Let $W_D$ denote the active-duopoly objective evaluated at the symmetric candidate. As in Appendix~\ref{app:global-equilibrium}, the possible exclusionary continuations are the own limit-pricing kink and own monopoly. In the no-$x$ kink, the subsidy direction is flat: $W_{K,s_A}=0$, while $W_{K,h_Ah_A}<0$. The kink-maximizing infrastructure has a feasible nonnegative subsidy interval, one endpoint of which is the common kink/monopoly boundary $\theta w_A=(2-R)w_B$. At that endpoint the kink-side policy gradient is zero, while the monopoly-side inward KKT multiplier is strictly negative. The monopoly objective is strictly concave, so this common boundary gives the best exclusionary challenger.
+
+Writing $\Delta W^0(\theta)$ for the active-duopoly candidate's welfare less that boundary challenger's welfare, exact simplification gives
+\begin{equation}
+\Delta W^0(\theta)=
+\frac{64\,A(\theta)^2\,B(\theta)}
+{21358125\,\theta^2(\theta^2-4)^2 C(\theta)^2},
+\label{eq:nox-global-gap}
+\end{equation}
+where
+\begin{align*}
+A(\theta)&=605750\theta^4-4380700\theta^2+7654607,\\
+B(\theta)&=2423000000\theta^8-28638162500\theta^6
++125470078500\theta^4\\
+&\quad-249583736600\theta^2+203475896783,\\
+C(\theta)&=48460000\theta^5+35591750\theta^4-307739750\theta^3\\
+&\quad-275461300\theta^2+449192485\theta+520398713.
+\end{align*}
+Exact real-root counts show that $B$ and $C$ have no zero on $[0,1]$ and are strictly positive there; $A$ is also root-free and nonzero on the interval. Thus $\Delta W^0(\theta)>0$ for every $\theta\in(0,1]$. At $\theta=0$, exclusion is impossible and the duopoly continuation applies; the scaled gap $\theta^2\Delta W^0(\theta)$ has a strictly positive right-hand limit. Together these results establish that the matched no-$x$ canonical candidate is a global policy equilibrium over the full rivalry range, with its unique downstream continuation yielding an SPNE. The exact signs of all policy levels, feasibility margins, kink/monopoly KKT terms, and the rational gap are checked in \texttt{verify\_nox\_canonical\_global.py}. The result does not extend the no-$x$ counterexample at $\beta=13/10$ to a full-interval theorem.
+
 \subsection{Verification protocol}
 
 All algebra in this appendix is independently reconstructed in the repository's symbolic scripts rather than copied from the manuscript. The verification checks the firm first-order conditions, the general factorization \eqref{eq:psi-factor-app}, the canonical polynomial and unique root, the no-conventional-investment benchmark, and the numerical robustness calculations. This separation is intended to make manuscript transcription errors detectable by continuous integration.
