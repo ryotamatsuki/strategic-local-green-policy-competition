@@ -85,7 +85,40 @@ and
 If, in addition, that interior branch is the true global policy best response on an open neighborhood, the same derivative is the derivative of the global best response there.
 \end{proposition}
 
-The distinction is economically directional rather than only quantitative. Below the threshold, an increase in a rival's green support lowers the local government's infrastructure best response; above it, the best response rises. This is not a discrete decision to abandon a subsidy for infrastructure, and the sign crossing is conditional on the stated policy and firm-stage restrictions. Equally, a branch-specific derivative is not automatically the derivative of a globally valid policy response: the latter is certified separately against kink- and monopoly-inducing deviations below.
+The substantive question is what reverses after the \emph{own subsidy has been reoptimized}. Write $s=s_A$, $h=h_A$ and $b=s_B$, holding $h_B$ fixed. Eliminating $ds/db$ from $W_s=W_h=0$ yields
+\begin{equation}
+\frac{\partial h_A^{BR}}{\partial s_B}
+=-\frac{W_{hb}-W_{hs}W_{sb}/W_{ss}}
+        {W_{hh}-W_{hs}^{\,2}/W_{ss}}.
+\label{eq:profiled-infrastructure}
+\end{equation}
+The denominator is negative under $H_A\prec0$. Consequently the sign of the response is the sign of the \emph{profiled} mixed effect in the numerator, not necessarily the sign of $W_{hb}$. A rival subsidy can raise the marginal return to infrastructure when the local subsidy is held fixed yet reduce infrastructure after that subsidy is optimally adjusted. This distinction is testable within the exact same policy game; it is not itself a claim that profiling a Hessian is a new mathematical method.
+
+Table~\ref{tab:profiled-channels} shows this distinction for the two canonical rivalry levels. The channel contributions use the \emph{same} total-government $W_{hs}/W_{ss}$ and Schur-complement denominator; each welfare component is evaluated at the same underlying branch, rather than separately reoptimized. The direct mixed effect $W_{hb}$ is positive at both points, while the fully reoptimized response changes sign. At higher rivalry, the target-loss contribution grows more strongly than the opposing producer-surplus term, and the consumer-surplus contribution turns positive. These values demonstrate the source of the canonical reversal, not a universally dominant mechanism.
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{Direct and own-subsidy-profiled cross effects at the canonical primitives}
+\label{tab:profiled-channels}
+\begin{tabular}{lrr}
+\toprule
+& $\theta=0.5$ & $\theta=0.9$\\
+\midrule
+Direct $W_{h_As_B}$ & $+0.000237$ & $+0.008087$\\
+Profiled CS contribution to $\partial h_A^{BR}/\partial s_B$ & $-0.001903$ & $+0.003335$\\
+Profiled PS contribution & $-0.035902$ & $-0.075657$\\
+Profiled territorial-target contribution & $+0.033252$ & $+0.079434$\\
+\midrule
+Total profiled response & $-0.004552$ & $+0.007113$\\
+\bottomrule
+\end{tabular}
+\begin{flushleft}\footnotesize
+Notes: Contributions are $-[W^X_{hb}-(W_{hs}/W_{ss})W^X_{sb}]/[W_{hh}-W_{hs}^2/W_{ss}]$, for $X\in\{CS,PS,\text{target}\}$, evaluated with the same full-government Hessian. The infrastructure-cost component has zero mixed derivative. These are local slopes at the canonical globally certified policy profile, not estimates of observed policy changes.
+\end{flushleft}
+\end{table}
+
+The sign change is a directional effect, not a discrete decision to abandon one instrument for another. The interior formula alone does not certify a global policy response; the kink- and monopoly-deviation checks in Section~\ref{sec:equilibrium} remain essential.
 
 The proof is simple once the equilibrium has been reduced to \eqref{eq:P-sign}. The conditions $B_0,\ldots,B_3<0$ imply $P'(u)<0$ throughout $[0,1]$ because the cubic Bernstein basis is nonnegative on that interval. Combined with $P(0)>0>P(1)$, this yields a unique root $u^*\in(0,1)$ and hence $\theta^*=\sqrt{u^*}$. At $\theta=0$ the cross-jurisdictional response is zero rather than negative.
 
@@ -97,7 +130,7 @@ R=\frac1{k_x}+\frac{\mu^2}{k_g}.
 \]
 Product substitutability changes how this investment feedback propagates through quantities, but the final government response is not a pure competitiveness-preservation effect. Equation~\eqref{eq:cross-instrument-general} combines consumer-surplus, producer-surplus, territorial-target, and within-government policy-interaction terms.
 
-At the canonical global-SPNE point $\theta=.9$, the direct cross derivative is
+For comparison with the profiled decomposition in Table~\ref{tab:profiled-channels}, the \emph{direct} mixed derivative at $\theta=.9$ (holding the local subsidy fixed) is
 \[
 W_{h_As_B}
 =0.001638_{\,CS}
@@ -105,7 +138,7 @@ W_{h_As_B}
 +0.046078_{\,\text{target}}
 =0.008087.
 \]
-Moreover, $E_{A,h_A}\simeq0.952>0$ while $E_{A,s_B}\simeq-0.0242$. Thus a rival subsidy lowers local output and territorial emissions, which in this calibration relaxes part of the target-loss consequence of an infrastructure expansion even though infrastructure raises local emissions on net through its scale effect. The switching result should therefore be read as a composite strategic response rather than as evidence that one single channel dominates generally. In particular, the positive target component at this witness is not a universal decomposition or an argument that rivalry alone generates the switch; Section~\ref{sec:robustness} varies the territorial-target weight directly.
+It differs from the profiled component values because the latter also incorporate the induced adjustment of $s_A$. At this point $E_{A,h_A}\simeq0.952>0$ and $E_{A,s_B}\simeq-0.0242$, so the rival subsidy reduces local production and territorial emissions while additional local infrastructure raises emissions on net through its scale effect. The target contribution is therefore substantial here, not a theorem of target-term dominance throughout the admissible parameter space. Section~\ref{sec:robustness} checks the target-intensity restriction explicitly.
 
 The interior reduced system also implies that rival policies enter jurisdiction $A$ through
 \[
@@ -150,7 +183,7 @@ The full nonnegative-policy continuation in Section~\ref{sec:equilibrium} verifi
 \begin{figure}[!t]
 \centering
 \includegraphics[width=0.72\textwidth]{figures/figure1_threshold_response.pdf}
-\caption{Canonical cross-instrument infrastructure response. The solid line is the full model and the dashed line is the matched no-conventional-investment benchmark at the same remaining canonical primitives. The horizontal line marks zero and the vertical marker indicates $\theta^*=0.7738043861\ldots$. The full-model response crosses zero once, whereas the matched no-$x$ response remains negative for all $\theta\in(0,1]$.}
+\caption{Cross-instrument infrastructure response at canonical primitives. The solid full-model curve is the local derivative along the verified global-SPNE canonical branch; its unique zero is $\theta^*=0.7738043861\ldots$. The dashed no-conventional-investment curve is the matched-primitives \emph{interior-branch diagnostic}, not a global equilibrium claim throughout the whole plotted interval. The horizontal line is zero. Neither curve establishes switching for arbitrary primitives.}
 \label{fig:threshold-response}
 \end{figure}
 

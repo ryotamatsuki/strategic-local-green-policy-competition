@@ -11,6 +11,7 @@ verify:
 	$(PYTHON) scripts/verify_stage7_postrepair.py
 	$(PYTHON) scripts/verify_stage10.py
 	$(PYTHON) scripts/verify_stage11r_target_scope.py
+	$(PYTHON) docs/stage11_v3/recompute_stage6_target_boundary.py
 
 test:
 	$(PYTHON) -m pytest -q

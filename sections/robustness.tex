@@ -76,20 +76,26 @@ The territorial-target term is part of the strategic mechanism, not a neutral ad
 
 \begin{table}[htbp]
 \centering
-\caption{Target intensity and the interior cross-infrastructure response}
+\small
+\caption{Sign of the interior first-order-condition slope and policy feasibility}
 \label{tab:d-sensitivity}
-\begin{tabular}{ccc}
+\begin{tabular}{cccp{4.0cm}}
 \toprule
-$d$ & roots of $P_d(u)$ on $u\in(0,1)$ & sign of $\partial h_A^{BR}/\partial s_B$\\
+$d$ & roots on $u\in(0,1)$ & interior slope sign & Status at $\theta=.9$\\
 \midrule
-$1.5$ & $0$ & negative for all $\theta\in(0,1]$\\
-$2$ & $1$ & negative then positive\\
-$3$ & $0$ & positive for all $\theta\in(0,1]$\\
+$1.5$ & $0$ & negative & Not global: an exclusionary deviation yields $+0.29564$ in regional welfare\\
+$2$ & $1$ & negative then positive & Globally certified canonical SPNE; $\theta^*\simeq0.7738043861$\\
+$3$ & $0$ & positive & Infeasible interior candidate: $h_A\simeq-0.3256$\\
 \bottomrule
 \end{tabular}
+\begin{flushleft}\footnotesize
+Notes: Root counts and signs refer only to the strict-concavity interior FOC branch. They do not assert equilibrium slopes at parameter values where the interior candidate is infeasible or defeated by a nonlocal government deviation. All other canonical primitives are fixed. The $d=2$ result has a separate full-nonnegative-game certificate.
+\end{flushleft}
 \end{table}
 
-Thus rivalry alone does not mechanically generate switching. In the canonical neighborhood the sign reversal is an intermediate-target-discipline phenomenon: the territorial objective must be strong enough to offset the purely competitiveness-oriented margins at lower rivalry, but not so strong that the infrastructure response has the same sign throughout. This sensitivity is an interior comparative-static diagnostic, not an additional global-SPNE theorem for the $d=1.5$ or $d=3$ parameter vectors.
+These failures are informative, rather than nuisance exceptions. At $d=1.5$ and $\theta=.9$, the interior candidate is feasible but not a global policy best response; at $d=3$, it violates the nonnegative-infrastructure constraint. Neither row can be used as evidence for a realized global-SPNE sign at that point. For the canonical remaining primitives, exact reduction of the interior profiled mixed effect also gives a decreasing target-weight threshold $d^*(\theta)$: it is approximately $2.54707$ as $\theta\downarrow0$, $2.31736$ at $\theta=.5$, $1.80619$ at $\theta=.9$, and $1.62838$ at $\theta=1$. Where the government Hessian is negative definite \emph{and the interior branch is globally optimal}, the sign is that of $d-d^*(\theta)$ for positive $\theta$. The value at $\theta=0$ is a boundary limit; the cross-jurisdictional response itself is zero there.
+
+Thus the territorial objective offsets the negative producer-surplus margin \emph{first at higher rivalry levels} in this diagnostic, while the response remains negative at lower rivalry; still larger $d$ can make the formal interior slope positive throughout. This classification is not a theorem that the entire plotted $d^*(\theta)$ curve consists of globally admissible policy equilibria. The only established globality result covers the canonical witness and an unspecified nonempty open neighborhood.
 
 \subsection{Small asymmetries}
 
