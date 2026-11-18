@@ -22,14 +22,35 @@ The own-kink and own-monopoly government problems are compared directly. Their b
 \[
 \theta w_A=(2-R)w_B.
 \]
-Exact KKT signs select that common boundary, and the welfare gap between the symmetric duopoly optimum and the best exclusionary challenger is strictly positive over $\theta\in(0,1]$. Representative values are approximately $7.64866$ at $\theta=.5$, $.42775$ at $.9$, and $.07341$ at $1$. At $\theta=0$ strategic exclusion is unavailable.
+For the canonical rational witness, fix the rival at its symmetric policy. Use $(s_A,w_A)$ as own-policy coordinates, so that $h_A=(w_A-m-bs_A)/\nu$ and policy nonnegativity can be imposed explicitly. Conditional on the boundary equation, the one-dimensional \emph{tangential} optimization delivers strictly positive $s_A$ and $h_A$. Its tangent derivative vanishes on both branches because their value functions agree there. As $w_A$ increases through the boundary, the one-sided normal derivative is positive on the kink side and negative on the monopoly side. Together with strict concavity of each of the two outside branches, these signs put the global maximum of the exclusionary region at the common tangentially optimal boundary point, rather than at an unexamined nonlocal stationary candidate.
 
-For the open-neighborhood qualification, the endpoint $\theta=0$ requires one additional regularity observation. The unscaled rational representation of the exclusionary welfare gap is singular at zero, but the scaled gap $\theta^2\Delta W(\theta)$ extends continuously to $\theta=0$ and satisfies
+\begin{table}[htbp]
+\centering
+\small
+\caption{Full-policy comparison chain for the canonical rational witness}
+\label{tab:global-deviation-certificate}
+\begin{tabular}{p{5.1cm}p{6.4cm}}
+\toprule
+Comparison or certificate & Exact inequality or required sign\\
+\midrule
+Symmetric interior candidate & $s_A,h_A,q_A,q_B>0$; own Hessian negative definite\\
+Rival kink/monopoly unreachable & $Lm-\theta w_B>0$ for all $\theta\in[0,1]$ under nonnegative own policies\\
+Own kink--monopoly common boundary & $\theta w_A=(2-R)w_B$; boundary policies $s_A,h_A>0$\\
+Tangential and one-sided normal checks & tangent derivative $=0$; normal derivative positive on kink side, negative on monopoly side; both branch Hessians negative definite\\
+Best outside branch versus duopoly candidate & $\Delta W(\theta)>0$ for $0<\theta\leq1$; positive limit of $\theta^2\Delta W$ at zero\\
+Open-neighborhood continuation & symmetric and antisymmetric policy-FOC Jacobian blocks nonsingular; strict inequalities preserved\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The final global comparison is between this boundary maximizer and the symmetric interior optimum, \emph{not} between two arbitrary first-order-condition solutions. The exact welfare gap is strictly positive throughout $\theta\in(0,1]$: representative values are approximately $7.64866$ at $\theta=.5$, $.42775$ at $.9$, and $.07341$ at $1$. At $\theta=0$ strategic exclusion is unavailable. The exact rational sign and root-count checks corresponding to the rows are implemented in \texttt{scripts/verify\_stage4rg\_global.py}; the Stage-11 independent reconstruction also checks the same policy regions by a distinct evaluator. A finite grid of numerical deviations alone would not establish these inequalities for the whole interval.
+
+For the open-neighborhood qualification, the endpoint $\theta=0$ requires one additional regularity observation. The exclusionary boundary policies and their one-sided normal derivatives have finite limits only after multiplication by $\theta$; the corresponding unscaled welfare gap diverges as $\theta\downarrow0$. This divergence does not imply an exclusionary deviation in the independent-markets game at $\theta=0$. The scaled gap $\theta^2\Delta W(\theta)$ instead extends continuously to $\theta=0$ and satisfies
 \[
 \lim_{\theta\downarrow0}\theta^2\Delta W(\theta)
 =\frac{46316976555179}{8043085428750}>0.
 \]
-Moreover, the determinants of both the symmetric and antisymmetric blocks of the full policy first-order-condition Jacobian are root-free on $[0,1]$. Hence the equilibrium policy solution varies regularly throughout the interval. Together with the strict curvature, feasibility, regime, and welfare-gap margins on the compact interval, these facts imply by continuity a common nonempty open primitive neighborhood in which the same global-SPNE configuration survives. The repository script \texttt{verify\_stage4rg\_global.py} reconstructs the global comparisons independently and retains the hostile-audit parameter vector for which the old interior candidate fails as a regression test.
+Moreover, the determinants of both the symmetric and antisymmetric blocks of the full policy first-order-condition Jacobian are root-free on $[0,1]$. Hence the equilibrium policy solution varies regularly throughout the interval. Together with the strict curvature, feasibility, regime, and welfare-gap margins on the compact interval, these facts imply by continuity a common nonempty open primitive neighborhood in which the same global-SPNE configuration survives. If $\bar E=0$ is treated as the boundary of the maintained nonnegative target domain, the neighborhood assertion is relative to that admissible parameter space. The certificate establishes the existence of the specified government SPNE, not uniqueness of all government-policy equilibria. The repository script \texttt{verify\_stage4rg\_global.py} reconstructs the global comparisons independently and retains the hostile-audit parameter vector for which the old interior candidate fails as a regression test.
 
 \subsection{Limits of the no-conventional-investment comparison}
 
