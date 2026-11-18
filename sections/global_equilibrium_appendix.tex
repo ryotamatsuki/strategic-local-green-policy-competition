@@ -58,9 +58,7 @@ Moreover, the determinants of both the symmetric and antisymmetric blocks of the
 
 This subsection proves the additional two-point claim in Proposition~\ref{prop:fixed-theta-target}. It does \emph{not} extend the canonical-$d=2$ theorem to the entire $d^*(\theta)$ curve. The source-independent rational comparator and its regression tests are \texttt{docs/itpf\_final/exact\_policy\_slice.py} and \texttt{docs/itpf\_final/verify\_fixed\_theta\_result.py}. The Stage-4A/7.5A certification report fixes the exact source and computational scope; the existing Lean development certifies different, frozen statements.
 
-Fix $\theta=31/40$ and $d\in\{39/20,41/20\}$, with all other primitives as specified in Proposition~\ref{prop:fixed-theta-target}. Holding $B
-
-The canonical no-$x$ benchmark satisfies the positive-Bernstein condition reported above and therefore has no sign reversal. This is not a global necessity theorem. Keeping the other canonical primitives but setting $\beta=1.3$ produces a no-$x$ example with global policy equilibria in which the cross-infrastructure response is negative at $\theta=.9$ and positive at $\theta=1$, with an interior crossing near $.93949$. The repository verifies that example separately. Thus the economically valid comparison is matched-primitives separation at the canonical vector, not universal necessity of conventional investment.s candidate rival policy fixed, let $b=\mu/k_g$, $M=2-R$, $L=2-4R/(4-\theta^2)$, $w_A=m+bs_A+\nu h_A$, and $w_B=m+bs_B+\nu h_B$. Each firm's continuation has exactly five regions, classified by the two inequalities for $w_A$:
+Fix $\theta=31/40$ and $d\in\{39/20,41/20\}$, with all other primitives as specified in Proposition~\ref{prop:fixed-theta-target}. Holding the rival government $B$ at its symmetric candidate, let $b=\mu/k_g$, $M=2-R$, $L=2-4R/(4-\theta^2)$, $w_A=m+bs_A+\nu h_A$, and $w_B=m+bs_B+\nu h_B$. Each firm's continuation has exactly five regions, classified by the two inequalities for $w_A$:
 \begin{align*}
 \text{rival monopoly: }&w_A\leq\theta w_B/M,\\
 \text{rival kink: }&\theta w_B/M\leq w_A\leq\theta w_B/L,\\
