@@ -52,6 +52,74 @@ For the open-neighborhood qualification, the endpoint $\theta=0$ requires one ad
 \]
 Moreover, the determinants of both the symmetric and antisymmetric blocks of the full policy first-order-condition Jacobian are root-free on $[0,1]$. Hence the equilibrium policy solution varies regularly throughout the interval. Together with the strict curvature, feasibility, regime, and welfare-gap margins on the compact interval, these facts imply by continuity a common nonempty open primitive neighborhood in which the same global-SPNE configuration survives. If $\bar E=0$ is treated as the boundary of the maintained nonnegative target domain, the neighborhood assertion is relative to that admissible parameter space. The certificate establishes the existence of the specified government SPNE, not uniqueness of all government-policy equilibria. The repository script \texttt{verify\_stage4rg\_global.py} reconstructs the global comparisons independently and retains the hostile-audit parameter vector for which the old interior candidate fails as a regression test.
 
+
+\subsection{Exact fixed-rivalry target-discipline certificates}
+\label{app:fixed-target-global}
+
+This subsection proves the additional two-point claim in Proposition~\ref{prop:fixed-theta-target}. It does \emph{not} extend the canonical-$d=2$ theorem to the entire $d^*(\theta)$ curve. The source-independent rational comparator and its regression tests are \texttt{docs/itpf\_final/exact\_policy\_slice.py} and \texttt{docs/itpf\_final/verify\_fixed\_theta\_result.py}. The Stage-4A/7.5A certification report fixes the exact source and computational scope; the existing Lean development certifies different, frozen statements.
+
+Fix $\theta=31/40$ and $d\in\{39/20,41/20\}$, with all other primitives as specified in Proposition~\ref{prop:fixed-theta-target}. Holding $B
+
+The canonical no-$x$ benchmark satisfies the positive-Bernstein condition reported above and therefore has no sign reversal. This is not a global necessity theorem. Keeping the other canonical primitives but setting $\beta=1.3$ produces a no-$x$ example with global policy equilibria in which the cross-infrastructure response is negative at $\theta=.9$ and positive at $\theta=1$, with an interior crossing near $.93949$. The repository verifies that example separately. Thus the economically valid comparison is matched-primitives separation at the canonical vector, not universal necessity of conventional investment.s candidate rival policy fixed, let $b=\mu/k_g$, $M=2-R$, $L=2-4R/(4-\theta^2)$, $w_A=m+bs_A+\nu h_A$, and $w_B=m+bs_B+\nu h_B$. Each firm's continuation has exactly five regions, classified by the two inequalities for $w_A$:
+\begin{align*}
+\text{rival monopoly: }&w_A\leq\theta w_B/M,\\
+\text{rival kink: }&\theta w_B/M\leq w_A\leq\theta w_B/L,\\
+\text{duopoly: }&\theta w_B/L\leq w_A\leq Lw_B/\theta,\\
+\text{own kink: }&Lw_B/\theta\leq w_A\leq Mw_B/\theta,\\
+\text{own monopoly: }&w_A\geq Mw_B/\theta.
+\end{align*}
+For each branch, substitution of the unique second-stage investment continuation into $W_A$ produces a quadratic in $(s_A,h_A)$, subject to $s_A,h_A\geq0$ and the branch's affine bounds on $w_A$. Because $b,\nu>0$, every branch with a finite upper bound is bounded in policy space. The unbounded own-monopoly branch has a strictly negative-definite quadratic Hessian, making its objective coercive. A global maximum in each branch must therefore be a feasible interior stationary point, a feasible one-active-face stationary point, or an intersection of two active constraints (including the axes and kink vertices). Exact rational stationary systems, edges, and vertices are enumerated; singular face systems and empty branches are checked separately, not silently skipped.
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{Rational full-policy certificates for the two fixed-rivalry points}
+\label{tab:two-point-global-certificates}
+\begin{tabular}{lcc}
+\toprule
+& $d=39/20$ & $d=41/20$\\
+\midrule
+Policy $(s^*,h^*)$ & $(2.473667,1.032255)$ & $(2.410736,0.852323)$\\
+Both firms' $q^*$ & $1.384909$ & $1.294680$\\
+Own Hessian $H_{ss}<0$ & strict & strict\\
+$\det H$ & $0.0247354$ & $0.0283397$\\
+Symmetric FOC Jacobian determinant & $0.0264750$ & $0.0282633$\\
+Rival kink/monopoly & unreachable & unreachable\\
+Best outside-duopoly regime & own kink/monopoly boundary & own kink/monopoly boundary\\
+$\Delta W=W^{D}-\max W^{\neg D}$ & $1.2250418633$ & $1.2509844665$\\
+\bottomrule
+\end{tabular}
+\begin{flushleft}\footnotesize
+Notes: Entries are rounded displays of exact rational computations. The derivative and gap fractions, including numerator/denominator signs, are evaluated without floating-point optimization in the certification code. All strict inequalities are per \emph{specified} parameter vector; they do not certify the full interval between the two target weights or uniqueness of all government Nash equilibria.
+\end{flushleft}
+\end{table}
+
+The symmetric candidates solve the full two-government first-order conditions on the positive duopoly branch. The own Hessian is strictly negative definite and the symmetric/antisymmetric FOC blocks are nonsingular, with positive output and strictly positive policies. In these two cases, $w_A\geq m$ cannot satisfy the rival-kink or rival-monopoly upper bound. For the reachable own-kink and own-monopoly branches, maximizing along their common boundary $w_A=Mw_B/\theta$ gives a strictly positive policy pair. The same maximizer is a feasible boundary candidate for both branches; checking the tangential stationary condition and inward/outward one-sided normal inequalities, together with each branch's negative-definite Hessian, establishes it as the best exclusionary deviation. The duopoly candidate exceeds the best such deviation by the strictly positive rational gaps in Table~\ref{tab:two-point-global-certificates}. Thus each candidate is a strict global government best response, not just an interior solution.
+
+For completeness, the exact welfare-gap fractions are
+\[
+\Delta W_{39/20}=
+\frac{148989349783148556217990867003253066339283904}
+{121619802760655671470687698110873893192222545}>0,
+\]
+\[
+\Delta W_{41/20}=
+\frac{4733774998207837781350448359892008581617262272}
+{3784039790210027952876714776301248782838527525}>0.
+\]
+The corresponding exact profiled slopes are
+\[
+\left.\frac{\partial h_A^{BR}}{\partial s_B}\right|_{39/20}
+=-\frac{850047589668964769775}{565831278883134462887996}<0,
+\quad
+\left.\frac{\partial h_A^{BR}}{\partial s_B}\right|_{41/20}
+=\frac{84580318176289963179075}{60290010446915774899452532}>0.
+\]
+Because the two rational candidates have strict regime, curvature, feasibility, normal and global-value margins and invertible government-policy Jacobians, their locally unique symmetric profiles and full global best responses persist under \emph{sufficiently small} perturbations of primitives and of the rival subsidy with $h_B$ fixed. This proves two nonempty open neighborhoods with opposite signs, not a specified common interval of $d$. The local comparative static has no implication for arbitrary simultaneous changes in both governments' policy vectors.
+
+The scope restriction is substantive. At $\theta=1$ and the interior sign-zero weight $d^*(1)=89308800/54845239$, the symmetric interior candidate is defeated by an own-monopoly policy deviation with welfare gain about $0.28140957$. Likewise, at $\theta=.9,d=1.5$ an exclusionary deviation improves welfare by about $0.29564113$, and at $\theta=.9,d=3$ the symmetric interior stationary point has negative infrastructure. These observations refute the identification of the whole algebraic $d^*(\theta)$ locus with a global-SPNE boundary. They do not prove that no other government equilibria exist at the offending points.
+
+
 \subsection{Limits of the no-conventional-investment comparison}
 
 The canonical no-$x$ benchmark satisfies the positive-Bernstein condition reported above and therefore has no sign reversal. This is not a global necessity theorem. Keeping the other canonical primitives but setting $\beta=1.3$ produces a no-$x$ example with global policy equilibria in which the cross-infrastructure response is negative at $\theta=.9$ and positive at $\theta=1$, with an interior crossing near $.93949$. The repository verifies that example separately. Thus the economically valid comparison is matched-primitives separation at the canonical vector, not universal necessity of conventional investment.
