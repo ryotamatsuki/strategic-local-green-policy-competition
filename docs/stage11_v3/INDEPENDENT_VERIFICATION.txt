@@ -1,0 +1,90 @@
+Stage 11 reviewer execution record | 2026-11-19 JST
+Source: cd078bbc092b3b41408e5c5e4dcfaa93ac87c3db
+Python 3.12.14; SymPy 1.14.0; NumPy 2.3.5; SciPy 1.17.0; repository pytest 8.4.2.
+Command: python docs/stage11_v3/independent_review.py
+Exact checks use rational polynomial root counts and endpoint signs. Fixed-point
+search uses floating point and retains unresolved starts as unresolved. The
+no-x compact flat face can be represented by its boundary for value comparison,
+but its policies can affect the other government. No exact policy-uniqueness
+claim follows from the numerical search.
+
+canonical N_d / theta degrees (10, 12) ends 0.009971056825943531 0.03760539500421058
+canonical d*(theta) slope / theta degrees (12, 16) ends -1.8543263360063857 -1.8968606526842253
+d*(0), d*(.5), d*(.9), d*(1) [2.547074122156294, 2.3173623644924857, 1.8061929697525931, 1.6283783538622194]
+d 3/2 quartic 722500*u**4 - 10501550*u**3 + 56563309*u**2 - 123403042*u + 81312744 root count 0
+d 2 quartic 602500*u**4 - 8101550*u**3 + 39588109*u**2 - 74143042*u + 31863144 root count 1
+Bernstein for derivative -74143042 -143252908/3 -88381340/3 -16861474
+u*, theta* 0.598773227922001947388672 0.773804386083460984273683
+d 3 quartic 482500*u**4 - 5701550*u**3 + 22612909*u**2 - 24883042*u - 17586456 root count 0
+theta 1/2 profiled CS/PS/infra/target contributions to BR slope [-0.0019029063955388317, -0.03590176484117411, 0.0, 0.033252452328088496]
+  direct and post-subsidy-relaxation mixed effects 0.0002368389152999356 -0.001591640319851155
+theta 9/10 profiled CS/PS/infra/target contributions to BR slope [0.0033350470672568215, -0.07565659494894858, 0.0, 0.07943412016880365]
+  direct and post-subsidy-relaxation mixed effects 0.008086535548489386 0.003745758887698699
+no-x matched 602500*u**2 - 3281550*u + 3486659 root count 0
+no-x modified 2778500*u**2 - 13520550*u + 9769111 root count 1
+no-x alternative theta* 0.939485055557332296156606
+s positive degrees (8, 9) ends 5.061828378800512 1.7086253492389543
+h positive degrees (8, 9) ends 1.7550686775450572 0.5235881294009292
+D own first minor degrees (12, 12) ends -0.06495859699593184 -0.062265964213822196
+D own determinant degrees (12, 12) ends 0.021990164099078426 0.04552573722289967
+rival-kink entrance unreachable degrees (12, 11) ends 3.41 0.4995963105902706
+policy symmetric block degrees (9, 9) ends 0.021990164099078426 0.029574688284022124
+policy antisymmetric block degrees (9, 9) ends 0.021990164099078426 0.061476786161777215
+wall s positive degrees (10, 9) ends 9.223148489357639 5.394087205586238
+wall h positive degrees (10, 9) ends 5.809361632568374 1.9643477195813417
+OK first minor degrees (0, 0) ends -0.05989303485233773 -0.05989303485233773
+OK determinant degrees (0, 0) ends 0.3459609662329187 0.3459609662329187
+OK inward upper-bound gradient (scaled) degrees (10, 9) ends 0.8319416105652879 1.479321750683984
+OM first minor degrees (0, 0) ends -0.06495859699593184 -0.06495859699593184
+OM determinant degrees (0, 0) ends 0.021990164099078426 0.021990164099078426
+OM inward upper-bound gradient (scaled) degrees (10, 9) ends -1.5495976355602377 -0.05582339837369753
+scaled global welfare gap degrees (20, 18) ends 5.758608057253628 0.07341237513919008
+exact scaled-gap limit 46316976555179/8043085428750
+unscaled gaps [7.648657606459858, 0.4277511003668914, 0.07341237513919008]
+wall policies at .9 6.6958142457632155 2.7842632974349093
+canonical 0.5 candidate [3.23183536 1.24502362] slope -0.004552218908624451 best non-D loss 7.648657606459829
+  fixed-point search roots [(3.6556201, 3.6556201)] unresolved solves 0
+canonical 0.9 candidate [2.05941107 0.74425768] slope 0.007112572287111896 best non-D loss 0.4277511003668901
+  fixed-point search roots [(2.9960798, 2.9960798)] unresolved solves 2
+canonical 1.0 candidate [1.70862535 0.52358813] slope 0.015348437661429811 best non-D loss 0.07341237513918575
+  fixed-point search roots [(2.713737, 2.713737)] unresolved solves 4
+matched no-x 0.5 candidate [3.25017802 1.5606642 ] slope -0.006402040953521588 best non-D loss 13.389535836888665
+matched no-x 0.9 candidate [2.49450717 1.45619834] slope -0.009485549097199604 best non-D loss 1.8289765119634374
+no-x kink indifference 2.0 [0.12695925 1.93254383] own kink W 0.4466871958204237 other government's global BR ('D', array([2.1276382 , 1.37021426]))
+no-x kink indifference 2.0 [0.38087774 1.93254383] own kink W 0.4466871958204237 other government's global BR ('D', array([2.1173616 , 1.36780571]))
+no-x kink indifference 3.872163360803497 [0.24580347 5.30169884] own kink W -2.7765775163790565 other government's global BR ('RM', array([ 0., -0.]))
+no-x kink indifference 3.872163360803497 [0.73741042 5.30169884] own kink W -2.7765775163790565 other government's global BR ('RM', array([ 0., -0.]))
+matched no-x 1.0 candidate [2.33499172 1.46880157] slope -0.008547602147214813 best non-D loss 1.2034509491936358
+no-x beta=1.3 0.5 candidate [2.17549829 1.08333874] slope -0.00267979681792122 best non-D loss 12.257680502761453
+no-x beta=1.3 0.9 candidate [1.62452481 0.97835063] slope -0.0007616532805213469 best non-D loss 1.863814078378295
+no-x beta=1.3 1.0 candidate [1.48874721 0.96425578] slope 0.0015070185743405197 best non-D loss 1.2625467838332964
+welfare at .9 [2.0594110699506976, 0.7442576777007572] 2W,E,q [2.18695182455342, 0.9074560077693851, 1.1841772340348948]
+welfare components per jurisdiction [1.3321619355262073, 0.8063581791138624, -0.22156779632660972, -0.8234764060367502]
+welfare at .9 [4.524765582268826, 3.198740372513667] 2W,E,q [3.7203060911922967, 1.634043216477777, 2.3970360867741536]
+welfare components per jurisdiction [5.45849290123267, 3.1645333659800654, -4.0927759882995485, -2.670097233317039]
+d scope stress .9 3/2 interior FOC [2.54867972 2.11274212] global own BR to that rival vector OM [8.179207   5.35359352] gain over algebraic FOC payoff 0.2956411290227332
+d scope stress .9 3 infeasible interior FOC [ 1.67690204 -0.32562011]
+historical out-of-scope deviation .9 3.383072094354675 4.032409393392014 (4.213832509552354, 'OM')
+
+Reproduction on the review checkout, as distinct from the reviewer derivation
+- python scripts/verify_freeze.py: PASS
+- python scripts/verify_stage10.py: PASS (general factorization, Cournot/limited Bertrand and capture checks)
+- python docs/stage11_v3/check_appendix_coefficients.py: PASS (A_4 through A_0 each
+  differ by zero from the production derivation, and denominator scaling agrees)
+- python scripts/verify_stage4rg_global.py: PASS
+- python scripts/verify_stage11r_target_scope.py: PASS
+- python scripts/verify_nox_global_counterexample.py: PASS
+- python scripts/verify_stage7_postrepair.py: PASS
+- python -m pytest -q: 9 passed (pytest 8.4.2)
+
+Source/PDF provenance
+- CI 44406847110, source f6996432c463482355cef653e9ad77b236132e0d:
+  symbolic-verification, lean-verification, manuscript-build all success.
+- Source vs reviewed head: only three Stage 10B supporting Markdown files differ.
+- CI ZIP SHA256: 32990f6dffde9f8e4b7c94333e25821520350443e171bb300fd4b4934bba69e8
+- CI PDF SHA256: 414582425c9e239e90a9f97984519f9ed8ea8be85d186eb9b04cf1ae61cfd881
+- Reference PDF SHA256: ea2fbb77e3e2beacca6e00888c0b094107ed40d5abf9a9aedd7e2bff6096e493
+- Same pdftotext -layout output for both 24-page PDFs:
+  6d4e84c59804a5bc57dfcaa048bd2b33033fb69861fafc159ce077d48aa7c914
+- CI log: one 1.71451pt overfull hbox. Local LaTeX did not build because
+  pdflatex.fmt was absent. The two PDFs were cross-checked using the CI artifact.
