@@ -26,6 +26,7 @@ jobs:
       - run: python scripts/verify_stage10.py
       - run: python scripts/verify_stage11r_target_scope.py
       - run: python docs/stage11_v3/recompute_stage6_target_boundary.py
+      - run: python docs/itpf_final/verify_fixed_theta_result.py
       - run: python scripts/verify_stage14_submission_package.py
       - run: python -m pytest -q
 
