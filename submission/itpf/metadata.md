@@ -1,6 +1,6 @@
 # ITPF Submission Metadata
 
-Status: **Stage 14 re-QA conditional package — manuscript/package QA complete; live portal fee gate only**.
+Status: **2026-11-19 prose-revision candidate; Stage-13 independent final-PDF review, author scientific sign-off, Stage-14 re-QA and live portal fee gate pending. NOT SUBMISSION-READY.**
 
 ## Journal and article type
 
@@ -66,9 +66,11 @@ Symbolic and numerical verification materials supporting the analytical and comp
 
 **Use of generative AI**
 
-Generative AI tools were used to assist with exploratory model development, literature organization, symbolic cross-checking, and manuscript preparation. All model specifications, mathematical derivations, proofs, numerical results, citations, and substantive conclusions were independently reviewed and verified by the author, who assumes full responsibility for the work.
+Generative AI tools, including OpenAI ChatGPT, were used to assist with exploratory model development, literature organization, symbolic cross-checking, manuscript drafting, and language revision. The author takes responsibility for the accuracy and integrity of the submitted work, including its mathematical claims, numerical results, references, and conclusions.
 
-## Stage 14 re-QA package note
+## Current package and validation status
+
+The historical September 2026 Stage-14 PDF was reviewed under the v1.1 workflow, not the 2026-11-19 prose-revised source. Its former QA and artwork verdicts are not approvals of the revised PDF. A v3.1 Stage-13 independent final-PDF prose review and fresh Stage-14 verification are mandatory before submission freeze. The quantitative figure generator and certified theoretical calculations are unchanged by these editorial revisions.
 
 The post-Stage-13R 24-page manuscript has completed the Stage 14 mathematical, reproducibility, bibliography, metadata/declaration, source-package, artwork, and visual QA. Figure 1 is regenerated from the verified derivative expressions and uses embedded TrueType fonts; CI enforces this artwork requirement. No theory or manuscript claim changed in the artwork repair.
 

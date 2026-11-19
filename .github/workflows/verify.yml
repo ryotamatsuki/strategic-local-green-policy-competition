@@ -19,6 +19,7 @@ jobs:
       - run: test -s figures/figure1_threshold_response.pdf
       - run: python scripts/verify_stage9r_alignment.py
       - run: python scripts/verify_stage10r_manuscript.py
+      - run: python scripts/verify_stage13_prose_regression.py
       - run: python scripts/verify_freeze.py
       - run: python scripts/verify_stage4rg_global.py
       - run: python scripts/verify_nox_global_counterexample.py
