@@ -24,26 +24,22 @@ F(\theta)\equiv mL(\theta)-\theta w_B^*(\theta)>0
 For the canonical rational parameters, $F$ is a rational function whose reduced numerator and denominator have no zeros on $[0,1]$ (after removing constant factors), and $F(1/2)>0$. This proves the inequality on the entire interval, not just at the numerical checkpoints. Because the own-policy action set is nonnegative, every own deviation satisfies $w_A=m+bs_A+\nu h_A\geq m$, and therefore $\theta w_B^*<Lm\leq Lw_A$. The rival-firm limit-pricing kink requires $\theta w_B^*\geq Lw_A$; the rival-firm monopoly requires the still stronger $\theta w_B^*\geq(2-R)w_A$, where $2-R\geq L$. Both rival-firm inactivity regions are consequently unreachable.
 
 \begin{center}
-\begin{tabular}{p{0.22\linewidth}p{0.32\linewidth}p{0.35\linewidth}}
+\begin{tabular}{@{}lll@{}}
 \toprule
-Continuation region & Reachability given rival equilibrium policy & Global-deviation test\\
+Region & Reachable? & Test\\
 \midrule
-Active duopoly & Reachable; contains symmetric candidate & Strict own-policy concavity and stationarity\\
-Rival limit-pricing kink & Excluded by $\theta w_B^*<Lw_A$ & No admissible own-policy deviation\\
-Rival monopoly & Excluded by $\theta w_B^*<(2-R)w_A$ & No admissible own-policy deviation\\
-Own limit-pricing kink & Potentially reachable & Maximum at common kink--monopoly boundary\\
-Own monopoly & Potentially reachable & Maximum at same boundary\\
+Duopoly & Yes & Concavity and stationarity\\
+Rival kink & No: $\theta w_B^*<Lw_A$ & Inaccessible deviation\\
+Rival monopoly & No: $\theta w_B^*<(2-R)w_A$ & Inaccessible deviation\\
+Own kink & Possibly & KKT boundary maximum\\
+Own monopoly & Possibly & Same boundary maximum\\
 \bottomrule
 \end{tabular}
 \end{center}
 
 For the two potentially reachable outside branches, the exact own-policy Hessians are negative definite. The KKT multipliers on the common boundary have opposite signs in the required outward normals, so their constrained global maxima coincide at that boundary with strictly positive optimal subsidy and infrastructure. Exact rational-polynomial root counts establish that the symmetric duopoly objective exceeds that outside-branch maximum for all $\theta\in(0,1]$. These tests are implemented in \texttt{scripts/verify\_stage4rg\_global.py} as \texttt{lower-regimes-inaccessible}, \texttt{kink-boundary-multiplier}, \texttt{monopoly-boundary-multiplier}, and \texttt{global-policy-gap}. The zero-rivalry endpoint is treated separately because strategic exclusion is impossible there.
 
-The own-kink and own-monopoly government problems are compared directly. Their best outside-branch value is attained at the common boundary
-\[
-\theta w_A=(2-R)w_B.
-\]
-Exact KKT signs select that common boundary, and the welfare gap between the symmetric duopoly optimum and the best exclusionary challenger is strictly positive over $\theta\in(0,1]$. Representative values are approximately $7.64866$ at $\theta=.5$, $.42775$ at $.9$, and $.07341$ at $1$. At $\theta=0$ strategic exclusion is unavailable.
+The common own-kink/monopoly boundary is $\theta w_A=(2-R)w_B$. The certified duopoly-versus-boundary welfare gaps are approximately $7.64866$ at $\theta=.5$, $.42775$ at $.9$, and $.07341$ at $1$. At $\theta=0$ strategic exclusion is unavailable.
 
 For the open-neighborhood qualification, the endpoint $\theta=0$ requires an additional regularity observation. The unscaled rational representation of the exclusionary welfare gap is singular at zero, but the scaled gap $\theta^2\Delta W(\theta)$ extends continuously to $\theta=0$ and satisfies
 \[
