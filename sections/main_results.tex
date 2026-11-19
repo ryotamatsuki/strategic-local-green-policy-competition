@@ -1,7 +1,7 @@
 \section{Main Results}
 \label{sec:results}
 
-The central object is the response of jurisdiction $A$'s infrastructure policy to jurisdiction $B$'s firm-specific green subsidy,
+The central object is jurisdiction $A$'s infrastructure component of its jointly optimized two-instrument best response to $B$'s firm-specific green subsidy, with rival infrastructure $h_B$ and all primitives (including product substitutability) fixed during the derivative,
 \[
 \frac{\partial h_A^{BR}}{\partial s_B}.
 \]
@@ -35,7 +35,7 @@ Under strict concavity, $\det H_A>0$, so
 =\frac{W_{s_Ah_A}W_{s_As_B}-W_{s_As_A}W_{h_As_B}}{\det H_A}.
 \label{eq:cross-instrument-general}
 \end{equation}
-The numerator combines a direct cross effect, $W_{h_As_B}$, with an indirect term transmitted through the interaction between the local government's two instruments. A sign reversal is possible when product-market rivalry changes their relative strength.
+The numerator combines the direct cross derivative $W_{h_As_B}$ with the indirect adjustment through the government's own subsidy--infrastructure interaction. A positive direct effect need not imply a positive infrastructure best-response slope: the induced adjustment in $s_A$ can reverse the total response. The canonical example has a positive direct cross derivative at both $\theta=.5$ and $\theta=.9$, whereas the complete response changes from negative to positive. The theorem below derives uniqueness from polynomial restrictions, rather than assuming any component has a universal sign.
 
 For $\mu>0$ in the model of Sections~\ref{sec:model}--\ref{sec:equilibrium}, symbolic reduction yields a positive function $\Omega(\theta)$ and a quartic
 \begin{equation}
@@ -84,6 +84,8 @@ and
 \end{equation}
 If, in addition, that interior branch is the true global policy best response on an open neighborhood, the same derivative is the derivative of the global best response there.
 \end{proposition}
+
+At the canonical parameters the direct effect and the own-subsidy adjustment pull in opposite directions at both representative rivalry levels. At $\theta=.5$, the direct term's contribution to the policy slope is $+0.000677$ but the indirect contribution is $-0.005230$, yielding a total slope of $-0.004552$. At $\theta=.9$, they are $+0.015355$ and $-0.008242$, respectively, yielding $+0.007113$. These contributions are both divided by the positive own-policy Hessian determinant in equation~\eqref{eq:cross-instrument-general}; the raw welfare cross derivative $W_{h_As_B}$ cannot be compared directly with a policy slope. In the canonical example the territorial-target term $-dE_{A,h_A}E_{A,s_B}$ is positive: a rival subsidy lowers local emissions while infrastructure raises them on net, relaxing the marginal target-loss consequence of an infrastructure expansion. These numerical component signs are not assumptions of the general threshold proposition.
 
 The Bernstein representation delivers the uniqueness result directly from the stated coefficient restrictions. The conditions $B_0,\ldots,B_3<0$ imply $P'(u)<0$ throughout $[0,1]$ because the cubic Bernstein basis is nonnegative on that interval. Combined with $P(0)>0>P(1)$, this yields a unique root $u^*\in(0,1)$ and hence $\theta^*=\sqrt{u^*}$. At $\theta=0$ the cross-jurisdictional response is zero rather than negative.
 
@@ -148,7 +150,7 @@ The full nonnegative-policy continuation in Section~\ref{sec:equilibrium} verifi
 \begin{figure}[!t]
 \centering
 \includegraphics[width=0.72\textwidth]{figures/Fig1.pdf}
-\caption{Canonical cross-instrument infrastructure response. The solid line is the full model and the dashed line is the matched no-conventional-investment benchmark at the same remaining canonical primitives. The horizontal line marks zero and the vertical marker indicates $\theta^*=0.7738043861\ldots$. The full-model response crosses zero once, whereas the matched no-$x$ response remains negative for all $\theta\in(0,1]$}
+\caption{Canonical infrastructure best-response derivative to a rival green subsidy, holding rival infrastructure fixed and jointly reoptimizing own subsidy and infrastructure. The solid line is the full model and the dashed line is the matched no-conventional-investment benchmark at the same remaining canonical primitives. The horizontal line marks zero and the vertical marker indicates $\theta^*=0.7738043861\ldots$. The full-model response crosses zero once, whereas the matched no-$x$ response remains negative for all $\theta\in(0,1]$}
 \label{fig:threshold-response}
 \end{figure}
 
@@ -166,7 +168,7 @@ Table~\ref{tab:br-slopes} reports representative values of the two best-response
 
 \begin{table}[htbp]
 \centering
-\caption{Response of jurisdiction $A$ to a higher rival green subsidy}
+\caption{Canonical best-response slopes of jurisdiction $A$ to a marginal rise in rival $B$'s green subsidy, holding rival infrastructure fixed and reoptimizing both own policies; the two columns are evaluated at the indicated product-substitutability levels}
 \label{tab:br-slopes}
 \begin{tabular}{lcc}
 \toprule

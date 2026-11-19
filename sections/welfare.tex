@@ -8,7 +8,7 @@ Let the coordinated policy vector maximize
 \max_{s_A,h_A,s_B,h_B\geq0}\;W_A+W_B.
 \label{eq:planner}
 \end{equation}
-For any policy $z_A\in\{s_A,h_A\}$, the difference between the coordinated and decentralized first-order conditions can be written as
+The objective defines the coordinated policy problem. The reported numerical comparison evaluates a symmetric interior active-duopoly candidate; it does not establish the planner's global optimum over all nonnegative policies and market-structure continuations. For any policy $z_A\in\{s_A,h_A\}$, the difference between the coordinated and decentralized first-order conditions can be written as
 \begin{equation}
 \Omega_{z_A}^{W}
 \equiv
@@ -30,7 +30,7 @@ The wedge therefore contains three real cross-jurisdictional effects: consumer-s
 
 The sign of each wedge is parameter dependent, so the theory does not imply a global ranking of each decentralized policy instrument relative to its coordinated counterpart. For the canonical parameter vector, Table~\ref{tab:welfare} reports the symmetric decentralized global-SPNE policy and the symmetric coordinated active-duopoly benchmark. The coordinated entries are an interior benchmark, not a separate global-equilibrium theorem for the planner problem.
 
-Because $s$ is a subsidy rate while $h$ is an infrastructure quantity, the ratio $h/(s+h)$ has no meaningful unit interpretation and is not used. For a descriptive fiscal-composition measure, define
+To compare the subsidy outlay and infrastructure expenditure in common units, define the descriptive fiscal-composition share
 \begin{equation}
 \phi_h
 \equiv
@@ -42,7 +42,7 @@ This compares subsidy outlay $sg$ with the infrastructure resource/outlay term i
 \begin{table}[htbp]
 \centering
 \small
-\caption{Decentralized and coordinated policies in the canonical witness}
+\caption{Decentralized policy equilibrium and symmetric coordinated active-duopoly benchmark at the canonical primitives}
 \label{tab:welfare}
 \begin{tabular}{ccccccc}
 \toprule
@@ -55,12 +55,12 @@ $\theta$ & $s^{NE}$ & $h^{NE}$ & $\phi_h^{NE}$ & $s^{C}$ & $h^{C}$ & $\phi_h^{C}
 \bottomrule
 \end{tabular}
 \begin{flushleft}\footnotesize
-Notes: $C$ denotes the symmetric coordinated solution on the active-duopoly branch. The table is an illustration, not a global policy-ordering theorem.
+Notes: $NE$ denotes the symmetric decentralized global-policy Nash equilibrium; $C$ denotes the symmetric coordinated interior candidate on the active-duopoly branch, not a proven global planner optimum. The fiscal share $\phi_h=(\kappa h^2/2)/(sg+\kappa h^2/2)$ compares infrastructure expenditure with subsidy outlay plus infrastructure expenditure. The row at $\theta=0.774$ is near the switching threshold $\theta^*\simeq0.773804$; reported entries are rounded.
 \end{flushleft}
 \end{table}
 
 At $\theta=0.9$, total welfare is approximately $2.187$ in the decentralized global-SPNE equilibrium and $3.720$ at the symmetric coordinated active-duopoly benchmark. The fiscal infrastructure share rises from $0.363$ to $0.692$. However, coordination also raises each region's output from approximately $1.184$ to $2.397$ and territorial emissions from approximately $0.907$ to $1.634$.
 
-This last comparison is important for interpretation. Coordination is not an emissions-reduction theorem. The coordinated policymaker internalizes cross-jurisdictional consumer-surplus, producer-surplus, and territorial-target effects, and in the canonical example the production gain is large enough that the coordinated solution tolerates higher territorial emissions. The exercise is therefore a second-best regional-welfare comparison rather than a claim that more coordination necessarily produces greener physical outcomes.
+This last comparison is important for interpretation. Coordination is not an emissions-reduction theorem. The coordinated policymaker internalizes cross-jurisdictional consumer-surplus, producer-surplus, and territorial-target effects, and in the canonical example the production gain is large enough that the reported coordinated interior benchmark has higher territorial emissions. The exercise is therefore a second-best regional-welfare comparison rather than a claim that more coordination necessarily produces greener physical outcomes.
 
 Nor should these numbers be interpreted as a recommendation for globally maximizing carbon policy. The model's emissions term represents territorial or delegated decarbonization objectives. A global climate externality depending on $E_A+E_B$ would introduce an additional coordination motive. We deliberately leave that global-damage extension outside the baseline so that the paper isolates the strategic interaction between local green industrial policy and product-market rivalry.
