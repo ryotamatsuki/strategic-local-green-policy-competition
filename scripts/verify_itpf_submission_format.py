@@ -12,7 +12,8 @@ DECL = (ROOT/'sections/declarations.tex').read_text(encoding='utf-8')
 RESULTS = (ROOT/'sections/main_results.tex').read_text(encoding='utf-8')
 METADATA = (ROOT/'submission/itpf/metadata.md').read_text(encoding='utf-8')
 AI_USE = ('Generative AI tools, including OpenAI ChatGPT, were used to assist with '
-          'exploratory model development, literature organization, mathematical derivations and theoretical-proof checking, '\n          'symbolic cross-checking, '
+          'exploratory model development, literature organization, mathematical derivations and theoretical-proof checking, '
+          'symbolic cross-checking, '
           'manuscript drafting, and language revision.')
 
 assert r'\documentclass[11pt]{article}' in MAIN, 'Article class retained; Springer class recommended, not mandated'
