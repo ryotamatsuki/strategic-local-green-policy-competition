@@ -33,7 +33,7 @@ def production_text() -> str:
 def verify_manuscript_identity_and_structure() -> None:
     main = read("main.tex")
     assert TITLE in main
-    assert "true SPNE of the full nonnegative-action game" in main
+    assert "true subgame-perfect Nash equilibrium (SPNE) of the full nonnegative-action game" in main
     for section in REQUIRED_INPUTS:
         assert f"\\input{{{section}}}" in main, f"main.tex missing {section}"
 
