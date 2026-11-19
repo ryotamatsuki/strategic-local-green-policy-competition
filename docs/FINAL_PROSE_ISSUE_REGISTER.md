@@ -1,6 +1,6 @@
 # FINAL_PROSE_ISSUE_REGISTER — Stage 13 v3.1 (2026-11-19)
 
-Original full-PDF Phase A report: `FINAL_PROSE_REFEREE_REPORT.md` (ChatGPT file Library), 24 pages, SHA-256 `5dfe22de37cb10e047527e56bd60532b8767a7c2aea1fdb128ee54d3cb65f62f`; the reporter disclosed previous contextual exposure, so complete blindness was not guaranteed. Revised production content: `aea7f385a28b2d7a6d1792bd67e9431049b9b20d`; local clean-built 26-page PDF SHA-256 `b0893897ec9780cb95dbe8d079c1979a5f7958f8bb17f199ec9fe2ed3c86a3c1`. The CI-produced final handoff PDF is separately frozen by its own SHA. **All source-side repairs have been applied; second independent whole-PDF critical-reader closure remains pending for every MAJOR. No Stage13 GO.**
+Original full-PDF Phase A report: `FINAL_PROSE_REFEREE_REPORT.md` (ChatGPT file Library), 24 pages, SHA-256 `5dfe22de37cb10e047527e56bd60532b8767a7c2aea1fdb128ee54d3cb65f62f`; the reporter disclosed previous contextual exposure, so complete blindness was not guaranteed. Revised production content: `366fb705ffb4b4c0677a65b2d30a96e8bc74ec79`; local clean-built 26-page PDF SHA-256 `b0893897ec9780cb95dbe8d079c1979a5f7958f8bb17f199ec9fe2ed3c86a3c1`. The CI-produced final handoff PDF is separately frozen by its own SHA. **All source-side repairs have been applied; second independent whole-PDF critical-reader closure remains pending for every MAJOR. No Stage13 GO.**
 
 ## A01 — MAJOR
 

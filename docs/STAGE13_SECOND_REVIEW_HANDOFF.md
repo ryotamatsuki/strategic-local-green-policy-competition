@@ -4,7 +4,7 @@
 
 - Title: Green Subsidies, Public Infrastructure, and Product-Market Rivalry: When Cross-Instrument Responses Reverse
 - Target: International Tax and Public Finance — Regular Article
-- Revised production-source commit: `aea7f385a28b2d7a6d1792bd67e9431049b9b20d`
+- Revised production-source commit: `366fb705ffb4b4c0677a65b2d30a96e8bc74ec79`
 - Local 26-page clean-built PDF: SHA-256 `b0893897ec9780cb95dbe8d079c1979a5f7958f8bb17f199ec9fe2ed3c86a3c1`; the CI-generated PDF and source archive have independent exact hashes in the PR's CI artifact
 - Phase A original PDF SHA-256: `5dfe22de37cb10e047527e56bd60532b8767a7c2aea1fdb128ee54d3cb65f62f`
 - Source-side dispositions for A01–A16: `docs/FINAL_PROSE_ISSUE_REGISTER.md` (not blind-review input)

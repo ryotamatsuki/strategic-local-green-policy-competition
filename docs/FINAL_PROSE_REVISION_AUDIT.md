@@ -3,7 +3,7 @@
 ## Source and independent-review provenance
 
 - Original Phase A reviewer: 24-page PDF SHA-256 `5dfe22de37cb10e047527e56bd60532b8767a7c2aea1fdb128ee54d3cb65f62f`; AI reviewer, prior general context exposure explicitly disclosed
-- Stacked PR #38 on PR #37: source-side MAJOR4 repairs and Phase B author comparisons in prior changes; latest full 16-issue editorial revision production commit `aea7f385a28b2d7a6d1792bd67e9431049b9b20d`
+- Stacked PR #38 on PR #37: source-side MAJOR4 repairs and Phase B author comparisons in prior changes; latest full 16-issue editorial revision production commit `366fb705ffb4b4c0677a65b2d30a96e8bc74ec79`
 - Local revised PDF: 26 pages, SHA-256 `b0893897ec9780cb95dbe8d079c1979a5f7958f8bb17f199ec9fe2ed3c86a3c1`, built from the source with latexmk and BibTeX; all pages rasterized, inspected; Figure 1 and A.6 five-region table readable
 - This editor read the issue register and revised the text: **not an independent second cold reader**. The first referee's disclosed context exposure also prevents falsely claiming total blindness
 
