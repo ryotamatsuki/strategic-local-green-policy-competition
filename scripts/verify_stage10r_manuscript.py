@@ -42,7 +42,7 @@ def verify_headline_results_are_formalized() -> None:
     equilibrium = read("sections/equilibrium.tex")
     results = read("sections/main_results.tex")
     assert "\\label{prop:global-spne}" in equilibrium
-    assert "Canonical global-SPNE bridge" in equilibrium
+    assert "Global policy equilibrium at the canonical parameters" in equilibrium
     assert "\\label{prop:threshold}" in results
     assert "Unique instrument-switching threshold" in results
     assert "\\label{prop:no-x}" in results
