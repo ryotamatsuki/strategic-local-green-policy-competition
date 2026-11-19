@@ -12,7 +12,7 @@ As of 2026-11-19, the official ITPF Submission Guidelines (Title Page) state tha
 
 ## Exactly what changed
 
-Only `sections/declarations.tex` was edited. A terse, generic claim and the work-in-progress sentence "Final author-level verification and approval ... required before submission" were replaced by a publication-facing disclosure covering:
+For the initial disclosure edit, only `sections/declarations.tex` was changed. A terse, generic claim and the work-in-progress sentence "Final author-level verification and approval ... required before submission" were replaced by a publication-facing disclosure covering:
 
 1. **Tool category:** OpenAI ChatGPT and AI-assisted coding tools.
 2. **Research use:** exploration of model formulation, identifying and organizing related research, symbolic and numerical code assistance, internal critical review.
