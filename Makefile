@@ -3,6 +3,8 @@ PYTHON ?= python3
 .PHONY: verify test paper ci clean
 
 verify:
+	$(PYTHON) scripts/make_figure1_threshold_response.py
+	$(PYTHON) scripts/verify_itpf_submission_format.py
 	$(PYTHON) scripts/verify_stage9r_alignment.py
 	$(PYTHON) scripts/verify_stage10r_manuscript.py
 	$(PYTHON) scripts/verify_stage13_prose_regression.py

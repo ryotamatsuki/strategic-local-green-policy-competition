@@ -32,7 +32,7 @@ Green Subsidies, Public Infrastructure, and Product-Market Rivalry: When Cross-I
 
 **Abstract**
 
-How does product-market rivalry alter cross-instrument policy responses when jurisdictions use both firm-facing green support and productive public infrastructure? We study a three-stage game in which local governments choose green-investment subsidies and infrastructure, firms choose conventional cost-reducing and green investment, and firms then compete in a differentiated product market. On an interior duopoly branch, product substitutability can reverse the sign of a government's infrastructure response to a rival's green subsidy at a unique threshold characterized by primitive polynomial conditions. Because large policy deviations can change market structure, we also solve the nonnegative duopoly, limit-pricing-kink, and monopoly continuations and verify that a canonical rational witness is a true SPNE of the full nonnegative-action game on an open primitive neighborhood. A matched benchmark without conventional investment lacks the reversal at the same remaining canonical primitives, although conventional investment is not universally necessary for switching. The mechanism survives locally under differentiated Bertrand competition and partial local capture of firm surplus.
+How does product-market rivalry alter cross-instrument policy responses when jurisdictions use both firm-facing green support and productive public infrastructure? We study a three-stage game in which local governments choose green-investment subsidies and infrastructure, firms choose conventional cost-reducing and green investment, and firms then compete in a differentiated product market. On an interior duopoly branch, product substitutability can reverse the sign of a government's infrastructure response to a rival's green subsidy at a unique threshold characterized by primitive polynomial conditions. Because large policy deviations can change market structure, we also solve the nonnegative duopoly, limit-pricing-kink, and monopoly continuations and verify that a canonical rational witness is a true subgame-perfect Nash equilibrium (SPNE) of the full nonnegative-action game on an open primitive neighborhood. A matched benchmark without conventional investment lacks the reversal at the same remaining canonical primitives, although conventional investment is not universally necessary for switching. The mechanism survives locally under differentiated Bertrand competition and partial local capture of firm surplus.
 
 **Keywords**
 
@@ -72,7 +72,20 @@ Generative AI tools, including OpenAI ChatGPT, were used to assist with explorat
 
 The historical September 2026 Stage-14 PDF was reviewed under the v1.1 workflow, not the 2026-11-19 prose-revised source. Its former QA and artwork verdicts are not approvals of the revised PDF. A v3.1 Stage-13 independent final-PDF prose review and fresh Stage-14 verification are mandatory before submission freeze. The quantitative figure generator and certified theoretical calculations are unchanged by these editorial revisions.
 
-The post-Stage-13R 24-page manuscript has completed the Stage 14 mathematical, reproducibility, bibliography, metadata/declaration, source-package, artwork, and visual QA. Figure 1 is regenerated from the verified derivative expressions and uses embedded TrueType fonts; CI enforces this artwork requirement. No theory or manuscript claim changed in the artwork repair.
+The historical September 2026 Stage-14 approval applies only to its earlier source snapshot. The revised ITPF-format PDF and LaTeX source must undergo fresh Stage-13 independent prose review, figure/font inspection, and Stage-14 re-QA before an immutable submission freeze.
+
+## ITPF author instructions reconciliation (2026-11-19)
+
+- Regular Article: the Short Papers 6,000-word and five-exhibit cap does not apply.
+- Title page: manuscript title, author name, independent-researcher affiliation, city/country, corresponding email and ORCID.
+- Exact unnumbered title-page AI-use footnote, in addition to Statements and Declarations and required portal disclosure: Generative AI tools, including OpenAI ChatGPT, were used to assist with exploratory model development, literature organization, symbolic cross-checking, manuscript drafting, and language revision.
+- The title-page footnote is not an attestation that a human independently verified the model; author confirmation of scientific claims remains pending.
+- Abstract 150–250 words; acronym "subgame-perfect Nash equilibrium (SPNE)" expanded at first use; five indexing keywords; JEL codes.
+- Figure 1 uses the journal-compatible bold "Fig. 1" caption without terminal punctuation. The identical vector PDF is supplied as figures/Fig1.pdf, with an editable-vector EPS export figures/Fig1.eps as the preferred artwork format.
+- Source ZIP includes every .tex section, references.bib, figures, and source plot generator. Upload both PDF and editable source according to authenticated portal file designation.
+- Publisher's Springer Nature article-class template is recommended but not mandatory at initial submission; existing article class is retained to avoid unreviewed mathematical/exhibit changes.
+- Authorship/CRediT and Competing Interests must be entered in the submission interface even where included in author materials.
+- Latest document-format checker: scripts/verify_itpf_submission_format.py; it checks structural compliance, not scientific correctness or a human referee.
 
 ## Live portal hard gate
 
