@@ -17,6 +17,7 @@ test:
 	$(PYTHON) -m pytest -q
 
 paper:
+	$(PYTHON) scripts/make_figure1_threshold_response.py
 	latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
 
 ci: verify test paper
