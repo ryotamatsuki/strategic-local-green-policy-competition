@@ -5,7 +5,7 @@ The central object is the response of jurisdiction $A$'s infrastructure policy t
 \[
 \frac{\partial h_A^{BR}}{\partial s_B}.
 \]
-The question is not whether governments use multiple instruments---that possibility is well established---but whether stronger product-market rivalry can change the sign of this cross-instrument response once firms' conventional and green investments are jointly endogenous.
+The headline comparison holds product-market substitutability fixed and changes only the curvature of the territorial emissions-target loss. The rival's infrastructure is held fixed, while jurisdiction $A$ reoptimizes both its own subsidy and infrastructure. The existing rivalry-indexed sign crossing at $d=2$ is treated below as a complementary characterization, not the sole contribution.
 
 \subsection{A general cross-instrument decomposition}
 
@@ -36,6 +36,96 @@ Under strict concavity, $\det H_A>0$, so
 \label{eq:cross-instrument-general}
 \end{equation}
 The numerator combines a direct cross effect, $W_{h_As_B}$, with an indirect term transmitted through the interaction between the local government's two instruments. A sign reversal is possible when product-market rivalry changes their relative strength.
+
+Write $s=s_A$, $h=h_A$ and $b=s_B$, holding $h_B$ fixed. Eliminating $ds/db$ from $W_s=W_h=0$ yields
+\begin{equation}
+\frac{\partial h_A^{BR}}{\partial s_B}
+=-\frac{W_{hb}-W_{hs}W_{sb}/W_{ss}}
+        {W_{hh}-W_{hs}^{\,2}/W_{ss}}.
+\label{eq:profiled-infrastructure}
+\end{equation}
+The denominator is negative under $H_A\prec0$. Consequently the sign of the response is the sign of the \emph{profiled} mixed effect in the numerator, not necessarily the sign of $W_{hb}$. A rival subsidy can raise the marginal return to infrastructure when the local subsidy is held fixed yet reduce infrastructure after that subsidy is optimally adjusted. This distinction is testable within the exact same policy game; it is not itself a claim that profiling a Hessian is a new mathematical method.
+
+As a complementary comparison, Table~\ref{tab:profiled-channels} shows the same decomposition when $d=2$ is fixed and rivalry instead changes from $\theta=.5$ to $.9$. This is not the fixed-$\theta$ result of Proposition~\ref{prop:fixed-theta-target}. The channel contributions use the \emph{same} total-government $W_{hs}/W_{ss}$ and Schur-complement denominator; each welfare component is evaluated at the same underlying branch, rather than separately reoptimized. The direct mixed effect $W_{hb}$ is positive at these two specified rivalry points, while the fully reoptimized response changes sign. It can be negative at smaller positive rivalry values. At higher rivalry, the target-loss contribution grows more strongly than the opposing producer-surplus term, and the consumer-surplus contribution turns positive. These values demonstrate the source of the canonical reversal, not a universally dominant mechanism.
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{Direct and own-subsidy-profiled cross effects at the canonical primitives}
+\label{tab:profiled-channels}
+\begin{tabular}{lrr}
+\toprule
+& $\theta=0.5$ & $\theta=0.9$\\
+\midrule
+Direct $W_{h_As_B}$ & $+0.000237$ & $+0.008087$\\
+Profiled CS contribution to $\partial h_A^{BR}/\partial s_B$ & $-0.001903$ & $+0.003335$\\
+Profiled PS contribution & $-0.035902$ & $-0.075657$\\
+Profiled territorial-target contribution & $+0.033252$ & $+0.079434$\\
+\midrule
+Total profiled response & $-0.004552$ & $+0.007113$\\
+\bottomrule
+\end{tabular}
+\begin{flushleft}\footnotesize
+Notes: Contributions are $-[W^X_{hb}-(W_{hs}/W_{ss})W^X_{sb}]/[W_{hh}-W_{hs}^2/W_{ss}]$, for $X\in\{CS,PS,\text{target}\}$, evaluated with the same full-government Hessian. The infrastructure-cost component has zero mixed derivative. These are local slopes at the canonical globally certified policy profile, not estimates of observed policy changes.
+\end{flushleft}
+\end{table}
+
+
+
+\subsection{A fixed-rivalry comparison of territorial-target discipline}
+\label{sec:fixed-theta}
+
+The model's precise public-finance implication is that two otherwise identical economies facing the \emph{same intensity of product-market competition} may have opposing infrastructure reactions to the same normalized rival competitiveness shock. We fix $\theta=31/40$ and all primitives other than the territorial-target loss curvature $d$ at the rational values displayed in Section~\ref{sec:results}. The level $\bar E$ and the weight $d$ are distinct: the marginal loss with respect to emissions is $-d(E-\bar E)$, and $d$ governs its curvature. We consider $d_-=39/20$ and $d_+=41/20$. Neither $d$ nor the two government profiles is a measured empirical policy treatment.
+
+\begin{proposition}[Fixed-rivalry target-discipline response reversal]
+\label{prop:fixed-theta-target}
+At $\theta=31/40$, with
+\[
+(k_x,k_g,\mu,\nu,\kappa,e,\beta,\xi,m,\bar E)
+=(4,18,9/10,6/5,4/5,11/10,17/10,1/10,2,0),
+\]
+there exist symmetric pure-strategy subgame-perfect equilibria of the full nonnegative-action game at \emph{each} of $d=39/20$ and $d=41/20$. In each specified equilibrium, both governments choose strictly positive subsidies and infrastructure, both firms produce positive quantities, and each government's policy is its strictly optimal global best response to the other's policy. Holding the rival infrastructure fixed, the own-subsidy-reoptimized infrastructure response to a marginal rival subsidy satisfies
+\[
+\left.\frac{\partial h_A^{BR}}{\partial s_B}\right|_{d=39/20}<0,
+\qquad
+\left.\frac{\partial h_A^{BR}}{\partial s_B}\right|_{d=41/20}>0.
+\]
+At both points $W_{h_As_B}>0$ when the own subsidy is held fixed. The comparisons persist in some nonempty, possibly different open primitive neighborhoods of the two points. The proposition does not assert that every intermediate $d$ is globally admissible, that the entire $d^*(\theta)$ boundary is a global-equilibrium curve, or that all government equilibria are unique.
+\end{proposition}
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{Two certified global policy responses at the same product substitutability}
+\label{tab:fixed-theta-target}
+\begin{tabular}{lrr}
+\toprule
+& $d=39/20$ & $d=41/20$\\
+\midrule
+Product substitutability $\theta$ & $0.775$ & $0.775$\\
+Symmetric subsidy $s^*$ & $2.473667$ & $2.410736$\\
+Symmetric infrastructure $h^*$ & $1.032255$ & $0.852323$\\
+Each firm's output $q^*$ & $1.384909$ & $1.294680$\\
+Direct mixed effect $W_{h_As_B}$ & $+0.002655814$ & $+0.004165839$\\
+Profiled CS contribution & $+0.000376095$ & $+0.000330702$\\
+Profiled PS contribution & $-0.069230869$ & $-0.060729074$\\
+Profiled target-loss contribution & $+0.067352475$ & $+0.061801263$\\
+\midrule
+Reoptimized $\partial h_A^{BR}/\partial s_B$ & $-0.001502299$ & $+0.001402891$\\
+Gap to best non-duopoly deviation $\Delta W$ & $+1.225042$ & $+1.250984$\\
+\bottomrule
+\end{tabular}
+\begin{flushleft}\footnotesize
+Notes: All values are rounded displays of exact-rational expressions. Each candidate is strictly positive and has a negative-definite own-policy Hessian and nonsingular symmetric policy-FOC Jacobian. The strict $\Delta W$ compares the duopoly candidate's government welfare with the maximum over all feasible non-duopoly kink/monopoly policy branches, not with an arbitrary grid point. A local marginal rival \emph{subsidy} shock holds rival infrastructure fixed and permits both own instruments to adjust.
+\end{flushleft}
+\end{table}
+
+The two directions are not a consequence of holding the local subsidy fixed: its direct effect is positive in \emph{both} economies. Instead, the own subsidy--infrastructure substitution embedded in \eqref{eq:profiled-infrastructure}, combined with the target-loss curvature, produces opposite \emph{profiled} slopes. For clarity the three contributions in Table~\ref{tab:fixed-theta-target} are computed using the \emph{same total-government Hessian and Schur-complement denominator} in each economy: the target contribution is positive and grows relative to the countervailing producer-surplus term as $d$ rises, while consumer surplus contributes a smaller positive amount. The contributions sum exactly to the total derivative before rounding; they do not arise from separately optimizing three fictitious objectives. Because rival policies enter the active branch through $y_B=(\mu/k_g)s_B+\nu h_B$, a marginal change in rival infrastructure, normalized to the same $\Delta y_B$, has the same local response. This does not identify a subsidy-specific causal transmission mechanism.
+
+\emph{Proof and scope.} At each of the two rational points, solving the symmetric policy FOCs gives the strictly positive policies in Table~\ref{tab:fixed-theta-target}. The own-policy Hessian is strictly negative definite, and the two-government symmetric FOC Jacobian is nonsingular. Independently maximizing each of the five exact government objective pieces over nonnegative policies, including their faces and vertices, leaves the interior duopoly candidate strictly optimal. The rival-kink and rival-monopoly regions are unreachable at either point; the best own-kink and own-monopoly challengers coincide at their common boundary and are worse by the strictly positive rational $\Delta W$ shown in the table. These are exact finite, coercive quadratic optimization problems, not grid searches. Their full rational certificates, boundary constraints, and independent test path are in Appendix~\ref{app:fixed-target-global} and the Stage-4A certification record. Positive strict inequalities, active-regime margins and invertible Jacobians then yield a continuously varying local equilibrium and global best-response mapping by the implicit-function theorem and continuity of constrained maxima. The opposite derivative signs therefore hold in two separate nonempty open neighborhoods. Nothing in this argument connects those neighborhoods across all $d$.
+
+\subsection{Complementary reversal as rivalry varies}
+
 
 For $\mu>0$ in the model of Sections~\ref{sec:model}--\ref{sec:equilibrium}, symbolic reduction yields a positive function $\Omega(\theta)$ and a quartic
 \begin{equation}
@@ -84,39 +174,6 @@ and
 \end{equation}
 If, in addition, that interior branch is the true global policy best response on an open neighborhood, the same derivative is the derivative of the global best response there.
 \end{proposition}
-
-The substantive question is what reverses after the \emph{own subsidy has been reoptimized}. Write $s=s_A$, $h=h_A$ and $b=s_B$, holding $h_B$ fixed. Eliminating $ds/db$ from $W_s=W_h=0$ yields
-\begin{equation}
-\frac{\partial h_A^{BR}}{\partial s_B}
-=-\frac{W_{hb}-W_{hs}W_{sb}/W_{ss}}
-        {W_{hh}-W_{hs}^{\,2}/W_{ss}}.
-\label{eq:profiled-infrastructure}
-\end{equation}
-The denominator is negative under $H_A\prec0$. Consequently the sign of the response is the sign of the \emph{profiled} mixed effect in the numerator, not necessarily the sign of $W_{hb}$. A rival subsidy can raise the marginal return to infrastructure when the local subsidy is held fixed yet reduce infrastructure after that subsidy is optimally adjusted. This distinction is testable within the exact same policy game; it is not itself a claim that profiling a Hessian is a new mathematical method.
-
-Table~\ref{tab:profiled-channels} shows this distinction for the two canonical rivalry levels. The channel contributions use the \emph{same} total-government $W_{hs}/W_{ss}$ and Schur-complement denominator; each welfare component is evaluated at the same underlying branch, rather than separately reoptimized. The direct mixed effect $W_{hb}$ is positive at both points, while the fully reoptimized response changes sign. At higher rivalry, the target-loss contribution grows more strongly than the opposing producer-surplus term, and the consumer-surplus contribution turns positive. These values demonstrate the source of the canonical reversal, not a universally dominant mechanism.
-
-\begin{table}[htbp]
-\centering
-\small
-\caption{Direct and own-subsidy-profiled cross effects at the canonical primitives}
-\label{tab:profiled-channels}
-\begin{tabular}{lrr}
-\toprule
-& $\theta=0.5$ & $\theta=0.9$\\
-\midrule
-Direct $W_{h_As_B}$ & $+0.000237$ & $+0.008087$\\
-Profiled CS contribution to $\partial h_A^{BR}/\partial s_B$ & $-0.001903$ & $+0.003335$\\
-Profiled PS contribution & $-0.035902$ & $-0.075657$\\
-Profiled territorial-target contribution & $+0.033252$ & $+0.079434$\\
-\midrule
-Total profiled response & $-0.004552$ & $+0.007113$\\
-\bottomrule
-\end{tabular}
-\begin{flushleft}\footnotesize
-Notes: Contributions are $-[W^X_{hb}-(W_{hs}/W_{ss})W^X_{sb}]/[W_{hh}-W_{hs}^2/W_{ss}]$, for $X\in\{CS,PS,\text{target}\}$, evaluated with the same full-government Hessian. The infrastructure-cost component has zero mixed derivative. These are local slopes at the canonical globally certified policy profile, not estimates of observed policy changes.
-\end{flushleft}
-\end{table}
 
 The sign change is a directional effect, not a discrete decision to abandon one instrument for another. The interior formula alone does not certify a global policy response; the kink- and monopoly-deviation checks in Section~\ref{sec:equilibrium} remain essential.
 
@@ -183,7 +240,7 @@ The full nonnegative-policy continuation in Section~\ref{sec:equilibrium} verifi
 \begin{figure}[!t]
 \centering
 \includegraphics[width=0.72\textwidth]{figures/figure1_threshold_response.pdf}
-\caption{Cross-instrument infrastructure response at canonical primitives. The solid full-model curve is the local derivative along the verified global-SPNE canonical branch; its unique zero is $\theta^*=0.7738043861\ldots$. The dashed no-conventional-investment curve is the matched-primitives \emph{interior-branch diagnostic}, not a global equilibrium claim throughout the whole plotted interval. The horizontal line is zero. Neither curve establishes switching for arbitrary primitives.}
+\caption{Cross-instrument infrastructure response at canonical primitives. The solid full-model curve is the local derivative along the verified global-SPNE canonical branch; its unique strictly positive, interior sign-changing zero is $\theta^*=0.7738043861\ldots$; $\theta=0$ is also a zero because the markets are separate. The dashed no-conventional-investment curve is the matched-primitives \emph{interior-branch diagnostic}, not a global equilibrium claim throughout the whole plotted interval. The horizontal line is zero. Neither curve establishes switching for arbitrary primitives.}
 \label{fig:threshold-response}
 \end{figure}
 
