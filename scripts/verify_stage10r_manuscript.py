@@ -33,7 +33,7 @@ def production_text() -> str:
 def verify_manuscript_identity_and_structure() -> None:
     main = read("main.tex")
     assert TITLE in main
-    assert "true SPNE of the full nonnegative-action game" in main
+    assert "true subgame-perfect Nash equilibrium (SPNE) of the full nonnegative-action game" in main
     for section in REQUIRED_INPUTS:
         assert f"\\input{{{section}}}" in main, f"main.tex missing {section}"
 
@@ -42,7 +42,7 @@ def verify_headline_results_are_formalized() -> None:
     equilibrium = read("sections/equilibrium.tex")
     results = read("sections/main_results.tex")
     assert "\\label{prop:global-spne}" in equilibrium
-    assert "Canonical global-SPNE bridge" in equilibrium
+    assert "Global policy equilibrium at the canonical parameters" in equilibrium
     assert "\\label{prop:threshold}" in results
     assert "Unique instrument-switching threshold" in results
     assert "\\label{prop:no-x}" in results

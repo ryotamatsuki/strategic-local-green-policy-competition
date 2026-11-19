@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+from shutil import copyfile
 
 import matplotlib
 matplotlib.use('Agg')
@@ -12,6 +13,8 @@ ROOT = Path(__file__).resolve().parents[1]
 FIG_DIR = ROOT / 'figures'
 PDF_PATH = FIG_DIR / 'figure1_threshold_response.pdf'
 PNG_PATH = FIG_DIR / 'figure1_threshold_response.png'
+FIG1_PDF_PATH = FIG_DIR / 'Fig1.pdf'
+FIG1_EPS_PATH = FIG_DIR / 'Fig1.eps'
 
 THETA_STAR = 0.773804386083461
 BASELINE_CHECKS = {
@@ -146,6 +149,8 @@ def make_figure():
         'ModDate': None,
     }
     fig.savefig(PDF_PATH, bbox_inches='tight', metadata=pdf_metadata)
+    copyfile(PDF_PATH, FIG1_PDF_PATH)  # exact same plot; ITPF Fig1 artwork filename
+    fig.savefig(FIG1_EPS_PATH, format='eps', bbox_inches='tight')
     fig.savefig(PNG_PATH, dpi=220, bbox_inches='tight', metadata={'Software': 'matplotlib'})
     plt.close(fig)
 
@@ -155,6 +160,8 @@ def make_figure():
     print(f'no_x_min={float(np.min(no_x_values[1:])):.12f}')
     print(f'no_x_max_on_positive_grid={float(np.max(no_x_values[1:])):.12f}')
     print(f'WROTE {PDF_PATH.relative_to(ROOT)}')
+    print(f'WROTE {FIG1_PDF_PATH.relative_to(ROOT)}')
+    print(f'WROTE {FIG1_EPS_PATH.relative_to(ROOT)}')
     print(f'WROTE {PNG_PATH.relative_to(ROOT)}')
 
 

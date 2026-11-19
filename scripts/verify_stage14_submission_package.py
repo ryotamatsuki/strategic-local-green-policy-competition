@@ -8,6 +8,8 @@ MAIN = ROOT / "main.tex"
 SECTIONS = sorted((ROOT / "sections").glob("*.tex"))
 BIB = ROOT / "references.bib"
 FIGURE = ROOT / "figures" / "figure1_threshold_response.pdf"
+JOURNAL_PDF = ROOT / "figures" / "Fig1.pdf"
+JOURNAL_EPS = ROOT / "figures" / "Fig1.eps"
 FIGURE_SCRIPT = ROOT / "scripts" / "make_figure1_threshold_response.py"
 
 
@@ -92,6 +94,11 @@ if not FIGURE_SCRIPT.is_file():
     fail("Figure 1 generation script missing")
 if not FIGURE.is_file() or FIGURE.stat().st_size == 0:
     fail("Figure 1 PDF missing or empty")
+for required_figure in (JOURNAL_PDF, JOURNAL_EPS):
+    if not required_figure.is_file() or required_figure.stat().st_size == 0:
+        fail(f"ITPF named vector figure source missing or empty: {required_figure.name}")
+if JOURNAL_PDF.read_bytes() != FIGURE.read_bytes():
+    fail("ITPF Fig1.pdf does not match the validated Figure 1 PDF")
 results = (ROOT / "sections" / "main_results.tex").read_text(encoding="utf-8")
 introduction = (ROOT / "sections" / "introduction.tex").read_text(encoding="utf-8")
 if "\\label{fig:threshold-response}" not in results:

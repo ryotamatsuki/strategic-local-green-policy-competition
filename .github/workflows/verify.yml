@@ -19,6 +19,7 @@ jobs:
       - run: test -s figures/figure1_threshold_response.pdf
       - run: python scripts/verify_stage9r_alignment.py
       - run: python scripts/verify_stage10r_manuscript.py
+      - run: python scripts/verify_stage13_prose_regression.py
       - run: python scripts/verify_freeze.py
       - run: python scripts/verify_stage4rg_global.py
       - run: python scripts/verify_nox_global_counterexample.py
@@ -26,6 +27,7 @@ jobs:
       - run: python scripts/verify_stage10.py
       - run: python scripts/verify_stage11r_target_scope.py
       - run: python scripts/verify_stage14_submission_package.py
+      - run: python scripts/verify_itpf_submission_format.py
       - run: python -m pytest -q
 
   lean-verification:
@@ -63,6 +65,11 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y latexmk texlive-latex-base texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended poppler-utils zip
+      - name: Require named ITPF vector figure files
+        run: |
+          test -s figures/Fig1.pdf
+          test -s figures/Fig1.eps
+          cmp figures/figure1_threshold_response.pdf figures/Fig1.pdf
       - name: Require embedded Figure 1 fonts
         run: |
           fonts="$(pdffonts figures/figure1_threshold_response.pdf | awk 'NR>2 && NF')"
@@ -84,6 +91,8 @@ jobs:
           mkdir -p submission-build
           cp main.pdf main.log submission-build/
           zip -r submission-build/itpf-source.zip main.tex references.bib sections figures scripts/make_figure1_threshold_response.py >/dev/null
+      - name: Verify ITPF source archive and submission-facing format
+        run: python scripts/verify_itpf_submission_format.py submission-build/itpf-source.zip
       - name: Upload Stage 14 manuscript artifact
         uses: actions/upload-artifact@v4
         with:

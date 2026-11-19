@@ -1,7 +1,12 @@
 \documentclass[11pt]{article}
-\usepackage{amsmath,amssymb,amsthm,booktabs,geometry,graphicx,hyperref,natbib}
+\usepackage{amsmath,amssymb,amsthm,booktabs,geometry,graphicx,hyperref,natbib,caption}
+\captionsetup[figure]{labelfont=bf,labelsep=space}
+\renewcommand{\figurename}{Fig.}
 \geometry{margin=1in}
-\hypersetup{hidelinks}
+\hypersetup{hidelinks,
+  pdftitle={Green Subsidies, Public Infrastructure, and Product-Market Rivalry: When Cross-Instrument Responses Reverse},
+  pdfauthor={Ryota Matsuki},
+  pdfkeywords={green industrial policy, interjurisdictional competition, public infrastructure, green investment, oligopoly}}
 \setlength{\emergencystretch}{2em}
 \allowdisplaybreaks
 \newtheorem{proposition}{Proposition}
@@ -16,9 +21,15 @@ ORCID: \href{https://orcid.org/0009-0005-2329-531X}{0009-0005-2329-531X}}
 
 \begin{document}
 \maketitle
+% ITPF journal policy: the title-page AI-use footnote must be unnumbered.
+% Mirror this disclosure in Declarations and the manuscript submission interface.
+\begingroup
+\renewcommand{\thefootnote}{}
+\footnotetext{AI use disclosure: Generative AI tools, including OpenAI ChatGPT, were used to assist with exploratory model development, literature organization, mathematical derivations and theoretical-proof checking, symbolic cross-checking, manuscript drafting, and language revision.}
+\endgroup
 
 \begin{abstract}
-How does product-market rivalry alter cross-instrument policy responses when jurisdictions use both firm-facing green support and productive public infrastructure? We study a three-stage game in which local governments choose green-investment subsidies and infrastructure, firms choose conventional cost-reducing and green investment, and firms then compete in a differentiated product market. On an interior duopoly branch, product substitutability can reverse the sign of a government's infrastructure response to a rival's green subsidy at a unique threshold characterized by primitive polynomial conditions. Because large policy deviations can change market structure, we also solve the nonnegative duopoly, limit-pricing-kink, and monopoly continuations and verify that a canonical rational witness is a true SPNE of the full nonnegative-action game on an open primitive neighborhood. A matched benchmark without conventional investment lacks the reversal at the same remaining canonical primitives, although conventional investment is not universally necessary for switching. The mechanism survives locally under differentiated Bertrand competition and partial local capture of firm surplus.
+How does product-market rivalry alter cross-instrument policy responses when jurisdictions use both firm-facing green support and productive public infrastructure? We study a three-stage game in which local governments choose green-investment subsidies and infrastructure, firms choose conventional cost-reducing and green investment, and firms then compete in a differentiated product market. On an interior duopoly branch, product substitutability can reverse the sign of a government's infrastructure response to a rival's green subsidy at a unique threshold characterized by primitive polynomial conditions. Because large policy deviations can change market structure, we also solve the nonnegative duopoly, limit-pricing-kink, and monopoly continuations and verify that a canonical rational witness is a true subgame-perfect Nash equilibrium (SPNE) of the full nonnegative-action game on an open primitive neighborhood. A matched benchmark without conventional investment lacks the reversal at the same remaining canonical primitives, although conventional investment is not universally necessary for switching. The mechanism survives locally under differentiated Bertrand competition and partial local capture of firm surplus.
 \end{abstract}
 
 \noindent\textbf{Keywords:} green industrial policy; interjurisdictional competition; public infrastructure; green investment; oligopoly\\
