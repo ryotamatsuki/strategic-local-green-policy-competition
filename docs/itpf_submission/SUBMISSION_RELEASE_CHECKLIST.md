@@ -6,7 +6,7 @@
 
 - [x] Start from PR #35 head `54824ee29e9f811b8115a2f6e573a128479a5a4b`. Relative to the last validated manuscript SHA `2a6fead11e7f85994f9f5ade5ad6699ac1c636e1`, intervening updates were solely workflow/audit Markdown; no paper changes.
 - [x] Create isolated submission-prep branch from that head; preserve PR #35, `main`, the model, theorems, proofs, numbers, figures and baseline citations.
-- [x] Replace only the `sections/declarations.tex` AI-use paragraph, with disclosure covering substantive AI model/writing/code use, reproducible verification and precise Lean scope. Remove the nonpublication work-in-progress sentence.
+- [x] Replace the `sections/declarations.tex` AI-use paragraph, with disclosure covering substantive AI model/writing/code use, reproducible verification and precise Lean scope. Remove the nonpublication work-in-progress sentence. A subsequent editorial cleanup changed prose in nine other manuscript files and streamlined Code availability in `sections/declarations.tex`; no formulas, numerical entries, proposition statements, figures or model primitives were changed.
 - [x] Keep the title page's named author, independent-researcher affiliation, contact email and ORCID exactly as in the existing source; **not independently verified with author**.
 - [x] Keep the full regular-paper article, abstract, keywords, JEL, and substantive proof/appendix statements intact.
 - [x] Provide original editable `main.tex`, `sections/*.tex`, `references.bib`, Figure 1 assets and its Python generator, together with a freshly compiled PDF.
