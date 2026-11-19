@@ -66,7 +66,7 @@ Symbolic and numerical verification materials supporting the analytical and comp
 
 **Use of generative AI**
 
-Generative AI tools, including OpenAI ChatGPT, were used to assist with exploratory model development, literature organization, symbolic cross-checking, manuscript drafting, and language revision. The author takes responsibility for the accuracy and integrity of the submitted work, including its mathematical claims, numerical results, references, and conclusions.
+Generative AI tools, including OpenAI ChatGPT, were used to assist with exploratory model development, literature organization, mathematical derivations and theoretical-proof checking, symbolic cross-checking, manuscript drafting, and language revision. The author takes responsibility for the accuracy and integrity of the submitted work, including its mathematical claims, numerical results, references, and conclusions.
 
 ## Current package and validation status
 
@@ -78,7 +78,7 @@ The historical September 2026 Stage-14 approval applies only to its earlier sour
 
 - Regular Article: the Short Papers 6,000-word and five-exhibit cap does not apply.
 - Title page: manuscript title, author name, independent-researcher affiliation, city/country, corresponding email and ORCID.
-- Exact unnumbered title-page AI-use footnote, in addition to Statements and Declarations and required portal disclosure: Generative AI tools, including OpenAI ChatGPT, were used to assist with exploratory model development, literature organization, symbolic cross-checking, manuscript drafting, and language revision.
+- Exact unnumbered title-page AI-use footnote, in addition to Statements and Declarations and required portal disclosure: Generative AI tools, including OpenAI ChatGPT, were used to assist with exploratory model development, literature organization, mathematical derivations and theoretical-proof checking, symbolic cross-checking, manuscript drafting, and language revision.
 - The title-page footnote is not an attestation that a human independently verified the model; author confirmation of scientific claims remains pending.
 - Abstract 150–250 words; acronym "subgame-perfect Nash equilibrium (SPNE)" expanded at first use; five indexing keywords; JEL codes.
 - Figure 1 uses the journal-compatible bold "Fig. 1" caption without terminal punctuation. The identical vector PDF is supplied as figures/Fig1.pdf, with an editable-vector EPS export figures/Fig1.eps as the preferred artwork format.
